@@ -1,12 +1,79 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Edidi Sai Anant's Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edidi Sai Anant | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Welcome to my Website!</h1>
-    <p>This is the portfolio of Edidi Sai Anant.</p>
-    <h2>About Me</h2>
-    <p>Electrical Engineering Master's candidate with a passion for the semiconductor industry.</p>
+    <div class="cursor"></div>
+
+    <header>
+        <nav>
+            <div class="logo">ESA</div>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <h1>Edidi Sai Anant</h1>
+            <p class="subtitle">Electrical Engineering Master's Candidate | Semiconductor Enthusiast</p>
+        </section>
+
+        <section id="about" class="fade-in">
+            <h2>About Me</h2>
+            <p>I am an Electrical Engineering Master's candidate with a robust foundation in semiconductor processes and IC design. Driven by a passion for innovation, I am committed to contributing to collaborative teams and solving challenges in the dynamic semiconductor industry[1].</p>
+        </section>
+
+        <section id="projects" class="fade-in">
+            <h2>Featured Projects</h2>
+            <div class="project-grid">
+                <div class="card">
+                    <h3>FPGA Hardware Accelerator for MLP</h3>
+                    <p>Developed a hardware accelerator on a Xilinx Zynq-7000 FPGA to improve MLP neural network inference, achieving significant speed and efficiency gains through pipelining and loop unrolling[1].</p>
+                </div>
+                <div class="card">
+                    <h3>In-Memory Compute Circuit Design</h3>
+                    <p>Designed an in-memory compute circuit to accelerate neural network computations, focusing on quantization and optimization to boost accuracy and efficiency using NeuroSim and MuMax3[1].</p>
+                </div>
+                <div class="card">
+                    <h3>VLSI Interconnect Modelling</h3>
+                    <p>Engaged in optimizing processor interconnects using Elmore RC models and Cadence Virtuoso for a 2-core processor at 45nm technology, improving signal integrity and system performance[1].</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="fade-in">
+            <h2>Technical Skills</h2>
+            <ul class="skills-list">
+                <li>Verilog & SystemVerilog</li>
+                <li>Cadence Virtuoso</li>
+                <li>Xilinx Vivado & Vitis</li>
+                <li>C++ & Python</li>
+                <li>Embedded Systems</li>
+                <li>HLS</li>
+            </ul>
+        </section>
+
+        <section id="contact" class="fade-in">
+            <h2>Get In Touch</h2>
+            <p>You can reach me via email or connect with me on professional networks.</p>
+            <a href="mailto:esanant@u.nus.edu" class="button">Email Me</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Edidi Sai Anant. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
