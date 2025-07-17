@@ -385,4 +385,67 @@ footer {
 }
 
 @media (max-width: 768px) {
-    main
+    main { padding: 0 50px; }
+    .section-title::after { width: 100px; }
+    .about-grid { grid-template-columns: 1fr; }
+    .project-item, .project-item:nth-of-type(even) {
+        grid-template-columns: 1fr;
+    }
+    .project-content, .project-item:nth-of-type(even) .project-content {
+        grid-column: 1 / -1;
+        padding: 40px 25px 30px;
+        text-align: left;
+    }
+    .project-tech-list, .project-item:nth-of-type(even) .project-tech-list {
+        justify-content: flex-start;
+    }
+    .project-image {
+        grid-column: 1 / -1;
+        height: 250px;
+        opacity: 0.25;
+    }
+    .project-image img { object-fit: cover; height: 100%; }
+
+    /* Hide desktop nav and show mobile toggle button */
+    #nav-links {
+        display: none;
+    }
+    #mobile-menu-toggle {
+        display: block;
+    }
+
+    /* Style the mobile navigation menu that appears */
+    #nav-links.mobile-active {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: min(75vw, 400px);
+        height: 100vh;
+        background-color: var(--light-navy);
+        box-shadow: -10px 0px 30px -15px rgba(2,12,27,0.7);
+        z-index: 1000;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+    }
+    #nav-links.mobile-active.is-open {
+        transform: translateX(0);
+    }
+    #nav-links.mobile-active ul {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+    }
+    #nav-links.mobile-active a {
+        font-size: var(--fz-lg);
+    }
+}
+
+@media (max-width: 600px) {
+    header { padding: 0 25px; }
+    main { padding: 0 25px; }
+    /* The original `nav { display: none; }` rule is now handled by the logic in the 768px media query */
+}
