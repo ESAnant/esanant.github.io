@@ -7,12 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const toggleMenu = () => {
         const isOpen = nav.classList.contains('is-open');
-
         // Toggle classes for the button and nav panel
         menuToggle.classList.toggle('is-active', !isOpen);
         nav.classList.toggle('mobile-active', !isOpen);
         nav.classList.toggle('is-open', !isOpen);
-
         // Toggle body scroll
         document.body.classList.toggle('blur', !isOpen);
     };
@@ -28,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-
 
     // --- Preloader ---
     const preloader = document.getElementById('preloader');
