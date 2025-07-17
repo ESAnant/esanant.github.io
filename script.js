@@ -1,5 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // --- Mobile Menu ---
+    const menuToggle = document.getElementById('mobile-menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+
+    menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('is-active');
+        navLinks.classList.toggle('mobile-active');
+        navLinks.classList.toggle('is-open');
+
+        // Prevent background scroll when menu is open
+        document.body.style.overflow = navLinks.classList.contains('is-open') ? 'hidden' : 'auto';
+    });
+
     // --- Preloader ---
     const preloader = document.getElementById('preloader');
     window.addEventListener('load', () => {
@@ -22,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             header.classList.remove('hidden');
         }
+
         lastScrollY = window.scrollY;
     });
 
@@ -39,21 +53,24 @@ document.addEventListener('DOMContentLoaded', () => {
     sections.forEach(section => {
         revealObserver.observe(section);
     });
-    
+
     // --- Active Navigation Link Highlighting ---
-    const navLinks = document.querySelectorAll('nav a');
+    const navLinksList = document.querySelectorAll('#nav-links a');
     const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                navLinks.forEach(link => {
-                    link.classList.toggle('active', link.getAttribute('href').substring(1) === entry.target.id);
+                const id = entry.target.getAttribute('id');
+                navLinksList.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
                 });
             }
         });
     }, { rootMargin: '-30% 0px -70% 0px' });
 
     sections.forEach(section => {
-        if(section.id) sectionObserver.observe(section);
+        if (section.id) {
+            sectionObserver.observe(section);
+        }
     });
 
 });
