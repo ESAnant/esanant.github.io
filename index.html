@@ -3,24 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edidi Sai Anant - Semiconductor Engineer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <title>Edidi Sai Anant | VLSI & Semiconductor Engineering</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@1.43.1/tsparticles.min.js"></script>
 </head>
 <body>
-    <div class="cursor"></div>
-    <div id="particles-js"></div>
-    
+    <div class="background-grid"></div>
+
     <header>
-        <div class="logo">ESA</div>
+        <div class="logo">
+            <a href="#">ESA</a>
+        </div>
         <nav>
             <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#journey">Journey</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#research">Research</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#about">01. About</a></li>
+                <li><a href="#projects">02. Projects</a></li>
+                <li><a href="#research">03. Research</a></li>
+                <li><a href="#contact">04. Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -28,212 +27,146 @@
     <main>
         <section id="hero">
             <div class="hero-content">
-                <h1 class="typing-effect">Edidi Sai Anant</h1>
-                <p class="subtitle fade-in-delay">From dismantling TV remotes to designing VLSI circuits</p>
-                <p class="hero-description fade-in-delay">
-                    A journey that started with teenage curiosity about electronic devices 
-                    has evolved into expertise in semiconductor design and IC architecture.
+                <h1 class="fade-in">Edidi Sai Anant</h1>
+                <h2 class="fade-in" style="animation-delay: 0.2s;">Architecting the Future of Semiconductors.</h2>
+                <p class="fade-in" style="animation-delay: 0.4s;">
+                    Specializing in VLSI design, in-memory computing, and hardware acceleration. I transform complex computational problems into efficient, silicon-level solutions.
                 </p>
-                <div class="hero-stats fade-in-delay">
-                    <span class="stat-item">M.Sc. Electrical Engineering • NUS Graduate</span>
-                    <span class="stat-item">VLSI Design • Semiconductor Processes</span>
-                </div>
-                <div class="circuit-traces">
-                    <div class="circuit-trace trace-1"></div>
-                    <div class="circuit-trace trace-2"></div>
-                    <div class="circuit-trace trace-3"></div>
-                </div>
+                <a href="#projects" class="button fade-in" style="animation-delay: 0.6s;">View My Work</a>
             </div>
         </section>
 
         <section id="about" class="fade-in">
-            <h2>About Me</h2>
-            <div class="about-container">
+            <h2 class="section-title"><span>01.</span> About Me</h2>
+            <div class="about-grid">
                 <div class="about-text">
-                    <p class="highlight-text">
-                        My journey into electronics began with an insatiable curiosity about how things work. 
-                        As a teenager, I would dismantle everything from TV remotes to old computers, 
-                        driven by a need to understand the electronic systems that surrounded me.
-                    </p>
-                    <p>
-                        This hands-on experimentation evolved into formal education and professional expertise. 
-                        From tinkering with remote-control cars to designing VLSI circuits at 45nm technology, 
-                        each step has deepened my understanding of semiconductor physics and digital design.
-                    </p>
-                    <p>
-                        Today, I combine theoretical knowledge with practical innovation, specializing in 
-                        memory technologies, VLSI design, and embedded systems. My work focuses on bridging 
-                        the gap between cutting-edge research and real-world applications.
-                    </p>
-                    <div class="philosophy">
-                        <blockquote>
-                            "Technology development is not only about honing technical skills, 
-                            but also about fostering collaboration and innovation."
-                        </blockquote>
-                    </div>
+                    <p>My journey into the world of electronics began not in a lab, but with a simple curiosity for the devices around me. Dismantling old gadgets as a teenager sparked a passion that led me through a B.Tech in Electronics and a specialized M.Sc. in Electrical Engineering from the National University of Singapore.</p>
+                    <p>This path has taken me from foundational principles of digital logic to advanced topics in VLSI design, memory technologies, and hardware acceleration for neural networks. My experience spans both academic research and industry-focused internships, where I've designed and verified components like AHB-to-APB bridges and optimized interconnects at the 45nm technology node.</p>
+                    <p>I am driven by the challenge of bridging the gap between theoretical models and tangible, high-performance hardware. My goal is to contribute to the next generation of computing systems by designing smarter, faster, and more efficient integrated circuits.</p>
                 </div>
-                <div class="profile-picture-container">
-                    <div class="profile-frame">
-                        <img src="profile.jpg" alt="Edidi Sai Anant" class="profile-picture">
-                        <div class="profile-overlay"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="journey" class="fade-in">
-            <h2>The Circuit Journey</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3>The Curious Teenager</h3>
-                        <p>Started by dismantling TV remotes, calculators, and computers to understand their inner workings</p>
-                        <span class="timeline-tech">Hardware Exploration</span>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3>Foundation Building</h3>
-                        <p>B.Tech in Electronics & Communication Engineering at SRM Institute</p>
-                        <span class="timeline-tech">Digital Electronics • Semiconductor Devices</span>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3>Industry Experience</h3>
-                        <p>Internships at Maven Silicon and Sandeepani School - AHB to APB bridge design & UART verification</p>
-                        <span class="timeline-tech">Verilog • SystemVerilog • RTL Design</span>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3>Master's Achievement</h3>
-                        <p>M.Sc. Electrical Engineering at National University of Singapore - VLSI & Memory Technologies</p>
-                        <span class="timeline-tech">FPGA • Neural Networks • IC Design</span>
-                    </div>
+                <div class="core-competencies">
+                    <h3>Core Competencies:</h3>
+                    <ul>
+                        <li>Verilog & SystemVerilog</li>
+                        <li>VLSI & IC Design</li>
+                        <li>FPGA Prototyping (Xilinx)</li>
+                        <li>Hardware Acceleration</li>
+                        <li>In-Memory Computing</li>
+                        <li>Semiconductor Device Physics</li>
+                        <li>RTL Design & Verification</li>
+                        <li>Cadence & Synopsys Tools</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
         <section id="projects" class="fade-in">
-            <h2>Circuit Innovations</h2>
-            <div class="project-grid">
-                <div class="card featured-project">
-                    <div class="card-glow"></div>
-                    <div class="project-header">
-                        <h3>FPGA Neural Network Accelerator</h3>
-                        <span class="tech-badge">Xilinx Zynq-7000</span>
+            <h2 class="section-title"><span>02.</span> Featured Projects</h2>
+            <div class="project-list">
+                <!-- Project 1 -->
+                <div class="project-item">
+                    <div class="project-content">
+                        <span class="project-overline">Featured Project</span>
+                        <h3 class="project-title"><a href="#">FPGA Neural Network Accelerator</a></h3>
+                        <div class="project-description">
+                            <p>Developed a hardware accelerator for MLP neural network inference on a Xilinx Zynq-7000 FPGA. Achieved significant performance gains by implementing optimized pipelining and loop unrolling strategies in Verilog and HLS.</p>
+                        </div>
+                        <ul class="project-tech-list">
+                            <li>Verilog</li>
+                            <li>HLS</li>
+                            <li>Xilinx Vivado</li>
+                            <li>Pipelining</li>
+                        </ul>
                     </div>
-                    <p>Hardware accelerator achieving significant speed gains through pipelining and loop unrolling for MLP neural network inference</p>
-                    <div class="project-tech">
-                        <span>Verilog</span>
-                        <span>HLS</span>
-                        <span>Xilinx Vivado</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="project-link">View Details</a>
-                    </div>
-                </div>
-                
-                <div class="card featured-project">
-                    <div class="card-glow"></div>
-                    <div class="project-header">
-                        <h3>In-Memory Compute Circuit</h3>
-                        <span class="tech-badge">NeuroSim</span>
-                    </div>
-                    <p>Designed specialized circuits for neural network acceleration with quantization optimization</p>
-                    <div class="project-tech">
-                        <span>PyTorch</span>
-                        <span>MuMax3</span>
-                        <span>Circuit Design</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="project-link">View Details</a>
+                    <div class="project-image">
+                        <a href="#">
+                            <img src="https://via.placeholder.com/500x300/112240/64ffda.png?text=FPGA+Architecture" alt="FPGA Accelerator Diagram">
+                        </a>
                     </div>
                 </div>
-                
-                <div class="card">
-                    <div class="card-glow"></div>
-                    <div class="project-header">
-                        <h3>AHB to APB Bridge</h3>
-                        <span class="tech-badge">Maven Silicon</span>
+                <!-- Project 2 -->
+                <div class="project-item">
+                    <div class="project-content right-aligned">
+                         <span class="project-overline">Featured Project</span>
+                        <h3 class="project-title"><a href="#">In-Memory Compute Circuit Design</a></h3>
+                        <div class="project-description">
+                            <p>Designed and simulated novel in-memory computing circuits aimed at accelerating neural network operations. Utilized NeuroSim and PyTorch for modeling and analysis, focusing on quantization optimization to enhance efficiency.</p>
+                        </div>
+                        <ul class="project-tech-list right-aligned">
+                            <li>Circuit Design</li>
+                            <li>NeuroSim</li>
+                            <li>PyTorch</li>
+                            <li>MuMax3</li>
+                        </ul>
                     </div>
-                    <p>Seamless bus protocol communication design with modular architecture and robust RTL implementation</p>
-                    <div class="project-tech">
-                        <span>Verilog HDL</span>
-                        <span>SystemVerilog</span>
-                        <span>Verification</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="project-link">View Details</a>
+                     <div class="project-image left-aligned">
+                        <a href="#">
+                            <img src="https://via.placeholder.com/500x300/112240/64ffda.png?text=IMC+Circuit+Layout" alt="In-Memory Compute Circuit">
+                        </a>
                     </div>
                 </div>
-
-                <div class="card">
-                    <div class="card-glow"></div>
-                    <div class="project-header">
-                        <h3>VLSI Interconnect Modelling</h3>
-                        <span class="tech-badge">Cadence</span>
+                 <!-- Project 3 -->
+                <div class="project-item">
+                    <div class="project-content">
+                        <span class="project-overline">Industry Internship</span>
+                        <h3 class="project-title"><a href="#">AHB to APB Bridge</a></h3>
+                        <div class="project-description">
+                            <p>Designed a modular and robust AHB to APB bridge during an internship at Maven Silicon. Focused on creating a seamless bus protocol translation with efficient RTL implementation and comprehensive verification using SystemVerilog.</p>
+                        </div>
+                        <ul class="project-tech-list">
+                            <li>Verilog HDL</li>
+                            <li>SystemVerilog</li>
+                            <li>RTL Verification</li>
+                            <li>AMBA Bus</li>
+                        </ul>
                     </div>
-                    <p>Optimized processor interconnects using Elmore RC models for 2-core processor at 45nm technology</p>
-                    <div class="project-tech">
-                        <span>Cadence Virtuoso</span>
-                        <span>RC Modeling</span>
-                        <span>45nm Process</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="project-link">View Details</a>
+                    <div class="project-image">
+                        <a href="#">
+                            <img src="https://via.placeholder.com/500x300/112240/64ffda.png?text=Bus+Protocol+Bridge" alt="AHB-APB Bridge Block Diagram">
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
 
         <section id="research" class="fade-in">
-            <h2>Research Contributions</h2>
-            <div class="research-grid">
-                <div class="research-item">
-                    <div class="research-icon">📄</div>
-                    <h3>Improving Data Integrity with Reversible Logic</h3>
-                    <p>IEEE Conference Paper on Error Detection and Correction Module for AHB-APB Bridge</p>
-                    <span class="publication-year">2023</span>
-                </div>
-                <div class="research-item">
-                    <div class="research-icon">📊</div>
-                    <h3>Affordable IoT Healthcare Systems</h3>
-                    <p>Survey on cost-effective IoT devices in healthcare sector</p>
-                    <span class="publication-year">2022</span>
-                </div>
-            </div>
+             <h2 class="section-title"><span>03.</span> Publications & Research</h2>
+             <div class="research-grid">
+                 <div class="research-card">
+                     <div class="card-header">
+                        <span class="card-icon">📄</span>
+                        <h4>Improving Data Integrity with Reversible Logic</h4>
+                     </div>
+                     <p>Published an IEEE conference paper on an innovative Error Detection and Correction module designed for an AHB-APB Bridge, leveraging reversible logic gates to enhance data integrity.</p>
+                     <span class="publication-venue">IEEE Conference | 2023</span>
+                 </div>
+                 <div class="research-card">
+                      <div class="card-header">
+                        <span class="card-icon">📊</span>
+                        <h4>Affordable IoT Healthcare Systems</h4>
+                     </div>
+                     <p>Conducted and published a comprehensive survey on the design and implementation of cost-effective IoT devices tailored for the healthcare sector, identifying key trends and opportunities.</p>
+                     <span class="publication-venue">Research Survey | 2022</span>
+                 </div>
+             </div>
         </section>
 
         <section id="contact" class="fade-in">
-            <h2>Get In Touch</h2>
-            <div class="contact-container">
-                <p>I'm always open to discussing new projects, creative ideas, or opportunities in semiconductor design.</p>
-                <div class="contact-methods">
-                    <a href="mailto:esanant@u.nus.edu" class="contact-method">
-                        <span class="contact-icon">📧</span>
-                        <span>esanant@u.nus.edu</span>
-                    </a>
-                    <a href="https://linkedin.com/in/sai-anant" class="contact-method">
-                        <span class="contact-icon">💼</span>
-                        <span>LinkedIn</span>
-                    </a>
-                </div>
+            <h2 class="section-title"><span>04.</span> Get In Touch</h2>
+            <div class="contact-box">
+                <h3>Connect with Me</h3>
+                <p>I am currently exploring new opportunities in semiconductor design and research. Whether you have a question, a project proposal, or just want to connect, my inbox is always open.</p>
+                <a href="mailto:esanant@u.nus.edu" class="button">Say Hello</a>
             </div>
         </section>
     </main>
 
     <footer>
         <div class="social-links">
-            <a href="https://linkedin.com/in/sai-anant">LinkedIn</a>
-            <a href="mailto:esanant@u.nus.edu">Email</a>
+            <a href="https://linkedin.com/in/sai-anant" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://github.com/your-github" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
-        <p>&copy; 2025 Edidi Sai Anant. Designed with circuits in mind.</p>
+        <p>Designed & Built by Edidi Sai Anant</p>
     </footer>
 
     <script src="script.js"></script>
