@@ -33,12 +33,9 @@ body {
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
 }
-
-/* Added to prevent scroll issues when mobile menu is open */
 body.blur {
     overflow: hidden;
 }
-
 main {
     padding: 0 150px;
     margin: 0 auto;
@@ -83,7 +80,6 @@ section.is-visible {
     height: 1px;
     background-color: var(--light-navy);
 }
-
 .button {
     display: inline-block;
     padding: 0.75rem 1.5rem;
@@ -373,7 +369,6 @@ footer {
     transform: translateY(-7px) rotate(-45deg);
 }
 
-
 /* --- ANIMATIONS & RESPONSIVENESS --- */
 .fade-in {
     opacity: 0;
@@ -393,7 +388,7 @@ footer {
     main { padding: 0 50px; }
     .section-title::after { width: 100px; }
     .about-grid { grid-template-columns: 1fr; }
-    
+
     /* Project layout on mobile */
     .project-item, .project-item:nth-of-type(even) {
         grid-template-columns: 1fr;
@@ -412,9 +407,8 @@ footer {
         opacity: 0.25;
     }
     .project-image img { object-fit: cover; height: 100%; }
-
+    
     /* --- REVISED: MOBILE NAVIGATION LOGIC --- */
-
     /* 1. Hide the desktop nav links and show the hamburger button */
     #nav-links {
         display: none;
@@ -422,7 +416,6 @@ footer {
     #mobile-menu-toggle {
         display: block;
     }
-
     /* 2. Style the slide-out menu container. It's hidden off-screen by default. */
     #nav-links.mobile-active {
         display: flex; /* This is the key: we change from 'none' to 'flex' */
@@ -440,12 +433,10 @@ footer {
         transform: translateX(100%); /* Start off-screen */
         transition: transform 0.3s ease-in-out;
     }
-
     /* 3. When the menu is open, slide it into view */
     #nav-links.is-open {
         transform: translateX(0);
     }
-    
     /* 4. Style the links inside the mobile menu */
     #nav-links.mobile-active ul {
         flex-direction: column;
