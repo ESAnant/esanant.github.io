@@ -2,16 +2,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Mobile Menu ---
     const menuToggle = document.getElementById('mobile-menu-toggle');
-    const navLinks = document.getElementById('nav-links');
+    const nav = document.getElementById('nav-links');
+    const navLinks = nav.querySelectorAll('a');
 
-    menuToggle.addEventListener('click', () => {
-        menuToggle.classList.toggle('is-active');
-        navLinks.classList.toggle('mobile-active');
-        navLinks.classList.toggle('is-open');
+    const toggleMenu = () => {
+        const isOpen = nav.classList.contains('is-open');
 
-        // Prevent background scroll when menu is open
-        document.body.style.overflow = navLinks.classList.contains('is-open') ? 'hidden' : 'auto';
+        // Toggle classes for the button and nav panel
+        menuToggle.classList.toggle('is-active', !isOpen);
+        nav.classList.toggle('mobile-active', !isOpen);
+        nav.classList.toggle('is-open', !isOpen);
+
+        // Toggle body scroll
+        document.body.classList.toggle('blur', !isOpen);
+    };
+
+    // Open/close menu when hamburger button is clicked
+    menuToggle.addEventListener('click', toggleMenu);
+
+    // --- IMPROVEMENT: Close menu when a nav link is clicked ---
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (nav.classList.contains('is-open')) {
+                toggleMenu();
+            }
+        });
     });
+
 
     // --- Preloader ---
     const preloader = document.getElementById('preloader');
@@ -55,13 +72,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- Active Navigation Link Highlighting ---
-    const navLinksList = document.querySelectorAll('#nav-links a');
+    const allNavLinks = document.querySelectorAll('#nav-links a');
     const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const id = entry.target.getAttribute('id');
-                navLinksList.forEach(link => {
-                    link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+                allNavLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${id}`) {
+                        link.classList.add('active');
+                    }
                 });
             }
         });
