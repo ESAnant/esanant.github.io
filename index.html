@@ -6,8 +6,12 @@
     <title>Edidi Sai Anant | Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
+    <!-- Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <div id="particles-js"></div>
     <div class="cursor"></div>
 
     <header>
@@ -30,7 +34,15 @@
 
         <section id="about" class="fade-in">
             <h2>About Me</h2>
-            <p>I am an Electrical Engineering Master's candidate with a robust foundation in semiconductor processes and IC design. Driven by a passion for innovation, I am committed to contributing to collaborative teams and solving challenges in the dynamic semiconductor industry[1].</p>
+            <div class="about-container">
+                <div class="about-text">
+                    <p>I am an Electrical Engineering Master's candidate with a robust foundation in semiconductor processes and IC design. Driven by a passion for innovation, I am committed to contributing to collaborative teams and solving challenges in the dynamic semiconductor industry[1].</p>
+                </div>
+                <div class="profile-picture-container">
+                    <!-- Replace with your actual profile picture URL -->
+                    <img src="https://media.licdn.com/dms/image/D5603AQEQG3v-I3iVvg/profile-displayphoto-shrink_800_800/0/1695484835306?e=1726704000&v=beta&t=Uo_7k_lJ9k9U8tY9x3x9Z7Z9Z3Z9Z3Z9Z3Z9Z3Z" alt="Edidi Sai Anant profile picture" class="profile-picture">
+                </div>
+            </div>
         </section>
 
         <section id="projects" class="fade-in">
@@ -62,15 +74,33 @@
                 <li>HLS</li>
             </ul>
         </section>
+        
+        <section id="logos" class="fade-in">
+          <h2>Software Tools</h2>
+          <div class="logo-row">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" title="C++"/>
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" title="Python"/>
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/verilog/verilog-original.svg" alt="Verilog" title="Verilog"/>
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/raspberrypi/raspberrypi-original.svg" alt="Raspberry Pi" title="Raspberry Pi"/>
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg" alt="Arduino" title="Arduino"/>
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" title="GitHub"/>
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VSCode" title="VSCode"/>
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" title="Linux"/>
+          </div>
+        </section>
 
         <section id="contact" class="fade-in">
             <h2>Get In Touch</h2>
-            <p>You can reach me via email or connect with me on professional networks.</p>
+            <p>I'm always open to discussing new projects, creative ideas, or opportunities. Feel free to reach out.</p>
             <a href="mailto:esanant@u.nus.edu" class="button">Email Me</a>
         </section>
     </main>
 
     <footer>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/sai-anant/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/sai-anant" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        </div>
         <p>&copy; 2024 Edidi Sai Anant. All rights reserved.</p>
     </footer>
 
