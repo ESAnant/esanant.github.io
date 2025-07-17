@@ -1,178 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <!-- Core Meta Tags -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="The professional portfolio of Edidi Sai Anant, a semiconductor engineer specializing in VLSI design, hardware acceleration, and in-memory computing.">
-    <meta name="author" content="Edidi Sai Anant">
+<!-- index.html -->
 
-    <!-- Open Graph / LinkedIn Meta Tags -->
-    <meta property="og:title" content="Edidi Sai Anant | VLSI & Semiconductor Engineer">
-    <meta property="og:description" content="Specializing in VLSI design and hardware acceleration. Transforming complex computational problems into efficient, silicon-level solutions.">
-    <meta property="og:image" content="https://your-domain.com/og-image.png"> <!-- IMPORTANT: Replace with a link to your preview image -->
-    <meta property="og:url" content="https://your-github-username.github.io/"> <!-- IMPORTANT: Replace with your live URL -->
-    <meta property="og:type" content="website">
+<!-- HERO SECTION -->
+<section id="hero">
+    <p class="fade-in" style="font-family: var(--font-mono); color: var(--accent); margin-bottom: 20px;">Edidi Sai Anant</p>
+    <h1 class="fade-in">Designing Tomorrow's Silicon.</h1>
+    <h2 class="fade-in">I build high-performance hardware solutions, from concept to silicon.</h2>
+    <p class="fade-in">Specializing in VLSI design, in-memory computing, and hardware acceleration, I transform complex computational problems into efficient, high-performance integrated circuits.</p>
+    <a href="#contact" class="button fade-in">Get In Touch</a>
+</section>
 
-    <!-- Title -->
-    <title>Edidi Sai Anant | VLSI & Semiconductor Engineering</title>
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <!-- Preloader -->
-    <div id="preloader">
-        <div class="loader-logo">ESA</div>
-    </div>
-
-    <div class="background-grid"></div>
-
-    <header id="header">
-        <div class="logo">
-            <a href="#">ESA</a>
+<!-- ABOUT SECTION -->
+<section id="about">
+    <h2 class="section-title"><span>01.</span> About Me</h2>
+    <div class="about-grid">
+        <div class="about-text">
+            <p>My journey into electronics wasn't just a choice; it was a calling. It began with taking apart old gadgets and evolved into a deep academic and professional pursuit, culminating in an M.Sc. in Electrical Engineering from the National University of Singapore.</p>
+            <p>My master's program honed my skills in advanced VLSI design, memory technologies, and hardware acceleration for neural networks. I've moved beyond theory, with hands-on experience designing and verifying components like AHB-to-APB bridges and optimizing interconnects at the 45nm node. I thrive on the challenge of bridging the gap between abstract algorithms and tangible, high-performance hardware.</p>
+            <p>I am driven to contribute to the next generation of computing systems by designing smarter, faster, and more efficient integrated circuits. I am currently seeking opportunities where I can apply my expertise to solve real-world problems in the semiconductor industry.</p>
         </div>
-        <nav>
-            <ul id="nav-links">
-                <li><a href="#about">01. About</a></li>
-                <li><a href="#projects">02. Projects</a></li>
-                <li><a href="#research">03. Research</a></li>
-                <li><a href="#contact">04. Contact</a></li>
+        <div class="about-skills">
+            <h3 style="color: var(--light-slate); margin-bottom: 20px; font-size: var(--fz-lg);">Core Competencies:</h3>
+            <ul class="core-competencies">
+                <li>Verilog & SystemVerilog</li>
+                <li>VLSI & IC Design</li>
+                <li>FPGA Prototyping (Xilinx)</li>
+                <li>Hardware Acceleration</li>
+                <li>In-Memory Computing</li>
+                <li>Semiconductor Devices</li>
+                <li>RTL Design & Verification</li>
+                <li>Cadence & Synopsys Tools</li>
             </ul>
-        </nav>
-    </header>
-
-    <main>
-        <section id="hero">
-            <div class="hero-content">
-                <h1 class="fade-in">Edidi Sai Anant</h1>
-                <h2 class="fade-in" style="animation-delay: 0.2s;">Architecting the Future of Semiconductors.</h2>
-                <p class="fade-in" style="animation-delay: 0.4s;">
-                    Specializing in VLSI design, in-memory computing, and hardware acceleration. I transform complex computational problems into efficient, silicon-level solutions.
-                </p>
-                <a href="mailto:esanant@u.nus.edu" class="button fade-in" style="animation-delay: 0.6s;">Get In Touch</a>
-            </div>
-        </section>
-
-        <section id="about" class="fade-in-scroll">
-            <h2 class="section-title"><span>01.</span> About Me</h2>
-            <div class="about-grid">
-                <div class="about-text">
-                    <p>My journey into electronics began not in a lab, but with a simple curiosity for the devices around me. Dismantling old gadgets as a teenager sparked a passion that led me through a B.Tech in Electronics and a specialized M.Sc. in Electrical Engineering from the National University of Singapore.</p>
-                    <p>This path has taken me from foundational principles of digital logic to advanced topics in VLSI design, memory technologies, and hardware acceleration for neural networks. My experience spans both academic research and industry-focused internships, where I've designed and verified components like AHB-to-APB bridges and optimized interconnects at the 45nm technology node.</p>
-                    <p>I am driven by the challenge of bridging the gap between theoretical models and tangible, high-performance hardware. My goal is to contribute to the next generation of computing systems by designing smarter, faster, and more efficient integrated circuits.</p>
-                </div>
-                <div class="core-competencies">
-                    <h3>Core Competencies:</h3>
-                    <ul>
-                        <li>Verilog & SystemVerilog</li>
-                        <li>VLSI & IC Design</li>
-                        <li>FPGA Prototyping (Xilinx)</li>
-                        <li>Hardware Acceleration</li>
-                        <li>In-Memory Computing</li>
-                        <li>Semiconductor Device Physics</li>
-                        <li>RTL Design & Verification</li>
-                        <li>Cadence & Synopsys Tools</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects" class="fade-in-scroll">
-            <h2 class="section-title"><span>02.</span> Featured Projects</h2>
-            <div class="project-list">
-                <!-- Project 1 -->
-                <div class="project-item">
-                    <div class="project-content">
-                        <span class="project-overline">Featured Project</span>
-                        <h3 class="project-title"><a href="#" target="_blank" rel="noopener noreferrer">FPGA Neural Network Accelerator</a></h3>
-                        <div class="project-description">
-                            <p>Developed a hardware accelerator for MLP neural network inference on a Xilinx Zynq-7000 FPGA. Achieved significant performance gains by implementing optimized pipelining and loop unrolling strategies in Verilog and HLS.</p>
-                        </div>
-                        <ul class="project-tech-list">
-                            <li>Verilog</li>
-                            <li>HLS</li>
-                            <li>Xilinx Vivado</li>
-                            <li>Pipelining</li>
-                        </ul>
-                    </div>
-                    <div class="project-image">
-                        <a href="#">
-                            <img src="https://i.imgur.com/7v4C4m7.png" alt="FPGA Accelerator Diagram">
-                        </a>
-                    </div>
-                </div>
-                <!-- Project 2 -->
-                <div class="project-item">
-                    <div class="project-content right-aligned">
-                         <span class="project-overline">Featured Project</span>
-                        <h3 class="project-title"><a href="#" target="_blank" rel="noopener noreferrer">In-Memory Compute Circuit Design</a></h3>
-                        <div class="project-description">
-                            <p>Designed and simulated novel in-memory computing circuits aimed at accelerating neural network operations. Utilized NeuroSim and PyTorch for modeling and analysis, focusing on quantization optimization to enhance efficiency.</p>
-                        </div>
-                        <ul class="project-tech-list">
-                            <li>Circuit Design</li>
-                            <li>NeuroSim</li>
-                            <li>PyTorch</li>
-                            <li>MuMax3</li>
-                        </ul>
-                    </div>
-                     <div class="project-image left-aligned">
-                        <a href="#">
-                            <img src="https://i.imgur.com/OFMqmCg.png" alt="In-Memory Compute Circuit">
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="research" class="fade-in-scroll">
-             <h2 class="section-title"><span>03.</span> Publications & Research</h2>
-             <div class="research-grid">
-                 <div class="research-card">
-                     <div class="card-header">
-                        <span class="card-icon">📄</span>
-                        <h4>Improving Data Integrity with Reversible Logic</h4>
-                     </div>
-                     <p>Published an IEEE conference paper on an innovative Error Detection and Correction module designed for an AHB-APB Bridge, leveraging reversible logic gates to enhance data integrity.</p>
-                     <span class="publication-venue">IEEE Conference | 2023</span>
-                 </div>
-                 <div class="research-card">
-                      <div class="card-header">
-                        <span class="card-icon">📊</span>
-                        <h4>Affordable IoT Healthcare Systems</h4>
-                     </div>
-                     <p>Conducted and published a comprehensive survey on the design and implementation of cost-effective IoT devices tailored for the healthcare sector, identifying key trends and opportunities.</p>
-                     <span class="publication-venue">Research Survey | 2022</span>
-                 </div>
-             </div>
-        </section>
-
-        <section id="contact" class="fade-in-scroll">
-            <h2 class="section-title"><span>04.</span> What's Next?</h2>
-            <div class="contact-box">
-                <h3>Connect With Me</h3>
-                <p>I am currently exploring new opportunities in semiconductor design and research. Whether you have a question, a project proposal, or just want to connect, my inbox is always open.</p>
-                <a href="mailto:esanant@u.nus.edu" class="button">Say Hello</a>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="social-links">
-            <a href="https://github.com/your-github" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
-            </a>
-            <a href="https://linkedin.com/in/sai-anant" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 114.75 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93-.91 0-1.38.61-1.62 1.25a2.46 2.46 0 00-.09.68l.02 4.74H10V10h3v1.38h.04c.41-.71 1.25-1.38 2.94-1.38 2.11 0 3.02 1.83 3.02 4.12V19z"></path></svg>
-            </a>
         </div>
-        <p>Designed & Built by Edidi Sai Anant</p>
-    </footer>
+    </div>
+</section>
 
-    <script src="script.js"></script>
-</body>
-</html>
+<!-- PROJECTS SECTION -->
+<section id="projects">
+    <h2 class="section-title"><span>02.</span> Featured Projects</h2>
+    <div class="project-list">
+        <!-- Add links to your GitHub repos in the <a> tags -->
+        <div class="project-item">
+             <div class="project-content">
+                <p class="project-overline">Featured Project</p>
+                <h3 class="project-title"><a href="#" target="_blank">FPGA Neural Network Accelerator</a></h3>
+                <div class="project-description">
+                    <p>Developed and deployed a hardware accelerator for MLP neural network inference on a Xilinx Zynq-7000 FPGA. Achieved a <strong>4x performance increase</strong> over a software-only baseline by implementing optimized pipelining and loop unrolling strategies in Verilog and HLS.</p>
+                </div>
+                <ul class="project-tech-list">
+                    <li>Verilog</li>
+                    <li>HLS</li>
+                    <li>Xilinx Vivado</li>
+                    <li>Pipelining</li>
+                </ul>
+            </div>
+            <div class="project-image">
+                <a href="#" target="_blank">
+                    <!-- Recommended: Replace with an actual image of your project (e.g., architecture diagram) -->
+                    <img src="path/to/your/project-image.png" alt="FPGA Accelerator Diagram">
+                </a>
+            </div>
+        </div>
+         <!-- Add other projects similarly -->
+    </div>
+</section>
