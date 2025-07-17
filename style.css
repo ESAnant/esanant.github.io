@@ -34,6 +34,11 @@ body {
     text-rendering: optimizeLegibility;
 }
 
+/* Added to prevent scroll issues when mobile menu is open */
+body.blur {
+    overflow: hidden;
+}
+
 main {
     padding: 0 150px;
     margin: 0 auto;
@@ -302,13 +307,13 @@ nav a span { color: var(--accent); margin-right: 5px; }
     padding: 30px;
     border-radius: var(--border-radius);
     transition: var(--transition);
-    border-left: 2px solid transparent; /* Prepare for hover effect */
+    border-left: 2px solid transparent;
 }
 .research-card:hover {
-    transform: translateY(-7px); /* Increased movement */
+    transform: translateY(-7px);
     box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
-    border-left: 2px solid var(--accent); /* Adds a nice highlight */
-    padding-left: 28px; /* Adjust padding to keep alignment */
+    border-left: 2px solid var(--accent);
+    padding-left: 28px;
 }
 .card-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
 .card-icon { font-size: 2rem; }
@@ -343,11 +348,11 @@ footer {
 
 /* --- MOBILE MENU STYLES --- */
 #mobile-menu-toggle {
-    display: none; /* Hidden on desktop */
+    display: none; /* Hidden on desktop by default */
     background: none;
     border: none;
     cursor: pointer;
-    z-index: 1001;
+    z-index: 1001; /* Ensure it's above other elements */
     padding: 10px;
 }
 .hamburger-line {
@@ -388,6 +393,8 @@ footer {
     main { padding: 0 50px; }
     .section-title::after { width: 100px; }
     .about-grid { grid-template-columns: 1fr; }
+    
+    /* Project layout on mobile */
     .project-item, .project-item:nth-of-type(even) {
         grid-template-columns: 1fr;
     }
@@ -406,7 +413,9 @@ footer {
     }
     .project-image img { object-fit: cover; height: 100%; }
 
-    /* Hide desktop nav and show mobile toggle button */
+    /* --- REVISED: MOBILE NAVIGATION LOGIC --- */
+
+    /* 1. Hide the desktop nav links and show the hamburger button */
     #nav-links {
         display: none;
     }
@@ -414,9 +423,9 @@ footer {
         display: block;
     }
 
-    /* Style the mobile navigation menu that appears */
+    /* 2. Style the slide-out menu container. It's hidden off-screen by default. */
     #nav-links.mobile-active {
-        display: flex;
+        display: flex; /* This is the key: we change from 'none' to 'flex' */
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -428,12 +437,16 @@ footer {
         background-color: var(--light-navy);
         box-shadow: -10px 0px 30px -15px rgba(2,12,27,0.7);
         z-index: 1000;
-        transform: translateX(100%);
+        transform: translateX(100%); /* Start off-screen */
         transition: transform 0.3s ease-in-out;
     }
-    #nav-links.mobile-active.is-open {
+
+    /* 3. When the menu is open, slide it into view */
+    #nav-links.is-open {
         transform: translateX(0);
     }
+    
+    /* 4. Style the links inside the mobile menu */
     #nav-links.mobile-active ul {
         flex-direction: column;
         text-align: center;
@@ -447,5 +460,4 @@ footer {
 @media (max-width: 600px) {
     header { padding: 0 25px; }
     main { padding: 0 25px; }
-    /* The original `nav { display: none; }` rule is now handled by the logic in the 768px media query */
 }
