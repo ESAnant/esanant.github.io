@@ -1,166 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edidi Sai Anant | Digital Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edidi Sai Anant | Portfolio</title>
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
+
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-    <!-- Thematic Preloader -->
-    <div id="preloader">
-        <div class="digital-pulse"></div>
+  <!-- Pre-loader (digital pulse) -->
+  <div id="preloader">
+    <div class="pulse-ring"></div>
+  </div>
+
+  <!-- Custom cursor -->
+  <div id="cursor"></div>
+
+  <!-- Animated circuit background (Vanta.js) -->
+  <div id="vanta-bg"></div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="nav-container">
+      <a href="#home" class="logo">ESA</a>
+      <nav class="navbar">
+        <a class="nav-link" href="#about">About</a>
+        <a class="nav-link" href="#experience">Experience</a>
+        <a class="nav-link" href="#projects">Projects</a>
+        <a class="nav-link" href="#skills">Skills</a>
+        <a class="nav-link" href="#contact">Contact</a>
+      </nav>
     </div>
+  </header>
 
-    <!-- Custom Cursor -->
-    <div class="custom-cursor"></div>
+  <!-- Main content -->
+  <main>
 
-    <!-- Animated Background Container -->
-    <div id="vanta-bg"></div>
+    <!-- Hero -->
+    <section id="home" class="hero section-visible">
+      <h1 class="hero-title">Edidi Sai Anant</h1>
+      <p class="tagline">M.Sc. Electrical Engineering | Semiconductor & IC Design Enthusiast</p>
+      <div class="social">
+        <a href="https://www.linkedin.com/in/sai-anant/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/ESAnant" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="mailto:esanant@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+    </section>
 
-    <header class="header">
-        <div class="navbar-container">
-            <a href="#home" class="nav-logo">ESA</a>
-            <nav class="navbar">
-                <a href="#about" class="nav-link">About</a>
-                <a href="#experience" class="nav-link">Experience</a>
-                <a href="#projects" class="nav-link">Projects</a>
-                <a href="#skills" class="nav-link">Skills</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </nav>
+    <!-- About -->
+    <section id="about" class="card-section">
+      <div class="card">
+        <h2>About Me</h2>
+        <p>
+          Master’s candidate at the National University of Singapore with a passion for VLSI, memory technologies and embedded hardware. I thrive on turning complex semiconductor challenges into elegant silicon solutions while mentoring peers as a graduate assistant.
+        </p>
+        <p>
+          Outside the lab you’ll find me solving puzzles, exploring new music, and travelling to spark fresh ideas.
+        </p>
+      </div>
+    </section>
+
+    <!-- Experience & Education -->
+    <section id="experience" class="card-section">
+      <div class="card">
+        <h2>Experience & Education</h2>
+
+        <div class="timeline">
+
+          <div class="timeline-item">
+            <div class="dot"></div>
+            <div class="content">
+              <h3>National University of Singapore – M.Sc. Electrical Engineering</h3>
+              <span>2023 – 2025 (exp.)</span>
+              <ul>
+                <li>Graduate assistant for Microcontroller Programming & Computer Architecture labs.</li>
+                <li>Coursework: VLSI Design, Memory Technologies, Embedded Hardware Systems.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="dot"></div>
+            <div class="content">
+              <h3>SRM Institute of Science & Technology – B.Tech. ECE</h3>
+              <span>2019 – 2023</span>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="dot"></div>
+            <div class="content">
+              <h3>Maven Silicon – Project Intern</h3>
+              <span>Dec 2022 – Jan 2023</span>
+              <p>Designed an AHB→APB bridge and authored robust RTL in Verilog.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="dot"></div>
+            <div class="content">
+              <h3>Sandeepani School of Embedded Systems – Intern</h3>
+              <span>Jun 2022 – Jul 2022</span>
+              <p>Verified UART protocol & half-adder using Verilog/SystemVerilog with QuestaSim coverage.</p>
+            </div>
+          </div>
+
         </div>
-    </header>
+      </div>
+    </section>
 
-    <main class="main-content">
-        <section id="home" class="hero-section">
-            <div class="hero-content">
-                <h1 class="hero-title">Edidi Sai Anant</h1>
-                <p class="hero-subtitle">Master's Candidate specializing in Semiconductor Technology & Computer Architecture[1].</p>
-                <div class="hero-socials">
-                    <a href="https://www.linkedin.com/in/sai-anant/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/ESAnant" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="mailto:esanant@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                </div>
-            </div>
-        </section>
+    <!-- Projects -->
+    <section id="projects" class="card-section">
+      <div class="card">
+        <h2>Highlighted Projects</h2>
+        <div class="grid">
 
-        <section id="about" class="content-section">
-            <div class="glass-card">
-                <h2 class="section-title">About Me</h2>
-                <div class="about-text">
-                    <p>Driven by a passion for innovation in the semiconductor industry, I am an Electrical Engineering Master's candidate at the National University of Singapore[1]. My focus is on VLSI, IC design, and computer architecture, where I apply a strong analytical mindset to solve complex challenges[1][2].</p>
-                    <p>I thrive in collaborative, future-oriented environments and am committed to enhancing my foundational knowledge to contribute to cutting-edge hardware solutions. Beyond engineering, I enjoy solving puzzles, listening to music, and traveling[1].</p>
-                </div>
-            </div>
-        </section>
+          <a class="project" href="https://github.com/ESAnant" target="_blank">
+            <h3>FPGA Hardware Accelerator</h3>
+            <p>Zynq-7000 design achieving 8× speed-up on MLP inference via HLS pipelining & loop unrolling.</p>
+            <span class="chip">Xilinx</span>
+            <span class="chip">HLS</span>
+            <span class="chip">Verilog</span>
+          </a>
 
-        <section id="experience" class="content-section">
-            <div class="glass-card">
-                <h2 class="section-title">Experience & Education</h2>
-                <div class="timeline">
-                    <!-- Education -->
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <h3>Master of Science, Electrical Engineering</h3>
-                            <p class="company-name">National University of Singapore</p>
-                            <span class="date">Aug 2023 – Jun 2025 (Expected)</span>
-                            <ul>
-                                <li>Graduate Assistant for Computer Architecture & Microcontroller Programming courses[1].</li>
-                                <li>Coursework: VLSI Digital Circuit Design, Memory Technologies, Embedded Hardware System Design[1].</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <h3>Bachelor of Technology, Electronics and Communication</h3>
-                            <p class="company-name">SRM Institute of Science and Technology</p>
-                            <span class="date">Jun 2019 – Jul 2023</span>
-                        </div>
-                    </div>
-                     <!-- Internships -->
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <h3>Project Intern</h3>
-                            <p class="company-name">Maven Silicon, Bangalore, India</p>
-                            <span class="date">Dec 2022 – Jan 2023</span>
-                            <ul><li>Designed an AHB to APB bridge and wrote functional RTL code in Verilog[1].</li></ul>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <h3>Intern</h3>
-                            <p class="company-name">Sandeepani School of Embedded System Design, India</p>
-                            <span class="date">Jun 2022 – Jul 2022</span>
-                            <ul><li>Developed and verified a UART protocol using Verilog and SystemVerilog[1].</li></ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+          <a class="project" href="https://github.com/ESAnant" target="_blank">
+            <h3>In-Memory Compute Circuit</h3>
+            <p>NeuroSim & MuMax3 based array accelerating quantised neural ops; compared INT8 vs INT4 accuracy.</p>
+            <span class="chip">NeuroSim</span>
+            <span class="chip">PyTorch</span>
+          </a>
 
-        <section id="projects" class="content-section">
-            <div class="glass-card">
-                <h2 class="section-title">Key Projects</h2>
-                <div class="project-grid">
-                    <div class="project-card"><a href="https://github.com/ESAnant" target="_blank">
-                        <h3>FPGA Hardware Accelerator</h3>
-                        <p>Developed a hardware accelerator on a Xilinx Zynq-7000 FPGA, utilizing pipelining, loop unrolling, and array partitioning to achieve significant performance gains[1].</p>
-                        <div class="tags"><span class="tag">Verilog</span><span class="tag">HLS</span><span class="tag">Xilinx Vivado</span></div>
-                    </a></div>
-                    <div class="project-card"><a href="https://github.com/ESAnant" target="_blank">
-                        <h3>In-Memory Compute Circuit</h3>
-                        <p>Designed an in-memory compute circuit using NeuroSim and MuMax3, focusing on quantization and optimization to boost accuracy and efficiency[1].</p>
-                        <div class="tags"><span class="tag">PyTorch</span><span class="tag">NeuroSim</span><span class="tag">MuMax3</span></div>
-                    </a></div>
-                    <div class="project-card"><a href="https://github.com/ESAnant" target="_blank">
-                        <h3>VLSI Interconnect Modelling</h3>
-                        <p>Optimized processor interconnects for a 2-core processor at 45nm using Elmore RC models and Cadence Virtuoso, focusing on energy-delay tradeoffs[1].</p>
-                        <div class="tags"><span class="tag">Cadence Virtuoso</span><span class="tag">VLSI</span><span class="tag">45nm</span></div>
-                    </a></div>
-                    <div class="project-card"><a href="https://github.com/ESAnant" target="_blank">
-                        <h3>Standard Cell IP Development</h3>
-                        <p>Created a ring oscillator Standard Cell IP in 40nm technology, focusing on minimizing area and optimizing for PVT variations[1].</p>
-                        <div class="tags"><span class="tag">Cadence Virtuoso</span><span class="tag">40nm</span></div>
-                    </a></div>
-                </div>
-            </div>
-        </section>
+          <a class="project" href="https://github.com/ESAnant" target="_blank">
+            <h3>VLSI Interconnect Simulation</h3>
+            <p>45 nm Elmore RC modelling for 2-core processor; optimised energy-delay trade-offs.</p>
+            <span class="chip">Cadence</span>
+            <span class="chip">VLSI</span>
+          </a>
 
-        <section id="skills" class="content-section">
-            <div class="glass-card">
-                <h2 class="section-title">Technical Skills</h2>
-                <div class="skills-grid">
-                    <div class="skill-category"><h4>HDLs & Verification</h4><ul><li>Verilog</li><li>SystemVerilog</li><li>HLS</li></ul></div>
-                    <div class="skill-category"><h4>EDA Tools</h4><ul><li>Cadence Virtuoso</li><li>Xilinx Vivado</li><li>QuestaSim</li></ul></div>
-                    <div class="skill-category"><h4>Programming</h4><ul><li>Python</li><li>C++</li><li>LaTeX</li></ul></div>
-                    <div class="skill-category"><h4>Embedded Systems</h4><ul><li>Arduino</li><li>NodeMCU</li><li>Raspberry Pi</li></ul></div>
-                </div>
-            </div>
-        </section>
+          <a class="project" href="https://github.com/ESAnant" target="_blank">
+            <h3>Standard Cell IP – Ring Oscillator</h3>
+            <p>40 nm cell with minimal area; validated through DRC/LVS.</p>
+            <span class="chip">Cadence</span>
+          </a>
 
-        <section id="contact" class="content-section">
-            <div class="glass-card">
-                <h2 class="section-title">Get In Touch</h2>
-                <p class="contact-message">I am actively seeking new opportunities and welcome collaborations. Let's connect and build the future of hardware together.</p>
-                <a href="mailto:esanant@gmail.com" class="contact-button">Say Hello</a>
-            </div>
-        </section>
-    </main>
+        </div>
+      </div>
+    </section>
 
-    <footer class="footer">
-        <p>&copy; 2025 Edidi Sai Anant. Crafted with passion and code.</p>
-    </footer>
+    <!-- Skills -->
+    <section id="skills" class="card-section">
+      <div class="card">
+        <h2>Technical Skills</h2>
+        <div class="skills-grid">
+          <div><h4>HDLs & Verification</h4><p>Verilog · SystemVerilog · HLS</p></div>
+          <div><h4>EDA Tools</h4><p>Cadence Virtuoso · Xilinx Vivado · QuestaSim</p></div>
+          <div><h4>Programming</h4><p>Python · C++ · LaTeX</p></div>
+          <div><h4>Embedded</h4><p>Arduino · NodeMCU · Raspberry Pi</p></div>
+        </div>
+      </div>
+    </section>
 
-    <button id="scrollToTopBtn" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+    <!-- Contact -->
+    <section id="contact" class="card-section">
+      <div class="card">
+        <h2>Get in Touch</h2>
+        <p>
+          Open to internships or full-time roles in IC design & semiconductor research.  
+          Let’s build the next generation of hardware together.
+        </p>
+        <a class="cta" href="mailto:esanant@gmail.com">Say Hello</a>
+      </div>
+    </section>
 
-    <!-- JS libraries for the background animation -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
-    <script src="script.js"></script>
+  </main>
+
+  <!-- Scroll-to-top button -->
+  <button id="toTop" title="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.dots.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
