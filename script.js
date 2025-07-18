@@ -7,11 +7,22 @@ class SemiconductorPortfolio {
         this.lastScrollY = 0;
         this.ticking = false;
         this.soundEnabled = true;
+        this.currentSection = 'hero';
         
         // Performance optimization
         this.observerOptions = {
-            threshold: 0.1,
+            threshold: 0.15,
             rootMargin: '0px 0px -100px 0px'
+        };
+        
+        // Animation delays for staggered effects
+        this.animationDelays = {
+            hero: 300,
+            about: 200,
+            experience: 250,
+            projects: 200,
+            research: 300,
+            contact: 200
         };
         
         this.initialize();
@@ -31,52 +42,77 @@ class SemiconductorPortfolio {
         this.initializePerformanceOptimizations();
         this.initializeAccessibility();
         this.initializeLucideIcons();
+        this.initializeAppleInspiredTouches();
     }
 
     setupEventListeners() {
+        // Use passive listeners for better performance
         window.addEventListener('load', () => this.handleWindowLoad());
         window.addEventListener('scroll', () => this.handleScroll(), { passive: true });
         window.addEventListener('resize', () => this.handleResize());
         document.addEventListener('keydown', (e) => this.handleKeydown(e));
+        document.addEventListener('visibilitychange', () => this.handleVisibilityChange());
+        
+        // Touch events for mobile
+        document.addEventListener('touchstart', () => this.handleTouchStart(), { passive: true });
     }
 
-    // === PRELOADER SYSTEM ===
+    // === PREMIUM PRELOADER SYSTEM ===
     initializePreloader() {
         const preloader = document.getElementById('preloader');
         const progressBar = document.querySelector('.progress-bar');
         
         if (!preloader || !progressBar) return;
 
-        // Simulate realistic loading progress
+        // Realistic loading progression
         let progress = 0;
-        const progressInterval = setInterval(() => {
-            progress += Math.random() * 10 + 5;
-            if (progress > 100) progress = 100;
-            
-            progressBar.style.width = `${progress}%`;
-            
-            if (progress >= 100) {
-                clearInterval(progressInterval);
-                setTimeout(() => this.hidePreloader(), 500);
+        const milestones = [15, 30, 45, 60, 75, 90, 100];
+        let currentMilestone = 0;
+        
+        const updateProgress = () => {
+            if (currentMilestone < milestones.length) {
+                const target = milestones[currentMilestone];
+                const increment = (target - progress) * 0.1;
+                progress += increment;
+                
+                if (progress >= target - 1) {
+                    progress = target;
+                    currentMilestone++;
+                }
+                
+                progressBar.style.width = `${progress}%`;
+                
+                if (progress >= 100) {
+                    setTimeout(() => this.hidePreloader(), 800);
+                } else {
+                    requestAnimationFrame(updateProgress);
+                }
             }
-        }, 100);
-
-        // Add circuit animation effects
-        this.animateCircuitPaths();
+        };
+        
+        // Start loading simulation
+        setTimeout(updateProgress, 500);
+        
+        // Add premium loading effects
+        this.addLoadingEffects();
     }
 
-    animateCircuitPaths() {
-        const paths = document.querySelectorAll('.circuit-paths::before, .circuit-paths::after');
-        paths.forEach((path, index) => {
-            setTimeout(() => {
-                path.style.opacity = '1';
-                path.style.transform = 'scale(1.1)';
-                setTimeout(() => {
-                    path.style.opacity = '0.5';
-                    path.style.transform = 'scale(1)';
-                }, 300);
-            }, index * 500);
-        });
+    addLoadingEffects() {
+        const wafer = document.querySelector('.wafer-animation');
+        const circuitPaths = document.querySelectorAll('.circuit-paths::before, .circuit-paths::after');
+        
+        if (wafer) {
+            // Add subtle color transitions
+            const colors = ['#007aff', '#5856d6', '#af52de', '#ff375f'];
+            let colorIndex = 0;
+            
+            const cycleColors = () => {
+                wafer.style.borderColor = colors[colorIndex];
+                colorIndex = (colorIndex + 1) % colors.length;
+            };
+            
+            this.colorInterval = setInterval(cycleColors, 1000);
+        }
     }
 
     hidePreloader() {
@@ -85,7 +121,14 @@ class SemiconductorPortfolio {
             preloader.classList.add('loaded');
             document.body.style.overflow = 'visible';
             this.isLoaded = true;
-            this.startMainAnimations();
+            
+            // Clear intervals
+            if (this.colorInterval) {
+                clearInterval(this.colorInterval);
+            }
+            
+            // Start main animations with stagger
+            setTimeout(() => this.startMainAnimations(), 300);
             this.playStartupSound();
         }
     }
@@ -95,16 +138,21 @@ class SemiconductorPortfolio {
         const navLinks = document.querySelectorAll('.nav-item');
         const sections = document.querySelectorAll('section[id]');
         
-        // Smooth scroll navigation
+        // Smooth scroll with easing
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 const targetId = link.getAttribute('href').substring(1);
                 this.scrollToSection(targetId);
+                
+                // Close mobile menu if open
+                if (this.isMobileMenuOpen) {
+                    this.toggleMobileMenu();
+                }
             });
         });
 
-        // Active link highlighting
+        // Active link highlighting with smooth transitions
         this.initializeNavHighlighting(sections, navLinks);
     }
 
@@ -113,6 +161,8 @@ class SemiconductorPortfolio {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const id = entry.target.getAttribute('id');
+                    this.currentSection = id;
+                    
                     navLinks.forEach(link => {
                         link.classList.remove('active');
                         if (link.getAttribute('href') === `#${id}`) {
@@ -132,11 +182,31 @@ class SemiconductorPortfolio {
             const headerHeight = document.querySelector('.premium-header').offsetHeight;
             const targetPosition = targetSection.offsetTop - headerHeight;
             
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
+            // Smooth scroll with custom easing
+            this.smoothScrollTo(targetPosition, 1000);
         }
+    }
+
+    smoothScrollTo(targetPosition, duration) {
+        const startPosition = window.pageYOffset;
+        const distance = targetPosition - startPosition;
+        let startTime = null;
+        
+        const ease = (t) => t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+        
+        const animation = (currentTime) => {
+            if (startTime === null) startTime = currentTime;
+            const timeElapsed = currentTime - startTime;
+            const progress = Math.min(timeElapsed / duration, 1);
+            
+            window.scrollTo(0, startPosition + distance * ease(progress));
+            
+            if (progress < 1) {
+                requestAnimationFrame(animation);
+            }
+        };
+        
+        requestAnimationFrame(animation);
     }
 
     // === MOBILE MENU SYSTEM ===
@@ -166,6 +236,13 @@ class SemiconductorPortfolio {
                 this.toggleMobileMenu();
             }
         });
+
+        // Close menu on outside click
+        document.addEventListener('click', (e) => {
+            if (this.isMobileMenuOpen && !nav.contains(e.target) && !menuToggle.contains(e.target)) {
+                this.toggleMobileMenu();
+            }
+        });
     }
 
     toggleMobileMenu() {
@@ -176,7 +253,6 @@ class SemiconductorPortfolio {
         
         menuToggle.classList.toggle('is-active', this.isMobileMenuOpen);
         nav.classList.toggle('mobile-active', this.isMobileMenuOpen);
-        nav.classList.toggle('is-open', this.isMobileMenuOpen);
         
         document.body.style.overflow = this.isMobileMenuOpen ? 'hidden' : '';
         
@@ -188,9 +264,13 @@ class SemiconductorPortfolio {
     animateNavItems() {
         const navItems = document.querySelectorAll('.nav-item');
         navItems.forEach((item, index) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            
             setTimeout(() => {
                 item.style.opacity = '1';
                 item.style.transform = 'translateY(0)';
+                item.style.transition = 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
             }, index * 100);
         });
     }
@@ -200,7 +280,7 @@ class SemiconductorPortfolio {
         const sections = document.querySelectorAll('.content-section');
         const header = document.querySelector('.premium-header');
         
-        // Section fade-in animations
+        // Section fade-in animations with stagger
         const sectionObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -218,8 +298,9 @@ class SemiconductorPortfolio {
 
     initializeHeaderScrollEffects(header) {
         let lastScrollY = 0;
+        let ticking = false;
         
-        window.addEventListener('scroll', () => {
+        const updateHeader = () => {
             const currentScrollY = window.scrollY;
             
             // Add scrolled class for styling
@@ -237,33 +318,46 @@ class SemiconductorPortfolio {
             }
             
             lastScrollY = currentScrollY;
+            ticking = false;
+        };
+        
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateHeader);
+                ticking = true;
+            }
         }, { passive: true });
     }
 
     triggerSectionSpecificAnimations(section) {
         const sectionId = section.id;
+        const delay = this.animationDelays[sectionId] || 200;
         
-        switch(sectionId) {
-            case 'about':
-                this.animateAboutSection();
-                break;
-            case 'experience':
-                this.animateExperienceSection();
-                break;
-            case 'projects':
-                this.animateProjectsSection();
-                break;
-            case 'research':
-                this.animateResearchSection();
-                break;
-            case 'contact':
-                this.animateContactSection();
-                break;
-        }
+        setTimeout(() => {
+            switch(sectionId) {
+                case 'about':
+                    this.animateAboutSection();
+                    break;
+                case 'experience':
+                    this.animateExperienceSection();
+                    break;
+                case 'projects':
+                    this.animateProjectsSection();
+                    break;
+                case 'research':
+                    this.animateResearchSection();
+                    break;
+                case 'contact':
+                    this.animateContactSection();
+                    break;
+            }
+        }, delay);
     }
 
     // === HERO ANIMATIONS ===
     initializeHeroAnimations() {
+        if (!this.isLoaded) return;
+        
         this.animateHeroTitle();
         this.animateHeroStats();
         this.animateChipShowcase();
@@ -272,12 +366,32 @@ class SemiconductorPortfolio {
 
     animateHeroTitle() {
         const titleLines = document.querySelectorAll('.title-line');
+        const subtitle = document.querySelector('.hero-subtitle');
+        const greeting = document.querySelector('.hero-greeting');
+        
+        // Animate greeting first
+        if (greeting) {
+            setTimeout(() => {
+                greeting.style.opacity = '1';
+                greeting.style.transform = 'translateY(0)';
+            }, 200);
+        }
+        
+        // Animate title lines with stagger
         titleLines.forEach((line, index) => {
             setTimeout(() => {
                 line.style.opacity = '1';
                 line.style.transform = 'translateY(0)';
-            }, (index + 1) * 300);
+            }, 500 + (index * 200));
         });
+        
+        // Animate subtitle
+        if (subtitle) {
+            setTimeout(() => {
+                subtitle.style.opacity = '1';
+                subtitle.style.transform = 'translateY(0)';
+            }, 1200);
+        }
     }
 
     animateHeroStats() {
@@ -286,6 +400,7 @@ class SemiconductorPortfolio {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     this.animateCounter(entry.target);
+                    this.animateStatCard(entry.target);
                     observer.unobserve(entry.target);
                 }
             });
@@ -297,72 +412,118 @@ class SemiconductorPortfolio {
     animateCounter(element) {
         const numberElement = element.querySelector('.stat-number');
         const finalText = numberElement.textContent;
-        const hasMultiplier = finalText.includes('x');
-        const hasPlus = finalText.includes('+');
         
-        let targetValue = parseFloat(finalText);
+        // Handle different number formats
+        const hasPlus = finalText.includes('+');
+        const hasLetters = /[a-zA-Z]/.test(finalText);
+        
+        if (hasLetters && !hasPlus) {
+            // For "45nm" type values, just animate appearance
+            numberElement.style.opacity = '0';
+            setTimeout(() => {
+                numberElement.style.opacity = '1';
+                numberElement.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    numberElement.style.transform = 'scale(1)';
+                }, 200);
+            }, 300);
+            return;
+        }
+        
+        let targetValue = parseInt(finalText);
         if (isNaN(targetValue)) return;
         
         let currentValue = 0;
-        const increment = targetValue / 60;
         const duration = 1500;
-        const stepTime = duration / 60;
+        const startTime = performance.now();
         
-        const counter = setInterval(() => {
-            currentValue += increment;
-            if (currentValue >= targetValue) {
-                currentValue = targetValue;
-                clearInterval(counter);
-            }
+        const counter = (timestamp) => {
+            const elapsed = timestamp - startTime;
+            const progress = Math.min(elapsed / duration, 1);
             
-            let displayValue = Math.floor(currentValue);
-            if (hasMultiplier) displayValue += 'x';
+            // Easing function for smooth animation
+            const easeOut = 1 - Math.pow(1 - progress, 3);
+            currentValue = Math.floor(targetValue * easeOut);
+            
+            let displayValue = currentValue;
             if (hasPlus) displayValue += '+';
             
             numberElement.textContent = displayValue;
-        }, stepTime);
+            
+            if (progress < 1) {
+                requestAnimationFrame(counter);
+            }
+        };
+        
+        requestAnimationFrame(counter);
+    }
+
+    animateStatCard(element) {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(20px)';
+        
+        setTimeout(() => {
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0)';
+            element.style.transition = 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        }, 100);
     }
 
     animateChipShowcase() {
         const mainChip = document.querySelector('.main-chip');
         const coreUnits = document.querySelectorAll('.core-unit');
         const connectionLines = document.querySelectorAll('.connection-line');
+        const orbitChips = document.querySelectorAll('.orbit-chip');
         
+        // Main chip animation
         if (mainChip) {
             setTimeout(() => {
                 mainChip.style.opacity = '1';
                 mainChip.style.transform = 'translate(-50%, -50%) scale(1)';
-            }, 800);
+            }, 1000);
         }
         
+        // Core units animation
         coreUnits.forEach((unit, index) => {
             setTimeout(() => {
                 unit.style.opacity = '1';
                 unit.style.transform = 'scale(1)';
-            }, 1000 + (index * 200));
+            }, 1200 + (index * 150));
         });
         
+        // Connection lines animation
         connectionLines.forEach((line, index) => {
             setTimeout(() => {
                 line.style.opacity = '1';
-            }, 1200 + (index * 150));
+            }, 1400 + (index * 100));
+        });
+        
+        // Orbit chips animation
+        orbitChips.forEach((chip, index) => {
+            setTimeout(() => {
+                chip.style.opacity = '1';
+                chip.style.transform = 'scale(1)';
+            }, 1600 + (index * 200));
         });
     }
 
     initializeFloatingElements() {
         const orbitChips = document.querySelectorAll('.orbit-chip');
+        
         orbitChips.forEach((chip, index) => {
-            chip.style.animationDelay = `${index * 3.33}s`;
+            chip.style.animationDelay = `${index * 5}s`;
             
             // Add hover effects
             chip.addEventListener('mouseenter', () => {
-                chip.style.transform = 'scale(1.1)';
-                chip.style.boxShadow = '0 10px 30px rgba(0, 122, 255, 0.3)';
+                chip.style.transform = 'scale(1.15)';
+                chip.style.boxShadow = '0 15px 35px rgba(0, 122, 255, 0.4)';
+                chip.style.zIndex = '10';
             });
             
             chip.addEventListener('mouseleave', () => {
                 chip.style.transform = 'scale(1)';
-                chip.style.boxShadow = 'none';
+                chip.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.3)';
+                chip.style.zIndex = '1';
             });
         });
     }
@@ -371,7 +532,15 @@ class SemiconductorPortfolio {
     animateAboutSection() {
         const timelineItems = document.querySelectorAll('.timeline-item');
         const skillCategories = document.querySelectorAll('.skill-category');
+        const storyCard = document.querySelector('.story-card');
         
+        // Animate story card
+        if (storyCard) {
+            storyCard.style.opacity = '1';
+            storyCard.style.transform = 'translateY(0)';
+        }
+        
+        // Animate timeline items
         timelineItems.forEach((item, index) => {
             setTimeout(() => {
                 item.style.opacity = '1';
@@ -379,6 +548,7 @@ class SemiconductorPortfolio {
             }, index * 200);
         });
         
+        // Animate skill categories
         skillCategories.forEach((category, index) => {
             setTimeout(() => {
                 category.style.opacity = '1';
@@ -420,11 +590,20 @@ class SemiconductorPortfolio {
 
     animateResearchSection() {
         const researchCards = document.querySelectorAll('.research-card');
+        const certCategories = document.querySelectorAll('.cert-category');
+        
         researchCards.forEach((card, index) => {
             setTimeout(() => {
                 card.style.opacity = '1';
                 card.style.transform = 'translateY(0)';
             }, index * 250);
+        });
+        
+        certCategories.forEach((category, index) => {
+            setTimeout(() => {
+                category.style.opacity = '1';
+                category.style.transform = 'translateY(0)';
+            }, 500 + (index * 200));
         });
     }
 
@@ -447,50 +626,35 @@ class SemiconductorPortfolio {
         });
     }
 
-    // === INTERACTIVE ELEMENTS ===
-    initializeInteractiveElements() {
-        this.initializeProjectCardHovers();
-        this.initializeSkillHovers();
-        this.initializeButtonEffects();
+    // === APPLE-INSPIRED TOUCHES ===
+    initializeAppleInspiredTouches() {
+        this.initializePremiumHovers();
+        this.initializeParallaxEffects();
+        this.initializeMagneticButtons();
+        this.initializeFluidCursors();
     }
 
-    initializeProjectCardHovers() {
-        const projectCards = document.querySelectorAll('.project-card');
-        projectCards.forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                const visual = card.querySelector('.project-visual');
-                if (visual) {
-                    visual.style.transform = 'scale(1.05)';
-                }
+    initializePremiumHovers() {
+        // Premium card hover effects
+        const cards = document.querySelectorAll('.project-card, .research-card, .experience-content, .story-card, .skill-category');
+        
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', (e) => {
+                card.style.transform = 'translateY(-8px)';
+                card.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.25)';
             });
             
-            card.addEventListener('mouseleave', () => {
-                const visual = card.querySelector('.project-visual');
-                if (visual) {
-                    visual.style.transform = 'scale(1)';
-                }
+            card.addEventListener('mouseleave', (e) => {
+                card.style.transform = 'translateY(0)';
+                card.style.boxShadow = '';
             });
         });
-    }
-
-    initializeSkillHovers() {
-        const skillTags = document.querySelectorAll('.skill-tag');
-        skillTags.forEach(tag => {
-            tag.addEventListener('mouseenter', () => {
-                tag.style.transform = 'translateY(-3px) scale(1.05)';
-            });
-            
-            tag.addEventListener('mouseleave', () => {
-                tag.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-    }
-
-    initializeButtonEffects() {
+        
+        // Button hover effects
         const buttons = document.querySelectorAll('.btn');
         buttons.forEach(button => {
             button.addEventListener('mouseenter', () => {
-                button.style.transform = 'translateY(-2px)';
+                button.style.transform = 'translateY(-3px)';
             });
             
             button.addEventListener('mouseleave', () => {
@@ -499,10 +663,77 @@ class SemiconductorPortfolio {
         });
     }
 
+    initializeParallaxEffects() {
+        const parallaxElements = document.querySelectorAll('.hero-visual, .floating-particles');
+        
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            
+            parallaxElements.forEach(element => {
+                element.style.transform = `translateY(${rate}px)`;
+            });
+        }, { passive: true });
+    }
+
+    initializeMagneticButtons() {
+        const magneticElements = document.querySelectorAll('.btn, .nav-item, .social-link');
+        
+        magneticElements.forEach(element => {
+            element.addEventListener('mousemove', (e) => {
+                const rect = element.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                
+                element.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
+            });
+            
+            element.addEventListener('mouseleave', () => {
+                element.style.transform = 'translate(0, 0)';
+            });
+        });
+    }
+
+    initializeFluidCursors() {
+        // Create custom cursor for premium interactions
+        const cursor = document.createElement('div');
+        cursor.className = 'custom-cursor';
+        cursor.style.cssText = `
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: rgba(0, 122, 255, 0.8);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.1s ease;
+            transform: translate(-50%, -50%);
+        `;
+        document.body.appendChild(cursor);
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+        
+        // Hide default cursor on interactive elements
+        const interactiveElements = document.querySelectorAll('a, button, [role="button"]');
+        interactiveElements.forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                cursor.style.background = 'rgba(0, 122, 255, 0.6)';
+            });
+            
+            element.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursor.style.background = 'rgba(0, 122, 255, 0.8)';
+            });
+        });
+    }
+
     // === SOUND SYSTEM ===
     initializeSoundSystem() {
         const soundToggle = document.getElementById('sound-toggle');
-        const startupSound = document.getElementById('startup-sound');
         
         if (soundToggle) {
             soundToggle.addEventListener('click', () => {
@@ -510,13 +741,17 @@ class SemiconductorPortfolio {
             });
         }
         
-        // Initialize sound state
         this.updateSoundIcon();
     }
 
     toggleSound() {
         this.soundEnabled = !this.soundEnabled;
         this.updateSoundIcon();
+        
+        // Add haptic feedback simulation
+        if ('vibrate' in navigator) {
+            navigator.vibrate(50);
+        }
     }
 
     updateSoundIcon() {
@@ -536,8 +771,9 @@ class SemiconductorPortfolio {
         if (this.soundEnabled) {
             const startupSound = document.getElementById('startup-sound');
             if (startupSound) {
+                startupSound.volume = 0.3;
                 startupSound.play().catch(() => {
-                    // Autoplay was prevented, which is fine
+                    // Autoplay was prevented
                 });
             }
         }
@@ -548,53 +784,67 @@ class SemiconductorPortfolio {
         const scrollBtn = document.getElementById('scroll-to-top');
         if (!scrollBtn) return;
 
-        // Show/hide button based on scroll position
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                scrollBtn.classList.add('visible');
-            } else {
-                scrollBtn.classList.remove('visible');
+        let isVisible = false;
+        
+        const toggleVisibility = () => {
+            const shouldShow = window.scrollY > 400;
+            if (shouldShow !== isVisible) {
+                isVisible = shouldShow;
+                scrollBtn.classList.toggle('visible', isVisible);
             }
-        });
+        };
 
-        // Smooth scroll to top
+        window.addEventListener('scroll', toggleVisibility, { passive: true });
+
         scrollBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            this.smoothScrollTo(0, 1000);
         });
     }
 
     // === PERFORMANCE OPTIMIZATIONS ===
     initializePerformanceOptimizations() {
-        // Lazy load images
         this.initializeLazyLoading();
-        
-        // Debounce resize events
-        this.initializeResizeDebouncing();
-        
-        // Optimize animations for performance
-        this.initializeAnimationOptimizations();
+        this.initializeIntersectionObserver();
+        this.initializeDebouncing();
     }
 
     initializeLazyLoading() {
         const images = document.querySelectorAll('img[data-src]');
-        const imageObserver = new IntersectionObserver((entries) => {
+        
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.removeAttribute('data-src');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            images.forEach(img => imageObserver.observe(img));
+        }
+    }
+
+    initializeIntersectionObserver() {
+        // Optimize animations by only running when elements are visible
+        const animatedElements = document.querySelectorAll('.hero-visual, .chip-showcase, .orbit-chip');
+        
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src;
-                    img.removeAttribute('data-src');
-                    imageObserver.unobserve(img);
+                    entry.target.style.animationPlayState = 'running';
+                } else {
+                    entry.target.style.animationPlayState = 'paused';
                 }
             });
         });
 
-        images.forEach(img => imageObserver.observe(img));
+        animatedElements.forEach(element => observer.observe(element));
     }
 
-    initializeResizeDebouncing() {
+    initializeDebouncing() {
         let resizeTimeout;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimeout);
@@ -604,23 +854,12 @@ class SemiconductorPortfolio {
         });
     }
 
-    initializeAnimationOptimizations() {
-        // Use requestAnimationFrame for smooth animations
-        if (typeof window !== 'undefined' && window.requestAnimationFrame) {
-            this.animationFrame = window.requestAnimationFrame;
-        }
-    }
-
     // === ACCESSIBILITY ===
     initializeAccessibility() {
-        // Focus management
         this.initializeFocusManagement();
-        
-        // Keyboard navigation
         this.initializeKeyboardNavigation();
-        
-        // Reduced motion support
         this.initializeReducedMotion();
+        this.initializeARIA();
     }
 
     initializeFocusManagement() {
@@ -656,7 +895,6 @@ class SemiconductorPortfolio {
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
         
         if (prefersReducedMotion.matches) {
-            // Disable animations for users who prefer reduced motion
             const style = document.createElement('style');
             style.textContent = `
                 * {
@@ -669,25 +907,43 @@ class SemiconductorPortfolio {
         }
     }
 
+    initializeARIA() {
+        // Add ARIA labels dynamically
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach(item => {
+            const text = item.textContent.trim();
+            item.setAttribute('aria-label', `Navigate to ${text} section`);
+        });
+        
+        // Update ARIA states
+        const mobileToggle = document.getElementById('mobile-toggle');
+        if (mobileToggle) {
+            mobileToggle.setAttribute('aria-expanded', 'false');
+        }
+    }
+
     // === LUCIDE ICONS ===
     initializeLucideIcons() {
-        // Initialize Lucide icons when available
-        if (typeof lucide !== 'undefined') {
-            lucide.createIcons();
-        } else {
-            // Retry after a short delay if Lucide hasn't loaded yet
-            setTimeout(() => {
-                if (typeof lucide !== 'undefined') {
-                    lucide.createIcons();
-                }
-            }, 100);
-        }
+        const initIcons = () => {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            } else {
+                setTimeout(initIcons, 100);
+            }
+        };
+        
+        initIcons();
     }
 
     // === EVENT HANDLERS ===
     handleWindowLoad() {
         this.isLoaded = true;
         document.body.classList.add('loaded');
+        
+        // Initialize hero animations after load
+        setTimeout(() => {
+            this.initializeHeroAnimations();
+        }, 500);
     }
 
     handleScroll() {
@@ -702,18 +958,22 @@ class SemiconductorPortfolio {
 
     updateScrollEffects() {
         const currentScrollY = window.scrollY;
-        
-        // Add any additional scroll-based effects here
-        // For example, parallax effects or scroll-triggered animations
-        
         this.lastScrollY = currentScrollY;
+        
+        // Update parallax elements
+        const parallaxElements = document.querySelectorAll('.floating-particles');
+        parallaxElements.forEach(element => {
+            const speed = element.dataset.speed || 0.5;
+            const yPos = -(currentScrollY * speed);
+            element.style.transform = `translateY(${yPos}px)`;
+        });
     }
 
     handleResize() {
-        // Handle responsive adjustments
+        // Update responsive elements
         this.updateDimensions();
         
-        // Close mobile menu if open and viewport changes
+        // Close mobile menu if viewport changes
         if (this.isMobileMenuOpen && window.innerWidth > 768) {
             this.toggleMobileMenu();
         }
@@ -721,7 +981,11 @@ class SemiconductorPortfolio {
 
     updateDimensions() {
         // Update any dimension-dependent calculations
-        // This is useful for responsive layouts and animations
+        const heroHeight = window.innerHeight;
+        const hero = document.querySelector('.hero-section');
+        if (hero) {
+            hero.style.minHeight = `${heroHeight}px`;
+        }
     }
 
     handleKeydown(e) {
@@ -738,21 +1002,59 @@ class SemiconductorPortfolio {
                     break;
             }
         }
+        
+        // Section navigation with arrow keys
+        if (e.altKey) {
+            const sections = ['hero', 'about', 'experience', 'projects', 'research', 'contact'];
+            const currentIndex = sections.indexOf(this.currentSection);
+            
+            if (e.key === 'ArrowDown' && currentIndex < sections.length - 1) {
+                e.preventDefault();
+                this.scrollToSection(sections[currentIndex + 1]);
+            } else if (e.key === 'ArrowUp' && currentIndex > 0) {
+                e.preventDefault();
+                this.scrollToSection(sections[currentIndex - 1]);
+            }
+        }
+    }
+
+    handleVisibilityChange() {
+        // Pause animations when tab is not visible
+        if (document.hidden) {
+            document.body.classList.add('tab-hidden');
+        } else {
+            document.body.classList.remove('tab-hidden');
+        }
+    }
+
+    handleTouchStart() {
+        // Add touch class for mobile-specific styles
+        document.body.classList.add('touch-device');
     }
 
     // === UTILITY METHODS ===
     startMainAnimations() {
-        // Start any main animations after preloader
-        setTimeout(() => {
-            this.animateHeroContent();
-        }, 200);
+        // Stagger main section animations
+        const sections = document.querySelectorAll('.content-section');
+        sections.forEach((section, index) => {
+            setTimeout(() => {
+                section.style.opacity = '1';
+                section.style.transform = 'translateY(0)';
+            }, index * 100);
+        });
     }
 
-    animateHeroContent() {
-        const heroContent = document.querySelector('.hero-content');
-        if (heroContent) {
-            heroContent.style.opacity = '1';
-            heroContent.style.transform = 'translateY(0)';
+    // === CLEANUP ===
+    destroy() {
+        // Clean up event listeners and intervals
+        if (this.colorInterval) {
+            clearInterval(this.colorInterval);
+        }
+        
+        // Remove custom cursor
+        const cursor = document.querySelector('.custom-cursor');
+        if (cursor) {
+            cursor.remove();
         }
     }
 }
@@ -762,11 +1064,27 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize the portfolio
     const portfolio = new SemiconductorPortfolio();
     
-    // Add any additional initialization code here
-    console.log('🚀 Semiconductor Portfolio initialized successfully!');
+    // Make it globally accessible for debugging
+    window.portfolio = portfolio;
+    
+    // Add loading complete indicator
+    window.addEventListener('load', () => {
+        console.log('🚀 Ultimate Semiconductor Portfolio loaded successfully!');
+        console.log('🎯 All systems optimized for maximum performance');
+        console.log('✨ Apple-inspired interactions activated');
+    });
 });
 
 // === EXPORT FOR POTENTIAL MODULE USAGE ===
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = SemiconductorPortfolio;
 }
+
+// === GLOBAL ERROR HANDLING ===
+window.addEventListener('error', (e) => {
+    console.error('Portfolio Error:', e.error);
+});
+
+window.addEventListener('unhandledrejection', (e) => {
+    console.error('Unhandled Promise Rejection:', e.reason);
+});
