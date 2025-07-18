@@ -1,938 +1,618 @@
-// === PREMIUM PORTFOLIO INITIALIZATION ===
-class PremiumPortfolio {
-    constructor() {
-        this.isLoaded = false;
-        this.scrollY = 0;
-        this.lastScrollY = 0;
-        this.ticking = false;
-        this.init();
-    }
+/* === GLOBAL DESIGN TOKENS & BASE STYLES === */
+:root {
+    /* Muted Dark/Light Theme Palette */
+    --bg-color: #f8f9fa; /* Off-white for a soft, clean background */
+    --text-color: #212529; /* Dark grey for crisp, readable text */
+    --primary-accent: #007aff; /* A professional, Apple-inspired blue */
+    --secondary-accent: #6c757d; /* Muted grey for secondary elements */
+    --card-bg: #ffffff; /* Pure white for cards to pop */
+    --border-color: #dee2e6; /* Light border for subtle separation */
+    --shadow-color: rgba(0, 0, 0, 0.05);
 
-    init() {
-        this.setupEventListeners();
-        this.initializePreloader();
-        this.initializeAnimations();
-        this.initializeMobileMenu();
-        this.initializeScrollEffects();
-        this.initializeNavigation();
-        this.initializeExperienceTabs();
-        this.initializeHeroAnimations();
-        this.initializeProjectAnimations();
-        this.initializeSkillsAnimations();
-        this.initializeTypingEffects();
-        this.initializeParticleSystem();
-        this.initializeScrollToTop();
-        this.initializePerformanceOptimizations();
-        this.initializeAccessibility();
-    }
+    /* Typography */
+    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-mono: 'JetBrains Mono', "SF Mono", "Fira Code", monospace;
 
-    setupEventListeners() {
-        window.addEventListener('load', () => this.handleWindowLoad());
-        window.addEventListener('scroll', () => this.handleScroll());
-        window.addEventListener('resize', () => this.handleResize());
-        document.addEventListener('keydown', (e) => this.handleKeydown(e));
-    }
-
-    // === PREMIUM PRELOADER ===
-    initializePreloader() {
-        const preloader = document.getElementById('preloader');
-        const progressBar = document.querySelector('.progress-bar');
-        const loaderChip = document.querySelector('.loader-chip');
-        
-        // Animate progress bar
-        let progress = 0;
-        const progressInterval = setInterval(() => {
-            progress += Math.random() * 15;
-            if (progress > 100) progress = 100;
-            
-            if (progressBar) {
-                progressBar.style.width = `${progress}%`;
-            }
-            
-            if (progress >= 100) {
-                clearInterval(progressInterval);
-                setTimeout(() => this.hidePreloader(), 500);
-            }
-        }, 100);
-
-        // Animate loader chip
-        if (loaderChip) {
-            loaderChip.addEventListener('animationiteration', () => {
-                this.animateChipPins();
-            });
-        }
-    }
-
-    animateChipPins() {
-        const pins = document.querySelectorAll('.chip-pins .pin');
-        pins.forEach((pin, index) => {
-            setTimeout(() => {
-                pin.style.transform = 'scale(1.2)';
-                pin.style.boxShadow = '0 0 15px rgba(212, 175, 55, 0.8)';
-                
-                setTimeout(() => {
-                    pin.style.transform = 'scale(1)';
-                    pin.style.boxShadow = 'none';
-                }, 200);
-            }, index * 100);
-        });
-    }
-
-    hidePreloader() {
-        const preloader = document.getElementById('preloader');
-        if (preloader) {
-            preloader.classList.add('loaded');
-            document.body.style.overflow = 'visible';
-            this.isLoaded = true;
-            this.startMainAnimations();
-        }
-    }
-
-    // === HERO ANIMATIONS ===
-    initializeHeroAnimations() {
-        this.animateHeroTitle();
-        this.animateHeroStats();
-        this.animateChipShowcase();
-        this.initializeFloatingChips();
-    }
-
-    animateHeroTitle() {
-        const titleLines = document.querySelectorAll('.hero-title .title-line');
-        titleLines.forEach((line, index) => {
-            setTimeout(() => {
-                line.style.opacity = '1';
-                line.style.transform = 'translateY(0)';
-            }, (index + 1) * 300);
-        });
-    }
-
-    animateHeroStats() {
-        const stats = document.querySelectorAll('.stat-item');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    this.animateCounter(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        stats.forEach(stat => observer.observe(stat));
-    }
-
-    animateCounter(element) {
-        const numberElement = element.querySelector('.stat-number');
-        const finalNumber = numberElement.textContent;
-        const isMultiplier = finalNumber.includes('x');
-        const hasPlus = finalNumber.includes('+');
-        
-        let targetValue = parseFloat(finalNumber);
-        let currentValue = 0;
-        const increment = targetValue / 50;
-        const duration = 1500;
-        const stepTime = duration / 50;
-
-        const counter = setInterval(() => {
-            currentValue += increment;
-            if (currentValue >= targetValue) {
-                currentValue = targetValue;
-                clearInterval(counter);
-            }
-            
-            let displayValue = Math.floor(currentValue);
-            if (isMultiplier) displayValue += 'x';
-            if (hasPlus) displayValue += '+';
-            
-            numberElement.textContent = displayValue;
-        }, stepTime);
-    }
-
-    animateChipShowcase() {
-        const mainChip = document.querySelector('.premium-chip');
-        const coreUnits = document.querySelectorAll('.core-unit');
-        
-        if (mainChip) {
-            setTimeout(() => {
-                mainChip.style.opacity = '1';
-                mainChip.style.transform = 'translateY(0) scale(1)';
-            }, 800);
-        }
-
-        coreUnits.forEach((unit, index) => {
-            setTimeout(() => {
-                unit.style.opacity = '1';
-                unit.style.transform = 'scale(1)';
-            }, 1000 + (index * 200));
-        });
-    }
-
-    initializeFloatingChips() {
-        const floatingChips = document.querySelectorAll('.float-chip');
-        floatingChips.forEach((chip, index) => {
-            chip.style.animationDelay = `${index * 2}s`;
-            chip.addEventListener('mouseenter', () => this.handleChipHover(chip));
-            chip.addEventListener('mouseleave', () => this.handleChipLeave(chip));
-        });
-    }
-
-    handleChipHover(chip) {
-        chip.style.transform = 'translateY(-10px) scale(1.1)';
-        chip.style.boxShadow = '0 20px 40px rgba(212, 175, 55, 0.3)';
-    }
-
-    handleChipLeave(chip) {
-        chip.style.transform = 'translateY(0) scale(1)';
-        chip.style.boxShadow = 'var(--shadow-large)';
-    }
-
-    // === MOBILE MENU ===
-    initializeMobileMenu() {
-        const menuToggle = document.getElementById('mobile-menu-toggle');
-        const nav = document.querySelector('.premium-nav');
-        const navLinks = document.querySelectorAll('.nav-link');
-        
-        let isMenuOpen = false;
-
-        const toggleMenu = () => {
-            isMenuOpen = !isMenuOpen;
-            
-            menuToggle.classList.toggle('is-active', isMenuOpen);
-            nav.classList.toggle('mobile-active', isMenuOpen);
-            nav.classList.toggle('is-open', isMenuOpen);
-            document.body.classList.toggle('blur', isMenuOpen);
-            
-            if (isMenuOpen) {
-                this.animateNavLinks(navLinks);
-            }
-        };
-
-        menuToggle.addEventListener('click', toggleMenu);
-        
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (isMenuOpen) toggleMenu();
-            });
-        });
-
-        // Close menu on escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && isMenuOpen) {
-                toggleMenu();
-            }
-        });
-    }
-
-    animateNavLinks(links) {
-        links.forEach((link, index) => {
-            setTimeout(() => {
-                link.style.opacity = '1';
-                link.style.transform = 'translateY(0)';
-            }, index * 100);
-        });
-    }
-
-    // === SCROLL EFFECTS ===
-    initializeScrollEffects() {
-        const header = document.querySelector('.premium-header');
-        const sections = document.querySelectorAll('.premium-section');
-        
-        // Intersection Observer for sections
-        const sectionObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    this.triggerSectionAnimations(entry.target);
-                }
-            });
-        }, {
-            rootMargin: '-10% 0px -10% 0px',
-            threshold: 0.1
-        });
-
-        sections.forEach(section => {
-            sectionObserver.observe(section);
-        });
-    }
-
-    triggerSectionAnimations(section) {
-        const sectionId = section.id;
-        
-        switch(sectionId) {
-            case 'about':
-                this.animateAboutSection();
-                break;
-            case 'experience':
-                this.animateExperienceSection();
-                break;
-            case 'projects':
-                this.animateProjectsSection();
-                break;
-            case 'research':
-                this.animateResearchSection();
-                break;
-            case 'contact':
-                this.animateContactSection();
-                break;
-        }
-    }
-
-    handleScroll() {
-        if (!this.ticking) {
-            requestAnimationFrame(() => {
-                this.updateScrollEffects();
-                this.ticking = false;
-            });
-            this.ticking = true;
-        }
-    }
-
-    updateScrollEffects() {
-        const header = document.querySelector('.premium-header');
-        const currentScrollY = window.scrollY;
-        
-        // Header visibility
-        if (currentScrollY > 100) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-
-        // Hide/show header on scroll direction
-        if (currentScrollY > this.lastScrollY && currentScrollY > 200) {
-            header.classList.add('hidden');
-        } else {
-            header.classList.remove('hidden');
-        }
-
-        this.lastScrollY = currentScrollY;
-    }
-
-    // === NAVIGATION ===
-    initializeNavigation() {
-        const navLinks = document.querySelectorAll('.nav-link');
-        const sections = document.querySelectorAll('section[id]');
-        
-        // Smooth scroll
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = link.getAttribute('href').substring(1);
-                const targetSection = document.getElementById(targetId);
-                
-                if (targetSection) {
-                    const headerHeight = document.querySelector('.premium-header').offsetHeight;
-                    const targetPosition = targetSection.offsetTop - headerHeight;
-                    
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Active link highlighting
-        const navObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const id = entry.target.getAttribute('id');
-                    navLinks.forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('href') === `#${id}`) {
-                            link.classList.add('active');
-                        }
-                    });
-                }
-            });
-        }, {
-            rootMargin: '-20% 0px -80% 0px'
-        });
-
-        sections.forEach(section => {
-            navObserver.observe(section);
-        });
-    }
-
-    // === EXPERIENCE TABS ===
-    initializeExperienceTabs() {
-        const tabBtns = document.querySelectorAll('.tab-btn');
-        const tabPanels = document.querySelectorAll('.tab-panel');
-        
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const targetTab = btn.getAttribute('data-tab');
-                
-                // Remove active classes
-                tabBtns.forEach(b => b.classList.remove('active'));
-                tabPanels.forEach(p => p.classList.remove('active'));
-                
-                // Add active classes
-                btn.classList.add('active');
-                const targetPanel = document.getElementById(targetTab);
-                if (targetPanel) {
-                    targetPanel.classList.add('active');
-                    this.animateTabContent(targetPanel);
-                }
-            });
-        });
-    }
-
-    animateTabContent(panel) {
-        const achievements = panel.querySelectorAll('.achievement-list li');
-        const techChips = panel.querySelectorAll('.tech-chip');
-        
-        achievements.forEach((achievement, index) => {
-            setTimeout(() => {
-                achievement.style.opacity = '1';
-                achievement.style.transform = 'translateX(0)';
-            }, index * 100);
-        });
-
-        techChips.forEach((chip, index) => {
-            setTimeout(() => {
-                chip.style.opacity = '1';
-                chip.style.transform = 'translateY(0)';
-            }, 300 + (index * 50));
-        });
-    }
-
-    // === SECTION ANIMATIONS ===
-    animateAboutSection() {
-        const timelineItems = document.querySelectorAll('.timeline-item');
-        const skillCategories = document.querySelectorAll('.skill-category');
-        
-        timelineItems.forEach((item, index) => {
-            setTimeout(() => {
-                item.style.opacity = '1';
-                item.style.transform = 'translateY(0)';
-            }, index * 200);
-        });
-
-        skillCategories.forEach((category, index) => {
-            setTimeout(() => {
-                category.style.opacity = '1';
-                category.style.transform = 'translateY(0)';
-                this.animateSkillBadges(category);
-            }, index * 150);
-        });
-    }
-
-    animateSkillBadges(category) {
-        const badges = category.querySelectorAll('.skill-badge');
-        badges.forEach((badge, index) => {
-            setTimeout(() => {
-                badge.style.opacity = '1';
-                badge.style.transform = 'scale(1)';
-            }, index * 50);
-        });
-    }
-
-    animateProjectsSection() {
-        const projectCards = document.querySelectorAll('.project-card');
-        projectCards.forEach((card, index) => {
-            setTimeout(() => {
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
-            }, index * 200);
-        });
-    }
-
-    animateResearchSection() {
-        const researchCards = document.querySelectorAll('.research-card');
-        researchCards.forEach((card, index) => {
-            setTimeout(() => {
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
-            }, index * 250);
-        });
-    }
-
-    animateContactSection() {
-        const contactChip = document.querySelector('.contact-chip');
-        const connectionLines = document.querySelectorAll('.connection-lines .line');
-        
-        if (contactChip) {
-            contactChip.style.opacity = '1';
-            contactChip.style.transform = 'scale(1)';
-        }
-
-        connectionLines.forEach((line, index) => {
-            setTimeout(() => {
-                line.style.opacity = '1';
-                line.style.transform = line.classList.contains('line-1') ? 'translateY(0)' : 
-                                     line.classList.contains('line-2') ? 'translateX(0)' : 'translateY(0)';
-            }, index * 300);
-        });
-    }
-
-    // === TYPING EFFECTS ===
-    initializeTypingEffects() {
-        const subtitle = document.querySelector('.hero-subtitle');
-        if (subtitle) {
-            const text = subtitle.textContent;
-            subtitle.textContent = '';
-            
-            setTimeout(() => {
-                this.typeText(subtitle, text, 50);
-            }, 1500);
-        }
-    }
-
-    typeText(element, text, speed) {
-        let i = 0;
-        const timer = setInterval(() => {
-            if (i < text.length) {
-                element.textContent += text.charAt(i);
-                i++;
-            } else {
-                clearInterval(timer);
-                this.addCursor(element);
-            }
-        }, speed);
-    }
-
-    addCursor(element) {
-        const cursor = document.createElement('span');
-        cursor.className = 'typing-cursor';
-        cursor.textContent = '|';
-        cursor.style.animation = 'cursorBlink 1s infinite';
-        element.appendChild(cursor);
-        
-        setTimeout(() => {
-            cursor.remove();
-        }, 3000);
-    }
-
-    // === SKILLS ANIMATIONS ===
-    initializeSkillsAnimations() {
-        const skillBadges = document.querySelectorAll('.skill-badge');
-        
-        skillBadges.forEach(badge => {
-            badge.addEventListener('mouseenter', () => {
-                badge.style.transform = 'translateY(-3px) scale(1.05)';
-                badge.style.boxShadow = '0 8px 25px rgba(212, 175, 55, 0.3)';
-            });
-            
-            badge.addEventListener('mouseleave', () => {
-                badge.style.transform = 'translateY(0) scale(1)';
-                badge.style.boxShadow = 'none';
-            });
-        });
-    }
-
-    // === PROJECT ANIMATIONS ===
-    initializeProjectAnimations() {
-        const projectCards = document.querySelectorAll('.project-card');
-        
-        projectCards.forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                const visual = card.querySelector('.project-visual');
-                if (visual) {
-                    visual.style.transform = 'scale(1.05)';
-                }
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                const visual = card.querySelector('.project-visual');
-                if (visual) {
-                    visual.style.transform = 'scale(1)';
-                }
-            });
-        });
-    }
-
-    // === PARTICLE SYSTEM ===
-    initializeParticleSystem() {
-        const canvas = document.createElement('canvas');
-        canvas.id = 'particle-canvas';
-        canvas.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            opacity: 0.1;
-        `;
-        
-        document.body.appendChild(canvas);
-        this.startParticleSystem(canvas);
-    }
-
-    startParticleSystem(canvas) {
-        const ctx = canvas.getContext('2d');
-        const particles = [];
-        
-        const resizeCanvas = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        };
-        
-        const createParticle = () => ({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            vx: (Math.random() - 0.5) * 0.5,
-            vy: (Math.random() - 0.5) * 0.5,
-            size: Math.random() * 2 + 1,
-            opacity: Math.random() * 0.5 + 0.2,
-            color: `hsl(${Math.random() * 60 + 160}, 70%, 60%)`
-        });
-        
-        const animate = () => {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            particles.forEach((particle, index) => {
-                particle.x += particle.vx;
-                particle.y += particle.vy;
-                
-                if (particle.x < 0) particle.x = canvas.width;
-                if (particle.x > canvas.width) particle.x = 0;
-                if (particle.y < 0) particle.y = canvas.height;
-                if (particle.y > canvas.height) particle.y = 0;
-                
-                ctx.beginPath();
-                ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-                ctx.fillStyle = particle.color;
-                ctx.globalAlpha = particle.opacity;
-                ctx.fill();
-                
-                // Draw connections
-                particles.slice(index + 1).forEach(otherParticle => {
-                    const dx = particle.x - otherParticle.x;
-                    const dy = particle.y - otherParticle.y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-                    
-                    if (distance < 100) {
-                        ctx.beginPath();
-                        ctx.moveTo(particle.x, particle.y);
-                        ctx.lineTo(otherParticle.x, otherParticle.y);
-                        ctx.strokeStyle = '#d4af37';
-                        ctx.globalAlpha = (100 - distance) / 100 * 0.2;
-                        ctx.lineWidth = 0.5;
-                        ctx.stroke();
-                    }
-                });
-            });
-            
-            requestAnimationFrame(animate);
-        };
-        
-        resizeCanvas();
-        
-        // Initialize particles
-        const particleCount = Math.floor((canvas.width * canvas.height) / 20000);
-        for (let i = 0; i < particleCount; i++) {
-            particles.push(createParticle());
-        }
-        
-        animate();
-        
-        window.addEventListener('resize', resizeCanvas);
-    }
-
-    // === SCROLL TO TOP ===
-    initializeScrollToTop() {
-        const scrollBtn = document.createElement('button');
-        scrollBtn.innerHTML = '<i data-lucide="chevron-up"></i>';
-        scrollBtn.className = 'scroll-to-top';
-        scrollBtn.style.cssText = `
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            border: 2px solid var(--accent-gold);
-            background: var(--premium-white);
-            color: var(--accent-gold);
-            border-radius: 50%;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: var(--shadow-medium);
-        `;
-        
-        document.body.appendChild(scrollBtn);
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                scrollBtn.style.opacity = '1';
-                scrollBtn.style.visibility = 'visible';
-            } else {
-                scrollBtn.style.opacity = '0';
-                scrollBtn.style.visibility = 'hidden';
-            }
-        });
-        
-        scrollBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-        
-        scrollBtn.addEventListener('mouseenter', () => {
-            scrollBtn.style.transform = 'scale(1.1)';
-            scrollBtn.style.boxShadow = 'var(--shadow-large)';
-        });
-        
-        scrollBtn.addEventListener('mouseleave', () => {
-            scrollBtn.style.transform = 'scale(1)';
-            scrollBtn.style.boxShadow = 'var(--shadow-medium)';
-        });
-    }
-
-    // === PERFORMANCE OPTIMIZATIONS ===
-    initializePerformanceOptimizations() {
-        // Lazy load images
-        const images = document.querySelectorAll('img[data-src]');
-        const imageObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src;
-                    img.removeAttribute('data-src');
-                    imageObserver.unobserve(img);
-                }
-            });
-        });
-        
-        images.forEach(img => imageObserver.observe(img));
-        
-        // Debounce resize events
-        let resizeTimeout;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                this.handleResize();
-            }, 250);
-        });
-    }
-
-    // === ACCESSIBILITY ===
-    initializeAccessibility() {
-        // Focus management
-        const focusableElements = document.querySelectorAll(
-            'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])'
-        );
-        
-        focusableElements.forEach(element => {
-            element.addEventListener('focus', () => {
-                element.style.outline = '2px solid var(--accent-gold)';
-                element.style.outlineOffset = '2px';
-            });
-            
-            element.addEventListener('blur', () => {
-                element.style.outline = 'none';
-            });
-        });
-        
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                document.body.classList.add('keyboard-navigation');
-            }
-        });
-        
-        document.addEventListener('mousedown', () => {
-            document.body.classList.remove('keyboard-navigation');
-        });
-    }
-
-    // === EVENT HANDLERS ===
-    handleWindowLoad() {
-        this.isLoaded = true;
-        document.body.classList.add('loaded');
-    }
-
-    handleResize() {
-        // Recalculate dimensions and update animations
-        this.updateDimensions();
-    }
-
-    handleKeydown(e) {
-        // Handle keyboard shortcuts
-        if (e.ctrlKey || e.metaKey) {
-            switch(e.key) {
-                case 'ArrowUp':
-                    e.preventDefault();
-                    this.scrollToSection('prev');
-                    break;
-                case 'ArrowDown':
-                    e.preventDefault();
-                    this.scrollToSection('next');
-                    break;
-            }
-        }
-    }
-
-    scrollToSection(direction) {
-        const sections = ['hero', 'about', 'experience', 'projects', 'research', 'contact'];
-        const currentSection = sections.find(id => {
-            const element = document.getElementById(id);
-            const rect = element.getBoundingClientRect();
-            return rect.top <= 100 && rect.bottom >= 100;
-        });
-        
-        const currentIndex = sections.indexOf(currentSection);
-        let targetIndex;
-        
-        if (direction === 'next' && currentIndex < sections.length - 1) {
-            targetIndex = currentIndex + 1;
-        } else if (direction === 'prev' && currentIndex > 0) {
-            targetIndex = currentIndex - 1;
-        }
-        
-        if (targetIndex !== undefined) {
-            const targetSection = document.getElementById(sections[targetIndex]);
-            if (targetSection) {
-                targetSection.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-    }
-
-    updateDimensions() {
-        // Update canvas dimensions and recalculate positions
-        const canvas = document.getElementById('particle-canvas');
-        if (canvas) {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-    }
-
-    startMainAnimations() {
-        // Start main animations after preloader
-        setTimeout(() => {
-            this.animateHeroContent();
-        }, 300);
-    }
-
-    animateHeroContent() {
-        const heroContent = document.querySelector('.hero-content');
-        if (heroContent) {
-            heroContent.style.opacity = '1';
-            heroContent.style.transform = 'translateY(0)';
-        }
-    }
+    /* Spacing & Sizing */
+    --header-height: 70px;
+    --max-width: 1100px;
+    --border-radius: 12px;
+    --transition-speed: 0.3s;
 }
 
-// === ADDITIONAL ANIMATIONS ===
-const additionalStyles = `
-@keyframes cursorBlink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0; }
+/* Dark Mode Override (Optional - can be toggled with JS) */
+body.dark-mode {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --primary-accent: #0a84ff;
+    --secondary-accent: #8e8e93;
+    --card-bg: #1c1c1e;
+    --border-color: #38383a;
+    --shadow-color: rgba(0, 0, 0, 0.2);
 }
 
-.typing-cursor {
-    color: var(--accent-gold);
-    font-weight: 300;
-    animation: cursorBlink 1s infinite;
+/* === GENERAL SETUP === */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-primary);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+main {
+    padding-top: var(--header-height);
+}
+
+/* === PRELOADER & MUTE BUTTON === */
+#preloader {
+    position: fixed;
+    inset: 0;
+    background: var(--bg-color);
+    display: grid;
+    place-items: center;
+    z-index: 10000;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s;
+}
+#preloader.loaded {
+    opacity: 0;
+    visibility: hidden;
+}
+.loader-chip {
+    width: 50px;
+    height: 50px;
+    background: var(--secondary-accent);
+    border-radius: 8px;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+#preloader p {
+    font-family: var(--font-mono);
+    color: var(--secondary-accent);
+    margin-top: 1rem;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+#mute-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    z-index: 1001;
+    color: var(--secondary-accent);
+    box-shadow: 0 4px 15px var(--shadow-color);
+    transition: all var(--transition-speed) ease;
+}
+#mute-btn:hover {
+    transform: translateY(-3px);
+    color: var(--primary-accent);
+}
+
+/* === HEADER & NAVIGATION === */
+.premium-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
+    background: hsla(0, 0%, 100%, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    z-index: 1000;
+    transition: all var(--transition-speed) ease, transform 0.4s ease;
+}
+body.dark-mode .premium-header {
+    background: rgba(28, 28, 30, 0.75);
+}
+.premium-header.scrolled {
+    box-shadow: 0 2px 10px var(--shadow-color);
+}
+.premium-header.hidden {
+    transform: translateY(-100%);
+}
+
+.header-content {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.premium-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 1.1rem;
+    font-family: var(--font-mono);
+}
+.chip-design {
+    width: 32px;
+    height: 32px;
+    background-color: var(--text-color);
+    border-radius: 6px;
+}
+body.dark-mode .chip-design {
+    background-color: var(--bg-color);
+}
+
+.premium-nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+}
+.nav-link {
+    text-decoration: none;
+    color: var(--secondary-accent);
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.5rem 0.25rem;
+    position: relative;
+    transition: color var(--transition-speed) ease;
+}
+.nav-link:hover, .nav-link.active {
+    color: var(--text-color);
+}
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-accent);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform var(--transition-speed) ease;
+}
+.nav-link.active::after {
+    transform: scaleX(1);
+}
+.nav-num {
+    color: var(--primary-accent);
+    font-family: var(--font-mono);
+    margin-right: 0.4rem;
+}
+
+/* === MOBILE NAVIGATION === */
+.mobile-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1002;
+}
+.toggle-line {
+    width: 24px;
+    height: 2px;
+    background: var(--text-color);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.mobile-toggle.is-active .toggle-line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+.mobile-toggle.is-active .toggle-line:nth-child(2) {
+    opacity: 0;
+}
+.mobile-toggle.is-active .toggle-line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+
+/* === GENERIC SECTION STYLING === */
+.premium-section {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 6rem 2rem;
+    opacity: 0; /* Initially hidden for scroll animations */
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.premium-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-header {
+    margin-bottom: 3rem;
+    text-align: center;
+}
+.section-name {
+    font-size: 2.5rem;
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+}
+.section-name .section-num {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--primary-accent);
+    position: absolute;
+    top: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* === HERO SECTION === */
+.premium-hero {
+    min-height: calc(100vh - var(--header-height));
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 4rem 2rem;
+}
+.hero-title {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+}
+.hero-title .title-line {
+    display: block;
+}
+.hero-description {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    max-width: 650px;
+    margin: 0 auto 2rem;
+    color: var(--secondary-accent);
+}
+.highlight {
+    color: var(--text-color);
+    font-weight: 600;
+}
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+.premium-btn {
+    padding: 0.8rem 1.8rem;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all var(--transition-speed) ease;
+    border: 1px solid transparent;
+}
+.btn-primary {
+    background-color: var(--primary-accent);
+    color: #fff;
+    border-color: var(--primary-accent);
+}
+.btn-primary:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+}
+.btn-secondary {
+    background-color: transparent;
+    color: var(--primary-accent);
+    border-color: var(--primary-accent);
+}
+.btn-secondary:hover {
+    background-color: var(--primary-accent);
+    color: #fff;
+}
+.silicon-wafer-container {
+    margin-top: 3rem;
+    display: grid;
+    place-items: center;
+}
+.silicon-wafer-container svg {
+    width: 150px;
+    height: 150px;
+    stroke: var(--primary-accent);
+    opacity: 0.7;
+}
+
+/* === ABOUT SECTION === */
+.about-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+.lead-text {
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+}
+blockquote {
+    border-left: 3px solid var(--primary-accent);
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    font-style: italic;
+    color: var(--secondary-accent);
+}
+.skills-showcase {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    position: sticky;
+    top: calc(var(--header-height) + 2rem);
+}
+.skills-showcase h3 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+.skill-category h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    margin-bottom: 0.75rem;
+    color: var(--text-color);
+}
+.skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
 .skill-badge {
-    opacity: 0;
-    transform: scale(0.8);
-    transition: all 0.3s ease;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-family: var(--font-mono);
 }
 
+/* === EXPERIENCE TIMELINE === */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 20px;
+    width: 2px;
+    background: var(--border-color);
+}
 .timeline-item {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.5s ease;
+    position: relative;
+    padding-left: 50px;
+    margin-bottom: 3rem;
+}
+.timeline-marker {
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 42px;
+    height: 42px;
+    background: var(--bg-color);
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: var(--primary-accent);
+}
+.timeline-content .timeline-date {
+    font-family: var(--font-mono);
+    color: var(--secondary-accent);
+    font-size: 0.85rem;
+}
+.timeline-content h4 {
+    margin: 0.25rem 0;
+    font-size: 1.2rem;
+}
+.timeline-content .institution {
+    font-weight: 500;
+    color: var(--secondary-accent);
+}
+.timeline-content .description {
+    margin-top: 0.5rem;
+    color: var(--secondary-accent);
+    font-size: 0.95rem;
 }
 
-.skill-category {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.6s ease;
+/* === PROJECTS GRID === */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
 }
-
 .project-card {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s ease;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px var(--shadow-color);
+}
+.project-content {
+    padding: 1.5rem;
+}
+.project-tag {
+    font-family: var(--font-mono);
+    color: var(--primary-accent);
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+.project-title {
+    font-size: 1.25rem;
+    margin: 0.5rem 0 1rem;
+}
+.project-description {
+    font-size: 0.95rem;
+    color: var(--secondary-accent);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+.project-links {
+    display: flex;
+    gap: 1.5rem;
+}
+.project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: color var(--transition-speed) ease;
+}
+.project-link:hover {
+    color: var(--primary-accent);
 }
 
-.research-card {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s ease;
+
+/* === CONTACT SECTION === */
+.contact-container {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+.contact-container p {
+    font-size: 1.1rem;
+    color: var(--secondary-accent);
+    margin-bottom: 2rem;
+}
+.contact-email {
+    display: inline-block;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--primary-accent);
+    text-decoration: none;
+    margin-bottom: 2.5rem;
+    position: relative;
+}
+.contact-email::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--primary-accent);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+.contact-email:hover::after {
+    transform: scaleX(1);
+}
+.contact-socials {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--secondary-accent);
+    text-decoration: none;
+    transition: color var(--transition-speed) ease, transform var(--transition-speed) ease;
+}
+.social-link:hover {
+    color: var(--primary-accent);
+    transform: translateY(-2px);
 }
 
-.achievement-list li {
-    opacity: 0;
-    transform: translateX(-20px);
-    transition: all 0.3s ease;
+/* === FOOTER === */
+.premium-footer {
+    text-align: center;
+    padding: 2rem;
+    margin-top: 4rem;
+    border-top: 1px solid var(--border-color);
+    color: var(--secondary-accent);
+    font-size: 0.9rem;
 }
 
-.tech-chip {
-    opacity: 0;
-    transform: translateY(10px);
-    transition: all 0.3s ease;
-}
-
-.connection-lines .line {
-    opacity: 0;
-    transition: all 0.5s ease;
-}
-
-.line-1 { transform: translateY(-20px); }
-.line-2 { transform: translateX(20px); }
-.line-3 { transform: translateY(20px); }
-
-.keyboard-navigation *:focus {
-    outline: 2px solid var(--accent-gold) !important;
-    outline-offset: 2px !important;
-}
-
-.hero-content {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s ease;
-}
-
-.premium-chip {
-    opacity: 0;
-    transform: translateY(50px) scale(0.8);
-    transition: all 1s ease;
-}
-
-.core-unit {
-    opacity: 0;
-    transform: scale(0);
-    transition: all 0.5s ease;
-}
-
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 992px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+    .skills-showcase {
+        position: static;
+        margin-top: 3rem;
     }
 }
-`;
 
-// Add styles to document
-const styleSheet = document.createElement('style');
-styleSheet.textContent = additionalStyles;
-document.head.appendChild(styleSheet);
-
-// Initialize the premium portfolio
-document.addEventListener('DOMContentLoaded', () => {
-    const portfolio = new PremiumPortfolio();
-    
-    // Initialize Lucide icons
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
+@media (max-width: 768px) {
+    /* Tablet & Mobile Styles */
+    .premium-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--bg-color);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        transform: translateY(-100%);
+        transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+        display: flex;
     }
-});
+    .premium-nav.is-open {
+        transform: translateY(0);
+    }
+    .premium-nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+    .nav-link {
+        font-size: 1.5rem;
+    }
 
-// Export for potential module usage
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = PremiumPortfolio;
+    .mobile-toggle {
+        display: flex;
+    }
+    .header-content {
+        padding: 0 1rem;
+    }
+    .premium-section {
+        padding: 4rem 1rem;
+    }
+    .section-name {
+        font-size: 2rem;
+    }
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
 }
