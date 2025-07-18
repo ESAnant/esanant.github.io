@@ -1,0 +1,463 @@
+/*
+ *  STYLE.CSS
+ *  The Ultimate Portfolio for Edidi Sai Anant
+ *  Design: Glassmorphism, Animated Background, Professional & Modern
+ */
+
+/* --- Root Variables for a Modern Tech Palette --- */
+:root {
+    --bg-color: #0d1117; /* Deep, professional navy/charcoal */
+    --glass-bg: rgba(22, 27, 34, 0.75); /* Semi-transparent glass background */
+    --border-color: rgba(255, 255, 255, 0.1);
+    --text-color: #c9d1d9;
+    --heading-color: #ffffff;
+    --accent-color: #22d3ee; /* Vibrant, modern cyan */
+    --accent-hover-color: #4ff1ff;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --font-main: 'Poppins', sans-serif;
+}
+
+/* --- Global Styles & Resets --- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* --- Animated Background Container --- */
+#vanta-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Place it behind all content */
+}
+
+/* --- Header & Navigation (Floating) --- */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(13, 17, 23, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    transition: top 0.3s ease-in-out;
+}
+
+.navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--heading-color);
+    text-decoration: none;
+}
+
+.navbar .nav-link {
+    color: var(--text-color);
+    text-decoration: none;
+    margin-left: 2.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+    color: var(--heading-color);
+}
+
+.navbar .nav-link:hover::after,
+.navbar .nav-link.active::after {
+    width: 100%;
+}
+
+/* --- Main Content Wrapper & General Section Styling --- */
+.main-content {
+    position: relative;
+    z-index: 1;
+}
+
+.content-section {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 8rem 2rem;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.content-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Hero Section --- */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 2rem;
+    opacity: 1; /* Hero is visible by default */
+    transform: none;
+}
+
+.hero-title {
+    font-size: clamp(2.5rem, 8vw, 5rem); /* Responsive font size */
+    font-weight: 700;
+    color: var(--heading-color);
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 20px rgba(34, 211, 238, 0.3);
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    font-weight: 300;
+    max-width: 600px;
+    margin: 0 auto 1.5rem;
+}
+
+.hero-socials a {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    margin: 0 1rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.hero-socials a:hover {
+    color: var(--accent-color);
+    transform: translateY(-5px) scale(1.1);
+}
+
+/* --- Glassmorphism Card --- */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 4rem;
+    box-shadow: 0 8px 32px 0 var(--shadow-color);
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--heading-color);
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 70px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-color), transparent);
+    margin: 0.75rem auto 0;
+    border-radius: 2px;
+}
+
+/* --- Timeline (Experience & Education) --- */
+.timeline {
+    position: relative;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--border-color);
+}
+
+.timeline-item {
+    margin-bottom: 3rem;
+    position: relative;
+    padding-left: 3rem;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    border: 3px solid var(--bg-color);
+    box-shadow: 0 0 10px var(--accent-color);
+}
+
+.timeline-content h3 {
+    color: var(--heading-color);
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.timeline-content .company-name {
+    color: var(--accent-color);
+    font-style: italic;
+    display: block;
+}
+
+.timeline-content .date {
+    display: block;
+    font-size: 0.9rem;
+    color: #888;
+    margin: 0.25rem 0 1rem;
+}
+
+.timeline-content ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.timeline-content ul li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-content ul li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* --- Project Grid with Hover Effects --- */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.project-card {
+    background: rgba(34, 42, 51, 0.5); /* Slightly different glass for projects */
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(34, 211, 238, 0.15) 0%, rgba(34, 211, 238, 0) 70%);
+    transition: opacity 0.5s ease;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(var(--x, -50%), var(--y, -50%));
+}
+
+.project-card:hover::before {
+    opacity: 1;
+}
+
+.project-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 24px var(--shadow-color);
+    border-color: rgba(34, 211, 238, 0.3);
+}
+
+.project-card h3 {
+    color: var(--heading-color);
+    margin-bottom: 0.75rem;
+}
+
+.project-card .tags {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.project-card .tag {
+    background-color: rgba(34, 211, 238, 0.1);
+    color: var(--accent-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+
+/* --- Skills Grid --- */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    text-align: center;
+}
+
+.skill-category h4 {
+    color: var(--accent-color);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.skill-category ul {
+    list-style: none;
+}
+
+.skill-category li {
+    background-color: rgba(34, 42, 51, 0.5);
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.skill-category li:hover {
+    transform: scale(1.05);
+    background-color: rgba(34, 211, 238, 0.1);
+}
+
+/* --- Contact Section --- */
+.contact-message {
+    text-align: center;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+}
+
+.contact-button {
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+    padding: 1rem 3rem;
+    background-color: var(--accent-color);
+    border: 2px solid var(--accent-color);
+    color: var(--bg-color);
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 50px;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-button:hover {
+    background-color: var(--accent-hover-color);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(34, 211, 238, 0.2);
+}
+
+/* --- Footer --- */
+.footer {
+    padding: 2rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #888;
+    position: relative;
+    z-index: 1;
+}
+
+/* --- Scroll to Top Button --- */
+#scrollToTopBtn {
+    position: fixed;
+    bottom: -60px; /* Start off-screen */
+    right: 30px;
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 100;
+    transition: bottom 0.3s ease, transform 0.3s ease;
+}
+
+#scrollToTopBtn.visible {
+    bottom: 30px; /* Slide in */
+}
+
+#scrollToTopBtn:hover {
+    transform: scale(1.1);
+}
+
+/* --- Media Queries for Responsiveness --- */
+@media (max-width: 768px) {
+    html { font-size: 15px; }
+    
+    .glass-card { padding: 2.5rem; }
+
+    .navbar .nav-link { margin-left: 1rem; }
+    
+    .content-section { padding: 6rem 1.5rem; }
+}
+
+@media (max-width: 480px) {
+    .navbar-container { 
+        flex-direction: column; 
+        gap: 1rem; 
+    }
+    .navbar { 
+        display: flex; 
+        flex-wrap: wrap; 
+        justify-content: center; 
+        gap: 0.5rem 1rem; 
+    }
+    .navbar .nav-link { margin-left: 0; }
+    
+    .glass-card { padding: 2rem 1.5rem; }
+}
