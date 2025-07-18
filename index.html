@@ -1,375 +1,255 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Meta -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sai Anant Edidi • Semiconductor Portfolio</title>
-  <meta name="description" content="High-performance IC & VLSI portfolio by Sai Anant Edidi">
-
-  <!-- Fonts & Icons -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
-  <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="style.css">
-
-  <!-- Favicon (optional) -->
-  <link rel="icon" href="data:,">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sai Anant Edidi | Silicon Architect</title>
+    <meta name="description" content="Portfolio of Sai Anant Edidi, an Electrical Engineering Master's candidate specializing in VLSI design, semiconductor processes, and in-memory computing.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+    <script src="script.js" defer></script>
 </head>
-
 <body>
-  <!-- PRELOADER -->
-  <div id="preloader">
-    <div class="loader-container">
-      <div class="premium-loader">
-        <div class="loader-chip">
-          <div class="chip-core"></div>
-          <div class="chip-pins">
-            <div class="pin"></div><div class="pin"></div>
-            <div class="pin"></div><div class="pin"></div>
-          </div>
-        </div>
-        <span class="loader-text">Booting&nbsp;Silicon…</span>
-      </div>
-      <div class="loading-progress"><div class="progress-bar"></div></div>
+
+    <!-- === PRELOADER & AUDIO === -->
+    <div id="preloader">
+        <div class="loader-chip"></div>
+        <p>Initializing Silicon...</p>
     </div>
-  </div>
+    <audio id="load-sound" src="https://www.myinstants.com/media/sounds/mac-os-x-startup-sound.mp3" preload="auto"></audio>
+    <button id="mute-btn" aria-label="Mute sound">
+        <i data-lucide="volume-2"></i>
+        <i data-lucide="volume-x" style="display: none;"></i>
+    </button>
 
-  <!-- BACKGROUND EFFECTS -->
-  <div class="premium-bg">
-    <div class="gradient-orb orb-1"></div>
-    <div class="gradient-orb orb-2"></div>
-    <div class="gradient-orb orb-3"></div>
-    <div class="mesh-grid"></div>
-  </div>
-
-  <!-- HEADER -->
-  <header class="premium-header">
-    <div class="header-content">
-      <a href="#hero" class="premium-logo logo-chip" aria-label="Home">
-        <span class="chip-design">
-          <span class="chip-center"></span>
-          <span class="chip-contacts">
-            <span class="contact"></span><span class="contact"></span>
-            <span class="contact"></span><span class="contact"></span>
-          </span>
-        </span>
-        <span class="logo-text">Sai&nbsp;Anant</span>
-      </a>
-
-      <nav class="premium-nav" aria-label="Primary">
-        <ul>
-          <li><a class="nav-link" href="#about"><span>01.</span>About</a></li>
-          <li><a class="nav-link" href="#experience"><span>02.</span>Experience</a></li>
-          <li><a class="nav-link" href="#projects"><span>03.</span>Projects</a></li>
-          <li><a class="nav-link" href="#research"><span>04.</span>Research</a></li>
-          <li><a class="nav-link" href="#contact"><span>05.</span>Contact</a></li>
-        </ul>
-      </nav>
-
-      <button id="mobile-menu-toggle" class="mobile-toggle" aria-label="Menu">
-        <span class="toggle-line"></span><span class="toggle-line"></span><span class="toggle-line"></span>
-      </button>
-    </div>
-  </header>
-
-  <!-- MAIN -->
-  <main class="premium-main">
-    <!-- HERO -->
-    <section id="hero" class="premium-section premium-hero" role="banner">
-      <div class="hero-container">
-        <div class="hero-content">
-          <p class="hero-greeting"><span class="greeting-text">Hi, I’m</span></p>
-          <h1 class="hero-title">
-            <span class="title-line">Sai Anant Edidi</span>
-            <span class="title-line">Architecting Tomorrow’s Silicon</span>
-          </h1>
-          <h2 class="hero-subtitle">VLSI • Neural Network Acceleration • In-Memory Compute</h2>
-          <p class="hero-description">
-            I design <span class="highlight">high-performance ICs</span> that bridge theoretical algorithms and tangible silicon.
-          </p>
-          <div class="hero-actions">
-            <a href="#contact" class="premium-btn btn-primary">Hire Me</a>
-            <a href="Edidi_Sai_Anant_Resume.pdf" class="premium-btn btn-outline" download>Résumé</a>
-          </div>
-          <div class="hero-stats">
-            <div class="stat-item"><strong class="stat-number">4x</strong><span class="stat-label">Acceleration</span></div>
-            <div class="stat-item"><strong class="stat-number">10+</strong><span class="stat-label">Projects</span></div>
-            <div class="stat-item"><strong class="stat-number">2</strong><span class="stat-label">Publications</span></div>
-          </div>
+    <!-- === HEADER & NAVIGATION === -->
+    <header class="premium-header">
+        <div class="header-content">
+            <a href="#hero" class="premium-logo">
+                <div class="chip-design"></div>
+                <span>Sai Anant Edidi</span>
+            </a>
+            <nav class="premium-nav">
+                <ul>
+                    <li><a href="#about" class="nav-link"><span class="nav-num">01</span> About</a></li>
+                    <li><a href="#experience" class="nav-link"><span class="nav-num">02</span> Experience</a></li>
+                    <li><a href="#projects" class="nav-link"><span class="nav-num">03</span> Projects</a></li>
+                    <li><a href="#contact" class="nav-link"><span class="nav-num">04</span> Contact</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-toggle" id="mobile-menu-toggle" aria-label="Open navigation menu" aria-expanded="false">
+                <span class="toggle-line"></span>
+                <span class="toggle-line"></span>
+                <span class="toggle-line"></span>
+            </button>
         </div>
+    </header>
 
-        <!-- HERO VISUAL -->
-        <div class="hero-visual">
-          <div class="chip-showcase">
-            <div class="premium-chip">
-              <div class="chip-surface">
-                <div class="chip-grid">
-                  <span class="grid-line"></span><span class="grid-line"></span>
-                  <span class="grid-line"></span><span class="grid-line"></span>
+    <main class="premium-main">
+
+        <!-- === HERO SECTION === -->
+        <section id="hero" class="premium-hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        <span class="title-line">Architecting</span>
+                        <span class="title-line">Tomorrow's Silicon</span>
+                    </h1>
+                    <p class="hero-description">
+                        I craft high-performance integrated circuits that bridge theoretical algorithms and tangible hardware. Specializing in <strong class="highlight">VLSI design</strong>, <strong class="highlight">neural network acceleration</strong>, and <strong class="highlight">in-memory computing</strong>. 🎓
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#contact" class="premium-btn btn-primary">Get In Touch</a>
+                        <a href="#projects" class="premium-btn btn-secondary">View My Work</a>
+                    </div>
                 </div>
-                <div class="chip-core-display">
-                  <span class="core-unit"></span><span class="core-unit"></span>
-                  <span class="core-unit"></span><span class="core-unit"></span>
+                <div class="hero-visual">
+                    <div id="silicon-wafer" class="silicon-wafer-container">
+                        <!-- SVG will be injected by JavaScript -->
+                    </div>
                 </div>
-              </div>
-              <div class="chip-pins-display">
-                <span class="pin-row top"></span><span class="pin-row right"></span>
-                <span class="pin-row bottom"></span><span class="pin-row left"></span>
-              </div>
             </div>
-            <div class="floating-elements">
-              <div class="float-chip chip-1"></div>
-              <div class="float-chip chip-2"></div>
-              <div class="float-chip chip-3"></div>
+        </section>
+
+        <!-- === ABOUT SECTION === -->
+        <section id="about" class="premium-section">
+            <div class="section-header">
+                <h2 class="section-name"><span class="section-num">01</span> About Me</h2>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="premium-section">
-      <div class="section-container">
-        <div class="section-header">
-          <h2 class="section-title"><span class="section-number">01.</span><span class="section-name">About Me</span></h2>
-        </div>
-
-        <div class="about-grid">
-          <div class="about-content">
-            <p class="lead-text">
-              Childhood curiosity for dismantling electronics evolved into
-              a Master’s in Electrical Engineering at NUS (’23-’25).
-            </p>
-
-            <div class="about-text">
-              <p>I transform complex computational challenges into elegant hardware solutions focusing on <strong>energy-efficient VLSI</strong> and <strong>neural-network accelerators</strong>.</p>
-              <p>Currently seeking opportunities to craft innovative silicon that shapes the future of computing.</p>
-            </div>
-
-            <!-- Education timeline (sample) -->
-            <div class="education-timeline">
-              <div class="timeline-item">
-                <div class="timeline-marker">🎓</div>
-                <div class="timeline-content">
-                  <h4>Master of Science in Electrical Engineering</h4>
-                  <p class="institution">National University of Singapore</p>
-                  <p class="duration">2023 – 2025</p>
+            <div class="about-grid">
+                <div class="about-content">
+                    <p class="lead-text">My journey began with a childhood curiosity for dismantling electronics. This fascination evolved into a rigorous academic pursuit, leading me to a Master's in Electrical Engineering at the National University of Singapore.</p>
+                    <blockquote>
+                        "I am driven to transform complex computational challenges into elegant, efficient hardware solutions. My research focuses on pioneering energy-efficient VLSI designs that will shape the future of computing."
+                    </blockquote>
+                    <p>With a strong foundation in semiconductor processes and hands-on experience in IC design, I am passionate about contributing to innovative teams and tackling the challenges of a dynamic, future-oriented industry.</p>
                 </div>
-              </div>
-              <div class="timeline-item">
-                <div class="timeline-marker">🎓</div>
-                <div class="timeline-content">
-                  <h4>B.Tech in ECE</h4>
-                  <p class="institution">SRM Institute of Science & Tech</p>
-                  <p class="duration">2019 – 2023</p>
+                <div class="skills-showcase">
+                    <h3>Technical Expertise</h3>
+                    <div class="skill-category">
+                        <h4><i data-lucide="cpu"></i> Hardware Design</h4>
+                        <div class="skill-list">
+                            <span class="skill-badge">Verilog</span>
+                            <span class="skill-badge">SystemVerilog</span>
+                            <span class="skill-badge">HLS</span>
+                            <span class="skill-badge">VLSI Design</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4><i data-lucide="wrench"></i> Design Tools</h4>
+                        <div class="skill-list">
+                            <span class="skill-badge">Cadence Virtuoso</span>
+                            <span class="skill-badge">Xilinx Vivado</span>
+                            <span class="skill-badge">QuestaSim</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4><i data-lucide="code-2"></i> Programming</h4>
+                        <div class="skill-list">
+                            <span class="skill-badge">Python</span>
+                            <span class="skill-badge">C++</span>
+                            <span class="skill-badge">LaTeX</span>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
+        </section>
 
-          <!-- Skills mini-showcase -->
-          <aside class="skills-showcase">
-            <div class="skills-container">
-              <h3>Core Skills</h3>
-              <div class="skills-grid">
-                <div class="skill-category">
-                  <div class="category-header"><i data-lucide="cpu"></i><h4>Hardware Design</h4></div>
-                  <div class="skill-list">
-                    <span class="skill-badge">Verilog</span>
-                    <span class="skill-badge">SystemVerilog</span>
-                    <span class="skill-badge">HLS</span>
-                  </div>
+        <!-- === EXPERIENCE & EDUCATION TIMELINE === -->
+        <section id="experience" class="premium-section">
+            <div class="section-header">
+                <h2 class="section-name"><span class="section-num">02</span> My Journey</h2>
+            </div>
+            <div class="timeline">
+                <!-- Education -->
+                <div class="timeline-item">
+                    <div class="timeline-marker"><i data-lucide="graduation-cap"></i></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2023 - 2025</span>
+                        <h4>Master of Science, Electrical Engineering</h4>
+                        <p class="institution">National University of Singapore</p>
+                        <p class="description">Relevant Courses: VLSI Digital Circuit Design, Memory Technologies, Embedded Hardware System Design.</p>
+                    </div>
                 </div>
-                <div class="skill-category">
-                  <div class="category-header"><i data-lucide="tool"></i><h4>EDA Tools</h4></div>
-                  <div class="skill-list">
-                    <span class="skill-badge">Cadence Virtuoso</span>
-                    <span class="skill-badge">Xilinx Vivado</span>
-                    <span class="skill-badge">QuestaSim</span>
-                  </div>
+                <!-- Work Experience -->
+                <div class="timeline-item">
+                    <div class="timeline-marker"><i data-lucide="briefcase"></i></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Aug 2023 - Present</span>
+                        <h4>Graduate Assistant</h4>
+                        <p class="institution">National University of Singapore</p>
+                        <p class="description">Oversaw lab sessions for Microcontroller Programming and Computer Architecture, guiding 50+ students and modernizing curriculum materials.</p>
+                    </div>
                 </div>
-              </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"><i data-lucide="briefcase"></i></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Dec 2022 - Jan 2023</span>
+                        <h4>Project Intern</h4>
+                        <p class="institution">Maven Silicon</p>
+                        <p class="description">Designed and synthesized an AHB to APB bridge using Verilog, focusing on modular RTL components and gate-level schematic optimization for performance.</p>
+                    </div>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-marker"><i data-lucide="graduation-cap"></i></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2019 - 2023</span>
+                        <h4>Bachelor of Technology, ECE</h4>
+                        <p class="institution">SRM Institute of Science and Technology</p>
+                        <p class="description">Built a strong foundation in Digital Electronics, Semiconductor Device Modelling, and VLSI Design.</p>
+                    </div>
+                </div>
+                <!-- Publication -->
+                <div class="timeline-item">
+                    <div class="timeline-marker"><i data-lucide="file-text"></i></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">May 2023</span>
+                        <h4>Publication</h4>
+                        <p class="institution">IEEE</p>
+                        <p class="description">Published "Improving Data Integrity with Reversible Logic-based Error Detection and Correction Module on AHB-APB Bridge."</p>
+                    </div>
+                </div>
             </div>
-          </aside>
-        </div>
-      </div>
-    </section>
+        </section>
 
-    <!-- EXPERIENCE -->
-    <section id="experience" class="premium-section">
-      <div class="section-container">
-        <div class="section-header">
-          <h2 class="section-title"><span class="section-number">02.</span><span class="section-name">Experience</span></h2>
-        </div>
-
-        <div class="experience-container">
-          <div class="experience-tabs" role="tablist" aria-label="Experience timeline">
-            <button class="tab-btn active" data-tab="nus-ga" role="tab">NUS GA</button>
-            <button class="tab-btn" data-tab="maven" role="tab">Maven Silicon</button>
-            <button class="tab-btn" data-tab="sandeepani" role="tab">Sandeepani</button>
-          </div>
-
-          <div class="experience-content">
-            <article id="nus-ga" class="tab-panel active" role="tabpanel">
-              <header class="experience-header">
-                <h3>Graduate Assistant</h3>
-                <p class="company">National University of Singapore</p>
-                <p class="duration">Aug 2023 – Present</p>
-              </header>
-              <ul class="achievement-list">
-                <li>Guided 50 + students per semester in EE2028 & CG3207.</li>
-                <li>Cut troubleshooting time by <strong>40 %</strong> with new debugging protocols.</li>
-              </ul>
-              <div class="tech-stack">
-                <span class="tech-chip">C</span><span class="tech-chip">Arm Cortex-M</span>
-              </div>
-            </article>
-
-            <article id="maven" class="tab-panel" role="tabpanel">
-              <header class="experience-header">
-                <h3>Project Intern</h3>
-                <p class="company">Maven Silicon</p>
-                <p class="duration">Dec 2022 – Jan 2023</p>
-              </header>
-              <ul class="achievement-list">
-                <li>Designed an AHB-to-APB bridge meeting tight timing.</li>
-                <li>Converted RTL to gate-level netlist for power analysis.</li>
-              </ul>
-              <div class="tech-stack">
-                <span class="tech-chip">Verilog</span><span class="tech-chip">Synopsys DC</span>
-              </div>
-            </article>
-
-            <article id="sandeepani" class="tab-panel" role="tabpanel">
-              <header class="experience-header">
-                <h3>Intern</h3>
-                <p class="company">Sandeepani School of Embedded Systems</p>
-                <p class="duration">Jun 2022 – Jul 2022</p>
-              </header>
-              <ul class="achievement-list">
-                <li>Developed UART protocol; 100 % functional coverage.</li>
-                <li>Verified Half-Adder using SystemVerilog assertions.</li>
-              </ul>
-              <div class="tech-stack">
-                <span class="tech-chip">Verilog</span><span class="tech-chip">SystemVerilog</span>
-              </div>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section id="projects" class="premium-section">
-      <div class="section-container">
-        <div class="section-header">
-          <h2 class="section-title"><span class="section-number">03.</span><span class="section-name">Featured Projects</span></h2>
-        </div>
-
-        <div class="projects-grid">
-          <!-- Sample project card -->
-          <article class="project-card featured">
-            <div class="project-visual"><i class="project-icon" data-lucide="zap"></i></div>
-            <div class="project-content">
-              <p class="project-tag">FPGA Accelerator</p>
-              <h3 class="project-title">MLP Neural-Network Core</h3>
-              <p class="project-description">
-                4× speed-up versus software baseline via <strong>pipelining</strong> and <strong>loop unrolling</strong>.
-              </p>
-              <div class="project-tech">
-                <span class="tech-chip">Vitis HLS</span><span class="tech-chip">Zynq-7000</span>
-              </div>
-              <div class="project-links">
-                <a class="project-link" href="https://github.com/ESAnant/fpga-mlp" target="_blank" rel="noopener">
-                  <i data-lucide="github"></i>Code
-                </a>
-              </div>
+        <!-- === FEATURED PROJECTS SECTION === -->
+        <section id="projects" class="premium-section">
+            <div class="section-header">
+                <h2 class="section-name"><span class="section-num">03</span> Featured Projects</h2>
             </div>
-          </article>
-          <!-- Duplicate/adjust three more cards as needed -->
-        </div>
-      </div>
-    </section>
-
-    <!-- RESEARCH -->
-    <section id="research" class="premium-section">
-      <div class="section-container">
-        <div class="section-header">
-          <h2 class="section-title"><span class="section-number">04.</span><span class="section-name">Publications & Research</span></h2>
-        </div>
-
-        <div class="research-grid">
-          <article class="research-card">
-            <header class="research-header">
-              <div class="research-icon"><i data-lucide="file-text"></i></div>
-              <div class="research-meta">
-                <span class="research-type">IEEE</span>
-                <span class="research-date">May 2023</span>
-              </div>
-            </header>
-            <h3 class="research-title">Reversible Logic for Data Integrity</h3>
-            <p class="research-description">Error-detection and correction module for AHB-APB bridges reducing parity overhead.</p>
-            <div class="research-tags">
-              <span class="research-tag">Reversible Logic</span>
-              <span class="research-tag">ECC</span>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-content">
+                        <span class="project-tag">FPGA // HLS</span>
+                        <h4 class="project-title">FPGA Neural Network Accelerator</h4>
+                        <p class="project-description">Engineered a hardware accelerator for MLP inference on a Xilinx Zynq-7000 FPGA. Achieved a <strong>4x performance improvement</strong> over software baseline via optimized pipelining and loop unrolling.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/ESAnant/FPGA-Neural-Network-Accelerator" target="_blank" rel="noopener noreferrer" class="project-link"><i data-lucide="github"></i> View on GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-content">
+                        <span class="project-tag">VLSI // Simulation</span>
+                        <h4 class="project-title">In-Memory Compute Circuit</h4>
+                        <p class="project-description">Designed novel in-memory computing circuits using NeuroSim & MuMax3. Optimized quantization techniques and analyzed performance across data types in PyTorch to boost efficiency.</p>
+                         <div class="project-links">
+                             <a href="https://github.com/ESAnant/In-Memory-Compute-Circuit" target="_blank" rel="noopener noreferrer" class="project-link"><i data-lucide="github"></i> View on GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-content">
+                        <span class="project-tag">VLSI // Cadence</span>
+                        <h4 class="project-title">Interconnect Optimization</h4>
+                        <p class="project-description">Optimized processor interconnects for a 2-core processor at 45nm using Elmore RC models and Cadence Virtuoso, focusing on energy-delay tradeoffs to enhance system efficiency.</p>
+                         <div class="project-links">
+                            <!-- Placeholder if no link available -->
+                        </div>
+                    </div>
+                </div>
+                 <div class="project-card">
+                    <div class="project-content">
+                        <span class="project-tag">VLSI // IP Design</span>
+                        <h4 class="project-title">Standard Cell IP Development</h4>
+                        <p class="project-description">Created a ring oscillator Standard Cell IP in 40nm technology with a hierarchical design in Cadence Virtuoso, minimizing area while ensuring integrity through rigorous DRC and LVS checks.</p>
+                         <div class="project-links">
+                            <!-- Placeholder if no link available -->
+                        </div>
+                    </div>
+                </div>
             </div>
-          </article>
+        </section>
 
-          <!-- Add more cards as needed -->
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="premium-section">
-      <div class="section-container">
-        <div class="section-header">
-          <h2 class="section-title"><span class="section-number">05.</span><span class="section-name">Get in Touch</span></h2>
-        </div>
-
-        <div class="contact-container">
-          <div class="contact-content">
-            <h3>Let’s build the next chip together</h3>
-            <p class="contact-description">
-              If you have a role matching <strong>IC design</strong>&nbsp;or <strong>accelerator architecture</strong>, my inbox is always open.
-            </p>
-            <div class="contact-actions">
-              <a href="mailto:esanant@gmail.com" class="premium-btn btn-primary">esanant@gmail.com</a>
-              <a href="https://linkedin.com/in/sai-anant" target="_blank" rel="noopener" class="premium-btn btn-outline">
-                <i data-lucide="linkedin"></i>LinkedIn
-              </a>
+        <!-- === CONTACT SECTION === -->
+        <section id="contact" class="premium-section">
+            <div class="section-header">
+                <h2 class="section-name"><span class="section-num">04</span> Let's Connect</h2>
             </div>
-          </div>
-
-          <div class="contact-visual">
-            <div class="contact-chip">
-              <div class="chip-pattern"></div>
-              <div class="connection-lines">
-                <span class="line line-1"></span><span class="line line-2"></span><span class="line line-3"></span>
-              </div>
+            <div class="contact-container">
+                <p>I'm currently seeking new opportunities to apply my skills in a collaborative, innovative environment. If you have a project or role in mind, I'd be excited to hear from you.</p>
+                <a href="mailto:esanant@u.nus.edu" class="contact-email">esanant@u.nus.edu</a>
+                <div class="contact-socials">
+                    <a href="https://www.linkedin.com/in/sai-anant/" target="_blank" rel="noopener noreferrer" class="social-link">
+                        <i data-lucide="linkedin"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://github.com/ESAnant" target="_blank" rel="noopener noreferrer" class="social-link">
+                        <i data-lucide="github"></i>
+                        <span>GitHub</span>
+                    </a>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+        </section>
+    </main>
 
-  <!-- FOOTER -->
-  <footer class="premium-footer">
-    <div class="footer-content">
-      <div class="footer-links">
-        <a class="footer-link" href="https://github.com/ESAnant" target="_blank" rel="noopener"><i data-lucide="github"></i></a>
-        <a class="footer-link" href="https://linkedin.com/in/sai-anant" target="_blank" rel="noopener"><i data-lucide="linkedin"></i></a>
-      </div>
-      <p class="footer-text">© 2025 Sai Anant Edidi. Built with vanilla JS.</p>
-    </div>
-  </footer>
+    <!-- === FOOTER === -->
+    <footer class="premium-footer">
+        <p>&copy; 2024 Sai Anant Edidi. Designed with a passion for silicon.</p>
+    </footer>
 
-  <!-- Scripts -->
-  <script defer src="script.js"></script>
 </body>
 </html>
