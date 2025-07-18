@@ -1,15 +1,22 @@
 /*
  *  SCRIPT.JS
- *  Interactive functionality for the Ultimate Portfolio
+ *  Functionality for the "Amazing" Portfolio Experience
  */
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    // --- Preloader ---
+    const preloader = document.getElementById('preloader');
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            preloader.style.opacity = '0';
+            preloader.style.visibility = 'hidden';
+        }, 500); // Ensures Vanta has time to initialize
+    });
+
     // --- VANTA.JS Animated Background ---
-    // This creates the dynamic, interactive dots background.
-    // The colors are matched to the new palette in style.css.
     if (window.VANTA) {
-        VANTA.DOTS({
+        VANTA.NET({
             el: "#vanta-bg",
             mouseControls: true,
             touchControls: true,
@@ -18,41 +25,50 @@ document.addEventListener('DOMContentLoaded', () => {
             minWidth: 200.00,
             scale: 1.00,
             scaleMobile: 1.00,
-            color: 0x22d3ee,      // --accent-color
-            color2: 0xffffff,     // Secondary color for dots
-            backgroundColor: 0xd1117, // --bg-color
-            size: 2.5,
-            spacing: 35.0
+            color: 0x00f6ff,      // --accent-color
+            backgroundColor: 0x20512, // --bg-color
+            points: 12.00,
+            maxDistance: 25.00,
+            spacing: 20.00
         });
     }
+    
+    // --- Custom Cursor ---
+    const cursor = document.querySelector('.custom-cursor');
+    const hoverableElements = document.querySelectorAll('a, button, .project-card, .skill-category li');
+
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    });
+    
+    hoverableElements.forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+    });
 
     // --- General Elements ---
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('.content-section, .hero-section');
     const scrollToTopBtn = document.getElementById('scrollToTopBtn');
     const header = document.querySelector('.header');
-    
+
     // --- Header Hide/Show on Scroll ---
     let lastScrollY = window.scrollY;
     window.addEventListener('scroll', () => {
-        if (lastScrollY < window.scrollY && window.scrollY > 100) {
-            header.style.top = '-80px'; // Hide header
+        if (lastScrollY < window.scrollY && window.scrollY > 150) {
+            header.style.top = '-100px';
         } else {
-            header.style.top = '0'; // Show header
+            header.style.top = '0';
         }
         lastScrollY = window.scrollY;
     });
 
-    // --- Active Nav Link Highlighting on Scroll ---
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.5 // Section is considered active when 50% visible
-    };
-
+    // --- Active Nav Link & Section Fade-in Observers ---
     const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
+                // Nav link highlighting
                 const id = entry.target.getAttribute('id');
                 navLinks.forEach(link => {
                     link.classList.remove('active');
@@ -60,29 +76,17 @@ document.addEventListener('DOMContentLoaded', () => {
                         link.classList.add('active');
                     }
                 });
+                // Fade-in animation
+                entry.target.classList.add('visible');
             }
         });
-    }, observerOptions);
+    }, { rootMargin: '0px', threshold: 0.4 });
 
     sections.forEach(section => {
         sectionObserver.observe(section);
     });
 
-    // --- Fade-in Content on Scroll ---
-    const fadeObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.15 });
-
-    document.querySelectorAll('.content-section').forEach(section => {
-        fadeObserver.observe(section);
-    });
-
-    // --- Scroll to Top Button Functionality ---
+    // --- Scroll to Top Button ---
     window.addEventListener('scroll', () => {
         if (window.scrollY > 400) {
             scrollToTopBtn.classList.add('visible');
@@ -92,21 +96,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     scrollToTopBtn.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-
-    // --- Magnetic Glow Effect for Project Cards ---
-    const projectCards = document.querySelectorAll('.project-card');
-    projectCards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            card.style.setProperty('--x', `${(x / rect.width) * 100}%`);
-            card.style.setProperty('--y', `${(y / rect.height) * 100}%`);
+    
+    // --- Magnetic Effect for Social Icons ---
+    const socialIcons = document.querySelectorAll('.hero-socials a');
+    socialIcons.forEach(icon => {
+        icon.addEventListener('mousemove', (e) => {
+            const rect = icon.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            icon.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px) scale(1.1)`;
+        });
+        icon.addEventListener('mouseleave', () => {
+            icon.style.transform = 'translate(0, 0) scale(1)';
         });
     });
 });
