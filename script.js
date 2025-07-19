@@ -1,60 +1,53 @@
-// Enhanced Portfolio JavaScript with Circuit Theme & Advanced Animations
+// Enhanced Portfolio JavaScript with Charge Ball Loading & iPad OS Magnetic Effects
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all components
-    initPreloader();
+    initChargeLoader();
     initThemeToggle();
-    initEnhancedCursor();
-    initCircuitBackground();
+    initMagneticCursor();
+    initFloatingParticles();
     initScrollEffects();
     initNavigation();
-    initScrollToTop();
+    initMagneticElements();
     initAdvancedAnimations();
-    initParticleEffects();
+    initScrollToTop();
 });
 
-// Enhanced Preloader with Charge Ball Animation
-function initPreloader() {
+// Charge Ball Loading Screen
+function initChargeLoader() {
     const preloader = document.getElementById('preloader');
     
-    // Create the enhanced preloader HTML structure
-    const preloaderHTML = `
-        <div class="loader-container">
+    // Create enhanced charge ball loading HTML
+    const loaderHTML = `
+        <div class="charge-container">
             <div class="charge-ball"></div>
-            <div class="pcb-container">
-                <div class="pcb-board">
-                    <div class="circuit-trace trace-1"></div>
-                    <div class="circuit-trace trace-2"></div>
-                    <div class="circuit-trace trace-3"></div>
-                    <div class="circuit-trace trace-4"></div>
-                    <div class="component comp-1"></div>
-                    <div class="component comp-2"></div>
-                    <div class="component comp-3"></div>
-                </div>
-            </div>
-            <div class="loader-text">INITIALIZING</div>
+            <div class="impact-ring"></div>
+            <div class="website-reveal"></div>
         </div>
     `;
     
-    preloader.innerHTML = preloaderHTML;
+    preloader.innerHTML = loaderHTML;
     
+    // Auto-hide preloader after animation sequence
     window.addEventListener('load', function() {
         setTimeout(() => {
             preloader.style.opacity = '0';
             setTimeout(() => {
                 preloader.style.display = 'none';
-                // Initialize circuit background after preloader is hidden
-                initCircuitBackground();
-            }, 800);
-        }, 7000); // Wait for full animation sequence
+                // Initialize floating particles after loading
+                initFloatingParticles();
+                // Start main animations
+                document.body.classList.add('loaded');
+            }, 600);
+        }, 5500); // Wait for complete charge ball animation
     });
 }
 
-// Theme Toggle with Enhanced Transitions
+// Enhanced Theme Toggle with Smooth Transitions
 function initThemeToggle() {
     const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
     
-    // Check for saved theme preference
+    // Check for saved theme
     const savedTheme = localStorage.getItem('theme') || 'dark';
     body.setAttribute('data-theme', savedTheme);
     updateThemeIcon(savedTheme);
@@ -63,14 +56,17 @@ function initThemeToggle() {
         const currentTheme = body.getAttribute('data-theme');
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
         
-        // Add transition effect
-        body.style.transition = 'all 0.3s ease';
+        // Add smooth transition
+        body.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
         body.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
         updateThemeIcon(newTheme);
         
-        // Reinitialize circuit background with new theme
-        setTimeout(initCircuitBackground, 300);
+        // Update particles for new theme
+        setTimeout(() => {
+            updateParticleColors();
+            body.style.transition = '';
+        }, 400);
     });
 }
 
@@ -79,22 +75,38 @@ function updateThemeIcon(theme) {
     themeToggle.innerHTML = theme === 'dark' ? '☀️' : '🌙';
 }
 
-// Enhanced Custom Cursor with Circuit Effects
-function initEnhancedCursor() {
+// iPad OS-Style Magnetic Cursor
+function initMagneticCursor() {
     const cursor = document.getElementById('cursor');
-    const hoverElements = document.querySelectorAll('a, button, .project-card, .cert-item, .skill-category, .social-link, .cv-btn, .contact-btn');
+    const magneticElements = document.querySelectorAll('a, button, .project-card, .skill-category, .social-link, .cv-btn, .contact-btn, .cert-item');
     
     if (window.innerWidth > 768) {
         let mouseX = 0, mouseY = 0;
         let cursorX = 0, cursorY = 0;
+        let currentElement = null;
         
-        // Smooth cursor following
+        // Smooth cursor following with spring physics
         function updateCursor() {
-            const dx = mouseX - cursorX;
-            const dy = mouseY - cursorY;
-            
-            cursorX += dx * 0.1;
-            cursorY += dy * 0.1;
+            if (currentElement) {
+                const rect = currentElement.getBoundingClientRect();
+                const elementCenterX = rect.left + rect.width / 2;
+                const elementCenterY = rect.top + rect.height / 2;
+                
+                // Magnetic attraction to element center
+                const attractionStrength = 0.15;
+                const dx = (elementCenterX - cursorX) * attractionStrength + (mouseX - cursorX) * 0.1;
+                const dy = (elementCenterY - cursorY) * attractionStrength + (mouseY - cursorY) * 0.1;
+                
+                cursorX += dx;
+                cursorY += dy;
+            } else {
+                // Normal following behavior
+                const dx = (mouseX - cursorX) * 0.1;
+                const dy = (mouseY - cursorY) * 0.1;
+                
+                cursorX += dx;
+                cursorY += dy;
+            }
             
             cursor.style.left = cursorX + 'px';
             cursor.style.top = cursorY + 'px';
@@ -109,121 +121,166 @@ function initEnhancedCursor() {
         
         updateCursor();
         
-        // Enhanced hover effects
-        hoverElements.forEach(element => {
-            element.addEventListener('mouseenter', function() {
-                cursor.classList.add('hover');
-                this.style.transform = 'translateY(-2px)';
-            });
-            
-            element.addEventListener('mouseleave', function() {
-                cursor.classList.remove('hover');
-                this.style.transform = 'translateY(0)';
-            });
-        });
-        
-        // Add magnetic effect to special elements
-        const magneticElements = document.querySelectorAll('.social-link, .cv-btn, .contact-btn');
+        // Magnetic hover effects
         magneticElements.forEach(element => {
-            element.addEventListener('mousemove', function(e) {
-                const rect = this.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
+            element.addEventListener('mouseenter', function() {
+                cursor.classList.add('magnetic');
+                currentElement = this;
                 
-                this.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px) translateY(-2px)`;
+                // Add magnetic pull to element
+                this.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+                
+                // Add subtle magnetic attraction animation to element
+                const rect = this.getBoundingClientRect();
+                const elementCenterX = rect.left + rect.width / 2;
+                const elementCenterY = rect.top + rect.height / 2;
+                
+                // Calculate pull direction
+                const pullX = (mouseX - elementCenterX) * 0.03;
+                const pullY = (mouseY - elementCenterY) * 0.03;
+                
+                this.style.transform = `translate(${pullX}px, ${pullY}px) translateY(-2px)`;
             });
             
             element.addEventListener('mouseleave', function() {
+                cursor.classList.remove('magnetic');
+                currentElement = null;
+                
                 this.style.transform = 'translate(0, 0) translateY(0)';
             });
+            
+            // Enhanced magnetic movement within element
+            element.addEventListener('mousemove', function(e) {
+                if (currentElement === this) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    
+                    const moveX = x * 0.1;
+                    const moveY = y * 0.1;
+                    
+                    this.style.transform = `translate(${moveX}px, ${moveY}px) translateY(-2px)`;
+                }
+            });
         });
     }
 }
 
-// Circuit Background Animation
-function initCircuitBackground() {
-    const existingBg = document.querySelector('.circuit-bg');
-    if (existingBg) existingBg.remove();
+// Floating Particle Background Animation
+function initFloatingParticles() {
+    // Remove existing particles
+    const existingContainer = document.querySelector('.floating-particles');
+    if (existingContainer) existingContainer.remove();
     
-    const circuitBg = document.createElement('div');
-    circuitBg.className = 'circuit-bg';
-    document.body.appendChild(circuitBg);
+    const particleContainer = document.createElement('div');
+    particleContainer.className = 'floating-particles';
+    document.body.appendChild(particleContainer);
     
-    // Add floating circuit nodes
-    createFloatingNodes();
+    const particleCount = 6;
+    
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        
+        // Random positioning
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        
+        // Random animation duration and delay
+        const duration = 4 + Math.random() * 4;
+        const delay = Math.random() * 2;
+        
+        particle.style.animationDuration = `${duration}s`;
+        particle.style.animationDelay = `${delay}s`;
+        
+        particleContainer.appendChild(particle);
+        
+        // Add pulse animation
+        setTimeout(() => {
+            particle.style.animation += `, particlePulse ${duration * 2}s ease-in-out infinite`;
+        }, delay * 1000);
+    }
 }
 
-function createFloatingNodes() {
-    const nodeCount = 20;
-    const container = document.querySelector('.circuit-bg');
-    
-    for (let i = 0; i < nodeCount; i++) {
-        const node = document.createElement('div');
-        node.style.position = 'absolute';
-        node.style.width = '4px';
-        node.style.height = '4px';
-        node.style.backgroundColor = 'var(--circuit-color)';
-        node.style.borderRadius = '50%';
-        node.style.left = Math.random() * 100 + '%';
-        node.style.top = Math.random() * 100 + '%';
-        node.style.animation = `circuitPulse ${2 + Math.random() * 3}s ease-in-out infinite alternate`;
-        node.style.animationDelay = Math.random() * 2 + 's';
-        
-        container.appendChild(node);
-    }
-    
-    // Add CSS animation for circuit pulse
-    if (!document.querySelector('#circuitAnimations')) {
+function updateParticleColors() {
+    const particles = document.querySelectorAll('.particle');
+    particles.forEach(particle => {
+        // Force style recalculation for CSS custom properties
+        particle.style.opacity = '0.4';
+        setTimeout(() => {
+            particle.style.opacity = '';
+        }, 50);
+    });
+}
+
+// Add particle pulse animation to CSS dynamically
+function addParticleAnimations() {
+    if (!document.querySelector('#particleAnimations')) {
         const style = document.createElement('style');
-        style.id = 'circuitAnimations';
+        style.id = 'particleAnimations';
         style.textContent = `
-            @keyframes circuitPulse {
-                0% { opacity: 0.3; transform: scale(1); }
-                100% { opacity: 0.8; transform: scale(1.2); box-shadow: 0 0 10px var(--circuit-color); }
+            @keyframes particlePulse {
+                0%, 100% { 
+                    box-shadow: 0 0 0 0 var(--particle-color);
+                    transform: scale(1);
+                }
+                50% { 
+                    box-shadow: 0 0 10px 5px transparent;
+                    transform: scale(1.2);
+                }
             }
         `;
         document.head.appendChild(style);
     }
 }
 
-// Enhanced Scroll Effects
+// Enhanced Scroll Effects with Stagger Animation
 function initScrollEffects() {
     const sections = document.querySelectorAll('.section');
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    
     const observerOptions = {
-        threshold: 0.15,
+        threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     };
     
     const observer = new IntersectionObserver(function(entries) {
-        entries.forEach((entry, index) => {
+        entries.forEach(entry => {
             if (entry.isIntersecting) {
-                setTimeout(() => {
-                    entry.target.classList.add('visible');
-                    animateElements(entry.target);
-                }, index * 100);
+                entry.target.classList.add('visible');
+                
+                // Stagger animations for child elements
+                const animatableElements = entry.target.querySelectorAll('.project-card, .skill-category, .cert-item');
+                animatableElements.forEach((element, index) => {
+                    setTimeout(() => {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }, index * 100);
+                });
             }
         });
     }, observerOptions);
     
-    sections.forEach(section => {
-        observer.observe(section);
-    });
+    // Observe sections
+    sections.forEach(section => observer.observe(section));
+    
+    // Separate observer for timeline items
+    const timelineObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.3 });
+    
+    timelineItems.forEach(item => timelineObserver.observe(item));
 }
 
-function animateElements(section) {
-    const animatableElements = section.querySelectorAll('.project-card, .timeline-item, .cert-item, .skill-category');
-    animatableElements.forEach((element, index) => {
-        setTimeout(() => {
-            element.style.opacity = '1';
-            element.style.transform = 'translateY(0)';
-        }, index * 100);
-    });
-}
-
-// Enhanced Navigation
+// Enhanced Navigation with Active State Management
 function initNavigation() {
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('section');
+    const header = document.querySelector('.header');
     
     // Update active nav link on scroll
     const navObserver = new IntersectionObserver(function(entries) {
@@ -238,15 +295,11 @@ function initNavigation() {
                 });
             }
         });
-    }, {
-        threshold: 0.5
-    });
+    }, { threshold: 0.5 });
     
-    sections.forEach(section => {
-        navObserver.observe(section);
-    });
+    sections.forEach(section => navObserver.observe(section));
     
-    // Smooth scroll for nav links
+    // Smooth scroll with offset
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -254,7 +307,7 @@ function initNavigation() {
             const targetSection = document.getElementById(targetId);
             
             if (targetSection) {
-                const headerHeight = document.querySelector('.header').offsetHeight;
+                const headerHeight = header.offsetHeight;
                 const targetPosition = targetSection.offsetTop - headerHeight;
                 
                 window.scrollTo({
@@ -265,155 +318,172 @@ function initNavigation() {
         });
     });
     
-    // Enhanced header hide/show on scroll
+    // Enhanced header hide/show with smooth transitions
     let lastScrollTop = 0;
-    const header = document.querySelector('.header');
+    let ticking = false;
     
-    window.addEventListener('scroll', function() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    function updateHeader() {
+        const scrollTop = window.pageYOffset;
         
         if (scrollTop > lastScrollTop && scrollTop > 100) {
             header.style.transform = 'translateY(-100%)';
+            header.style.opacity = '0.95';
         } else {
             header.style.transform = 'translateY(0)';
+            header.style.opacity = '1';
         }
         
         lastScrollTop = scrollTop;
+        ticking = false;
+    }
+    
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            requestAnimationFrame(updateHeader);
+            ticking = true;
+        }
     });
 }
 
-// Scroll to Top with Circuit Effect
-function initScrollToTop() {
-    const scrollTopBtn = document.getElementById('scroll-top');
-    
-    window.addEventListener('scroll', function() {
-        if (window.pageYOffset > 300) {
-            scrollTopBtn.classList.add('visible');
-        } else {
-            scrollTopBtn.classList.remove('visible');
-        }
-    });
-    
-    scrollTopBtn.addEventListener('click', function() {
-        // Add circuit effect
-        this.style.animation = 'circuitActivate 0.3s ease';
-        
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-        
-        setTimeout(() => {
-            this.style.animation = '';
-        }, 300);
-    });
-}
-
-// Advanced Animations and Effects
-function initAdvancedAnimations() {
-    // Parallax effect for hero section
-    window.addEventListener('scroll', function() {
-        const scrolled = window.pageYOffset;
-        const hero = document.querySelector('.hero');
-        
-        if (hero) {
-            hero.style.transform = `translateY(${scrolled * 0.3}px)`;
-        }
-    });
-    
-    // Staggered animations for grids
+// Magnetic Elements with Advanced Interactions
+function initMagneticElements() {
+    const buttons = document.querySelectorAll('.cv-btn, .contact-btn');
     const projectCards = document.querySelectorAll('.project-card');
-    projectCards.forEach((card, index) => {
-        card.style.animationDelay = `${index * 0.1}s`;
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(30px)';
+    const skillCategories = document.querySelectorAll('.skill-category');
+    
+    // Enhanced button interactions
+    buttons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            // Create ripple effect
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const ripple = document.createElement('span');
+            ripple.style.cssText = `
+                position: absolute;
+                left: ${x}px;
+                top: ${y}px;
+                width: 0;
+                height: 0;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.4);
+                transform: translate(-50%, -50%);
+                animation: ripple 0.6s ease-out;
+                pointer-events: none;
+            `;
+            
+            this.style.position = 'relative';
+            this.style.overflow = 'hidden';
+            this.appendChild(ripple);
+            
+            setTimeout(() => ripple.remove(), 600);
+        });
     });
     
-    // Interactive project cards
+    // Project card interactions
     projectCards.forEach(card => {
         card.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-8px) scale(1.02)';
-            this.style.boxShadow = '0 20px 40px var(--shadow-color)';
+            
+            // Animate project tags
+            const tags = this.querySelectorAll('.tag');
+            tags.forEach((tag, index) => {
+                setTimeout(() => {
+                    tag.style.transform = 'translateY(-2px)';
+                }, index * 50);
+            });
         });
         
         card.addEventListener('mouseleave', function() {
             this.style.transform = 'translateY(0) scale(1)';
-            this.style.boxShadow = '';
+            
+            const tags = this.querySelectorAll('.tag');
+            tags.forEach(tag => {
+                tag.style.transform = 'translateY(0)';
+            });
         });
     });
     
-    // Timeline animations
-    const timelineItems = document.querySelectorAll('.timeline-item');
-    timelineItems.forEach((item, index) => {
-        item.style.opacity = '0';
-        item.style.transform = 'translateX(-50px)';
-        item.style.animationDelay = `${index * 0.15}s`;
-    });
-    
-    // Skill category hover effects
-    const skillCategories = document.querySelectorAll('.skill-category');
+    // Skill category interactions
     skillCategories.forEach(category => {
         category.addEventListener('mouseenter', function() {
             const skills = this.querySelectorAll('.skill-items span');
             skills.forEach((skill, index) => {
                 setTimeout(() => {
-                    skill.style.transform = 'scale(1.05)';
-                    skill.style.background = 'var(--gradient-1)';
-                    skill.style.color = 'white';
-                }, index * 50);
+                    skill.style.transform = 'translateY(-3px) scale(1.05)';
+                }, index * 30);
             });
         });
         
         category.addEventListener('mouseleave', function() {
             const skills = this.querySelectorAll('.skill-items span');
             skills.forEach(skill => {
-                skill.style.transform = 'scale(1)';
-                skill.style.background = '';
-                skill.style.color = '';
+                skill.style.transform = 'translateY(0) scale(1)';
             });
         });
     });
 }
 
-// Particle Effects for Enhanced Visual Appeal
-function initParticleEffects() {
-    // Add subtle particle effect on button clicks
-    const buttons = document.querySelectorAll('.cv-btn, .contact-btn');
+// Advanced Animations and Effects
+function initAdvancedAnimations() {
+    addParticleAnimations();
     
-    buttons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            const rect = this.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            // Create ripple effect
-            const ripple = document.createElement('span');
-            ripple.style.position = 'absolute';
-            ripple.style.left = x + 'px';
-            ripple.style.top = y + 'px';
-            ripple.style.width = '0';
-            ripple.style.height = '0';
-            ripple.style.borderRadius = '50%';
-            ripple.style.background = 'rgba(255, 255, 255, 0.3)';
-            ripple.style.transform = 'translate(-50%, -50%)';
-            ripple.style.animation = 'ripple 0.6s linear';
-            ripple.style.pointerEvents = 'none';
-            
-            this.style.position = 'relative';
-            this.style.overflow = 'hidden';
-            this.appendChild(ripple);
-            
-            setTimeout(() => {
-                ripple.remove();
-            }, 600);
+    // Parallax effect for hero section
+    let ticking = false;
+    
+    function updateParallax() {
+        const scrolled = window.pageYOffset;
+        const hero = document.querySelector('.hero');
+        
+        if (hero) {
+            hero.style.transform = `translateY(${scrolled * 0.2}px)`;
+        }
+        
+        ticking = false;
+    }
+    
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            requestAnimationFrame(updateParallax);
+            ticking = true;
+        }
+    }, { passive: true });
+    
+    // Add shimmer effect to interactive elements
+    const interactiveElements = document.querySelectorAll('.social-link, .cv-btn, .contact-btn');
+    interactiveElements.forEach(element => {
+        element.addEventListener('mouseenter', function() {
+            if (!this.querySelector('.shimmer')) {
+                const shimmer = document.createElement('div');
+                shimmer.className = 'shimmer';
+                shimmer.style.cssText = `
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+                    animation: shimmer 0.8s ease-out;
+                    pointer-events: none;
+                `;
+                this.appendChild(shimmer);
+                
+                setTimeout(() => shimmer.remove(), 800);
+            }
         });
     });
     
-    // Add CSS for ripple effect
-    if (!document.querySelector('#rippleAnimation')) {
+    // Add CSS for shimmer animation
+    if (!document.querySelector('#shimmerAnimation')) {
         const style = document.createElement('style');
-        style.id = 'rippleAnimation';
+        style.id = 'shimmerAnimation';
         style.textContent = `
+            @keyframes shimmer {
+                0% { left: -100%; }
+                100% { left: 100%; }
+            }
+            
             @keyframes ripple {
                 to {
                     width: 100px;
@@ -421,21 +491,61 @@ function initParticleEffects() {
                     opacity: 0;
                 }
             }
-            @keyframes circuitActivate {
-                0% { transform: scale(1); }
-                50% { transform: scale(1.1); box-shadow: 0 0 20px var(--accent-primary); }
-                100% { transform: scale(1); }
-            }
         `;
         document.head.appendChild(style);
     }
 }
 
-// Enhanced Loading Performance
+// Enhanced Scroll to Top with Magnetic Effect
+function initScrollToTop() {
+    const scrollTopBtn = document.getElementById('scroll-top');
+    let isVisible = false;
+    
+    function toggleScrollButton() {
+        const shouldShow = window.pageYOffset > 300;
+        
+        if (shouldShow && !isVisible) {
+            scrollTopBtn.classList.add('visible');
+            isVisible = true;
+        } else if (!shouldShow && isVisible) {
+            scrollTopBtn.classList.remove('visible');
+            isVisible = false;
+        }
+    }
+    
+    window.addEventListener('scroll', toggleScrollButton, { passive: true });
+    
+    scrollTopBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Add click animation
+        this.style.transform = 'scale(0.9)';
+        setTimeout(() => {
+            this.style.transform = '';
+        }, 150);
+        
+        // Smooth scroll to top
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
+
+// Performance Optimization
 function optimizePerformance() {
-    // Lazy load images
-    const images = document.querySelectorAll('img[data-src]');
-    const imageObserver = new IntersectionObserver((entries, observer) => {
+    // Debounce scroll events
+    let scrollTimeout;
+    const debouncedScrollHandler = (callback) => {
+        return function() {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(callback, 16); // ~60fps
+        };
+    };
+    
+    // Intersection Observer for lazy loading
+    const lazyImages = document.querySelectorAll('img[data-src]');
+    const imageObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const img = entry.target;
@@ -446,34 +556,69 @@ function optimizePerformance() {
         });
     });
     
-    images.forEach(img => imageObserver.observe(img));
+    lazyImages.forEach(img => imageObserver.observe(img));
     
-    // Debounce scroll events
-    let scrollTimeout;
-    const debouncedScrollHandler = () => {
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(() => {
-            // Handle scroll-dependent animations here
-        }, 16); // ~60fps
-    };
+    // Preload critical resources
+    const criticalAssets = [
+        'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap'
+    ];
     
-    window.addEventListener('scroll', debouncedScrollHandler, { passive: true });
+    criticalAssets.forEach(asset => {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.href = asset;
+        link.as = 'style';
+        document.head.appendChild(link);
+    });
 }
 
-// Initialize performance optimizations
-document.addEventListener('DOMContentLoaded', optimizePerformance);
-
-// Add error handling for missing elements
-function safeElementQuery(selector, callback) {
-    const element = document.querySelector(selector);
-    if (element && callback) {
-        callback(element);
+// Error Handling and Fallbacks
+function handleErrors() {
+    window.addEventListener('error', function(e) {
+        console.warn('Portfolio Error:', e.message);
+        
+        // Fallback for missing elements
+        if (e.message.includes('cursor')) {
+            document.body.style.cursor = 'auto';
+        }
+    });
+    
+    // Check for WebGL support for potential future enhancements
+    function hasWebGLSupport() {
+        try {
+            const canvas = document.createElement('canvas');
+            return !!(window.WebGLRenderingContext && canvas.getContext('webgl'));
+        } catch (e) {
+            return false;
+        }
+    }
+    
+    if (!hasWebGLSupport()) {
+        console.warn('WebGL not supported, falling back to CSS animations');
     }
 }
 
-// Export functions for potential external use
-window.PortfolioAnimations = {
-    initEnhancedCursor,
-    initCircuitBackground,
-    initAdvancedAnimations
+// Initialize all systems
+document.addEventListener('DOMContentLoaded', function() {
+    optimizePerformance();
+    handleErrors();
+});
+
+// Export for potential external use
+window.PortfolioEnhanced = {
+    initMagneticCursor,
+    initFloatingParticles,
+    initChargeLoader,
+    updateParticleColors
 };
+
+// Add smooth page transitions
+document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+        // Page is hidden, reduce animations
+        document.body.style.animationPlayState = 'paused';
+    } else {
+        // Page is visible, resume animations
+        document.body.style.animationPlayState = 'running';
+    }
+});
