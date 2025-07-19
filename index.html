@@ -1,217 +1,208 @@
-<!-- index.html • v2.1 -->
+<!--  Edidi Sai Anant | Semiconductor Storyboard  -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>Edidi Sai Anant | Semiconductor Engineering Specialist</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Silicon Tales · Edidi Sai Anant</title>
 
-  <!-- Fonts & icons -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&family=JetBrains+Mono:wght@400..800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha384-o5SO..." crossorigin="anonymous"/>
+  <!-- Tailwind + daisyUI (open-source licences) -->
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+  <script>tailwind.config={theme:{extend:{}}}</script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.css" rel="stylesheet">
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <!-- Extra utilities (snap, loader, grid-bg) -->
+  <link rel="stylesheet" href="extras.css">
+
+  <!-- Favicon – stylised wafer -->
+  <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Ccircle cx='64' cy='64' r='60' fill='%23222'/%3E%3Cpath d='M8 64h112M64 8v112' stroke='%230ea5e9' stroke-width='8'/%3E%3C/svg%3E">
 </head>
 
-<body>
-<!-- Pre-loader -->
-<div id="preloader">
-  <div class="loader">
-    <i class="fas fa-microchip"></i>
-    <span class="loader__bar"></span>
-    <p class="loader__text">Booting up…</p>
+<body class="font-sans text-slate-200 bg-base-100 overflow-hidden">
+<!-- =============== LOADER =============== -->
+<div id="boot" class="fixed inset-0 grid place-content-center bg-base-100 z-50">
+  <div class="relative">
+    <div class="h-28 w-28 rounded-full border-4 border-primary border-dashed animate-spin"></div>
+    <i class="fa-solid fa-microchip absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl text-primary"></i>
   </div>
+  <p class="mt-6 text-sm tracking-wide text-slate-400">Calibrating clean-room equipment…</p>
 </div>
 
-<!-- Header -->
-<header class="main-header">
-  <nav class="nav-container">
-    <a class="nav-logo" href="#home"><i class="fas fa-microchip"></i><span>Edidi Sai Anant</span></a>
-    <ul class="nav-menu">
-      <li><a class="nav-link active" href="#home">Home</a></li>
-      <li><a class="nav-link" href="#about">About</a></li>
-      <li><a class="nav-link" href="#education">Education</a></li>
-      <li><a class="nav-link" href="#experience">Experience</a></li>
-      <li><a class="nav-link" href="#projects">Projects</a></li>
-      <li><a class="nav-link" href="#skills">Skills</a></li>
-      <li><a class="nav-link" href="#certs">Certifications</a></li>
-      <li><a class="nav-link" href="#contact">Contact</a></li>
-    </ul>
+<!-- ================= NAVBAR ================= -->
+<header class="fixed top-0 inset-x-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-base-100/60">
+  <nav class="navbar max-w-7xl mx-auto px-4">
+    <div class="navbar-start">
+      <a href="#prologue" class="btn btn-ghost normal-case text-xl">
+        <i class="fa-solid fa-microchip text-primary"></i>
+        <span class="ml-2 hidden sm:inline">Sai Anant</span>
+      </a>
+    </div>
+    <div class="navbar-end hidden md:flex">
+      <ul class="menu menu-horizontal px-1">
+        <li><a href="#prologue"    class="snap-link">Prologue</a></li>
+        <li><a href="#chapter1"    class="snap-link">Fabrication</a></li>
+        <li><a href="#chapter2"    class="snap-link">Acceleration</a></li>
+        <li><a href="#chapter3"    class="snap-link">Exploration</a></li>
+        <li><a href="#epilogue"    class="snap-link">Epilogue</a></li>
+      </ul>
+    </div>
+    <div class="md:hidden navbar-end">
+      <label for="menu" class="btn btn-ghost btn-circle">
+        <i class="fa-solid fa-bars"></i>
+      </label>
+    </div>
   </nav>
 </header>
 
-<!-- Content -->
-<main class="page-container">
-  <!-- Home -->
-  <section id="home" class="page">
-    <div class="hero">
-      <span class="badge"><i class="fas fa-graduation-cap"></i> MSc @ NUS</span>
-      <h1>Edidi Sai Anant</h1>
-      <h2 class="subtitle">Semiconductor Engineering Specialist</h2>
-      <p class="tagline">VLSI • Neural HW • Memory Tech • Embedded Innovation</p>
-
-      <div class="quick-stats">
-        <div><strong>4</strong><span>Major Projects</span></div>
-        <div><strong>2</strong><span>Publications</span></div>
-        <div><strong>15</strong><span>Technical Skills</span></div>
-      </div>
-
-      <div class="hero-actions">
-        <a href="https://www.linkedin.com/in/sai-anant/" target="_blank" rel="noopener" aria-label="LinkedIn">
-          <i class="fab fa-linkedin"></i></a>
-        <a href="https://github.com/ESAnant" target="_blank" rel="noopener" aria-label="GitHub">
-          <i class="fab fa-github"></i></a>
-        <a href="mailto:esanant@u.nus.edu" aria-label="Email"><i class="fas fa-envelope"></i></a>
-        <a href="Edidi_Sai_Anant_Resume.pdf" download class="btn">Download CV</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- About -->
-  <section id="about" class="page">
-    <article class="section-content">
-      <h2>About Me</h2>
-      <p>Curiosity for micro-scale circuits evolved into expertise in <strong>VLSI design</strong> and <strong>neural acceleration</strong>. Currently researching neuromorphic in-memory computing at NUS.</p>
-    </article>
-  </section>
-
-  <!-- Education -->
-  <section id="education" class="page">
-    <h2>Education</h2>
-    <div class="timeline">
-      <div class="item current">
-        <h3>MSc Electrical Engineering — NUS <small>2023-25</small></h3>
-        <ul>
-          <li>VLSI Digital Circuit Design</li>
-          <li>Memory Technologies</li>
-          <li>Embedded Hardware Systems</li>
-        </ul>
-      </div>
-
-      <div class="item">
-        <h3>B.Tech ECE — SRM IST <small>2019-23</small></h3>
-        <p>First-class; specialization in VLSI & Communications</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Experience -->
-  <section id="experience" class="page">
-    <h2>Experience</h2>
-    <div class="cards">
-      <div class="card">
-        <h3>Graduate Research Assistant — NUS</h3>
-        <span class="period">2023-Present</span>
-        <p>Energy-efficient neuromorphic architectures on FPGA.</p>
-      </div>
-      <div class="card">
-        <h3>Project Intern — Maven Silicon</h3>
-        <span class="period">Dec 22 – Jan 23</span>
-        <p>Designed an AHB-to-APB bridge in Verilog.</p>
-      </div>
-      <div class="card">
-        <h3>Design Intern — Sandeepani Embedded</h3>
-        <span class="period">Jun – Jul 22</span>
-        <p>UART protocol development & SystemVerilog verification.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects -->
-  <section id="projects" class="page">
-    <h2>Projects</h2>
-    <div class="cards">
-      <div class="card featured">
-        <h3>FPGA MLP Accelerator</h3>
-        <p>15× speed-up on Xilinx Zynq-7000 via pipelining & loop unrolling.</p>
-      </div>
-      <div class="card">
-        <h3>In-Memory Computing Circuit</h3>
-        <p>Quantization-aware design using NeuroSim.</p>
-      </div>
-      <div class="card">
-        <h3>VLSI Interconnect Optimisation</h3>
-        <p>Elmore RC models @ 45 nm (Cadence Virtuoso).</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Skills -->
-  <section id="skills" class="page">
-    <h2>Skills</h2>
-    <ul class="skills">
-      <li><span>Verilog / SystemVerilog</span></li>
-      <li><span>FPGA (Xilinx Vivado)</span></li>
-      <li><span>Cadence Virtuoso</span></li>
-      <li><span>Python</span></li>
-      <li><span>C / C++</span></li>
+<!-- Mobile drawer -->
+<input id="menu" type="checkbox" class="drawer-toggle hidden">
+<div class="drawer z-30 md:hidden">
+  <div class="drawer-side">
+    <label for="menu" aria-label="close sidebar" class="drawer-overlay"></label>
+    <ul class="menu p-4 w-60 min-h-full bg-base-200">
+      <li><a href="#prologue"   class="snap-link">Prologue</a></li>
+      <li><a href="#chapter1"   class="snap-link">Fabrication</a></li>
+      <li><a href="#chapter2"   class="snap-link">Acceleration</a></li>
+      <li><a href="#chapter3"   class="snap-link">Exploration</a></li>
+      <li><a href="#epilogue"   class="snap-link">Epilogue</a></li>
     </ul>
-  </section>
+  </div>
+</div>
 
-  <!-- Licenses & Certifications -->
-  <section id="certs" class="page">
-    <h2>Licenses & Certifications</h2>
-    <div class="cert-carousel">
-      <div class="cert">
-        <span class="cert-title">Introduction to Battery-Management Systems</span>
-        <span class="cert-org">Coursera • 08 2021</span>
-      </div>
-      <div class="cert">
-        <span class="cert-title">Python for Data Science, AI & Development</span>
-        <span class="cert-org">Coursera • 09 2021</span>
-      </div>
-      <div class="cert">
-        <span class="cert-title">Programming for Everybody (Python)</span>
-        <span class="cert-org">Coursera • 10 2021</span>
-      </div>
-      <div class="cert">
-        <span class="cert-title">IoT & Embedded Systems Intro</span>
-        <span class="cert-org">Coursera • 10 2021</span>
-      </div>
-      <div class="cert">
-        <span class="cert-title">PCB Design</span>
-        <span class="cert-org">Internshala • 11 2021</span>
-      </div>
-      <div class="cert">
-        <span class="cert-title">Electric Cars: Technology</span>
-        <span class="cert-org">edX • 11 2021</span>
-      </div>
-      <div class="cert">
-        <span class="cert-title">Electric Cars: Introduction</span>
-        <span class="cert-org">edX • 11 2021</span>
-      </div>
-      <div class="cert">
-        <span class="cert-title">Communicating with Robots & Bots</span>
-        <span class="cert-org">edX • 11 2021</span>
-      </div>
-      <div class="cert">
-        <span class="cert-title">Business Considerations for 5G, IoT & AI</span>
-        <span class="cert-org">edX • 11 2021</span>
-      </div>
-      <div class="cert">
-        <span class="cert-title">Building a RISC-V CPU Core</span>
-        <span class="cert-org">edX • 11 2021</span>
+<!-- =============== CONTENT =============== -->
+<main id="scroll" class="h-screen w-full overflow-y-scroll scroll-smooth snap-y snap-mandatory">
+  <!-- ReactBits-style grid background -->
+  <div class="fixed inset-0 -z-10 pointer-events-none bg-grid"></div>
+
+  <!-- ── Prologue ───────────────────────── -->
+  <section id="prologue" class="min-h-screen w-full snap-start grid place-items-center px-6">
+    <div class="max-w-3xl text-center space-y-8">
+      <h1 class="text-5xl lg:text-6xl font-black leading-tight tracking-tight bg-gradient-to-br from-primary to-sky-400 bg-clip-text text-transparent">
+        From Logic Gates to Living Silicon
+      </h1>
+      <p class="text-lg opacity-80">
+        Every engineer has an origin wafer. Mine was etched in curiosity—why do electrons
+        obey? This portfolio invites you into that fab: layer by layer, story by story.
+      </p>
+      <div class="flex gap-4 justify-center">
+        <a href="#chapter1" class="btn btn-primary btn-wide">
+          Begin Fabrication&nbsp;<i class="fa-solid fa-arrow-down-long ml-1"></i>
+        </a>
       </div>
     </div>
-    <small class="cert-note">Source: LinkedIn profile[5]</small>
   </section>
 
-  <!-- Contact -->
-  <section id="contact" class="page">
-    <h2>Let’s Collaborate</h2>
-    <p>I’m open to VLSI, neural hardware, or embedded opportunities.</p>
-    <a href="mailto:esanant@u.nus.edu" class="btn">Send a Mail</a>
+  <!-- ── Chapter 1: Fabrication Floor ────── -->
+  <section id="chapter1" class="min-h-screen snap-start flex items-center">
+    <div class="mx-auto max-w-7xl grid lg:grid-cols-2 gap-12 p-6">
+      <!-- narrative -->
+      <article class="space-y-6">
+        <h2 class="chapter">01 / Clean-Room Rites</h2>
+        <p class="opacity-80">
+          Etching patterns at 45 nm taught me that **constraints birth creativity**—
+          every micron counts, every parasitic must vanish. My **M.Sc. research at NUS**
+          now pushes that ethos into neuromorphic SRAM cells.
+        </p>
+        <ul class="timeline timeline-snap">
+          <li><span class="timeline-point"></span><div class="timeline-box">SRM IST B.Tech → logic fundamentals</div></li>
+          <li><span class="timeline-point"></span><div class="timeline-box">Cadence Virtuoso → transistor choreography</div></li>
+          <li><span class="timeline-point"></span><div class="timeline-box">GF 22 FDX shuttle → first taped-out test-chip</div></li>
+        </ul>
+      </article>
+      <!-- wafer visual -->
+      <figure class="relative aspect-square rounded-3xl overflow-hidden shadow-lg">
+        <canvas id="wafer" class="absolute inset-0"></canvas>
+        <figcaption class="absolute bottom-4 right-4 text-xs opacity-60">Interactive wafer • drag to rotate</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ── Chapter 2: Acceleration Bay ─────── -->
+  <section id="chapter2" class="min-h-screen snap-start grid place-items-center px-6">
+    <div class="max-w-4xl text-center space-y-8">
+      <h2 class="chapter">02 / Turning Transistors into Neurons</h2>
+      <p>
+        On a **Zynq-7000** FPGA I coaxed 15× speed-ups from an MLP, proof that good
+        micro-architecture feels like poetry&mdash;syllables of pipeline, cadence of BRAM.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <div class="stat">
+          <div class="stat-figure text-primary"><i class="fa-solid fa-gauge-high"></i></div>
+          <div class="stat-value text-primary">15×</div>
+          <div class="stat-title">Throughput</div>
+        </div>
+        <div class="stat">
+          <div class="stat-figure text-primary"><i class="fa-solid fa-bolt"></i></div>
+          <div class="stat-value text-primary">-60%</div>
+          <div class="stat-title">Energy</div>
+        </div>
+        <div class="stat">
+          <div class="stat-figure text-primary"><i class="fa-solid fa-signal"></i></div>
+          <div class="stat-value text-primary">92%</div>
+          <div class="stat-title">Accuracy</div>
+        </div>
+      </div>
+      <a href="https://github.com/ESAnant" class="btn btn-outline btn-primary btn-sm" target="_blank" rel="noopener">
+        View RTL&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- ── Chapter 3: Frontier Experiments ─── -->
+  <section id="chapter3" class="min-h-screen snap-start flex items-center">
+    <div class="mx-auto max-w-7xl p-6 space-y-10">
+      <h2 class="chapter text-center">03 / Beyond the Fab Walls</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- cards -->
+        <div class="card bg-base-200 shadow-xl">
+          <div class="card-body">
+            <h3 class="card-title">Reversible Logic Checker</h3>
+            <p>Parity-preserving bridges slash data corruption on on-chip buses.</p>
+            <div class="card-actions justify-end"><span class="badge badge-outline">IEEE ’23</span></div>
+          </div>
+        </div>
+        <div class="card bg-base-200 shadow-xl">
+          <div class="card-body">
+            <h3 class="card-title">Quantized In-Memory AI</h3>
+            <p>7-bit ADC-free MAC array running at 0.7 V in simulation.</p>
+            <div class="card-actions justify-end"><span class="badge badge-outline">NeuroSim</span></div>
+          </div>
+        </div>
+        <div class="card bg-base-200 shadow-xl">
+          <div class="card-body">
+            <h3 class="card-title">Standard-Cell IP</h3>
+            <p>Ring-oscillator cell with full PVT / DRC / LVS closure @ 40 nm.</p>
+            <div class="card-actions justify-end"><span class="badge badge-outline">OpenRoad</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Epilogue ────────────────────────── -->
+  <section id="epilogue" class="min-h-screen snap-start grid place-items-center px-6">
+    <div class="max-w-xl text-center space-y-8">
+      <h2 class="chapter">Epilogue / Call to Collaboration</h2>
+      <p>
+        The story never truly ends—wafers keep spinning, neurons keep firing.
+        Whether you’re taping out a chip or dreaming of quantum bus protocols,
+        let’s co-author the next chapter.
+      </p>
+      <div class="flex justify-center gap-4">
+        <a href="mailto:esanant@u.nus.edu" class="btn btn-primary"><i class="fa-solid fa-paper-plane mr-1"></i>Email Me</a>
+        <a href="Edidi_Sai_Anant_Resume.pdf" class="btn btn-outline" download>Résumé</a>
+      </div>
+      <footer class="text-xs opacity-50 pt-8">
+        © 2025&nbsp;Edidi Sai Anant — Built with Tailwind + daisyUI
+      </footer>
+    </div>
   </section>
 </main>
 
-<!-- Back-to-Top -->
-<button id="backToTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
-
-<!-- Scripts -->
-<script src="script.js"></script>
+<!-- ================= SCRIPTS ================= -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.159.0/three.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js" defer></script>
+<script src="story.js" defer></script>
 </body>
 </html>
