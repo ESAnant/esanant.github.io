@@ -1,0 +1,52 @@
+/* ------------- tiny override bundle (≈1 KB) ------------- */
+
+/* (1) ReactBits-like dotted grid */
+.bg-grid {
+  background-size: 40px 40px;
+  background-position: 0 0,20px 20px;           /* two-layer offset */
+}
+
+/* (2) snap container helpers */
+.snap-y       { scroll-snap-type: y mandatory; }
+.snap-start   { scroll-snap-align: start; }
+
+/* (3) loader – dashed spinner borrowed from daisyUI, tweaked */
+#boot .animate-spin {
+  animation: spin 1.2s linear infinite;
+  border-style: dashed;
+}
+
+/* (4) fade-out once JS says “ready” */
+body.loaded #boot {           /* JS adds .loaded to <body> */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .6s ease-out;
+}
+
+/* (5) active-link glow while scrolling */
+.snap-link.active {
+  color: theme('colors.primary');
+  position: relative;
+}
+.snap-link.active::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -.3rem;
+  height: 2px;
+  background: theme('colors.primary');
+  border-radius: 9999px;
+  animation: width .6s ease-out forwards;
+}
+@keyframes width { from {width:0;} to {width:100%;} }
+
+/* (6) subtle parallax backdrop */
+@media (min-width:768px) {
+  [data-theme="dark"] .bg-grid {
+    background-image: 
+      repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.04) 40px),
+      repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,255,255,.04) 40px);
+  }
+}
+
+/* minimal resets for snap container scrollbar */
+#scroll::-webkit-scrollbar { width:0; height:0; }
