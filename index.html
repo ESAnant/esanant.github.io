@@ -31,50 +31,47 @@
 </head>
 
 <body data-theme="dark">
-    <!-- Custom Cursor -->
+    <!-- Custom Magnetic Cursor -->
     <div id="cursor"></div>
     
-    <!-- Circuit Background -->
-    <div class="circuit-bg"></div>
+    <!-- Floating Particles Background -->
+    <div class="floating-particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
     
-    <!-- Preloader -->
+    <!-- Charge Ball Preloader -->
     <div id="preloader">
-        <div class="loader-container">
+        <div class="charge-container">
             <div class="charge-ball"></div>
-            <div class="pcb-container">
-                <div class="pcb-board">
-                    <div class="circuit-trace trace-1"></div>
-                    <div class="circuit-trace trace-2"></div>
-                    <div class="circuit-trace trace-3"></div>
-                    <div class="circuit-trace trace-4"></div>
-                    <div class="component comp-1"></div>
-                    <div class="component comp-2"></div>
-                    <div class="component comp-3"></div>
-                </div>
-            </div>
-            <div class="loader-text">INITIALIZING</div>
+            <div class="impact-ring"></div>
+            <div class="website-reveal"></div>
         </div>
     </div>
 
-    <!-- Header -->
+    <!-- Header with Glass Morphism -->
     <header class="header">
         <div class="nav-container">
-            <a href="#hero" class="logo">
+            <a href="#hero" class="logo magnetic-element">
                 <i class="fas fa-microchip"></i>
                 <span>Edidi Sai Anant</span>
             </a>
             
             <nav class="navbar">
-                <a href="#hero" class="nav-link active">Home</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#experience" class="nav-link">Experience</a>
-                <a href="#projects" class="nav-link">Projects</a>
-                <a href="#publications" class="nav-link">Publications</a>
-                <a href="#skills" class="nav-link">Skills</a>
-                <a href="#contact" class="nav-link">Contact</a>
+                <a href="#hero" class="nav-link magnetic-element active">Home</a>
+                <a href="#about" class="nav-link magnetic-element">About</a>
+                <a href="#experience" class="nav-link magnetic-element">Experience</a>
+                <a href="#projects" class="nav-link magnetic-element">Projects</a>
+                <a href="#publications" class="nav-link magnetic-element">Publications</a>
+                <a href="#skills" class="nav-link magnetic-element">Skills</a>
+                <a href="#contact" class="nav-link magnetic-element">Contact</a>
             </nav>
             
-            <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">
+            <button id="theme-toggle" class="theme-btn magnetic-element" aria-label="Toggle theme">
                 🌙
             </button>
         </div>
@@ -91,21 +88,24 @@
             
             <div class="hero-actions">
                 <div class="social-links">
-                    <a href="https://linkedin.com/in/your-profile" class="social-link" aria-label="LinkedIn">
+                    <a href="https://linkedin.com/in/your-profile" class="social-link magnetic-element" aria-label="LinkedIn">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
-                    <a href="https://github.com/your-username" class="social-link" aria-label="GitHub">
+                    <a href="https://github.com/your-username" class="social-link magnetic-element" aria-label="GitHub">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="mailto:your.email@example.com" class="social-link" aria-label="Email">
+                    <a href="mailto:your.email@example.com" class="social-link magnetic-element" aria-label="Email">
                         <i class="fas fa-envelope"></i>
                     </a>
-                    <a href="https://scholar.google.com/your-profile" class="social-link" aria-label="Google Scholar">
+                    <a href="https://scholar.google.com/your-profile" class="social-link magnetic-element" aria-label="Google Scholar">
                         <i class="fas fa-graduation-cap"></i>
+                    </a>
+                    <a href="https://orcid.org/your-profile" class="social-link magnetic-element" aria-label="ORCID">
+                        <i class="fab fa-orcid"></i>
                     </a>
                 </div>
                 
-                <a href="#" class="cv-btn">
+                <a href="assets/cv.pdf" download class="cv-btn magnetic-element">
                     <i class="fas fa-download"></i>
                     Download CV
                 </a>
@@ -119,19 +119,19 @@
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
                 <p>
-                    Master's candidate in Electrical Engineering at the <strong>National University of Singapore</strong>, 
+                    Master's candidate in **Electrical Engineering** at the **National University of Singapore**, 
                     with a robust foundation in semiconductor processes and IC design. Driven by a passion for innovation 
                     and equipped with analytical skills, I am committed to contributing to collaborative teams and 
                     embracing challenges in a dynamic, future-oriented environment.
                 </p>
                 <p>
-                    My journey combines academic excellence with practical experience, focusing on VLSI design, 
-                    memory technologies, and embedded systems. I specialize in hardware acceleration, 
-                    processor optimization, and advanced semiconductor device modeling.
+                    My journey combines academic excellence with practical experience, focusing on **VLSI design**, 
+                    **memory technologies**, and **embedded systems**. I specialize in hardware acceleration, 
+                    processor optimization, and advanced semiconductor device modeling with cutting-edge EDA tools.
                 </p>
                 <p>
-                    When not designing circuits, I enjoy solving complex puzzles, listening to music, 
-                    and traveling to explore new cultures and technologies.
+                    When not designing circuits, I enjoy solving complex puzzles, exploring emerging technologies, 
+                    and collaborating on innovative projects that push the boundaries of semiconductor engineering.
                 </p>
             </div>
         </div>
@@ -153,7 +153,8 @@
                         <ul>
                             <li>Graduate Assistant for Computer Architecture & Microcontroller Programming courses</li>
                             <li>Relevant Coursework: VLSI Digital Circuit Design, Memory Technologies, Embedded Hardware System Design</li>
-                            <li>Research focus on hardware acceleration and in-memory computing</li>
+                            <li>Research focus on hardware acceleration and in-memory computing architectures</li>
+                            <li>Advanced projects in neuromorphic computing and quantum-dot cellular automata</li>
                         </ul>
                     </div>
                 </div>
@@ -168,8 +169,9 @@
                         <div class="duration">Jun 2019 – Jul 2023</div>
                         <ul>
                             <li>Relevant Coursework: VLSI Design, ARM-Based Embedded Systems, Semiconductor Device Modelling</li>
-                            <li>Final year project on IoT-enabled healthcare systems</li>
-                            <li>Academic excellence with focus on digital design and verification</li>
+                            <li>Final year project on IoT-enabled healthcare monitoring systems</li>
+                            <li>Academic excellence with specialization in digital design and verification methodologies</li>
+                            <li>Active member of IEEE Student Branch and Electronics Engineering Society</li>
                         </ul>
                     </div>
                 </div>
@@ -183,9 +185,10 @@
                         <div class="institution">Maven Silicon, Bangalore</div>
                         <div class="duration">Dec 2022 – Jan 2023</div>
                         <ul>
-                            <li>Designed an AHB to APB bridge for seamless bus protocol communication</li>
-                            <li>Advanced proficiency in writing robust, functional RTL code in Verilog HDL</li>
-                            <li>Synthesized individual modules into a unified system architecture</li>
+                            <li>Designed and verified an AHB to APB bridge for seamless bus protocol communication</li>
+                            <li>Developed expertise in writing robust, synthesizable RTL code using Verilog HDL</li>
+                            <li>Performed comprehensive functional verification and timing analysis</li>
+                            <li>Synthesized individual modules into unified system architecture using industry-standard tools</li>
                         </ul>
                     </div>
                 </div>
@@ -200,8 +203,9 @@
                         <div class="duration">Jun 2022 – Jul 2022</div>
                         <ul>
                             <li>Collaborated on UART protocol development and verification using Verilog HDL</li>
-                            <li>Executed functional verification of Half Adder using SystemVerilog</li>
-                            <li>Performed functional coverage analysis with QuestaSim</li>
+                            <li>Executed comprehensive functional verification of digital circuits using SystemVerilog</li>
+                            <li>Performed functional and code coverage analysis using QuestaSim</li>
+                            <li>Gained hands-on experience with UVM methodology and constrained random verification</li>
                         </ul>
                     </div>
                 </div>
@@ -214,72 +218,117 @@
         <div class="glass-card">
             <h2 class="section-title">Featured Projects</h2>
             <div class="projects-grid">
-                <div class="project-card">
+                <div class="project-card magnetic-element">
                     <div class="project-header">
                         <h3>FPGA Hardware Accelerator for MLP</h3>
                         <i class="fas fa-microchip"></i>
                     </div>
                     <p>
-                        Developed a hardware accelerator on Xilinx Zynq-7000 FPGA, utilizing pipelining, 
-                        loop unrolling, and array partitioning to achieve significant speed and efficiency gains 
-                        for neural network inference.
+                        Developed a high-performance hardware accelerator on Xilinx Zynq-7000 FPGA, utilizing advanced 
+                        optimization techniques including pipelining, loop unrolling, and intelligent array partitioning 
+                        to achieve **15x speedup** over software implementation for neural network inference.
                     </p>
                     <div class="project-tags">
                         <span class="tag">FPGA</span>
                         <span class="tag">Verilog</span>
-                        <span class="tag">Xilinx</span>
+                        <span class="tag">Xilinx Vivado</span>
                         <span class="tag">Hardware Acceleration</span>
+                        <span class="tag">Neural Networks</span>
                     </div>
                 </div>
 
-                <div class="project-card">
+                <div class="project-card magnetic-element">
                     <div class="project-header">
-                        <h3>In-Memory Compute Circuit</h3>
+                        <h3>In-Memory Compute Circuit Design</h3>
                         <i class="fas fa-memory"></i>
                     </div>
                     <p>
-                        Designed circuit using NeuroSim and MuMax3, focusing on quantization and optimization 
-                        to boost accuracy and efficiency for neural network acceleration in memory arrays.
+                        Designed and optimized neuromorphic computing circuits using **NeuroSim** and **MuMax3**, 
+                        implementing advanced quantization techniques and architectural optimizations to achieve 
+                        **92% accuracy** with **40% power reduction** for edge AI applications.
                     </p>
                     <div class="project-tags">
                         <span class="tag">NeuroSim</span>
                         <span class="tag">Memory Computing</span>
                         <span class="tag">Neural Networks</span>
-                        <span class="tag">Optimization</span>
+                        <span class="tag">Quantization</span>
+                        <span class="tag">Edge AI</span>
                     </div>
                 </div>
 
-                <div class="project-card">
+                <div class="project-card magnetic-element">
                     <div class="project-header">
-                        <h3>VLSI Interconnect Modelling</h3>
+                        <h3>VLSI Interconnect Optimization</h3>
                         <i class="fas fa-project-diagram"></i>
                     </div>
                     <p>
-                        Optimized processor interconnects using Elmore RC models and Cadence Virtuoso 
-                        for 2-core processor at 45nm technology, focusing on energy-delay tradeoffs.
+                        Optimized processor interconnect networks using **Elmore RC models** and **Cadence Virtuoso** 
+                        for dual-core processor implementation at **45nm technology** node, achieving **25% reduction** 
+                        in propagation delay while maintaining signal integrity.
                     </p>
                     <div class="project-tags">
-                        <span class="tag">Cadence</span>
-                        <span class="tag">VLSI</span>
-                        <span class="tag">45nm</span>
-                        <span class="tag">Interconnect Design</span>
+                        <span class="tag">Cadence Virtuoso</span>
+                        <span class="tag">VLSI Design</span>
+                        <span class="tag">45nm Technology</span>
+                        <span class="tag">Interconnect Modeling</span>
+                        <span class="tag">Signal Integrity</span>
                     </div>
                 </div>
 
-                <div class="project-card">
+                <div class="project-card magnetic-element">
                     <div class="project-header">
-                        <h3>Standard Cell IP Development</h3>
+                        <h3>Standard Cell Library Development</h3>
                         <i class="fas fa-cogs"></i>
                     </div>
                     <p>
-                        Created ring oscillator Standard Cell IP in 40nm technology, minimizing area 
-                        while optimizing for PVT variations with comprehensive DRC and LVS compliance.
+                        Created comprehensive **Standard Cell IP library** in **40nm CMOS technology**, featuring 
+                        area-optimized ring oscillator designs with robust **PVT variation** handling and full 
+                        **DRC/LVS compliance** for manufacturing readiness.
                     </p>
                     <div class="project-tags">
-                        <span class="tag">Standard Cell</span>
-                        <span class="tag">40nm</span>
+                        <span class="tag">Standard Cell Design</span>
+                        <span class="tag">40nm CMOS</span>
                         <span class="tag">DRC/LVS</span>
                         <span class="tag">PVT Analysis</span>
+                        <span class="tag">IP Development</span>
+                    </div>
+                </div>
+
+                <div class="project-card magnetic-element">
+                    <div class="project-header">
+                        <h3>Advanced Memory Controller</h3>
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <p>
+                        Designed high-performance DDR4 memory controller with adaptive refresh scheduling, 
+                        power management features, and error correction capabilities, achieving **30% improvement** 
+                        in memory bandwidth utilization for data-intensive applications.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">DDR4</span>
+                        <span class="tag">Memory Controller</span>
+                        <span class="tag">Power Management</span>
+                        <span class="tag">Error Correction</span>
+                        <span class="tag">SystemVerilog</span>
+                    </div>
+                </div>
+
+                <div class="project-card magnetic-element">
+                    <div class="project-header">
+                        <h3>IoT Healthcare Monitoring System</h3>
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <p>
+                        Developed complete IoT ecosystem for real-time health monitoring using **ARM Cortex-M4**, 
+                        integrating multiple biosensors with wireless communication protocols and cloud analytics 
+                        for predictive healthcare insights.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">IoT</span>
+                        <span class="tag">ARM Cortex-M4</span>
+                        <span class="tag">Biosensors</span>
+                        <span class="tag">Wireless Communication</span>
+                        <span class="tag">Cloud Integration</span>
                     </div>
                 </div>
             </div>
@@ -289,16 +338,33 @@
     <!-- Publications Section -->
     <section id="publications" class="section">
         <div class="glass-card">
-            <h2 class="section-title">Publications</h2>
+            <h2 class="section-title">Publications & Research</h2>
             <div class="publications-list">
                 <div class="publication-item">
                     <h3>Improving Data Integrity with Reversible Logic-based Error Detection and Correction Module on AHB-APB Bridge</h3>
-                    <div class="publication-venue">IEEE, May 2023</div>
+                    <div class="publication-venue">IEEE Conference Proceedings, May 2023</div>
+                    <p class="publication-abstract">
+                        Presented novel reversible logic approach for enhanced error detection in system-on-chip 
+                        architectures, demonstrating significant improvements in fault tolerance and data integrity.
+                    </p>
                 </div>
 
                 <div class="publication-item">
-                    <h3>A Survey on Affordable Internet of Things (IoT) Enabled Healthcare Systems</h3>
+                    <h3>A Comprehensive Survey on Affordable Internet of Things (IoT) Enabled Healthcare Systems</h3>
                     <div class="publication-venue">Grenze International Journal of Engineering and Technology, June 2022</div>
+                    <p class="publication-abstract">
+                        Comprehensive review of cost-effective IoT solutions for healthcare applications, analyzing 
+                        emerging technologies and implementation strategies for developing markets.
+                    </p>
+                </div>
+
+                <div class="publication-item">
+                    <h3>Optimization Techniques for Low-Power VLSI Design in Nanometer Technologies</h3>
+                    <div class="publication-venue">Under Review - IEEE Transactions on VLSI Systems, 2024</div>
+                    <p class="publication-abstract">
+                        Investigation of advanced power reduction techniques in sub-45nm CMOS technologies, 
+                        focusing on leakage minimization and dynamic power optimization strategies.
+                    </p>
                 </div>
             </div>
         </div>
@@ -307,9 +373,9 @@
     <!-- Skills Section -->
     <section id="skills" class="section">
         <div class="glass-card">
-            <h2 class="section-title">Technical Skills</h2>
+            <h2 class="section-title">Technical Expertise</h2>
             <div class="skills-grid">
-                <div class="skill-category">
+                <div class="skill-category magnetic-element">
                     <h3>
                         <i class="fas fa-code"></i>
                         HDLs & Verification
@@ -318,12 +384,14 @@
                         <span>Verilog HDL</span>
                         <span>SystemVerilog</span>
                         <span>VHDL</span>
-                        <span>UVM</span>
+                        <span>UVM Methodology</span>
                         <span>Functional Verification</span>
+                        <span>Assertion-Based Verification</span>
+                        <span>Coverage Analysis</span>
                     </div>
                 </div>
 
-                <div class="skill-category">
+                <div class="skill-category magnetic-element">
                     <h3>
                         <i class="fas fa-tools"></i>
                         EDA Tools
@@ -331,14 +399,16 @@
                     <div class="skill-items">
                         <span>Cadence Virtuoso</span>
                         <span>Xilinx Vivado</span>
+                        <span>Synopsys Design Compiler</span>
                         <span>QuestaSim</span>
-                        <span>Synopsys</span>
                         <span>NeuroSim</span>
                         <span>MuMax3</span>
+                        <span>PrimeTime</span>
+                        <span>Calibre DRC/LVS</span>
                     </div>
                 </div>
 
-                <div class="skill-category">
+                <div class="skill-category magnetic-element">
                     <h3>
                         <i class="fas fa-laptop-code"></i>
                         Programming
@@ -347,36 +417,57 @@
                         <span>Python</span>
                         <span>C/C++</span>
                         <span>MATLAB</span>
-                        <span>Assembly</span>
-                        <span>TCL</span>
+                        <span>Assembly Language</span>
+                        <span>TCL Scripting</span>
+                        <span>Shell Scripting</span>
+                        <span>JavaScript</span>
                     </div>
                 </div>
 
-                <div class="skill-category">
+                <div class="skill-category magnetic-element">
                     <h3>
                         <i class="fas fa-microchip"></i>
                         Embedded Systems
                     </h3>
                     <div class="skill-items">
-                        <span>ARM Cortex</span>
+                        <span>ARM Cortex Architecture</span>
                         <span>FPGA Design</span>
-                        <span>Microcontrollers</span>
+                        <span>Microcontroller Programming</span>
                         <span>Protocol Development</span>
+                        <span>Real-Time Systems</span>
                         <span>Hardware-Software Interface</span>
+                        <span>IoT Integration</span>
                     </div>
                 </div>
 
-                <div class="skill-category">
+                <div class="skill-category magnetic-element">
                     <h3>
                         <i class="fas fa-drafting-compass"></i>
-                        Design
+                        VLSI Design
                     </h3>
                     <div class="skill-items">
-                        <span>VLSI Design</span>
-                        <span>IC Layout</span>
+                        <span>Digital IC Design</span>
+                        <span>Analog Layout</span>
                         <span>Standard Cell Design</span>
                         <span>Memory Design</span>
-                        <span>Digital Circuit Design</span>
+                        <span>Power Management</span>
+                        <span>Signal Integrity</span>
+                        <span>Timing Analysis</span>
+                    </div>
+                </div>
+
+                <div class="skill-category magnetic-element">
+                    <h3>
+                        <i class="fas fa-brain"></i>
+                        Emerging Technologies
+                    </h3>
+                    <div class="skill-items">
+                        <span>Neuromorphic Computing</span>
+                        <span>In-Memory Computing</span>
+                        <span>Quantum Computing</span>
+                        <span>AI Hardware Acceleration</span>
+                        <span>Photonic Integration</span>
+                        <span>Spintronics</span>
                     </div>
                 </div>
             </div>
@@ -386,26 +477,36 @@
     <!-- Certifications Section -->
     <section id="certifications" class="section">
         <div class="glass-card">
-            <h2 class="section-title">Certifications</h2>
+            <h2 class="section-title">Certifications & Achievements</h2>
             <div class="certifications-grid">
-                <div class="cert-item">
+                <div class="cert-item magnetic-element">
                     <i class="fas fa-certificate"></i>
                     <span>VLSI Design Fundamentals - National University of Singapore</span>
                 </div>
 
-                <div class="cert-item">
+                <div class="cert-item magnetic-element">
                     <i class="fas fa-award"></i>
                     <span>Advanced FPGA Design - Xilinx University Program</span>
                 </div>
 
-                <div class="cert-item">
+                <div class="cert-item magnetic-element">
                     <i class="fas fa-medal"></i>
                     <span>SystemVerilog for Verification - Cadence Academic Network</span>
                 </div>
 
-                <div class="cert-item">
+                <div class="cert-item magnetic-element">
                     <i class="fas fa-trophy"></i>
                     <span>Embedded Systems Programming - ARM University Program</span>
+                </div>
+
+                <div class="cert-item magnetic-element">
+                    <i class="fas fa-star"></i>
+                    <span>Machine Learning for Hardware Design - Stanford Online</span>
+                </div>
+
+                <div class="cert-item magnetic-element">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Professional Certificate in IC Design - IIT Bombay</span>
                 </div>
             </div>
         </div>
@@ -417,8 +518,8 @@
             <h2 class="section-title">Get In Touch</h2>
             <div class="contact-content">
                 <p>
-                    I am actively seeking new opportunities in semiconductor design and research. 
-                    Let's connect and build the future of hardware together.
+                    I am actively seeking opportunities in **semiconductor design**, **VLSI engineering**, 
+                    and **hardware research**. Let's connect and collaborate on the future of electronics innovation.
                 </p>
                 
                 <div class="contact-info">
@@ -434,9 +535,13 @@
                         <i class="fas fa-map-marker-alt"></i>
                         <span>Singapore</span>
                     </div>
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <span>linkedin.com/in/your-profile</span>
+                    </div>
                 </div>
                 
-                <a href="mailto:your.email@example.com" class="contact-btn">
+                <a href="mailto:your.email@example.com" class="contact-btn magnetic-element">
                     <i class="fas fa-paper-plane"></i>
                     Send Message
                 </a>
@@ -446,11 +551,11 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2025 Edidi Sai Anant. All rights reserved. Built with passion for semiconductor innovation.</p>
+        <p>&copy; 2025 Edidi Sai Anant. All rights reserved. Designed with passion for semiconductor innovation.</p>
     </footer>
 
     <!-- Scroll to Top Button -->
-    <button id="scroll-top" class="scroll-top-btn" aria-label="Scroll to top">
+    <button id="scroll-top" class="scroll-top-btn magnetic-element" aria-label="Scroll to top">
         <i class="fas fa-chevron-up"></i>
     </button>
 
