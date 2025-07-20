@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edidi Sai Anant | ECE Portfolio</title>
+    <title>Edidi Sai Anant | Electrical & Computer Engineer</title>
 
     <!-- CSS Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
@@ -19,13 +19,13 @@
 <body>
 
     <!-- Dynamic Thematic Background -->
-    <div class="circuit-background"></div>
+    <div id="synapse-background"></div>
     <div class="noise-overlay"></div>
 
     <!-- Thematic Loading Screen -->
     <div id="loader">
-        <div class="loader-grid"></div>
-        <div class="loader-text">Initializing Systems...</div>
+        <div class="loader-core"></div>
+        <p class="loader-text">Booting Systems...</p>
     </div>
 
     <!-- HIGH-PERFORMANCE MAGNETIC CURSOR -->
@@ -43,8 +43,7 @@
             <ul>
                 <li><a href="#home" class="nav-link magnetic-link active">Home</a></li>
                 <li><a href="#about" class="nav-link magnetic-link">About</a></li>
-                <li><a href="#experience" class="nav-link magnetic-link">Experience</a></li>
-                <li><a href="#education" class="nav-link magnetic-link">Education</a></li>
+                <li><a href="#experience" class="nav-link magnetic-link">Journey</a></li>
                 <li><a href="#skills" class="nav-link magnetic-link">Skills</a></li>
                 <li><a href="#projects" class="nav-link magnetic-link">Projects</a></li>
                 <li><a href="#contact" class="nav-link magnetic-link">Contact</a></li>
@@ -52,190 +51,185 @@
         </nav>
     </header>
 
-    <!-- Main content container -->
+    <!-- Main content container for snap-scrolling -->
     <main id="main-container">
 
         <!-- SECTION 1: HOME -->
         <section id="home" class="full-height-section">
             <div class="content-wrapper">
                 <h1 class="main-heading" data-reveal>Edidi Sai Anant</h1>
-                <p class="subtitle" data-reveal="1">Electrical & Computer Engineer</p>
-                <p class="tagline" data-reveal="2">Crafting the future of hardware, from silicon to systems.</p>
-                <a href="Edidi_Sai_Anant_Resume.pdf" 
-                   class="cta-button magnetic-link" 
-                   target="_blank" 
-                   data-reveal="3" 
-                   rel="noopener noreferrer">
-                    View Resume
-                </a>
+                <p class="subtitle" data-reveal="1">Electrical Engineer | Nanoelectronics & System Design</p>
+                <p class="tagline" data-reveal="2">Architecting the fabric of future technology, from nanoscale circuits to complex embedded systems.</p>
+                <a href="#projects" class="cta-button magnetic-link" data-reveal="3">Explore My Work</a>
             </div>
         </section>
 
         <!-- SECTION 2: ABOUT -->
         <section id="about" class="full-height-section">
             <div class="content-wrapper">
-                <h2 class="section-title" data-reveal>About Me</h2>
+                <h2 class="section-title" data-reveal>My Mission</h2>
                 <div class="about-content">
                     <p class="bio" data-reveal="1">
-                        As a Master's candidate in Electrical Engineering at the National University of Singapore, I am deeply immersed in the world of semiconductor processes and integrated circuit design. My passion lies in driving innovation within the semiconductor industry, leveraging strong analytical skills and a collaborative spirit to tackle complex challenges. I am eager to contribute to a dynamic team that is pushing the boundaries of technology[1].
+                        I am driven by a passion for the foundational elements of technology. As a recent MSc graduate from the National University of Singapore, specializing in Nanoelectronics, my goal is to contribute to pioneering advancements in the semiconductor industry. I thrive on deconstructing complex problems and engineering elegant, efficient solutions at both the hardware and system levels. My approach is one of perpetual learning and agile adaptation, ready to collaborate with forward-thinking teams to bring innovative technologies to life.
                     </p>
                     <a href="Edidi_Sai_Anant_Resume.pdf" 
                        class="cta-button magnetic-link" 
                        target="_blank" 
                        data-reveal="2" 
                        rel="noopener noreferrer">
-                        View Resume
+                        View Full Resume
                     </a>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 3: EXPERIENCE -->
+        <!-- SECTION 3: JOURNEY (Experience & Education) -->
         <section id="experience" class="full-height-section">
             <div class="content-wrapper">
-                <h2 class="section-title" data-reveal>Professional Experience</h2>
+                <h2 class="section-title" data-reveal>My Journey</h2>
                 <div class="timeline">
-                    <!-- Item 1 -->
+                    <!-- Item 1: NUS -->
                     <div class="timeline-item" data-reveal>
-                        <div class="timeline-dot"></div>
+                        <div class="timeline-marker">
+                            <i data-lucide="graduation-cap"></i>
+                        </div>
                         <div class="timeline-content">
-                            <h3>Project Intern</h3>
-                            <p class="company-name">Maven Silicon, Bangalore, India</p>
-                            <span class="date">Dec 2022 – Jan 2023</span>
-                            <p class="description">Engineered an AHB to APB bridge, mastering the decomposition of complex designs into efficient, modular components using Verilog HDL. Gained hands-on experience in synthesizing RTL to gate-level schematics, ensuring robust system architecture[1].</p>
+                            <h3>Master of Science, Electrical Engineering</h3>
+                            <p class="company-name">National University of Singapore</p>
+                            <span class="date">2023 – 2025</span>
+                            <p class="description">Specialized in Nanoelectronics and advanced memory technologies while serving as a Graduate Assistant for courses in Computer Architecture and Microcontroller Programming.</p>
                         </div>
                     </div>
-                    <!-- Item 2 -->
+                    <!-- Item 2: Maven Silicon -->
                     <div class="timeline-item" data-reveal>
-                         <div class="timeline-dot"></div>
+                         <div class="timeline-marker">
+                            <i data-lucide="cpu"></i>
+                         </div>
+                        <div class="timeline-content">
+                            <h3>Project Intern</h3>
+                            <p class="company-name">Maven Silicon</p>
+                            <span class="date">Dec 2022 – Jan 2023</span>
+                            <p class="description">Engineered an AHB to APB bridge using Verilog HDL. Decomposed the design into modular components and synthesized RTL to a gate-level schematic, ensuring a robust and efficient system architecture.</p>
+                        </div>
+                    </div>
+                    <!-- Item 3: Sandeepani -->
+                     <div class="timeline-item" data-reveal>
+                         <div class="timeline-marker">
+                            <i data-lucide="shield-check"></i>
+                         </div>
                         <div class="timeline-content">
                             <h3>Intern</h3>
                             <p class="company-name">Sandeepani School of Embedded System Design</p>
                             <span class="date">Jun 2022 – Jul 2022</span>
-                            <p class="description">Developed and rigorously verified a UART protocol with Verilog. Conducted in-depth functional verification and coverage analysis for a Half Adder using SystemVerilog and QuestaSim, ensuring design reliability[1].</p>
+                            <p class="description">Focused on functional verification, developing testbenches and analyzing coverage for a UART protocol using SystemVerilog and QuestaSim to ensure design reliability.</p>
                         </div>
                     </div>
-                    <!-- Item 3 -->
+                    <!-- Item 4: SRM University -->
                     <div class="timeline-item" data-reveal>
-                         <div class="timeline-dot"></div>
+                         <div class="timeline-marker">
+                            <i data-lucide="graduation-cap"></i>
+                         </div>
                         <div class="timeline-content">
-                            <h3>Graduate Assistant</h3>
-                            <p class="company-name">National University of Singapore</p>
-                            <span class="date">Aug 2023 – Present</span>
-                            <p class="description">Lead lab sessions for Microcontroller Programming and Computer Architecture courses. Responsible for student guidance, grading, and collaborating with faculty to modernize lab materials and enhance learning outcomes[1].</p>
+                            <h3>Bachelor of Technology, ECE</h3>
+                            <p class="company-name">SRM Institute of Science and Technology</p>
+                            <span class="date">2019 – 2023</span>
+                            <p class="description">Built a strong foundation in digital electronics, semiconductor device modeling, and VLSI design, which sparked my interest in pursuing advanced studies in the field.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 4: EDUCATION -->
-        <section id="education" class="full-height-section">
+        <!-- SECTION 4: SKILLS & CERTIFICATIONS -->
+        <section id="skills" class="full-height-section">
             <div class="content-wrapper">
-                <h2 class="section-title" data-reveal>Education</h2>
-                <div class="education-grid">
-                     <!-- Card 1 -->
-                    <div class="education-card" data-reveal>
-                        <h3>Master of Science, Electrical Engineering</h3>
-                        <p class="institution">National University of Singapore</p>
-                        <span class="date">2023 – 2025</span>
+                <h2 class="section-title" data-reveal>Arsenal</h2>
+                <div class="skills-container">
+                    <!-- Category 1 -->
+                    <div class="skill-category" data-reveal>
+                        <h4>Hardware & Design</h4>
+                        <div class="skills-grid">
+                            <div class="skill-card magnetic-link"><img src="https://www.vectorlogo.zone/logos/verilog/verilog-icon.svg" alt="Verilog"><span>Verilog</span></div>
+                            <div class="skill-card magnetic-link"><img src="https://www.vectorlogo.zone/logos/systemverilog/systemverilog-icon.svg" alt="SystemVerilog"><span>SystemVerilog</span></div>
+                            <div class="skill-card magnetic-link"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Cadence_Design_Systems_logo.svg" alt="Cadence"><span>Cadence Virtuoso</span></div>
+                            <div class="skill-card magnetic-link"><img src="https://www.xilinx.com/content/dam/xilinx/imgs/icon/vivado-icon.svg" alt="Xilinx Vivado"><span>Xilinx Vivado</span></div>
+                             <div class="skill-card magnetic-link"><img src="https://www.plm.automation.siemens.com/media/global/en/questa-logo_tcm27-58079.png" alt="QuestaSim"><span>QuestaSim</span></div>
+                        </div>
                     </div>
-                     <!-- Card 2 -->
-                    <div class="education-card" data-reveal="1">
-                        <h3>Bachelor of Technology, ECE</h3>
-                        <p class="institution">SRM Institute of Science and Technology</p>
-                        <span class="date">2019 – 2023</span>
+                     <!-- Category 2 -->
+                    <div class="skill-category" data-reveal="1">
+                        <h4>Software & Systems</h4>
+                        <div class="skills-grid">
+                            <div class="skill-card magnetic-link"><img src="https://www.vectorlogo.zone/logos/python/python-icon.svg" alt="Python"><span>Python</span></div>
+                            <div class="skill-card magnetic-link"><img src="https://www.vectorlogo.zone/logos/isocpp/isocpp-icon.svg" alt="C++"><span>C++</span></div>
+                            <div class="skill-card magnetic-link"><img src="https://www.vectorlogo.zone/logos/arduino/arduino-icon.svg" alt="Embedded Systems"><span>Embedded Systems</span></div>
+                            <div class="skill-card magnetic-link"><img src="https://cdn.worldvectorlogo.com/logos/pytorch-icon.svg" alt="PyTorch"><span>PyTorch</span></div>
+                            <div class="skill-card magnetic-link"><img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Matlab_Logo.png" alt="MATLAB"><span>MATLAB</span></div>
+                        </div>
                     </div>
                 </div>
                  <!-- Certifications Sub-section -->
                 <h3 class="subsection-title" data-reveal>Licenses & Certifications</h3>
                 <div class="logo-wall" data-reveal="1">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png" alt="Google Logo" title="Foundations of Project Management">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ARM_logo.svg/1200px-ARM_logo.svg.png" alt="ARM Logo" title="Embedded Systems Essentials">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/EdX_logo.svg/1280px-EdX_logo.svg.png" alt="edX Logo" title="Building a RISC-V CPU Core">
-                    <img src="https://images.crunchbase.com/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/v1458562369/p863gq9z0owgm7un2kni.png" alt="Internshala Logo" title="PCB Design">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ARM_logo.svg/1200px-ARM_logo.svg.png" alt="ARM Logo" title="Embedded Systems Essentials with Arm">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png" alt="Google Logo" title="Foundations of Project Management">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Coursera-Logo_600x600.svg/1200px-Coursera-Logo_600x600.svg.png" alt="Coursera Logo" title="Python for Data Science, AI & Development">
+                    <img src="https://images.crunchbase.com/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/v1458562369/p863gq9z0owgm7un2kni.png" alt="Internshala Logo" title="PCB Design">
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 5: SKILLS -->
-        <section id="skills" class="full-height-section">
-            <div class="content-wrapper">
-                <h2 class="section-title" data-reveal>Core Competencies</h2>
-                <div class="skills-container">
-                    <!-- Category 1 -->
-                    <div class="skill-category" data-reveal>
-                        <h4>Hardware Description Languages</h4>
-                        <div class="skills-grid">
-                            <div class="skill-card magnetic-link"><img src="https://www.vectorlogo.zone/logos/verilog/verilog-icon.svg" alt="Verilog"><span>Verilog</span></div>
-                            <div class="skill-card magnetic-link"><img src="https://www.vectorlogo.zone/logos/systemverilog/systemverilog-icon.svg" alt="SystemVerilog"><span>SystemVerilog</span></div>
-                             <div class="skill-card magnetic-link"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/VHDL_logo.svg/1200px-VHDL_logo.svg.png" alt="VHDL Logo"><span>VHDL</span></div>
-                        </div>
-                    </div>
-                     <!-- Category 2 -->
-                    <div class="skill-category" data-reveal="1">
-                        <h4>EDA & Simulation Tools</h4>
-                        <div class="skills-grid">
-                            <div class="skill-card magnetic-link"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Cadence_Design_Systems_logo.svg" alt="Cadence"><span>Cadence Virtuoso</span></div>
-                            <div class="skill-card magnetic-link"><img src="https://www.xilinx.com/content/dam/xilinx/imgs/icon/vivado-icon.svg" alt="Xilinx Vivado"><span>Xilinx Vivado</span></div>
-                            <div class="skill-card magnetic-link"><img src="https://www.plm.automation.siemens.com/media/global/en/questa-logo_tcm27-58079.png" alt="QuestaSim"><span>QuestaSim</span></div>
-                        </div>
-                    </div>
-                     <!-- Category 3 -->
-                    <div class="skill-category" data-reveal="2">
-                        <h4>Programming & Systems</h4>
-                        <div class="skills-grid">
-                            <div class="skill-card magnetic-link"><img src="https://www.vectorlogo.zone/logos/python/python-icon.svg" alt="Python"><span>Python</span></div>
-                            <div class="skill-card magnetic-link"><img src="https://www.vectorlogo.zone/logos/isocpp/isocpp-icon.svg" alt="C++"><span>C++</span></div>
-                            <div class="skill-card magnetic-link"><img src="https://www.vectorlogo.zone/logos/arduino/arduino-icon.svg" alt="Embedded Systems"><span>Embedded Systems</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 6: PROJECTS -->
+        <!-- SECTION 5: PROJECTS -->
         <section id="projects" class="full-height-section">
             <div class="content-wrapper">
-                <h2 class="section-title" data-reveal>Featured Projects</h2>
+                <h2 class="section-title" data-reveal>Proof of Work</h2>
                 <div class="projects-grid">
                     <!-- Project 1 -->
                     <div class="project-card magnetic-link" data-reveal>
-                        <div class="project-header">
-                            <h3>FPGA Hardware Accelerator for MLP</h3>
+                        <div class="project-content">
+                            <div class="project-header">
+                                <i data-lucide="cpu"></i>
+                                <h3>FPGA Hardware Accelerator</h3>
+                            </div>
+                            <p class="project-desc">Engineered a hardware accelerator on a Xilinx Zynq-7000 FPGA to boost MLP neural network inference, utilizing pipelining and optimization to achieve significant performance gains over software.</p>
                             <div class="project-tags"><span>Verilog</span><span>HLS</span><span>Pipelining</span></div>
                         </div>
-                        <p class="project-desc">Accelerated MLP neural network inference on a Zynq-7000 FPGA, achieving significant performance gains over software via optimized hardware design and pipelining techniques[1].</p>
-                        <a href="https://github.com/ESAnant" class="project-link" target="_blank">View on GitHub <i data-lucide="arrow-up-right"></i></a>
+                        <a href="https://github.com/ESAnant" class="project-link" target="_blank"><span>Explore on GitHub</span> <i data-lucide="arrow-up-right"></i></a>
                     </div>
                     <!-- Project 2 -->
                     <div class="project-card magnetic-link" data-reveal="1">
-                        <div class="project-header">
-                            <h3>VLSI Interconnect Modelling</h3>
+                         <div class="project-content">
+                            <div class="project-header">
+                                <i data-lucide="git-merge"></i>
+                                <h3>VLSI Interconnect Modelling</h3>
+                            </div>
+                            <p class="project-desc">Modeled and simulated interconnects for a 45nm multi-core processor in Cadence Virtuoso, focusing on optimizing the energy-delay product to enhance overall system efficiency and signal integrity.</p>
                             <div class="project-tags"><span>Cadence</span><span>45nm</span><span>VLSI</span></div>
                         </div>
-                        <p class="project-desc">Modeled and simulated interconnects for a multi-core processor at 45nm, optimizing for the energy-delay product to enhance system efficiency and signal integrity[1].</p>
-                        <a href="https://github.com/ESAnant" class="project-link" target="_blank">View on GitHub <i data-lucide="arrow-up-right"></i></a>
+                         <a href="https://github.com/ESAnant" class="project-link" target="_blank"><span>Explore on GitHub</span> <i data-lucide="arrow-up-right"></i></a>
                     </div>
                      <!-- Project 3 -->
                     <div class="project-card magnetic-link" data-reveal="2">
-                        <div class="project-header">
-                            <h3>In-Memory Compute Circuit Design</h3>
+                         <div class="project-content">
+                            <div class="project-header">
+                                <i data-lucide="brain-circuit"></i>
+                                <h3>In-Memory Compute Design</h3>
+                            </div>
+                            <p class="project-desc">Designed a novel in-memory compute circuit to accelerate neural networks. Focused on quantization and optimization techniques in PyTorch and NeuroSim to improve accuracy and computational speed.</p>
                             <div class="project-tags"><span>NeuroSim</span><span>PyTorch</span><span>Quantization</span></div>
                         </div>
-                        <p class="project-desc">Designed a novel in-memory compute circuit to accelerate neural networks, focusing on quantization and optimization to boost accuracy and computational speed[1].</p>
-                        <a href="https://github.com/ESAnant" class="project-link" target="_blank">View on GitHub <i data-lucide="arrow-up-right"></i></a>
+                         <a href="https://github.com/ESAnant" class="project-link" target="_blank"><span>Explore on GitHub</span> <i data-lucide="arrow-up-right"></i></a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 7: CONTACT -->
+        <!-- SECTION 6: CONTACT -->
         <section id="contact" class="full-height-section">
             <div class="content-wrapper">
-                <h2 class="section-title" data-reveal>Let's Connect</h2>
-                <p class="contact-message" data-reveal="1">I'm actively seeking opportunities to contribute to innovative projects in the semiconductor industry. Let's create the future together.</p>
+                <h2 class="section-title" data-reveal>Let's Build the Future</h2>
+                <p class="contact-message" data-reveal="1">I'm currently seeking new opportunities to apply my skills in a challenging and innovative environment. If you're looking for a passionate engineer to help build what's next, I'd love to connect.</p>
                 <div class="contact-links" data-reveal="2">
                     <a href="https://www.linkedin.com/in/sai-anant/" target="_blank" class="contact-icon magnetic-link" aria-label="LinkedIn">
                         <i data-lucide="linkedin"></i>
@@ -248,7 +242,7 @@
                     </a>
                 </div>
                 <footer class="site-footer" data-reveal="3">
-                    <p>&copy; <span id="current-year"></span> Edidi Sai Anant. Designed & Engineered with precision.</p>
+                    <p>&copy; <span id="current-year"></span> Edidi Sai Anant. Designed & Engineered with passion.</p>
                 </footer>
             </div>
         </section>
