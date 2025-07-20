@@ -49,13 +49,12 @@
 
         <!-- SECTION 1: HOME -->
         <section id="home" class="full-height-section">
-            <!-- Particle animation background will be injected here by JavaScript -->
-            <div id="particles-js"></div>
-            <div class="content-wrapper">
-                <h1 class="main-heading">Edidi Sai Anant</h1>
-                <p class="subtitle">Electrical Engineer | VLSI & Embedded Systems Specialist</p>
-                <p class="tagline">Passionate engineer specializing in semiconductor innovation and building the hardware of tomorrow.</p>
-                <a href="#projects" class="cta-button magnetic-link">View My Work</a>
+            <!-- The new animated background will be applied via CSS to this section -->
+            <div class="content-wrapper" data-speed="0.9">
+                <h1 class="main-heading" data-speed="0.85">Edidi Sai Anant</h1>
+                <p class="subtitle" data-speed="0.8">Electrical Engineer | VLSI & Embedded Systems Specialist</p>
+                <p class="tagline" data-speed="0.75">Passionate engineer specializing in semiconductor innovation and building the hardware of tomorrow.</p>
+                <a href="#projects" class="cta-button magnetic-link" data-speed="0.7">View My Work</a>
             </div>
         </section>
 
@@ -64,7 +63,7 @@
             <div class="content-wrapper">
                 <h2 class="section-title">About Me</h2>
                 <p class="bio">
-                    A Master's candidate in Electrical Engineering at the National University of Singapore, with a robust foundation in semiconductor processes and IC design. I am driven by a passion for innovation and possess strong analytical skills, aiming to contribute to a dynamic, future-oriented team in the semiconductor industry [1].
+                    A Master's candidate in Electrical Engineering at the National University of Singapore, with a robust foundation in semiconductor processes and IC design. I am driven by a passion for innovation and possess strong analytical skills, aiming to contribute to a dynamic, future-oriented team in the semiconductor industry[1].
                 </p>
                 <a href="Edidi_Sai_Anant_Resume.pdf" download="Edidi_Sai_Anant_Resume.pdf" class="cta-button magnetic-link">Download Resume</a>
                 <div class="logo-wall">
@@ -92,7 +91,7 @@
                             <h3>Project Intern</h3>
                             <p class="company-name">Maven Silicon, Bangalore, India</p>
                             <span class="date">Dec 2022 – Jan 2023</span>
-                            <p class="description">Designed an AHB to APB bridge, decomposing the design into modular components and writing robust Verilog HDL. Gained proficiency in synthesizing RTL descriptions into gate-level schematics to ensure cohesive system architecture and performance [1].</p>
+                            <p class="description">Designed an AHB to APB bridge, decomposing the design into modular components and writing robust Verilog HDL. Gained proficiency in synthesizing RTL descriptions into gate-level schematics to ensure cohesive system architecture and performance[1].</p>
                         </div>
                     </div>
                     <!-- Timeline Item 2 -->
@@ -101,7 +100,7 @@
                             <h3>Intern</h3>
                             <p class="company-name">Sandeepani School of Embedded System Design, Bangalore, India</p>
                             <span class="date">Jun 2022 – Jul 2022</span>
-                            <p class="description">Developed and verified a UART protocol using Verilog, focusing on data transmission reliability. Performed in-depth functional verification of a Half Adder using SystemVerilog and conducted detailed functional coverage analysis with QuestaSim [1].</p>
+                            <p class="description">Developed and verified a UART protocol using Verilog, focusing on data transmission reliability. Performed in-depth functional verification of a Half Adder using SystemVerilog and conducted detailed functional coverage analysis with QuestaSim[1].</p>
                         </div>
                     </div>
                      <!-- Timeline Item 3 (Academic) -->
@@ -110,7 +109,7 @@
                             <h3>Graduate Assistant</h3>
                             <p class="company-name">National University of Singapore</p>
                             <span class="date">Aug 2023 – Present</span>
-                            <p class="description">Oversee lab sessions for Microcontroller Programming and Computer Architecture. Provide guidance on lab work, assist with grading, and collaborate with faculty to overhaul lab materials and processes for enhanced learning [1].</p>
+                            <p class="description">Oversee lab sessions for Microcontroller Programming and Computer Architecture. Provide guidance on lab work, assist with grading, and collaborate with faculty to overhaul lab materials and processes for enhanced learning[1].</p>
                         </div>
                     </div>
                 </div>
@@ -175,7 +174,7 @@
                             <div class="project-tags"><span>Verilog</span><span>HLS</span><span>Pipelining</span></div>
                         </div>
                         <div class="project-details">
-                            <p><strong>Detailed Description:</strong> Developed a hardware accelerator to improve MLP neural network inference speed and efficiency. Implemented designs in software (baseline), HLS, and pure Verilog to compare performance. Executed profiling and optimisation utilising pipelining, loop unrolling, and array partitioning to achieve significant performance gains over the software-only implementation [1].</p>
+                            <p><strong>Detailed Description:</strong> Developed a hardware accelerator to improve MLP neural network inference speed and efficiency. Implemented designs in software (baseline), HLS, and pure Verilog to compare performance. Executed profiling and optimisation utilising pipelining, loop unrolling, and array partitioning to achieve significant performance gains over the software-only implementation[1].</p>
                             <a href="https://github.com/ESAnant" class="project-link" target="_blank">View on GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                         </div>
                     </div>
@@ -187,7 +186,7 @@
                             <div class="project-tags"><span>Cadence</span><span>45nm</span><span>VLSI</span></div>
                         </div>
                         <div class="project-details">
-                             <p><strong>Detailed Description:</strong> Engaged in modeling and simulation to optimize interconnects for a 2-core processor at 45nm technology. Focused on energy-delay product (EDP) tradeoffs to improve overall system efficiency, signal integrity, and performance, bridging theoretical models with practical VLSI design challenges [1].</p>
+                             <p><strong>Detailed Description:</strong> Engaged in modeling and simulation to optimize interconnects for a 2-core processor at 45nm technology. Focused on energy-delay product (EDP) tradeoffs to improve overall system efficiency, signal integrity, and performance, bridging theoretical models with practical VLSI design challenges[1].</p>
                              <a href="https://github.com/ESAnant" class="project-link" target="_blank">View on GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                         </div>
                     </div>
@@ -199,7 +198,7 @@
                             <div class="project-tags"><span>NeuroSim</span><span>PyTorch</span><span>Quantization</span></div>
                         </div>
                          <div class="project-details">
-                             <p><strong>Detailed Description:</strong> Designed a novel in-memory compute circuit to accelerate neural network computations. Concentrated on quantization (float64 to int4) and optimization techniques to boost accuracy and efficiency. Conducted simulations in PyTorch and analysis in NeuroSim to validate significant improvements in computational speed and resource utilization [1].</p>
+                             <p><strong>Detailed Description:</strong> Designed a novel in-memory compute circuit to accelerate neural network computations. Concentrated on quantization (float64 to int4) and optimization techniques to boost accuracy and efficiency. Conducted simulations in PyTorch and analysis in NeuroSim to validate significant improvements in computational speed and resource utilization[1].</p>
                              <a href="https://github.com/ESAnant" class="project-link" target="_blank">View on GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                         </div>
                     </div>
@@ -232,8 +231,6 @@
     </main>
 
     <!-- JavaScript Libraries -->
-    <!-- tsParticles for the animated background -->
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
     <!-- ScrollReveal.js for reveal-on-scroll animations -->
     <script src="https://unpkg.com/scrollreveal"></script>
     <!-- Main custom script file -->
