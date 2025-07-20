@@ -8,27 +8,27 @@
     <!-- CSS Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- Google Fonts: Inter for UI, Fira Code for a "tech" feel -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 
-    <!-- Lucide Icons - A modern, open-source icon library -->
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
-    <!-- Dynamic ECE Thematic Background -->
+    <!-- Dynamic Circuit Background & Noise Overlay -->
     <div class="circuit-background"></div>
     <div class="noise-overlay"></div>
 
-    <!-- Thematic Loading Screen -->
+    <!-- Loader -->
     <div id="loader">
         <div class="loader-grid"></div>
         <div class="loader-text">Initializing Systems...</div>
     </div>
 
-    <!-- Custom Magnetic Cursor -->
+    <!-- Magnetic Cursor -->
     <div class="cursor">
         <div class="cursor-ring"></div>
         <div class="cursor-dot"></div>
@@ -52,20 +52,26 @@
         </nav>
     </header>
 
-    <!-- Main content container -->
+    <!-- Main content -->
     <main id="main-container">
 
-        <!-- SECTION 1: HOME -->
+        <!-- Home Section -->
         <section id="home" class="full-height-section">
             <div class="content-wrapper">
                 <h1 class="main-heading" data-reveal>Edidi Sai Anant</h1>
                 <p class="subtitle" data-reveal="1">Electrical & Computer Engineer</p>
                 <p class="tagline" data-reveal="2">Crafting the future of hardware, from silicon to systems.</p>
-                <a href="#projects" class="cta-button magnetic-link" data-reveal="3">Explore My Work</a>
+                <a href="Edidi_Sai_Anant_Resume.pdf" 
+                   class="cta-button magnetic-link" 
+                   target="_blank" 
+                   data-reveal="3" 
+                   rel="noopener">
+                    View Resume
+                </a>
             </div>
         </section>
 
-        <!-- SECTION 2: ABOUT -->
+        <!-- About Section -->
         <section id="about" class="full-height-section">
             <div class="content-wrapper">
                 <h2 class="section-title" data-reveal>About Me</h2>
@@ -73,95 +79,93 @@
                     <p class="bio" data-reveal="1">
                         As a Master's candidate in Electrical Engineering at the National University of Singapore, I am deeply immersed in the world of semiconductor processes and integrated circuit design. My passion lies in driving innovation within the semiconductor industry, leveraging strong analytical skills and a collaborative spirit to tackle complex challenges. I am eager to contribute to a dynamic team that is pushing the boundaries of technology[1].
                     </p>
-                    <a href="Edidi_Sai_Anant_Resume.pdf" download="Edidi_Sai_Anant_Resume.pdf" class="cta-button magnetic-link" data-reveal="2">Download Resume</a>
+                    <a href="Edidi_Sai_Anant_Resume.pdf" 
+                       class="cta-button magnetic-link" 
+                       target="_blank" 
+                       data-reveal="2" 
+                       rel="noopener">
+                        View Resume
+                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 3: EXPERIENCE -->
+        <!-- Experience Section -->
         <section id="experience" class="full-height-section">
             <div class="content-wrapper">
                 <h2 class="section-title" data-reveal>Professional Experience</h2>
                 <div class="timeline">
-                    <!-- Item 1 -->
                     <div class="timeline-item" data-reveal>
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
                             <h3>Project Intern</h3>
                             <p class="company-name">Maven Silicon, Bangalore, India</p>
                             <span class="date">Dec 2022 – Jan 2023</span>
-                            <p class="description">Engineered an AHB to APB bridge, mastering the decomposition of complex designs into efficient, modular components using Verilog HDL. Gained hands-on experience in synthesizing RTL to gate-level schematics, ensuring robust system architecture[1].</p>
+                            <p class="description">Engineered an AHB to APB bridge, mastering modular design using Verilog HDL and synthesizing RTL to efficient architectures[1].</p>
                         </div>
                     </div>
-                    <!-- Item 2 -->
                     <div class="timeline-item" data-reveal>
-                         <div class="timeline-dot"></div>
+                        <div class="timeline-dot"></div>
                         <div class="timeline-content">
                             <h3>Intern</h3>
                             <p class="company-name">Sandeepani School of Embedded System Design</p>
                             <span class="date">Jun 2022 – Jul 2022</span>
-                            <p class="description">Developed and rigorously verified a UART protocol with Verilog. Conducted in-depth functional verification and coverage analysis for a Half Adder using SystemVerilog and QuestaSim, ensuring design reliability[1].</p>
+                            <p class="description">Verified a UART protocol with Verilog; performed coverage analysis and functional verification with QuestaSim[1].</p>
                         </div>
                     </div>
-                    <!-- Item 3 -->
                     <div class="timeline-item" data-reveal>
-                         <div class="timeline-dot"></div>
+                        <div class="timeline-dot"></div>
                         <div class="timeline-content">
                             <h3>Graduate Assistant</h3>
                             <p class="company-name">National University of Singapore</p>
                             <span class="date">Aug 2023 – Present</span>
-                            <p class="description">Lead lab sessions for Microcontroller Programming and Computer Architecture courses. Responsible for student guidance, grading, and collaborating with faculty to modernize lab materials and enhance learning outcomes[1].</p>
+                            <p class="description">Guided labs for Microcontroller Programming and Computer Architecture courses[1].</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 4: EDUCATION -->
+        <!-- Education Section -->
         <section id="education" class="full-height-section">
             <div class="content-wrapper">
                 <h2 class="section-title" data-reveal>Education</h2>
                 <div class="education-grid">
-                     <!-- Card 1 -->
                     <div class="education-card" data-reveal>
                         <h3>Master of Science, Electrical Engineering</h3>
                         <p class="institution">National University of Singapore</p>
                         <span class="date">2023 – 2025</span>
                     </div>
-                     <!-- Card 2 -->
                     <div class="education-card" data-reveal="1">
                         <h3>Bachelor of Technology, ECE</h3>
                         <p class="institution">SRM Institute of Science and Technology</p>
                         <span class="date">2019 – 2023</span>
                     </div>
                 </div>
-                 <!-- Certifications Sub-section -->
                 <h3 class="subsection-title" data-reveal>Licenses & Certifications</h3>
                 <div class="logo-wall" data-reveal="1">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png" alt="Google Logo" title="Foundations of Project Management">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Coursera-Logo_600x600.svg/1200px-Coursera-Logo_600x600.svg.png" alt="Coursera Logo" title="Python for Data Science, AI & Development">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/EdX_logo.svg/1280px-EdX_logo.svg.png" alt="edX Logo" title="Building a RISC-V CPU Core">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google Logo" title="Foundations of Project Management">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/Coursera-Logo_600x600.svg" alt="Coursera Logo" title="Python for Data Science, AI & Development">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c8/EdX_logo.svg" alt="edX Logo" title="Building a RISC-V CPU Core">
                     <img src="https://images.crunchbase.com/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/v1458562369/p863gq9z0owgm7un2kni.png" alt="Internshala Logo" title="PCB Design">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ARM_logo.svg/1200px-ARM_logo.svg.png" alt="ARM Logo" title="Embedded Systems Essentials with Arm">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ARM_logo.svg" alt="ARM Logo" title="Embedded Systems Essentials with Arm">
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 5: SKILLS -->
+        <!-- Skills Section -->
         <section id="skills" class="full-height-section">
             <div class="content-wrapper">
                 <h2 class="section-title" data-reveal>Core Competencies</h2>
                 <div class="skills-container">
-                    <!-- Category 1 -->
                     <div class="skill-category" data-reveal>
                         <h4>Hardware Description Languages</h4>
                         <div class="skills-grid">
                             <div class="skill-card magnetic-link"><img src="https://www.vectorlogo.zone/logos/verilog/verilog-icon.svg" alt="Verilog"><span>Verilog</span></div>
                             <div class="skill-card magnetic-link"><img src="https://www.vectorlogo.zone/logos/systemverilog/systemverilog-icon.svg" alt="SystemVerilog"><span>SystemVerilog</span></div>
-                             <div class="skill-card magnetic-link"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/VHDL_logo.svg/1200px-VHDL_logo.svg.png" alt="VHDL Logo"><span>VHDL</span></div>
+                            <div class="skill-card magnetic-link"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d2/VHDL_logo.svg" alt="VHDL"><span>VHDL</span></div>
                         </div>
                     </div>
-                     <!-- Category 2 -->
                     <div class="skill-category" data-reveal="1">
                         <h4>EDA & Simulation Tools</h4>
                         <div class="skills-grid">
@@ -170,7 +174,6 @@
                             <div class="skill-card magnetic-link"><img src="https://www.plm.automation.siemens.com/media/global/en/questa-logo_tcm27-58079.png" alt="QuestaSim"><span>QuestaSim</span></div>
                         </div>
                     </div>
-                     <!-- Category 3 -->
                     <div class="skill-category" data-reveal="2">
                         <h4>Programming & Systems</h4>
                         <div class="skills-grid">
@@ -183,12 +186,11 @@
             </div>
         </section>
 
-        <!-- SECTION 6: PROJECTS -->
+        <!-- Projects Section -->
         <section id="projects" class="full-height-section">
             <div class="content-wrapper">
                 <h2 class="section-title" data-reveal>Featured Projects</h2>
                 <div class="projects-grid">
-                    <!-- Project 1 -->
                     <div class="project-card" data-reveal>
                         <div class="project-header">
                             <h3>FPGA Hardware Accelerator for MLP</h3>
@@ -197,7 +199,6 @@
                         <p class="project-desc">Accelerated MLP neural network inference on a Zynq-7000 FPGA, achieving significant performance gains over software via optimized hardware design and pipelining techniques[1].</p>
                         <a href="https://github.com/ESAnant" class="project-link magnetic-link" target="_blank">View on GitHub <i data-lucide="arrow-up-right"></i></a>
                     </div>
-                    <!-- Project 2 -->
                     <div class="project-card" data-reveal="1">
                         <div class="project-header">
                             <h3>VLSI Interconnect Modelling</h3>
@@ -206,7 +207,6 @@
                         <p class="project-desc">Modeled and simulated interconnects for a multi-core processor at 45nm, optimizing for the energy-delay product to enhance system efficiency and signal integrity[1].</p>
                         <a href="https://github.com/ESAnant" class="project-link magnetic-link" target="_blank">View on GitHub <i data-lucide="arrow-up-right"></i></a>
                     </div>
-                     <!-- Project 3 -->
                     <div class="project-card" data-reveal="2">
                         <div class="project-header">
                             <h3>In-Memory Compute Circuit Design</h3>
@@ -219,7 +219,7 @@
             </div>
         </section>
 
-        <!-- SECTION 7: CONTACT -->
+        <!-- Contact Section -->
         <section id="contact" class="full-height-section">
             <div class="content-wrapper">
                 <h2 class="section-title" data-reveal>Let's Connect</h2>
@@ -243,8 +243,7 @@
 
     </main>
 
-    <!-- Main custom script file -->
+    <!-- Main script -->
     <script src="js/script.js"></script>
-
 </body>
 </html>
