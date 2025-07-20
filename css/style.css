@@ -1,13 +1,13 @@
 /*------------------------------------------------------------------
-[Master Stylesheet V10 - The Polished Blueprint]
+[Master Stylesheet V11 - The Definitive Edition]
 
-Project:    The Ultimate Interactive Portfolio (Definitive Edition)
-Author:     Your Name (as Elite Web Developer & Creative Director)
-Version:    10.0
+Project:    The Ultimate Interactive Portfolio
+Author:     AI Assistant for Edidi Sai Anant
+Version:    11.0
 -------------------------------------------------------------------*/
 
 :root {
-    --background-color: #020617; /* Deep, dark navy */
+    --background-color: #0A0F1A; /* Very dark, soft navy */
     --primary-text-color: #c7d2fe; /* Soft indigo-white */
     --accent-color: #64FFDA; /* Electric Cyan */
     --accent-color-glow: rgba(100, 255, 218, 0.1);
@@ -32,63 +32,60 @@ html::-webkit-scrollbar { display: none; }
 
 body {
     font-family: var(--font-family-main);
-    background-color: var(--background-color);
+    background: linear-gradient(120deg, #181c25 0%, #23293d 100%);
     color: var(--primary-text-color);
     overflow: hidden;
     cursor: none;
     line-height: 1.7;
 }
 
-/* THEMATIC SCHEMATIC BACKGROUND */
+/* THEMATIC SUBTLE BACKGROUND */
 #blueprint-background {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-image:
-        linear-gradient(var(--border-color) 1px, transparent 1px),
-        linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
-    background-size: 50px 50px;
-    opacity: 0.1;
-    animation: pan-grid 60s linear infinite;
-    z-index: -1;
+    position: fixed; inset: 0;
+    pointer-events: none; z-index: -1;
+    background: url('data:image/svg+xml;utf8,<svg width="64" height="64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="1.5" fill="%2364FFDA" fill-opacity="0.07"/></svg>');
+    opacity: 0.14;
+    animation: bg-pan 80s linear infinite;
 }
-@keyframes pan-grid {
+@keyframes bg-pan {
     from { background-position: 0 0; }
-    to { background-position: 50px 50px; }
+    to { background-position: 128px 64px; }
 }
 
-/* LOADER - CHARGE & DISCHARGE */
+
+/* LOADER - ELECTRIC BALL */
 #loader {
     position: fixed; inset: 0;
-    background: var(--background-color);
+    background: #151924;
     display: flex; flex-direction: column;
-    justify-content: center; align-items: center;
-    z-index: 10000;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
-    transition-delay: 2.5s;
+    align-items: center; justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.6s 2.1s, visibility 0.6s 2.1s;
 }
 #loader.hidden { opacity: 0; visibility: hidden; }
 
-.charge-sphere {
-    width: 20px; height: 20px;
-    background: var(--accent-color);
+.electric-ball {
+    width: 48px; height: 48px;
+    background: radial-gradient(circle at 60% 40%, #64FFDA 60%, #161F32 100%);
     border-radius: 50%;
-    box-shadow: 0 0 10px var(--accent-color), 0 0 20px var(--accent-color);
-    animation: pulse-charge 2s ease-in-out forwards, discharge 0.5s 2s ease-in forwards;
+    box-shadow: 0 0 32px 12px rgba(100,255,218,0.3), 0 0 64px 6px #57fff1;
+    position: relative;
+    animation: charge 1.6s cubic-bezier(.6,0,.4,1) 0.4s both, discharge 0.5s 2s both;
 }
-@keyframes pulse-charge {
-    0% { transform: scale(1); box-shadow: 0 0 10px var(--accent-color); }
-    50% { transform: scale(3); box-shadow: 0 0 40px #fff, 0 0 60px var(--accent-color); }
-    100% { transform: scale(2.5); box-shadow: 0 0 30px #fff, 0 0 50px var(--accent-color); }
+@keyframes charge {
+    0%   { box-shadow: 0 0 4px 2px #42c9a9, 0 0 0 0 #1b232e;}
+    80%  { box-shadow: 0 0 40px 30px #64FFDA, 0 0 80px 20px #44dfff;}
+    100% { box-shadow: 0 0 64px 16px #64FFDA, 0 0 80px 24px #ffffff;}
 }
 @keyframes discharge {
-    to { transform: scale(0); opacity: 0; }
+    from { transform: scale(1); opacity: 1; }
+    to   { transform: scale(7.5); opacity: 0; }
 }
 .loader-text {
-    font-family: var(--font-family-mono);
-    color: var(--accent-color);
-    margin-top: 30px;
+    margin-top: 32px; font-family: 'Fira Code', monospace;
+    color: #64FFDA; font-size: 1.1rem; letter-spacing: 2px;
     opacity: 0;
-    animation: fade-in-text 1s ease forwards;
+    animation: fade-in-text 0.8s 1.6s forwards;
 }
 @keyframes fade-in-text { to { opacity: 1; } }
 
@@ -99,7 +96,7 @@ body {
     border-radius: 50%;
     border: 1px solid var(--accent-color);
     pointer-events: none;
-    z-index: 9999;
+    z-index: 9998;
     will-change: transform;
     transition: transform 0.15s ease-out, background-color 0.2s ease;
 }
