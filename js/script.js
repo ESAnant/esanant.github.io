@@ -1,110 +1,113 @@
+/*------------------------------------------------------------------
+[Master Script File V4 - Polished & Performant]
+
+Project:    The Ultimate Interactive Portfolio (Final Edition)
+Author:     Your Name (as Elite Web Developer & Creative Director)
+Version:    4.0
+-------------------------------------------------------------------*/
+
 'use strict';
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- Initialization ---
+    // --- 1. INITIALIZATION & SETUP ---
     const mainContainer = document.getElementById('main-container');
-    lucide.createIcons();
+    lucide.createIcons(); // Initialize Lucide Icons library
 
-    // --- Loader ---
+    // --- 2. THEMATIC LOADER ---
     const loader = document.getElementById('loader');
     window.addEventListener('load', () => {
-        setTimeout(() => loader.classList.add('hidden'), 500);
+        setTimeout(() => {
+            loader.classList.add('hidden');
+        }, 500); // Small delay to prevent visual flicker
     });
 
-    // --- SMOOTH, RESPONSIVE MAGNETIC CURSOR ---
-    const cursorRing = document.querySelector('.cursor-ring');
+    // --- 3. HIGH-PERFORMANCE MAGNETIC CURSOR ---
     const cursorDot = document.querySelector('.cursor-dot');
-    const magneticElements = document.querySelectorAll('.magnetic-link, .skill-card, .project-card, .cta-button, .contact-icon, .nav-link');
-    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0, dotX = 0, dotY = 0;
+    const cursorRing = document.querySelector('.cursor-ring');
+    const magneticElements = document.querySelectorAll('.magnetic-link');
 
-    const isTouch = window.matchMedia("(pointer: coarse)").matches;
+    // Check for touch device to disable custom cursor for better native UX
+    if (!window.matchMedia("(pointer: coarse)").matches) {
+        let mouseX = 0, mouseY = 0;
+        let ringX = 0, ringY = 0;
+        let dotX = 0, dotY = 0;
 
-    if (!isTouch) {
-        window.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
+        window.addEventListener('mousemove', e => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
 
-        // Track last hovered magnetic element for magnetism
-        let lastMagnet = null;
-
-        const updateCursor = () => {
-            // Default: Cursor follows the mouse
-            let magnetX = mouseX, magnetY = mouseY;
-
-            // Check magnetism
-            if (lastMagnet) {
-                const rect = lastMagnet.getBoundingClientRect();
-                const elX = rect.left + rect.width / 2;
-                const elY = rect.top + rect.height / 2;
-                const distance = Math.hypot(mouseX - elX, mouseY - elY);
-                if (distance < 120) {
-                    // Stronger magnetism as you get closer
-                    magnetX = elX + (mouseX - elX) * 0.2;
-                    magnetY = elY + (mouseY - elY) * 0.2;
-                    lastMagnet.classList.add('magnet-active');
-                    cursorRing.classList.add('hovered');
-                } else {
-                    lastMagnet.classList.remove('magnet-active');
-                    cursorRing.classList.remove('hovered');
-                    lastMagnet = null;
-                }
-            }
-            ringX += (magnetX - ringX - 24) * 0.18;
-            ringY += (magnetY - ringY - 24) * 0.18;
-            dotX += (mouseX - dotX - 6) * 0.3;
-            dotY += (mouseY - dotY - 6) * 0.3;
+        // The core animation loop for the cursor
+        const followCursor = () => {
+            // Linear interpolation (lerp) for a smooth, "floaty" effect
+            const speed = 0.1;
+            ringX += (mouseX - ringX - 22) * speed; // Center the ring
+            ringY += (mouseY - ringY - 22) * speed;
+            dotX += (mouseX - dotX - 4) * (speed * 2); // Dot moves faster
+            dotY += (mouseY - dotY - 4) * (speed * 2);
 
             cursorRing.style.transform = `translate(${ringX}px, ${ringY}px)`;
             cursorDot.style.transform = `translate(${dotX}px, ${dotY}px)`;
 
-            requestAnimationFrame(updateCursor);
+            requestAnimationFrame(followCursor);
         };
-        updateCursor();
+        followCursor();
 
-        // Attach new magnetic behaviors
+        // Magnetic effect logic
         magneticElements.forEach(el => {
-            el.addEventListener('mouseenter', () => { lastMagnet = el; });
-            el.addEventListener('mouseleave', () => { 
-                if (lastMagnet) lastMagnet.classList.remove('magnet-active'); 
-                cursorRing.classList.remove('hovered'); 
-                lastMagnet = null; 
+            el.addEventListener('mouseenter', () => {
+                cursorRing.classList.add('hovered');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursorRing.classList.remove('hovered');
             });
         });
-
     } else {
+        // On touch devices, revert to the default system cursor
         document.body.style.cursor = 'auto';
-        cursorRing.style.display = 'none';
         cursorDot.style.display = 'none';
+        cursorRing.style.display = 'none';
     }
 
-    // --- Navigation Highlighting ---
+    // --- 4. NAVIGATION & ACTIVE LINK HIGHLIGHTING ---
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.main-nav .nav-link');
+
     const navObserver = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const sectionId = entry.target.getAttribute('id');
-                navLinks.forEach(link =>
-                    link.classList.toggle('active', link.getAttribute('href') === `#${sectionId}`)
-                );
+                navLinks.forEach(link => {
+                    // Use toggle for cleaner and more efficient class management
+                    link.classList.toggle('active', link.getAttribute('href') === `#${sectionId}`);
+                });
             }
         });
-    }, { root: mainContainer, threshold: 0.5 });
+    }, { root: mainContainer, threshold: 0.5 }); // 50% of a section must be visible
+
     sections.forEach(section => navObserver.observe(section));
 
-    // --- Scroll-triggered Reveal Animations ---
+    // --- 5. SCROLL-TRIGGERED REVEAL ANIMATIONS ---
     const revealElements = document.querySelectorAll('[data-reveal]');
+
     const revealObserver = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const delay = parseInt(entry.target.dataset.reveal) * 110 || 0;
-                setTimeout(() => entry.target.classList.add('revealed'), delay);
+                // Stagger animations based on the data-reveal attribute value (e.g., data-reveal="1")
+                const delay = parseInt(entry.target.dataset.reveal) * 100 || 0;
+                setTimeout(() => {
+                    entry.target.classList.add('revealed');
+                }, delay);
+                // Performance boost: stop observing the element once it has been revealed
                 revealObserver.unobserve(entry.target);
             }
         });
-    }, { root: mainContainer, rootMargin: '0px 0px -10% 0px' });
+    }, { root: mainContainer, rootMargin: '0px 0px -10% 0px' }); // Trigger animation when element is 10% from the bottom
+
     revealElements.forEach(el => revealObserver.observe(el));
 
-    // --- Footer Year ---
+    // --- 6. FOOTER - DYNAMIC YEAR ---
     const yearSpan = document.getElementById('current-year');
     if (yearSpan) {
         yearSpan.textContent = new Date().getFullYear();
