@@ -1,18 +1,18 @@
 /*------------------------------------------------------------------
-[Master Stylesheet V9 - The Copper-Core]
+[Master Stylesheet V10 - The Polished Blueprint]
 
 Project:    The Ultimate Interactive Portfolio (Definitive Edition)
 Author:     Your Name (as Elite Web Developer & Creative Director)
-Version:    9.0
+Version:    10.0
 -------------------------------------------------------------------*/
 
 :root {
     --background-color: #020617; /* Deep, dark navy */
     --primary-text-color: #c7d2fe; /* Soft indigo-white */
-    --accent-color: #B87333; /* Rich Copper */
-    --accent-color-glow: rgba(184, 115, 51, 0.2);
+    --accent-color: #64FFDA; /* Electric Cyan */
+    --accent-color-glow: rgba(100, 255, 218, 0.1);
     --secondary-bg-color: #0f172a; /* Slate blue for cards */
-    --border-color: rgba(184, 115, 51, 0.2);
+    --border-color: rgba(100, 255, 218, 0.2);
     --shadow-color: rgba(0, 0, 0, 0.5);
 
     --font-family-main: 'Exo 2', sans-serif;
@@ -40,14 +40,14 @@ body {
 }
 
 /* THEMATIC SCHEMATIC BACKGROUND */
-#copper-core-background {
+#blueprint-background {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
     background-image:
         linear-gradient(var(--border-color) 1px, transparent 1px),
         linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
     background-size: 50px 50px;
-    opacity: 0.3;
+    opacity: 0.1;
     animation: pan-grid 60s linear infinite;
     z-index: -1;
 }
@@ -56,7 +56,7 @@ body {
     to { background-position: 50px 50px; }
 }
 
-/* LOADER - CHARGE & VAPORIZE */
+/* LOADER - CHARGE & DISCHARGE */
 #loader {
     position: fixed; inset: 0;
     background: var(--background-color);
@@ -64,7 +64,7 @@ body {
     justify-content: center; align-items: center;
     z-index: 10000;
     transition: opacity 0.5s ease, visibility 0.5s ease;
-    transition-delay: 2.5s; /* Total animation time before fade */
+    transition-delay: 2.5s;
 }
 #loader.hidden { opacity: 0; visibility: hidden; }
 
@@ -73,15 +73,15 @@ body {
     background: var(--accent-color);
     border-radius: 50%;
     box-shadow: 0 0 10px var(--accent-color), 0 0 20px var(--accent-color);
-    animation: pulse-charge 2s ease-in-out forwards, vaporize 0.5s 2s ease-in forwards;
+    animation: pulse-charge 2s ease-in-out forwards, discharge 0.5s 2s ease-in forwards;
 }
 @keyframes pulse-charge {
     0% { transform: scale(1); box-shadow: 0 0 10px var(--accent-color); }
-    50% { transform: scale(2.5); box-shadow: 0 0 30px #fff, 0 0 50px var(--accent-color); }
-    100% { transform: scale(2); box-shadow: 0 0 25px #fff, 0 0 40px var(--accent-color); }
+    50% { transform: scale(3); box-shadow: 0 0 40px #fff, 0 0 60px var(--accent-color); }
+    100% { transform: scale(2.5); box-shadow: 0 0 30px #fff, 0 0 50px var(--accent-color); }
 }
-@keyframes vaporize {
-    to { transform: scale(200); opacity: 0; }
+@keyframes discharge {
+    to { transform: scale(0); opacity: 0; }
 }
 .loader-text {
     font-family: var(--font-family-mono);
@@ -101,11 +101,11 @@ body {
     pointer-events: none;
     z-index: 9999;
     will-change: transform;
-    mix-blend-mode: difference;
-    transition: transform 0.2s ease;
+    transition: transform 0.15s ease-out, background-color 0.2s ease;
 }
 .cursor.hovered {
     transform: scale(1.4);
+    background-color: var(--accent-color-glow);
 }
 
 /* HEADER */
@@ -251,13 +251,17 @@ body {
 .expand-btn i { transition: transform 0.4s ease; }
 .project-card.open .expand-btn i { transform: rotate(45deg); }
 .project-details {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                padding-top 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
-.project-card.open .project-details { max-height: 300px; padding-top: 1rem; }
-.project-details p { font-size: 1rem; }
+.project-card.open .project-details {
+    grid-template-rows: 1fr;
+}
+.project-details > div {
+    overflow: hidden;
+}
+.project-details p { padding-top: 1rem; font-size: 1rem; }
 .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
 .project-tags span { background: var(--accent-color-glow); color: var(--accent-color); padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; }
 
