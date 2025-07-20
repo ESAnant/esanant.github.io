@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------
-[Master Stylesheet V10 - The Polished Blueprint]
+[Master JavaScript V10 - The Polished Blueprint]
 
 Project:    The Ultimate Interactive Portfolio (Definitive Edition)
 Author:     Your Name (as Elite Web Developer & Creative Director)
@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 2. THEMATIC LOADER ---
     const loader = document.getElementById('loader');
-    // The loader's visibility is controlled by CSS animations and a total delay.
     // This timeout matches the CSS transition-delay to hide the element after animations finish.
     setTimeout(() => {
         loader.classList.add('hidden');
@@ -62,10 +61,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 4. INDIVIDUAL EXPANDABLE PROJECT CARDS ---
     const projectCards = document.querySelectorAll('.project-card');
     projectCards.forEach(card => {
-        const expandBtn = card.querySelector('.expand-btn');
-        if (expandBtn) {
-            expandBtn.addEventListener('click', (e) => {
-                e.stopPropagation(); // Prevents card clicks from bubbling up
+        const header = card.querySelector('.project-header');
+        if (header) {
+            header.addEventListener('click', () => {
                 card.classList.toggle('open');
             });
         }
