@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edidi Sai Anant | The Genesis of an Engineer</title>
+    <title>Edidi Sai Anant | Digital Architect</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
@@ -13,161 +13,164 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <!-- DevIcons for Tech Logos -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
-
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
-    <!-- 1. The "Spark" Loading Animation -->
+    <!-- 1. "Vortex" Loading Animation -->
     <div id="loader">
-        <canvas id="spark-canvas"></canvas>
-        <div class="loader-text-sequence">
-            <span data-text="BOOTING...">BOOTING...</span>
-            <span data-text="COMPILING CORE...">COMPILING CORE...</span>
-            <span data-text="RENDERING...">RENDERING...</span>
-        </div>
+        <canvas id="vortex-canvas"></canvas>
     </div>
 
-    <!-- 2. Dynamic 3D Particle Background -->
-    <div id="particle-field"></div>
+    <!-- 2. Interactive Particle Background -->
+    <div id="interactive-background"></div>
 
-    <!-- 3. Magnetic Custom Cursor -->
-    <div class="cursor">
-        <div class="cursor-dot"></div>
-    </div>
-
-    <!-- 4. Glassmorphism Header with Magnetic Links -->
+    <!-- 3. Header -->
     <header class="header">
-        <div class="logo magnetic" data-strength="50">
+        <div class="logo">
             <a href="#hero">ESA</a>
         </div>
         <nav class="main-nav">
             <ul>
-                <li><a href="#about" class="nav-link magnetic" data-strength="25">About</a></li>
-                <li><a href="#experience" class="nav-link magnetic" data-strength="25">Experience</a></li>
-                <li><a href="#projects" class="nav-link magnetic" data-strength="25">Projects</a></li>
-                <li><a href="#patents" class="nav-link magnetic" data-strength="25">Patents</a></li>
-                <li><a href="#contact" class="nav-link magnetic" data-strength="25">Contact</a></li>
+                <li><a href="#journey" class="nav-link">Journey</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#patents" class="nav-link">Patents</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- 5. Main Content Wrapper -->
+    <!-- 4. Main Content Wrapper -->
     <main id="main-content">
 
         <!-- HERO SECTION -->
         <section id="hero" class="content-section">
             <div class="hero-content">
-                <h1 class="main-heading" data-reveal>Edidi Sai Anant</h1>
-                <p class="subtitle" data-reveal="1">Semiconductor & System Design Engineer</p>
-                <p class="tagline" data-reveal="2">Building the silicon foundation for our digital future.</p>
-                <a href="Edidi_Sai_Anant_Resume.pdf" class="cta-button magnetic" data-strength="30" target="_blank" rel="noopener noreferrer" data-reveal="3">
-                    <span>View Resume</span><i data-lucide="arrow-right"></i>
-                </a>
-            </div>
-        </section>
-
-        <!-- ABOUT SECTION -->
-        <section id="about" class="content-section">
-            <h2 class="section-title" data-reveal><i data-lucide="user-circle-2"></i>About</h2>
-            <p class="section-intro" data-reveal="1">
-                A Master's candidate in Electrical Engineering at the National University of Singapore, specializing in VLSI design, nanoelectronics, and embedded systems. My goal is to translate complex engineering challenges into efficient, powerful hardware solutions within the semiconductor industry.
-            </p>
-        </section>
-
-        <!-- EXPERIENCE SECTION -->
-        <section id="experience" class="content-section">
-            <h2 class="section-title" data-reveal><i data-lucide="briefcase"></i>Experience</h2>
-            <div class="timeline">
-                <!-- Timeline Item 1 -->
-                <div class="timeline-item" data-reveal>
-                    <div class="timeline-meta">
-                        <p class="company">National University of Singapore</p>
-                        <span class="date">Aug 2023 – Present</span>
-                    </div>
-                    <div class="timeline-content">
-                        <h3 class="job-title">Graduate Assistant</h3>
-                        <p>Mentored students in Microcontroller Programming and Computer Architecture labs, graded assignments, and collaborated with faculty to enhance lab materials.</p>
-                    </div>
-                </div>
-                <!-- Timeline Item 2 -->
-                <div class="timeline-item" data-reveal="1">
-                    <div class="timeline-meta">
-                        <p class="company">Maven Silicon</p>
-                        <span class="date">Dec 2022 – Jan 2023</span>
-                    </div>
-                    <div class="timeline-content">
-                        <h3 class="job-title">Project Intern</h3>
-                        <p>Designed and synthesized a modular AHB to APB bridge using Verilog, from RTL coding to gate-level schematics, ensuring seamless bus protocol communication.</p>
-                    </div>
-                </div>
-                <!-- Timeline Item 3 -->
-                <div class="timeline-item" data-reveal="2">
-                    <div class="timeline-meta">
-                        <p class="company">Sandeepani School of Embedded System Design</p>
-                        <span class="date">Jun 2022 – Jul 2022</span>
-                    </div>
-                    <div class="timeline-content">
-                        <h3 class="job-title">Intern</h3>
-                        <p>Verified a UART protocol with Verilog and conducted rigorous functional coverage analysis in QuestaSim to guarantee design integrity and reliability.</p>
-                    </div>
+                <h1 class="main-heading">Digital Architect</h1>
+                <p class="subtitle">Crafting the future of semiconductors and embedded systems, one circuit at a time.</p>
+                <div class="hero-cta">
+                    <a href="#projects" class="cta-button"><span>View My Work</span><i data-lucide="arrow-down-circle"></i></a>
                 </div>
             </div>
         </section>
 
-        <!-- PROJECTS "FOCUS VIEW" SECTION -->
+        <!-- JOURNEY SECTION (Horizontal Scroll) -->
+        <section id="journey" class="content-section">
+            <div class="journey-wrapper">
+                <h2 class="section-title">My Journey</h2>
+                <div class="timeline-container">
+                    <div class="timeline">
+                        <!-- Timeline Item 1: Education Start -->
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h3>Bachelor of Technology, ECE</h3>
+                                <p>SRM Institute of Science and Technology</p>
+                                <span class="date">2019 – 2023</span>
+                            </div>
+                        </div>
+                        <!-- Timeline Item 2: Internship -->
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h3>Intern, Embedded System Design</h3>
+                                <p>Sandeepani School</p>
+                                <span class="date">Jun 2022 – Jul 2022</span>
+                            </div>
+                        </div>
+                        <!-- Timeline Item 3: Internship -->
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h3>Project Intern, VLSI Design</h3>
+                                <p>Maven Silicon</p>
+                                <span class="date">Dec 2022 – Jan 2023</span>
+                            </div>
+                        </div>
+                        <!-- Timeline Item 4: Master's Degree -->
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h3>Master of Science, Electrical Engineering</h3>
+                                <p>National University of Singapore</p>
+                                <span class="date">2023 – 2025</span>
+                            </div>
+                        </div>
+                         <!-- Timeline Item 5: Graduate Assistant -->
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h3>Graduate Assistant</h3>
+                                <p>National University of Singapore</p>
+                                <span class="date">2023 – Present</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION (Expandable Cards) -->
         <section id="projects" class="content-section">
-            <h2 class="section-title" data-reveal><i data-lucide="cpu"></i>Projects</h2>
-            <div class="projects-container">
-                <!-- This will be populated by JS -->
-                <div class="project-grid">
-                    <!-- Cards will be injected here by script.js -->
-                </div>
-                <!-- This is the detailed view panel -->
-                <div class="project-focus-view">
-                    <div class="focus-view-content">
-                        <!-- Project details will be loaded here by script.js -->
-                    </div>
-                    <button class="close-focus-view magnetic" data-strength="40" aria-label="Close project view"><i data-lucide="x"></i></button>
-                </div>
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="project-grid">
+                <!-- Project cards will be injected here by script.js -->
             </div>
         </section>
 
         <!-- PATENTS & PUBLICATIONS SECTION -->
         <section id="patents" class="content-section">
-            <h2 class="section-title" data-reveal><i data-lucide="award"></i>Patents & Publications</h2>
-            <div class="publication-list">
-                <div class="publication-item" data-reveal>
+            <h2 class="section-title">Patents & Publications</h2>
+            <div class="publication-grid">
+                <!-- Patent 1 -->
+                <div class="publication-card">
+                    <div class="publication-type">Patent</div>
+                    <h3 class="publication-title">A System for Controlling an Autonomous Vehicle and a Method Thereof</h3>
+                    <p class="publication-details">Issued: Mar 28, 2025</p>
+                    <p class="publication-desc">Focuses on an intelligent system for autonomous vehicles that detects driver medical distress and responds automatically to ensure safety.</p>
+                </div>
+                <!-- Publication 1 -->
+                <div class="publication-card">
                     <div class="publication-type">IEEE Publication</div>
                     <h3 class="publication-title">Improving Data Integrity with Reversible Logic-based Error Detection and Correction Module on AHB-APB Bridge</h3>
-                    <p class="publication-venue">Published in May 2023, this paper details a novel architecture for enhancing data reliability in system-on-chip interconnects.</p>
+                    <p class="publication-details">Published: May 2023</p>
+                     <p class="publication-desc">Details a novel architecture for enhancing data reliability in system-on-chip interconnects using reversible logic.</p>
+                </div>
+                 <!-- Publication 2 -->
+                <div class="publication-card">
+                    <div class="publication-type">Journal Publication</div>
+                    <h3 class="publication-title">A Survey on Affordable Internet of Things (IoT) Enabled Healthcare Systems</h3>
+                    <p class="publication-details">Published: Jul 2022</p>
+                     <p class="publication-desc">A comprehensive review of cost-effective IoT solutions designed to make modern healthcare more accessible.</p>
                 </div>
             </div>
         </section>
 
         <!-- CONTACT SECTION -->
         <section id="contact" class="content-section">
-            <h2 class="section-title" data-reveal>Let's Connect</h2>
-            <p class="contact-tagline" data-reveal="1">I am actively seeking opportunities where I can contribute to meaningful advancements in technology. If you're building something amazing, I'd love to be a part of it.</p>
-            <div class="contact-links" data-reveal="2">
-                <a href="https://www.linkedin.com/in/sai-anant/" target="_blank" class="contact-link magnetic" data-strength="40" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
-                <a href="https://github.com/ESAnant" target="_blank" class="contact-link magnetic" data-strength="40" aria-label="GitHub"><i data-lucide="github"></i></a>
-                <a href="mailto:esanant@u.nus.edu" class="contact-link magnetic" data-strength="40" aria-label="Email"><i data-lucide="mail"></i></a>
+            <h2 class="section-title">Let's Build Together</h2>
+            <p class="contact-tagline">I'm passionate about leveraging my skills in VLSI and embedded systems to solve complex challenges. If you're working on the future of hardware, I'd love to connect.</p>
+            <div class="contact-links">
+                <a href="https://www.linkedin.com/in/sai-anant/" target="_blank" class="contact-link" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+                <a href="https://github.com/ESAnant" target="_blank" class="contact-link" aria-label="GitHub"><i data-lucide="github"></i></a>
+                <a href="mailto:esanant@u.nus.edu" class="contact-link" aria-label="Email"><i data-lucide="mail"></i></a>
             </div>
+            <a href="Edidi_Sai_Anant_Resume.pdf" class="resume-button" target="_blank" rel="noopener noreferrer">View Full Resume</a>
         </section>
 
     </main>
 
     <!-- Footer -->
     <footer class="site-footer">
-        <p>Designed & Engineered by Edidi Sai Anant &copy; <span id="current-year">2025</span></p>
+        <p>Engineered with Precision &copy; <span id="current-year"></span> Edidi Sai Anant</p>
     </footer>
 
-    <!-- JavaScript -->
+    <!-- GSAP for advanced animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Main JavaScript File -->
     <script src="js/script.js"></script>
 
 </body>
