@@ -179,7 +179,7 @@ body {
     overflow: hidden;
     transition: color var(--transition-fast), transform var(--transition-fast);
 }
-.cta-button:hover { color: var(--background-color); }
+.cta-button:hover { color: var(--background-color); transform: translateY(-3px); }
 .cta-button::before {
     content: '';
     position: absolute; top: 0; left: 0;
@@ -197,6 +197,44 @@ body {
 .about-content { max-width: 800px; margin: auto; }
 .bio { font-size: 1.3rem; line-height: 1.8; }
 
+/* EDUCATION SECTION */
+.education-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem; }
+.education-card {
+    background: var(--secondary-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 2.5rem;
+    backdrop-filter: blur(10px);
+    text-align: center;
+}
+.education-card h3 { font-size: 1.4rem; color: #fff; margin-bottom: 0.5rem; }
+.education-card .institution { color: var(--accent-color); font-weight: 500; margin-bottom: 0.5rem;}
+.education-card .date { font-family: var(--font-family-mono); opacity: 0.7; }
+
+/* CERTIFICATIONS SECTION */
+.certifications-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    max-width: 900px;
+    margin: auto;
+}
+.certification-card {
+    background: var(--secondary-bg-color);
+    border: 1px solid var(--border-color);
+    color: var(--primary-text-color);
+    padding: 0.75rem 1.5rem;
+    border-radius: 20px;
+    font-family: var(--font-family-mono);
+    font-size: 0.9rem;
+    transition: color var(--transition-fast), background-color var(--transition-fast);
+}
+.certification-card:hover {
+    background-color: var(--accent-color-glow);
+    color: var(--accent-color);
+}
+
 /* EXPERIENCE SECTION */
 .experience-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
 .experience-card {
@@ -212,20 +250,6 @@ body {
 .experience-header p { color: var(--accent-color); }
 .experience-card .date { font-family: var(--font-family-mono); opacity: 0.7; margin: 0.5rem 0; display: block; }
 .experience-card .desc { font-size: 1rem; }
-
-/* EDUCATION SECTION */
-.education-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-.education-card {
-    background: var(--secondary-bg-color);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 2.5rem;
-    backdrop-filter: blur(10px);
-    text-align: center;
-}
-.education-card h3 { font-size: 1.4rem; color: #fff; }
-.education-card .institution { color: var(--accent-color); font-weight: 500; }
-.education-card .date { font-family: var(--font-family-mono); opacity: 0.7; }
 
 /* PROJECTS SECTION */
 .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 1.5rem; }
@@ -246,7 +270,7 @@ body {
 .project-header h4 { font-size: 1.1rem; color: #e2e8f0; font-weight: 500; }
 .expand-btn {
     background: none; border: none;
-    color: var(--accent-color); padding: 0.5rem;
+    color: var(--accent-color); padding: 0.5rem; cursor: pointer;
 }
 .expand-btn i { transition: transform 0.4s ease; }
 .project-card.open .expand-btn i { transform: rotate(45deg); }
@@ -261,9 +285,9 @@ body {
 .project-details > div {
     overflow: hidden;
 }
-.project-details p { padding-top: 1rem; font-size: 1rem; }
+.project-details p { padding-top: 1rem; font-size: 1rem; line-height: 1.6; }
 .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
-.project-tags span { background: var(--accent-color-glow); color: var(--accent-color); padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; }
+.project-tags span { background: var(--accent-color-glow); color: var(--accent-color); padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-family: var(--font-family-mono); }
 
 /* CONTACT SECTION */
 #contact .content-wrapper { text-align: center; }
@@ -273,8 +297,8 @@ body {
 .contact-icon:hover { color: var(--accent-color); transform: translateY(-5px); }
 .contact-icon i { width: 32px; height: 32px; }
 .resume-link-wrapper { margin-top: 3rem; }
-.resume-link { color: var(--accent-color); text-decoration: none; font-size: 1.1rem; }
-.resume-link:hover { text-decoration: underline; }
+.resume-link { color: var(--accent-color); text-decoration: none; font-size: 1.1rem; font-family: var(--font-family-mono); border: 1px solid var(--accent-color); padding: 0.5rem 1rem;}
+.resume-link:hover { text-decoration: none; background-color: var(--accent-color-glow); }
 .site-footer { position: absolute; bottom: 2rem; width: 100%; text-align: center; font-size: 0.9rem; opacity: 0.6; }
 
 /* REVEAL ANIMATIONS */
@@ -289,9 +313,10 @@ body {
 @media (max-width: 768px) {
     body { cursor: auto; }
     .cursor { display: none; }
-    .header { flex-direction: column; gap: 1rem; }
+    .header { flex-direction: column; gap: 1rem; padding: 1rem 5%; }
     #main-container { scroll-snap-type: none; }
     .full-height-section { height: auto; min-height: 100vh; padding: 8rem 5% 4rem; }
     .main-nav ul { gap: 1rem; flex-wrap: wrap; justify-content: center; }
     .education-grid, .projects-grid { grid-template-columns: 1fr; }
+    .section-title { font-size: 2.2rem; }
 }
