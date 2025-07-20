@@ -1,10 +1,9 @@
 /*------------------------------------------------------------------
-[Master Script File]
+[Master Script File V2]
 
-Project:    The Ultimate Interactive & Thematic Portfolio
+Project:    The Ultimate Interactive & Thematic Portfolio (Enhanced)
 Author:     Your Name (as Elite Web Developer & Creative Director)
-Version:    1.0
-
+Version:    2.0
 -------------------------------------------------------------------*/
 
 /*------------------------------------------------------------------
@@ -13,102 +12,97 @@ Version:    1.0
 1.  Strict Mode
 2.  DOM Content Loaded Wrapper
 3.  Loading Screen Logic
-4.  Custom Magnetic Cursor Logic
+4.  Custom Magnetic Cursor Logic (Refined)
 5.  Header & Navigation Logic
-6.  tsParticles Background Initialization
-7.  ScrollReveal Initialization
-8.  Project & Skill Card Interaction Logic
-9.  Footer Logic
+6.  Parallax Scroll Effect (NEW)
+7.  Project & Skill Card Interaction Logic
+8.  Footer Logic
 
 -------------------------------------------------------------------*/
 
 // 1. Strict Mode
-// Enforces stricter parsing and error handling in the code.
 'use strict';
-
 
 // 2. DOM Content Loaded Wrapper
 // Ensures the entire script runs only after the HTML document has been fully loaded and parsed.
 document.addEventListener('DOMContentLoaded', () => {
 
     // 3. Loading Screen Logic
-    // Hides the loading screen after the page's resources are fully loaded.
+    // Hides the loading screen after the page's main content is ready.
     const loader = document.getElementById('loader');
+    // Using a slight delay to ensure all initial animations settle.
     window.addEventListener('load', () => {
-        // Add a 'hidden' class to trigger the fade-out animation defined in CSS.
-        loader.classList.add('hidden');
+        setTimeout(() => {
+            loader.classList.add('hidden');
+        }, 500); // 500ms delay
     });
 
 
-    // 4. Custom Magnetic Cursor Logic
-    // Manages the behavior of the custom cursor.
-    const cursor = document.querySelector('.cursor');
+    // 4. Custom Magnetic Cursor Logic (Refined)
+    // Manages the custom cursor with a smoother animation loop.
     const cursorDot = document.querySelector('.cursor-dot');
     const cursorRing = document.querySelector('.cursor-ring');
     const magneticLinks = document.querySelectorAll('.magnetic-link');
+    const mainContainer = document.getElementById('main-container');
 
-    // Variables to store cursor positions
-    let cursorX = 0, cursorY = 0;
+    let mouseX = 0, mouseY = 0;
     let ringX = 0, ringY = 0;
+    let dotX = 0, dotY = 0;
 
-    // Hide the cursor if the user's device doesn't support hover (e.g., mobile).
+    // Hide cursor on touch devices
     if (window.matchMedia("(hover: none)").matches) {
-        cursor.style.display = 'none';
+        document.body.style.cursor = 'auto';
+        cursorDot.style.display = 'none';
+        cursorRing.style.display = 'none';
     }
 
-    // Update cursor position on mouse movement
     window.addEventListener('mousemove', (e) => {
-        cursorX = e.clientX;
-        cursorY = e.clientY;
+        mouseX = e.clientX;
+        mouseY = e.clientY;
     });
 
-    // Smoothly animate the cursor ring for the "delayed-follow" effect.
-    const followRing = () => {
-        // Using a simple easing (lerp) function for smooth movement.
-        const speed = 0.2;
-        ringX += (cursorX - ringX) * speed;
-        ringY += (cursorY - ringY) * speed;
-        
-        // Apply the transform to both the dot and the ring.
-        cursorDot.style.transform = `translate(${cursorX - 3}px, ${cursorY - 3}px)`;
-        cursor.style.transform = `translate(${ringX - 20}px, ${ringY - 20}px)`;
+    const followCursor = () => {
+        // Use linear interpolation (lerp) for a smoother, more organic follow effect.
+        const speed = 0.15;
+        ringX += (mouseX - ringX) * speed;
+        ringY += (mouseY - ringY) * speed;
+        dotX += (mouseX - dotX) * (speed * 1.5); // Dot moves slightly faster
+        dotY += (mouseY - dotY) * (speed * 1.5);
 
-        // Continuously call this function for a smooth animation.
-        requestAnimationFrame(followRing);
+        cursorRing.style.transform = `translate(${ringX - 20}px, ${ringY - 20}px)`;
+        cursorDot.style.transform = `translate(${dotX - 4}px, ${dotY - 4}px)`;
+
+        requestAnimationFrame(followCursor);
     };
-    followRing();
+    followCursor();
 
-    // Add magnetic effect to designated links.
     magneticLinks.forEach(link => {
         link.addEventListener('mouseenter', () => {
-            cursor.classList.add('hovered'); // Scale up the cursor ring.
+            cursorRing.style.transition = 'transform 0.2s, width 0.3s, height 0.3s, opacity 0.3s';
+            cursorRing.classList.add('hovered');
         });
         link.addEventListener('mouseleave', () => {
-            cursor.classList.remove('hovered'); // Return to normal size.
+            cursorRing.classList.remove('hovered');
         });
     });
 
 
     // 5. Header & Navigation Logic
-    // Handles active link highlighting based on the section in view.
+    // Highlights the active navigation link based on which section is visible.
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.main-nav .nav-link');
 
     const observerOptions = {
-        root: document.querySelector('#main-container'), // The scrollable container
+        root: mainContainer,
         rootMargin: '0px',
-        threshold: 0.5 // 50% of the section must be visible.
+        threshold: 0.5 // Section is considered active when 50% is visible
     };
 
-    const sectionObserver = new IntersectionObserver((entries, observer) => {
+    const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Remove 'active' class from all nav links.
                 navLinks.forEach(link => link.classList.remove('active'));
-                
-                // Get the ID of the visible section.
                 const sectionId = entry.target.getAttribute('id');
-                // Find the corresponding nav link and add the 'active' class.
                 const activeLink = document.querySelector(`.main-nav a[href="#${sectionId}"]`);
                 if (activeLink) {
                     activeLink.classList.add('active');
@@ -117,140 +111,56 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    // Observe each section.
     sections.forEach(section => {
         sectionObserver.observe(section);
     });
 
 
-    // 6. tsParticles Background Initialization
-    // Creates the animated particle background in the Home section.
-    if (document.getElementById('particles-js')) {
-        tsParticles.load("particles-js", {
-            background: {
-                color: {
-                    value: "transparent"
-                }
-            },
-            fpsLimit: 60,
-            interactivity: {
-                events: {
-                    onHover: {
-                        enable: true,
-                        mode: "repulse"
-                    },
-                    resize: true
-                },
-                modes: {
-                    repulse: {
-                        distance: 100,
-                        duration: 0.4
-                    }
-                }
-            },
-            particles: {
-                color: {
-                    value: "var(--accent-color)"
-                },
-                links: {
-                    color: "var(--accent-color)",
-                    distance: 150,
-                    enable: true,
-                    opacity: 0.2,
-                    width: 1
-                },
-                collisions: {
-                    enable: true
-                },
-                move: {
-                    direction: "none",
-                    enable: true,
-                    outModes: "out",
-                    random: false,
-                    speed: 1,
-                    straight: false
-                },
-                number: {
-                    density: {
-                        enable: true,
-                        area: 800
-                    },
-                    value: 80
-                },
-                opacity: {
-                    value: 0.2
-                },
-                shape: {
-                    type: "circle"
-                },
-                size: {
-                    value: { min: 1, max: 5 }
-                }
-            },
-            detectRetina: true
+    // 6. Parallax Scroll Effect (NEW)
+    // Creates a subtle 3D effect on the home section content during scroll.
+    const homeSection = document.getElementById('home');
+    const parallaxElements = homeSection.querySelectorAll('[data-speed]');
+
+    mainContainer.addEventListener('scroll', () => {
+        const scrollTop = mainContainer.scrollTop;
+        parallaxElements.forEach(el => {
+            const speed = parseFloat(el.getAttribute('data-speed'));
+            // Move the element vertically based on scroll position and its speed factor.
+            // The negative sign moves it upwards as you scroll down.
+            const movement = -(scrollTop * speed * 0.5);
+            el.style.transform = `translateY(${movement}px)`;
         });
-    }
-
-
-    // 7. ScrollReveal Initialization
-    // Animates elements as they enter the viewport.
-    const sr = ScrollReveal({
-        origin: 'bottom',
-        distance: '60px',
-        duration: 1500,
-        delay: 200,
-        // The container for scroll events is our main snap-scroll container.
-        container: document.getElementById('main-container'),
-        // Resetting animations on each reveal gives a continuous effect.
-        reset: false
     });
 
-    // Defining the reveal animations for different elements.
-    sr.reveal('.main-heading, .section-title');
-    sr.reveal('.subtitle', { delay: 400 });
-    sr.reveal('.tagline', { delay: 500 });
-    sr.reveal('.cta-button', { delay: 600 });
-    sr.reveal('.bio', { delay: 300 });
-    sr.reveal('.logo-wall .logos img', { interval: 100 });
-    sr.reveal('.timeline-item', { interval: 200, origin: 'left' });
-    sr.reveal('.skills-grid .skill-card', { interval: 100 });
-    sr.reveal('.projects-grid .project-card', { interval: 150 });
-    sr.reveal('.contact-message, .contact-links a', { interval: 150 });
 
-
-    // 8. Project & Skill Card Interaction Logic
+    // 7. Project & Skill Card Interaction Logic
     // Manages the expand/collapse functionality for project cards.
     const projectCards = document.querySelectorAll('.project-card');
     projectCards.forEach(card => {
-        card.addEventListener('click', () => {
-            // Check if the click target is not a link inside the card.
+        card.addEventListener('click', (event) => {
+            // Prevent toggling when a link inside the card is clicked.
             if (!event.target.closest('a')) {
-                // Toggle the 'expanded' class to trigger CSS transitions.
                 card.classList.toggle('expanded');
             }
         });
     });
 
-    // Manages the info reveal for skill cards.
+    // Manages the info popup for skill cards.
     const skillCards = document.querySelectorAll('.skill-card');
     skillCards.forEach(card => {
-        // Get the descriptive text from the data-attribute in the HTML.
         const skillInfo = card.dataset.skillInfo;
         if (skillInfo) {
             card.addEventListener('click', () => {
-                // Display the information in a simple alert box on click.
-                alert(skillInfo);
+                alert(skillInfo); // A simple alert is effective and avoids extra modal complexity.
             });
         }
     });
 
 
-    // 9. Footer Logic
-    // Automatically updates the copyright year in the footer.
+    // 8. Footer Logic
+    // Automatically updates the copyright year.
     const yearSpan = document.getElementById('current-year');
     if (yearSpan) {
         yearSpan.textContent = new Date().getFullYear();
     }
-
 });
-
