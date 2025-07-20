@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Edidi Sai Anant - Electrical Engineering Graduate specializing in Nanoelectronics, VLSI Design, and Embedded Systems">
-    <meta name="keywords" content="Electrical Engineering, Nanoelectronics, VLSI, Embedded Systems, Singapore, NUS">
+    <meta name="description" content="Edidi Sai Anant - MSc Electrical Engineering Graduate from NUS specializing in Nanoelectronics, VLSI Design, and Embedded Systems">
+    <meta name="keywords" content="Electrical Engineering, Nanoelectronics, VLSI, Embedded Systems, Singapore, NUS, FPGA, Digital Circuit Design">
     <meta name="author" content="Edidi Sai Anant">
     
     <title>Edidi Sai Anant | Electrical Engineering Graduate</title>
@@ -31,10 +31,12 @@
         <div class="cursor-inner"></div>
     </div>
 
-    <!-- Loading Screen -->
+    <!-- Loading Screen with Charge/Discharge Effect -->
     <div id="loading-screen">
         <div class="loader-container">
-            <div class="pulse-sphere"></div>
+            <div class="pulse-sphere">
+                <div class="sphere-inner"></div>
+            </div>
             <div class="loading-text">INITIALIZING...</div>
             <div class="loading-progress">
                 <div class="progress-bar"></div>
@@ -42,27 +44,27 @@
         </div>
     </div>
 
-    <!-- Animated Background -->
-    <div id="animated-background">
-        <canvas id="bg-canvas"></canvas>
+    <!-- Interactive Background -->
+    <div id="interactive-background">
+        <canvas id="particle-canvas"></canvas>
     </div>
 
     <!-- Navigation Header -->
     <header id="main-header" class="glassmorphism">
         <div class="header-content">
             <div class="logo">
-                <a href="#home">
+                <a href="#hero">
                     <span class="logo-icon">⚡</span>
                     <span class="logo-text">Edidi Sai Anant</span>
                 </a>
             </div>
             <nav class="main-navigation">
                 <ul class="nav-list">
-                    <li><a href="#home" class="nav-link" data-section="home">Home</a></li>
+                    <li><a href="#hero" class="nav-link active" data-section="hero">Home</a></li>
                     <li><a href="#about" class="nav-link" data-section="about">About</a></li>
-                    <li><a href="#education" class="nav-link" data-section="education">Education</a></li>
-                    <li><a href="#experience" class="nav-link" data-section="experience">Experience</a></li>
+                    <li><a href="#journey" class="nav-link" data-section="journey">Journey</a></li>
                     <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
+                    <li><a href="#publications" class="nav-link" data-section="publications">Research</a></li>
                     <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
                 </ul>
             </nav>
@@ -77,23 +79,23 @@
     <!-- Main Content -->
     <main id="main-content">
         
-        <!-- Home Section -->
-        <section id="home" class="section-container">
+        <!-- Hero Section -->
+        <section id="hero" class="content-section">
             <div class="hero-content">
-                <div class="hero-badge">
+                <div class="hero-badge reveal">
                     <i data-lucide="zap"></i>
-                    <span>Recent MSc Graduate</span>
+                    <span>MSc Graduate • NUS</span>
                 </div>
-                <h1 class="hero-title">
+                <h1 class="hero-title reveal">
                     <span class="title-line">Electrical Engineering</span>
                     <span class="title-line accent-text">Graduate</span>
                 </h1>
-                <p class="hero-subtitle">
-                    Specializing in <strong>Nanoelectronics</strong> with expertise in VLSI Design, 
-                    Embedded Systems, and Digital Circuit Architecture. Passionate about pushing 
-                    the boundaries of semiconductor technology.
+                <p class="hero-subtitle reveal">
+                    Specializing in <strong>Nanoelectronics</strong> and <strong>VLSI Design</strong> 
+                    with expertise in embedded systems, digital circuit architecture, and semiconductor technology. 
+                    Passionate about pushing the boundaries of next-generation computing.
                 </p>
-                <div class="hero-stats">
+                <div class="hero-stats reveal">
                     <div class="stat-item">
                         <i data-lucide="graduation-cap"></i>
                         <span>MSc from NUS</span>
@@ -103,58 +105,65 @@
                         <span>Nanoelectronics</span>
                     </div>
                     <div class="stat-item">
-                        <i data-lucide="code"></i>
+                        <i data-lucide="zap"></i>
                         <span>VLSI Design</span>
                     </div>
                 </div>
-                <div class="hero-cta">
-                    <a href="#about" class="cta-primary">
+                <div class="hero-cta reveal">
+                    <a href="#projects" class="cta-primary">
                         <span>Explore My Work</span>
                         <i data-lucide="arrow-down"></i>
                     </a>
                     <a href="#contact" class="cta-secondary">
-                        <i data-lucide="mail"></i>
-                        <span>Get In Touch</span>
+                        <i data-lucide="message-circle"></i>
+                        <span>Let's Connect</span>
                     </a>
                 </div>
             </div>
             <div class="hero-visual">
                 <div class="circuit-animation">
                     <svg viewBox="0 0 400 400" class="circuit-svg">
-                        <!-- Circuit paths will be animated -->
+                        <defs>
+                            <linearGradient id="circuitGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#00A9FF;stop-opacity:0.8" />
+                                <stop offset="100%" style="stop-color:#0EA5E9;stop-opacity:0.4" />
+                            </linearGradient>
+                        </defs>
                         <path d="M50,200 L150,200 L150,100 L250,100 L250,200 L350,200" class="circuit-path" />
                         <path d="M150,200 L150,300 L250,300 L250,200" class="circuit-path" />
-                        <circle cx="150" cy="200" r="4" class="circuit-node" />
-                        <circle cx="250" cy="200" r="4" class="circuit-node" />
-                        <circle cx="150" cy="100" r="3" class="circuit-component" />
-                        <circle cx="250" cy="100" r="3" class="circuit-component" />
-                        <circle cx="150" cy="300" r="3" class="circuit-component" />
-                        <circle cx="250" cy="300" r="3" class="circuit-component" />
+                        <circle cx="150" cy="200" r="6" class="circuit-node" />
+                        <circle cx="250" cy="200" r="6" class="circuit-node" />
+                        <rect x="145" y="95" width="10" height="10" class="circuit-component" />
+                        <rect x="245" y="95" width="10" height="10" class="circuit-component" />
+                        <rect x="145" y="295" width="10" height="10" class="circuit-component" />
+                        <rect x="245" y="295" width="10" height="10" class="circuit-component" />
                     </svg>
                 </div>
             </div>
         </section>
 
         <!-- About Section -->
-        <section id="about" class="section-container">
-            <div class="section-header">
+        <section id="about" class="content-section">
+            <div class="section-header reveal">
                 <h2 class="section-title">
                     <i data-lucide="user"></i>
                     About Me
                 </h2>
-                <p class="section-subtitle">Exploring the realms of Electrical Engineering with precision and innovation</p>
+                <p class="section-subtitle">Building the future of semiconductor technology</p>
             </div>
             <div class="about-content">
-                <div class="about-text">
+                <div class="about-text reveal">
                     <div class="about-intro">
                         <p class="lead-text">
-                            Recent MSc Electrical Engineering graduate from the <strong>National University of Singapore (NUS)</strong>, 
-                            with specialized focus on <strong>Nanoelectronics</strong> and a passion for Embedded Systems and Digital Design.
+                            Recent MSc Electrical Engineering graduate from the <strong>National University of Singapore</strong>, 
+                            specializing in <strong>Nanoelectronics</strong> with comprehensive expertise in VLSI design, 
+                            embedded systems, and digital circuit architecture.
                         </p>
                         <p>
-                            I embrace challenges with agility and am on a continuous journey of learning and growth. 
-                            My expertise spans across VLSI design, semiconductor device modeling, and embedded system architecture, 
-                            ready to contribute to technological innovation with zeal.
+                            I thrive in collaborative environments and embrace technical challenges with analytical precision. 
+                            My academic journey has equipped me with deep knowledge in semiconductor device physics, 
+                            RTL design, and hardware-software co-design, positioning me to contribute meaningfully 
+                            to the next generation of computing technologies.
                         </p>
                     </div>
                     <div class="expertise-areas">
@@ -163,29 +172,29 @@
                             <div class="expertise-item">
                                 <i data-lucide="cpu"></i>
                                 <h4>Nanoelectronics</h4>
-                                <p>Advanced semiconductor device physics and nanoscale circuit design</p>
+                                <p>Advanced semiconductor device physics and nanoscale circuit design principles</p>
                             </div>
                             <div class="expertise-item">
                                 <i data-lucide="zap"></i>
-                                <span>VLSI Design</span>
-                                <p>Digital circuit design, standard cell development, and IC architecture</p>
+                                <h4>VLSI Design</h4>
+                                <p>Digital circuit design, standard cell development, and IC architecture optimization</p>
                             </div>
                             <div class="expertise-item">
                                 <i data-lucide="microchip"></i>
                                 <h4>Embedded Systems</h4>
-                                <p>Microcontroller programming, hardware-software integration</p>
+                                <p>Hardware-software integration, microcontroller programming, and system design</p>
                             </div>
                             <div class="expertise-item">
                                 <i data-lucide="activity"></i>
                                 <h4>Digital Design</h4>
-                                <p>RTL coding, synthesis, and verification using industry-standard tools</p>
+                                <p>RTL coding, synthesis, verification, and FPGA implementation</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="about-skills">
+                <div class="about-skills reveal">
                     <div class="skills-section">
-                        <h3>Technical Skills</h3>
+                        <h3>Technical Proficiency</h3>
                         <div class="skills-categories">
                             <div class="skill-category">
                                 <h4><i data-lucide="wrench"></i>EDA Tools</h4>
@@ -199,7 +208,7 @@
                             <div class="skill-category">
                                 <h4><i data-lucide="code-2"></i>Programming</h4>
                                 <div class="skill-tags">
-                                    <span class="skill-tag">Verilog</span>
+                                    <span class="skill-tag">Verilog HDL</span>
                                     <span class="skill-tag">SystemVerilog</span>
                                     <span class="skill-tag">HLS</span>
                                     <span class="skill-tag">C++</span>
@@ -221,181 +230,74 @@
             </div>
         </section>
 
-        <!-- Education Section -->
-        <section id="education" class="section-container">
-            <div class="section-header">
+        <!-- Journey Section -->
+        <section id="journey" class="content-section">
+            <div class="section-header reveal">
                 <h2 class="section-title">
-                    <i data-lucide="graduation-cap"></i>
-                    Education
+                    <i data-lucide="map"></i>
+                    My Journey
                 </h2>
-                <p class="section-subtitle">Academic foundation in Electrical and Electronics Engineering</p>
+                <p class="section-subtitle">Academic and professional milestones</p>
             </div>
-            <div class="education-timeline">
-                <div class="education-item">
-                    <div class="education-year">2023 - 2025</div>
-                    <div class="education-content">
-                        <div class="education-institution">
-                            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/NUS_coat_of_arms.svg/1200px-NUS_coat_of_arms.svg.png" alt="NUS Logo" class="institution-logo">
-                            <div class="institution-details">
-                                <h3>National University of Singapore</h3>
-                                <h4>Master of Science - Electrical and Electronics Engineering</h4>
-                                <p class="location"><i data-lucide="map-pin"></i>Singapore</p>
-                            </div>
-                        </div>
-                        <div class="education-highlights">
-                            <div class="highlight-item">
-                                <i data-lucide="award"></i>
-                                <span>Specialization: Nanoelectronics</span>
-                            </div>
-                            <div class="highlight-item">
-                                <i data-lucide="book-open"></i>
-                                <span>Focus: VLSI Design & Memory Technologies</span>
-                            </div>
-                            <div class="highlight-item">
-                                <i data-lucide="users"></i>
-                                <span>Graduate Assistant Role</span>
-                            </div>
-                        </div>
-                        <div class="coursework">
-                            <h5>Key Coursework:</h5>
-                            <ul>
-                                <li>VLSI Digital Circuit Design</li>
-                                <li>Memory Technologies and Emerging Applications</li>
-                                <li>Embedded Hardware System Design</li>
-                                <li>Advanced Nanoelectronics</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="education-item">
-                    <div class="education-year">2019 - 2023</div>
-                    <div class="education-content">
-                        <div class="education-institution">
-                            <div class="institution-logo-placeholder">SRM</div>
-                            <div class="institution-details">
-                                <h3>SRM Institute of Science and Technology</h3>
-                                <h4>Bachelor of Technology - Electronics and Communication Engineering</h4>
-                                <p class="location"><i data-lucide="map-pin"></i>Chennai, India</p>
-                            </div>
-                        </div>
-                        <div class="coursework">
-                            <h5>Relevant Coursework:</h5>
-                            <ul>
-                                <li>Digital Electronics Principles</li>
-                                <li>Semiconductor Device Modelling</li>
-                                <li>Analog Electronic Circuits</li>
-                                <li>Microprocessor & Microcontroller Interfacing</li>
-                                <li>VLSI Design</li>
-                                <li>ARM-Based Embedded System Design</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section id="experience" class="section-container">
-            <div class="section-header">
-                <h2 class="section-title">
-                    <i data-lucide="briefcase"></i>
-                    Experience
-                </h2>
-                <p class="section-subtitle">Professional journey in Electrical Engineering and VLSI Design</p>
-            </div>
-            <div class="experience-grid">
-                <div class="experience-card">
-                    <div class="experience-header">
-                        <div class="company-info">
-                            <div class="company-logo">
-                                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/NUS_coat_of_arms.svg/1200px-NUS_coat_of_arms.svg.png" alt="NUS" class="company-logo-img">
-                            </div>
-                            <div class="position-details">
-                                <h3>Graduate Assistant</h3>
-                                <h4>National University of Singapore</h4>
-                                <p class="duration"><i data-lucide="calendar"></i>Aug 2024 - Nov 2024 · 4 months</p>
-                                <p class="location"><i data-lucide="map-pin"></i>Singapore</p>
+            <div class="timeline-container">
+                <div class="timeline">
+                    <div class="timeline-item reveal" data-year="2019">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">2019 - 2023</div>
+                            <h3>Bachelor of Technology</h3>
+                            <h4>Electronics and Communication Engineering</h4>
+                            <p class="institution">SRM Institute of Science and Technology, Chennai</p>
+                            <div class="timeline-highlights">
+                                <span class="highlight-tag">Digital Electronics</span>
+                                <span class="highlight-tag">VLSI Design</span>
+                                <span class="highlight-tag">Embedded Systems</span>
                             </div>
                         </div>
                     </div>
-                    <div class="experience-content">
-                        <p>Supervised laboratory sessions and provided academic support for core electrical engineering courses:</p>
-                        <ul>
-                            <li><strong>EE2028:</strong> Microcontroller Programming and Interfacing</li>
-                            <li><strong>CG3207:</strong> Computer Architecture</li>
-                        </ul>
-                        <p>Collaborated with faculty to enhance lab materials and streamline assessment processes, improving student learning outcomes.</p>
-                        <div class="experience-skills">
-                            <span class="skill-tag">Teaching</span>
-                            <span class="skill-tag">Microcontrollers</span>
-                            <span class="skill-tag">Computer Architecture</span>
-                            <span class="skill-tag">Student Mentoring</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="experience-card">
-                    <div class="experience-header">
-                        <div class="company-info">
-                            <div class="company-logo">
-                                <div class="company-logo-text">MS</div>
-                            </div>
-                            <div class="position-details">
-                                <h3>Project Intern - VLSI Design</h3>
-                                <h4>Maven Silicon</h4>
-                                <p class="duration"><i data-lucide="calendar"></i>Dec 2022 - Jan 2023 · 2 months</p>
-                                <p class="location"><i data-lucide="map-pin"></i>Bangalore, India</p>
+                    
+                    <div class="timeline-item reveal" data-year="2022">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">Jun - Jul 2022</div>
+                            <h3>Embedded Systems Intern</h3>
+                            <h4>SystemVerilog Verification</h4>
+                            <p class="institution">Sandeepani School, Bangalore</p>
+                            <div class="timeline-highlights">
+                                <span class="highlight-tag">SystemVerilog</span>
+                                <span class="highlight-tag">UART Protocol</span>
+                                <span class="highlight-tag">Functional Verification</span>
                             </div>
                         </div>
                     </div>
-                    <div class="experience-content">
-                        <p>Developed comprehensive expertise in VLSI design flow and digital circuit implementation:</p>
-                        <ul>
-                            <li>Analyzed project specifications and established efficient development architectures</li>
-                            <li>Designed AHB to APB bridge for seamless bus protocol communication</li>
-                            <li>Implemented modular design approaches for enhanced project manageability</li>
-                            <li>Executed RTL coding in Verilog HDL with focus on performance optimization</li>
-                            <li>Performed RTL synthesis and gate-level design refinement</li>
-                        </ul>
-                        <div class="experience-skills">
-                            <span class="skill-tag">Verilog HDL</span>
-                            <span class="skill-tag">RTL Design</span>
-                            <span class="skill-tag">AHB-APB Bridge</span>
-                            <span class="skill-tag">Synthesis</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="experience-card">
-                    <div class="experience-header">
-                        <div class="company-info">
-                            <div class="company-logo">
-                                <div class="company-logo-text">SD</div>
-                            </div>
-                            <div class="position-details">
-                                <h3>Embedded Systems Intern</h3>
-                                <h4>Sandeepani School of Embedded System Design</h4>
-                                <p class="duration"><i data-lucide="calendar"></i>Jun 2022 - Jul 2022 · 2 months</p>
-                                <p class="location"><i data-lucide="map-pin"></i>Bangalore, India</p>
+                    
+                    <div class="timeline-item reveal" data-year="2023">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">Dec 2022 - Jan 2023</div>
+                            <h3>Project Intern - VLSI Design</h3>
+                            <h4>AHB-APB Bridge Development</h4>
+                            <p class="institution">Maven Silicon, Bangalore</p>
+                            <div class="timeline-highlights">
+                                <span class="highlight-tag">Verilog HDL</span>
+                                <span class="highlight-tag">RTL Design</span>
+                                <span class="highlight-tag">Bus Protocols</span>
                             </div>
                         </div>
                     </div>
-                    <div class="experience-content">
-                        <p>Completed intensive functional verification program using SystemVerilog:</p>
-                        <ul>
-                            <li>Mastered SystemVerilog fundamentals and verification methodologies</li>
-                            <li>Developed UART protocol implementation with focus on data transmission reliability</li>
-                            <li>Executed comprehensive functional verification of digital circuits</li>
-                            <li>Implemented random stimuli generation for extensive test case coverage</li>
-                            <li>Applied object-oriented concepts in verification environments</li>
-                            <li>Performed detailed coverage analysis using QuestaSim</li>
-                        </ul>
-                        <div class="experience-skills">
-                            <span class="skill-tag">SystemVerilog</span>
-                            <span class="skill-tag">Functional Verification</span>
-                            <span class="skill-tag">UART Protocol</span>
-                            <span class="skill-tag">QuestaSim</span>
+                    
+                    <div class="timeline-item reveal" data-year="2023">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">Aug 2023 - Present</div>
+                            <h3>Master of Science</h3>
+                            <h4>Electrical Engineering (Nanoelectronics)</h4>
+                            <p class="institution">National University of Singapore</p>
+                            <div class="timeline-highlights">
+                                <span class="highlight-tag">VLSI Digital Design</span>
+                                <span class="highlight-tag">Memory Technologies</span>
+                                <span class="highlight-tag">Graduate Assistant</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -403,57 +305,130 @@
         </section>
 
         <!-- Projects Section -->
-        <section id="projects" class="section-container">
-            <div class="section-header">
+        <section id="projects" class="content-section">
+            <div class="section-header reveal">
                 <h2 class="section-title">
                     <i data-lucide="folder"></i>
                     Featured Projects
                 </h2>
-                <p class="section-subtitle">Innovative solutions in VLSI design, embedded systems, and neural network acceleration</p>
+                <p class="section-subtitle">Innovative solutions in VLSI design and embedded systems</p>
             </div>
-            <div class="projects-grid">
+            <div class="project-grid">
                 <!-- Projects will be populated by JavaScript -->
             </div>
         </section>
 
+        <!-- Publications Section -->
+        <section id="publications" class="content-section">
+            <div class="section-header reveal">
+                <h2 class="section-title">
+                    <i data-lucide="file-text"></i>
+                    Research & Patents
+                </h2>
+                <p class="section-subtitle">Contributing to the advancement of semiconductor technology</p>
+            </div>
+            <div class="publication-grid">
+                <div class="publication-card reveal">
+                    <div class="publication-type patent">
+                        <i data-lucide="award"></i>
+                        <span>Patent</span>
+                    </div>
+                    <h3 class="publication-title">A System for Controlling an Autonomous Vehicle and a Method Thereof</h3>
+                    <p class="publication-details">
+                        <span class="publication-id">Patent No: 202341043496</span>
+                        <span class="publication-date">Issued: March 28, 2025</span>
+                    </p>
+                    <p class="publication-desc">
+                        Developed an intelligent system for autonomous vehicles that detects when a driver 
+                        is experiencing medical distress and responds automatically to ensure safety through 
+                        advanced sensor integration and real-time decision making algorithms.
+                    </p>
+                </div>
+                
+                <div class="publication-card reveal">
+                    <div class="publication-type publication">
+                        <i data-lucide="book-open"></i>
+                        <span>IEEE Publication</span>
+                    </div>
+                    <h3 class="publication-title">Improving Data Integrity with Reversible Logic-based Error Detection and Correction Module on AHB-APB Bridge</h3>
+                    <p class="publication-details">
+                        <span class="publication-venue">IEEE Conference Proceedings</span>
+                        <span class="publication-date">Published: June 2023</span>
+                    </p>
+                    <p class="publication-desc">
+                        Presents a novel architecture for enhancing data reliability in system-on-chip 
+                        interconnects using reversible logic principles, significantly improving error 
+                        detection and correction capabilities in bus protocol implementations.
+                    </p>
+                </div>
+                
+                <div class="publication-card reveal">
+                    <div class="publication-type publication">
+                        <i data-lucide="book-open"></i>
+                        <span>Journal Publication</span>
+                    </div>
+                    <h3 class="publication-title">A Survey on Affordable Internet of Things (IoT) Enabled Healthcare Systems</h3>
+                    <p class="publication-details">
+                        <span class="publication-venue">Grenze International Journal</span>
+                        <span class="publication-date">Published: July 2022</span>
+                    </p>
+                    <p class="publication-desc">
+                        Comprehensive review of cost-effective IoT solutions designed to make modern 
+                        healthcare more accessible, analyzing emerging technologies and implementation 
+                        strategies for resource-constrained environments.
+                    </p>
+                </div>
+            </div>
+        </section>
+
         <!-- Contact Section -->
-        <section id="contact" class="section-container">
-            <div class="section-header">
+        <section id="contact" class="content-section">
+            <div class="section-header reveal">
                 <h2 class="section-title">
                     <i data-lucide="message-circle"></i>
                     Let's Connect
                 </h2>
                 <p class="section-subtitle">Ready to collaborate on the future of semiconductor technology</p>
             </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <p class="contact-lead">
+            <div class="contact-content reveal">
+                <div class="contact-intro">
+                    <p class="contact-tagline">
                         I'm passionate about leveraging my expertise in Nanoelectronics and VLSI design 
-                        to solve complex engineering challenges. Let's discuss how we can push the 
-                        boundaries of semiconductor technology together.
+                        to solve complex engineering challenges. Whether you're working on cutting-edge 
+                        semiconductor research, next-generation computing architectures, or innovative 
+                        embedded systems, I'd love to discuss how we can collaborate.
                     </p>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <i data-lucide="mail"></i>
-                            <span>esanant@u.nus.edu</span>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i data-lucide="mail"></i>
+                        <div class="contact-details">
+                            <span class="contact-label">Email</span>
+                            <a href="mailto:esanant@u.nus.edu" class="contact-value">esanant@u.nus.edu</a>
                         </div>
-                        <div class="contact-item">
-                            <i data-lucide="phone"></i>
-                            <span>+65 90555367</span>
+                    </div>
+                    <div class="contact-item">
+                        <i data-lucide="phone"></i>
+                        <div class="contact-details">
+                            <span class="contact-label">Phone</span>
+                            <span class="contact-value">+65 90555367</span>
                         </div>
-                        <div class="contact-item">
-                            <i data-lucide="map-pin"></i>
-                            <span>Singapore</span>
+                    </div>
+                    <div class="contact-item">
+                        <i data-lucide="map-pin"></i>
+                        <div class="contact-details">
+                            <span class="contact-label">Location</span>
+                            <span class="contact-value">Singapore</span>
                         </div>
                     </div>
                 </div>
                 <div class="contact-actions">
                     <div class="social-links">
-                        <a href="https://www.linkedin.com/in/sai-anant/" target="_blank" class="social-link linkedin">
+                        <a href="https://www.linkedin.com/in/sai-anant/" target="_blank" rel="noopener noreferrer" class="social-link linkedin">
                             <i data-lucide="linkedin"></i>
                             <span>LinkedIn</span>
                         </a>
-                        <a href="https://github.com/ESAnant" target="_blank" class="social-link github">
+                        <a href="https://github.com/ESAnant" target="_blank" rel="noopener noreferrer" class="social-link github">
                             <i data-lucide="github"></i>
                             <span>GitHub</span>
                         </a>
