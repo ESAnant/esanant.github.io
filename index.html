@@ -3,27 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edidi Sai Anant | Digital Blueprint Portfolio</title>
+    <title>Edidi Sai Anant | ECE Portfolio</title>
 
     <!-- CSS Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- Google Fonts: A powerful combination for tech and readability -->
+    <!-- Google Fonts: A powerful combination for a modern, technical feel -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 
     <!-- Lucide Icons: A modern, open-source icon library -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-    <!-- Thematic Dynamic Background -->
-    <div id="blueprint-background"></div>
+    <!-- Dynamic Animated Background -->
+    <div id="matrix-background"></div>
 
     <!-- Thematic Loading Screen -->
     <div id="loader">
-        <div class="loader-circuit"></div>
-        <p class="loader-text">Compiling Schematic...</p>
+        <div class="glitch-text" data-text="INITIALIZING...">INITIALIZING...</div>
     </div>
 
     <!-- HIGH-PERFORMANCE CUSTOM CURSOR -->
@@ -39,6 +38,7 @@
                 <li><a href="#home" class="nav-link magnetic-link active">Home</a></li>
                 <li><a href="#about" class="nav-link magnetic-link">About</a></li>
                 <li><a href="#experience" class="nav-link magnetic-link">Experience</a></li>
+                <li><a href="#education" class="nav-link magnetic-link">Education</a></li>
                 <li><a href="#projects" class="nav-link magnetic-link">Projects</a></li>
                 <li><a href="#contact" class="nav-link magnetic-link">Contact</a></li>
             </ul>
@@ -51,10 +51,10 @@
         <!-- SECTION 1: HOME -->
         <section id="home" class="full-height-section">
             <div class="content-wrapper">
-                <h1 class="main-heading" data-reveal>Digital Blueprint</h1>
-                <p class="subtitle" data-reveal="1">The Engineering Portfolio of Edidi Sai Anant</p>
-                <p class="tagline" data-reveal="2">An Electrical & Computer Engineer designing the foundations of future technology.</p>
-                <a href="#about" class="cta-button magnetic-link" data-reveal="3">Explore The Schematic</a>
+                <h1 class="main-heading" data-reveal>Edidi Sai Anant</h1>
+                <p class="subtitle" data-reveal="1">Electrical Engineer | Semiconductor & System Design</p>
+                <p class="tagline" data-reveal="2">Architecting the hardware of tomorrow, from foundational circuits to complex embedded systems.</p>
+                <a href="#projects" class="cta-button magnetic-link" data-reveal="3">View My Work</a>
             </div>
         </section>
 
@@ -64,107 +64,127 @@
                 <h2 class="section-title" data-reveal>About Me</h2>
                 <div class="about-content">
                     <p class="bio" data-reveal="1">
-                        I'm a Master’s candidate at the National University of Singapore, specializing in Electrical Engineering with a deep focus on semiconductor processes and IC design. My passion lies in translating complex theoretical concepts into tangible, efficient hardware. I am driven by innovation and possess strong analytical skills, aiming to contribute to a dynamic, forward-thinking team in the semiconductor industry.
+                        I am a Master’s candidate at the National University of Singapore, specializing in Electrical Engineering with a deep focus on semiconductor processes and IC design. My passion lies in translating complex theoretical concepts into tangible, efficient hardware. I am driven by innovation and possess strong analytical skills, aiming to contribute to a dynamic, forward-thinking team in the semiconductor industry.
                     </p>
-                    <a href="Edidi_Sai_Anant_Resume.pdf" class="cta-button magnetic-link" target="_blank" rel="noopener noreferrer" data-reveal="2">
-                        View Full Resume
-                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 3: EXPERIENCE & EDUCATION -->
+        <!-- SECTION 3: EXPERIENCE -->
         <section id="experience" class="full-height-section">
             <div class="content-wrapper">
-                <h2 class="section-title" data-reveal>Career & Academic Schematic</h2>
-                <div class="timeline">
-                    <!-- Item 1: NUS -->
-                    <div class="timeline-item" data-reveal>
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <h3>Master of Science, Electrical Engineering</h3>
-                            <p class="company-name">National University of Singapore</p>
-                            <span class="date">2023 – 2025</span>
-                        </div>
-                    </div>
-                    <!-- Item 2: Maven Silicon -->
-                    <div class="timeline-item" data-reveal="1">
-                         <div class="timeline-marker"></div>
-                        <div class="timeline-content">
+                <h2 class="section-title" data-reveal>Professional Experience</h2>
+                <div class="experience-grid">
+                    <!-- Experience 1 -->
+                    <div class="experience-card" data-reveal>
+                        <div class="experience-header">
                             <h3>Project Intern</h3>
-                            <p class="company-name">Maven Silicon</p>
-                            <span class="date">Dec 2022 – Jan 2023</span>
+                            <p>Maven Silicon</p>
                         </div>
+                        <span class="date">Dec 2022 – Jan 2023</span>
+                        <p class="desc">Engineered an AHB to APB bridge using Verilog, focusing on modular design and RTL-to-gate-level synthesis.</p>
                     </div>
-                     <!-- Item 3: Sandeepani -->
-                     <div class="timeline-item" data-reveal="2">
-                         <div class="timeline-marker"></div>
-                        <div class="timeline-content">
+                    <!-- Experience 2 -->
+                    <div class="experience-card" data-reveal="1">
+                         <div class="experience-header">
                             <h3>Intern</h3>
-                            <p class="company-name">Sandeepani School of Embedded System Design</p>
-                            <span class="date">Jun 2022 – Jul 2022</span>
+                            <p>Sandeepani School of Embedded System Design</p>
                         </div>
+                        <span class="date">Jun 2022 – Jul 2022</span>
+                        <p class="desc">Verified a UART protocol using Verilog and performed functional coverage analysis with QuestaSim to ensure design reliability.</p>
                     </div>
-                     <!-- Item 4: SRM -->
-                    <div class="timeline-item" data-reveal="3">
-                         <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <h3>Bachelor of Technology, ECE</h3>
-                            <p class="company-name">SRM Institute of Science and Technology</p>
-                            <span class="date">2019 – 2023</span>
+                    <!-- Experience 3 -->
+                    <div class="experience-card" data-reveal="2">
+                         <div class="experience-header">
+                            <h3>Graduate Assistant</h3>
+                            <p>National University of Singapore</p>
                         </div>
+                        <span class="date">Aug 2023 – Present</span>
+                        <p class="desc">Lead lab sessions and assist with grading for Microcontroller Programming and Computer Architecture courses.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 4: PROJECTS & SKILLS (Interactive) -->
+        <!-- SECTION 4: EDUCATION -->
+        <section id="education" class="full-height-section">
+            <div class="content-wrapper">
+                <h2 class="section-title" data-reveal>Education</h2>
+                <div class="education-grid">
+                     <!-- Card 1: NUS -->
+                    <div class="education-card" data-reveal>
+                        <h3>Master of Science, Electrical Engineering</h3>
+                        <p class="institution">National University of Singapore</p>
+                        <span class="date">2023 – 2025</span>
+                    </div>
+                     <!-- Card 2: SRM -->
+                    <div class="education-card" data-reveal="1">
+                        <h3>Bachelor of Technology, ECE</h3>
+                        <p class="institution">SRM Institute of Science and Technology</p>
+                        <span class="date">2019 – 2023</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: PROJECTS (Interactive Cards) -->
         <section id="projects" class="full-height-section">
             <div class="content-wrapper">
-                <h2 class="section-title" data-reveal>Core Projects</h2>
+                <h2 class="section-title" data-reveal>Featured Projects</h2>
                 <div class="projects-grid">
-                    <!-- Project Card 1 -->
-                    <div class="project-card magnetic-link" data-reveal>
-                        <div class="project-title">
-                            <i data-lucide="cpu"></i>
-                            <h4>FPGA Hardware Accelerator for MLP</h4>
+                    <!-- Project 1 -->
+                    <div class="project-card" data-reveal>
+                        <div class="project-header">
+                            <h4>Digital Circuit Design and Standard Cell IP Development</h4>
+                            <button class="expand-btn magnetic-link" aria-label="Expand project details"><i data-lucide="plus"></i></button>
+                        </div>
+                        <div class="project-details">
+                            <p>Contributed to the creation of a ring oscillator Standard Cell IP using a hierarchical design in Cadence Virtuoso, targeting efficiency in 40nm technology with a focus on minimizing area while optimizing energy-performance. Ensured design integrity through strict adherence to DRC and LVS standards.</p>
+                            <div class="project-tags"><span>Cadence Virtuoso</span><span>VLSI</span><span>40nm</span></div>
+                        </div>
+                    </div>
+                    <!-- Project 2 -->
+                    <div class="project-card" data-reveal="1">
+                         <div class="project-header">
+                            <h4>FPGA Hardware Accelerator for MLP Neural Network</h4>
+                             <button class="expand-btn magnetic-link" aria-label="Expand project details"><i data-lucide="plus"></i></button>
                         </div>
                         <div class="project-details">
                             <p>Developed a hardware accelerator on the Xilinx Zynq-7000 FPGA to improve MLP neural network inference. Implemented designs in software, HLS, and Verilog, focusing on prediction. Executed profiling and optimisation utilising pipelining, loop unrolling, and array partitioning, achieving significant speed and efficiency gains.</p>
-                            <div class="project-tags"><span>Verilog</span><span>HLS</span><span>Pipelining</span></div>
+                             <div class="project-tags"><span>RTL Design</span><span>AMBA</span><span>Xilinx Vivado</span><span>Verilog</span></div>
                         </div>
                     </div>
-                    <!-- Project Card 2 -->
-                    <div class="project-card magnetic-link" data-reveal="1">
-                        <div class="project-title">
-                            <i data-lucide="git-merge"></i>
-                            <h4>VLSI Interconnect Modelling</h4>
+                    <!-- Project 3 -->
+                    <div class="project-card" data-reveal="2">
+                         <div class="project-header">
+                            <h4>In-Memory Compute Circuit for Neural Network Acceleration</h4>
+                             <button class="expand-btn magnetic-link" aria-label="Expand project details"><i data-lucide="plus"></i></button>
+                        </div>
+                        <div class="project-details">
+                            <p>Designed an in-memory compute circuit using NeuroSim and MuMax3 to accelerate neural network computations. Concentrated on quantization and optimisation techniques to boost accuracy and efficiency. Conducted simulations in PyTorch, comparing different data types (float64, float32, int8, int4) to analyse model performance.</p>
+                            <div class="project-tags"><span>NeuroSim</span><span>PyTorch</span><span>Quantization</span></div>
+                        </div>
+                    </div>
+                     <!-- Project 4 -->
+                    <div class="project-card" data-reveal="3">
+                         <div class="project-header">
+                            <h4>VLSI Interconnect Modelling and Simulation</h4>
+                             <button class="expand-btn magnetic-link" aria-label="Expand project details"><i data-lucide="plus"></i></button>
                         </div>
                         <div class="project-details">
                             <p>Engaged in optimising processor interconnects using Elmore RC models and Cadence Virtuoso for a 2-core processor at 45nm technology, focusing on energy-delay tradeoffs to improve system efficiency. Combined theory with practice to address VLSI design challenges, improving signal integrity and system performance.</p>
-                             <div class="project-tags"><span>Cadence</span><span>45nm</span><span>VLSI</span></div>
-                        </div>
-                    </div>
-                    <!-- Project Card 3 -->
-                    <div class="project-card magnetic-link" data-reveal="2">
-                        <div class="project-title">
-                             <i data-lucide="brain-circuit"></i>
-                            <h4>In-Memory Compute Circuit Design</h4>
-                        </div>
-                        <div class="project-details">
-                            <p>Designed an in-memory compute circuit using NeuroSim and MuMax3 to accelerate neural network computations. Concentrated on quantization and optimisation techniques to boost accuracy and efficiency. Conducted simulations in PyTorch, comparing different data types to analyse model performance.</p>
-                            <div class="project-tags"><span>NeuroSim</span><span>PyTorch</span><span>Quantization</span></div>
+                            <div class="project-tags"><span>Digital IC Design</span><span>Cadence</span><span>45nm</span></div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        
-        <!-- SECTION 5: CONTACT -->
+
+        <!-- SECTION 6: CONTACT -->
         <section id="contact" class="full-height-section">
             <div class="content-wrapper">
-                <h2 class="section-title" data-reveal>Contact</h2>
-                <p class="contact-message" data-reveal="1">I'm currently seeking opportunities to apply my skills to challenging problems in the semiconductor industry. Let's connect.</p>
+                <h2 class="section-title" data-reveal>Get In Touch</h2>
+                <p class="contact-message" data-reveal="1">I'm actively seeking new opportunities to contribute to innovative projects in the semiconductor industry. Let's create the future together.</p>
                 <div class="contact-links" data-reveal="2">
                     <a href="https://www.linkedin.com/in/sai-anant/" target="_blank" class="contact-icon magnetic-link" aria-label="LinkedIn">
                         <i data-lucide="linkedin"></i>
@@ -176,7 +196,10 @@
                         <i data-lucide="mail"></i>
                     </a>
                 </div>
-                <footer class="site-footer" data-reveal="3">
+                 <div class="resume-link-wrapper" data-reveal="3">
+                    <a href="Edidi_Sai_Anant_Resume.pdf" class="resume-link" target="_blank" rel="noopener noreferrer">View Full Resume</a>
+                 </div>
+                <footer class="site-footer" data-reveal="4">
                     <p>&copy; <span id="current-year"></span> Edidi Sai Anant. Designed & Engineered with Precision.</p>
                 </footer>
             </div>
