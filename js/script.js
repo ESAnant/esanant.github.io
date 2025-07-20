@@ -1,9 +1,9 @@
 /*------------------------------------------------------------------
-[Master Script File V6 - Celestial Circuits]
+[Master Script File V7 - The Digital Blueprint]
 
-Project:    The Ultimate Interactive Portfolio (Master Edition)
+Project:    The Ultimate Interactive Portfolio (Blueprint Edition)
 Author:     Your Name (as Elite Web Developer & Creative Director)
-Version:    6.0
+Version:    7.0
 -------------------------------------------------------------------*/
 
 'use strict';
@@ -17,16 +17,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 2. THEMATIC LOADER ---
     const loader = document.getElementById('loader');
     window.addEventListener('load', () => {
+        // A short delay ensures all content is rendered before the loader fades out
         setTimeout(() => {
             loader.classList.add('hidden');
-        }, 500); // Small delay to prevent visual flicker
+        }, 500);
     });
 
-    // --- 3. HIGH-PERFORMANCE MAGNETIC CURSOR ---
+    // --- 3. HIGH-PERFORMANCE CUSTOM CURSOR ---
     const cursor = document.querySelector('.cursor');
     const magneticElements = document.querySelectorAll('.magnetic-link');
 
-    // Check for touch device to disable custom cursor for better native UX
+    // Disable custom cursor on touch devices for a better native user experience
     if (!window.matchMedia("(pointer: coarse)").matches) {
         let mouseX = 0, mouseY = 0;
         let cursorX = 0, cursorY = 0;
@@ -36,37 +37,37 @@ document.addEventListener('DOMContentLoaded', () => {
             mouseY = e.clientY;
         });
 
+        // The core animation loop for the cursor, using requestAnimationFrame for performance
         const followCursor = () => {
-            const speed = 0.1;
-            cursorX += (mouseX - cursorX - 16) * speed; // Center the cursor
-            cursorY += (mouseY - cursorY - 16) * speed;
-            cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+            // Linear interpolation (lerp) creates a smooth, "floaty" follow effect
+            const speed = 0.15;
+            cursorX += (mouseX - cursorX) * speed;
+            cursorY += (mouseY - cursorY) * speed;
+            // The transform is applied directly for maximum performance
+            cursor.style.transform = `translate3d(${cursorX - 12}px, ${cursorY - 12}px, 0)`;
             requestAnimationFrame(followCursor);
         };
         followCursor();
 
+        // Apply hover effect class to the cursor for all magnetic elements
         magneticElements.forEach(el => {
             el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
             el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
         });
     } else {
-        // On touch devices, revert to the default system cursor
+        // On touch devices, revert to the default system cursor and hide the custom one
         document.body.style.cursor = 'auto';
         cursor.style.display = 'none';
     }
-    
-    // --- 4. INTERACTIVE CARD GLOW EFFECT ---
-    const educationCards = document.querySelectorAll('.education-card');
-    educationCards.forEach(card => {
-        card.addEventListener('mousemove', e => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            card.style.setProperty('--mouse-x', `${x}px`);
-            card.style.setProperty('--mouse-y', `${y}px`);
+
+    // --- 4. INTERACTIVE EXPANDABLE PROJECT CARDS ---
+    const projectCards = document.querySelectorAll('.project-card');
+    projectCards.forEach(card => {
+        card.addEventListener('click', () => {
+            // Toggle the 'open' class to trigger the CSS transition
+            card.classList.toggle('open');
         });
     });
-
 
     // --- 5. NAVIGATION & ACTIVE LINK HIGHLIGHTING ---
     const sections = document.querySelectorAll('section[id]');
@@ -77,14 +78,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (entry.isIntersecting) {
                 const sectionId = entry.target.getAttribute('id');
                 navLinks.forEach(link => {
+                    // Use toggle for cleaner and more efficient class management
                     link.classList.toggle('active', link.getAttribute('href') === `#${sectionId}`);
                 });
             }
         });
-    }, { root: mainContainer, threshold: 0.5 });
+    }, { root: mainContainer, threshold: 0.5 }); // A section is "active" when 50% is visible
 
     sections.forEach(section => navObserver.observe(section));
-
 
     // --- 6. SCROLL-TRIGGERED REVEAL ANIMATIONS ---
     const revealElements = document.querySelectorAll('[data-reveal]');
@@ -92,17 +93,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const revealObserver = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const delay = parseInt(entry.target.dataset.reveal) * 120 || 0;
+                // Stagger animations based on the data-reveal attribute value
+                const delay = parseInt(entry.target.dataset.reveal) * 100 || 0;
                 setTimeout(() => {
                     entry.target.classList.add('revealed');
                 }, delay);
+                // Performance boost: stop observing the element once it has been revealed
                 revealObserver.unobserve(entry.target);
             }
         });
-    }, { root: mainContainer, rootMargin: '0px 0px -10% 0px' });
+    }, { root: mainContainer, rootMargin: '0px 0px -10% 0px' }); // Trigger animation when element is 10% from the bottom
 
     revealElements.forEach(el => revealObserver.observe(el));
-
 
     // --- 7. FOOTER - DYNAMIC YEAR ---
     const yearSpan = document.getElementById('current-year');
