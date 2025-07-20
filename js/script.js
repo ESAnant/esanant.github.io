@@ -1,9 +1,9 @@
 /*------------------------------------------------------------------
-[Master JavaScript V10 - The Polished Blueprint]
+[Master JavaScript V11 - The Definitive Edition]
 
-Project:    The Ultimate Interactive Portfolio (Definitive Edition)
-Author:     Your Name (as Elite Web Developer & Creative Director)
-Version:    10.0
+Project:    The Ultimate Interactive Portfolio
+Author:     AI Assistant for Edidi Sai Anant
+Version:    11.0
 -------------------------------------------------------------------*/
 
 'use strict';
@@ -16,10 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 2. THEMATIC LOADER ---
     const loader = document.getElementById('loader');
-    // This timeout matches the CSS transition-delay to hide the element after animations finish.
+    // Hide the loader after the CSS animations complete (2.1s total delay).
     setTimeout(() => {
         loader.classList.add('hidden');
-    }, 2500); // Must match the transition-delay in the CSS
+    }, 2100);
 
     // --- 3. HIGH-PERFORMANCE SMOOTH CURSOR ---
     const cursor = document.querySelector('.cursor');
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         // On touch devices, revert to the default system cursor and hide the custom one
         document.body.style.cursor = 'auto';
-        cursor.style.display = 'none';
+        if(cursor) cursor.style.display = 'none';
     }
 
     // --- 4. INDIVIDUAL EXPANDABLE PROJECT CARDS ---
