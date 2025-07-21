@@ -103,7 +103,7 @@ class PortfolioApp {
     constructor() {
         this.isLoaded = false;
         this.scrollPosition = 0;
-        this.activeSection = 'home';
+        this.activeSection = 'hero';
         this.components = {};
         
         this.init();
@@ -223,7 +223,7 @@ class PortfolioApp {
         const sections = document.querySelectorAll('.content-section');
         const scrollPos = window.pageYOffset + window.innerHeight / 2;
         
-        let current = 'home';
+        let current = 'hero';
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionBottom = sectionTop + section.offsetHeight;
@@ -724,14 +724,13 @@ class InteractiveProjects {
         
         this.renderProjects();
         this.setupInteractions();
-        
         console.log('📂 Interactive Projects: Initialized');
     }
     
     renderProjects() {
         PROJECTS_DATA.forEach(project => {
             const card = document.createElement('div');
-            card.classList.add('project-card');
+            card.classList.add('project-card', 'reveal');
             card.innerHTML = `
                 <div class="project-header">
                     <div>
@@ -746,7 +745,7 @@ class InteractiveProjects {
                 <div class="project-details">
                     <p class="project-description">${project.description}</p>
                     <div class="project-highlights">
-                        <h4>Highlights</h4>
+                        <h4>Key Highlights</h4>
                         <ul>
                             ${project.highlights.map(highlight => `<li>${highlight}</li>`).join('')}
                         </ul>
@@ -760,51 +759,71 @@ class InteractiveProjects {
                 </div>
             `;
             this.projectsGrid.appendChild(card);
-            this.projectCards.push(card);
+            lucide.createIcons({ icons: { plus: lucide.icons.plus } });
         });
-        
-        // Re-initialize icons after rendering
-        lucide.createIcons();
     }
     
     setupInteractions() {
-        this.projectCards.forEach(card => {
-            const expandIcon = card.querySelector('.expand-icon');
-            expandIcon.addEventListener('click', () => {
+        this.projectsGrid.addEventListener('click', (e) => {
+            const expandIcon = e.target.closest('.expand-icon');
+            if (!expandIcon) return;
+            
+            const card = expandIcon.closest('.project-card');
+            if (card) {
                 card.classList.toggle('expanded');
-                // Rotate icon
-                gsap.to(expandIcon, {
-                    duration: 0.3,
-                    rotation: card.classList.contains('expanded') ? 45 : 0,
-                    ease: 'power2.inOut'
-                });
-            });
+                const icon = expandIcon.querySelector('svg');
+                if (icon) {
+                    icon.remove();
+                }
+                if (card.classList.contains('expanded')) {
+                    lucide.createIcons({ icons: { x: lucide.icons.x } });
+                } else {
+                    lucide.createIcons({ icons: { plus: lucide.icons.plus } });
+                }
+            }
         });
     }
 }
 
 // ===== SCROLL ANIMATIONS CLASS =====
 class ScrollAnimations {
+    constructor() {
+        this.observer = null;
+    }
+    
     init() {
         if (!CONFIG.performance.enableAnimations) return;
         
-        const reveals = document.querySelectorAll('.reveal');
-        reveals.forEach(el => {
-            gsap.from(el, {
-                scrollTrigger: {
-                    trigger: el,
-                    start: CONFIG.animations.scrollOffset,
-                    toggleActions: 'play none none none'
-                },
-                opacity: 0,
-                y: 30,
-                duration: 0.8,
-                stagger: CONFIG.animations.staggerDelay,
-                ease: 'power3.out'
-            });
+        this.observer = new IntersectionObserver(this.handleIntersection.bind(this), {
+            threshold: CONFIG.animations.revealOffset
         });
         
-        console.log('🎥 Scroll Animations: Initialized');
+        document.querySelectorAll('.reveal').forEach(el => {
+            this.observer.observe(el);
+        });
+        
+        this.setupScrollTriggers();
+        console.log('🎭 Scroll Animations: Initialized');
+    }
+    
+    handleIntersection(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                this.observer.unobserve(entry.target);
+            }
+        });
+    }
+    
+    setupScrollTriggers() {
+        gsap.utils.toArray('.content-section').forEach(section => {
+            ScrollTrigger.create({
+                trigger: section,
+                start: 'top bottom-=100',
+                toggleClass: { targets: section, className: 'active-section' },
+                once: false
+            });
+        });
     }
 }
 
