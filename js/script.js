@@ -103,7 +103,7 @@ class PortfolioApp {
     constructor() {
         this.isLoaded = false;
         this.scrollPosition = 0;
-        this.activeSection = 'hero';
+        this.activeSection = 'home';
         this.components = {};
         
         this.init();
@@ -223,7 +223,7 @@ class PortfolioApp {
         const sections = document.querySelectorAll('.content-section');
         const scrollPos = window.pageYOffset + window.innerHeight / 2;
         
-        let current = 'hero';
+        let current = 'home';
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionBottom = sectionTop + section.offsetHeight;
@@ -723,4 +723,90 @@ class InteractiveProjects {
         if (!this.projectsGrid) return;
         
         this.renderProjects();
-        this.setup
+        this.setupInteractions();
+        
+        console.log('📂 Interactive Projects: Initialized');
+    }
+    
+    renderProjects() {
+        PROJECTS_DATA.forEach(project => {
+            const card = document.createElement('div');
+            card.classList.add('project-card');
+            card.innerHTML = `
+                <div class="project-header">
+                    <div>
+                        <div class="project-category">${project.category}</div>
+                        <h3 class="project-title">${project.title}</h3>
+                    </div>
+                    <i data-lucide="plus" class="expand-icon"></i>
+                </div>
+                <div class="project-tags">
+                    ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+                </div>
+                <div class="project-details">
+                    <p class="project-description">${project.description}</p>
+                    <div class="project-highlights">
+                        <h4>Highlights</h4>
+                        <ul>
+                            ${project.highlights.map(highlight => `<li>${highlight}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <div class="project-technologies">
+                        <h4>Technologies</h4>
+                        <div class="tech-list">
+                            ${project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+            this.projectsGrid.appendChild(card);
+            this.projectCards.push(card);
+        });
+        
+        // Re-initialize icons after rendering
+        lucide.createIcons();
+    }
+    
+    setupInteractions() {
+        this.projectCards.forEach(card => {
+            const expandIcon = card.querySelector('.expand-icon');
+            expandIcon.addEventListener('click', () => {
+                card.classList.toggle('expanded');
+                // Rotate icon
+                gsap.to(expandIcon, {
+                    duration: 0.3,
+                    rotation: card.classList.contains('expanded') ? 45 : 0,
+                    ease: 'power2.inOut'
+                });
+            });
+        });
+    }
+}
+
+// ===== SCROLL ANIMATIONS CLASS =====
+class ScrollAnimations {
+    init() {
+        if (!CONFIG.performance.enableAnimations) return;
+        
+        const reveals = document.querySelectorAll('.reveal');
+        reveals.forEach(el => {
+            gsap.from(el, {
+                scrollTrigger: {
+                    trigger: el,
+                    start: CONFIG.animations.scrollOffset,
+                    toggleActions: 'play none none none'
+                },
+                opacity: 0,
+                y: 30,
+                duration: 0.8,
+                stagger: CONFIG.animations.staggerDelay,
+                ease: 'power3.out'
+            });
+        });
+        
+        console.log('🎥 Scroll Animations: Initialized');
+    }
+}
+
+// Initialize the app
+const app = new PortfolioApp();
