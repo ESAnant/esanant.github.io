@@ -1,83 +1,67 @@
-window.addEventListener('load', () => {
+document.addEventListener("DOMContentLoaded", function() {
+    const mainContent = document.getElementById('main-content');
     const loader = document.getElementById('loader');
+
+    // --- 1. Loader Logic ---
+    // Simulates a minimum load time, then fades out loader and shows content.
     setTimeout(() => {
-        loader.classList.add('loader-hidden');
-    }, 1500); // Keep loader for 1.5 seconds
-});
+        loader.style.opacity = '0';
+        loader.addEventListener('transitionend', () => {
+            loader.style.display = 'none';
+        });
+        mainContent.style.display = 'block';
 
-// Minimalist Particle Background
-const canvas = document.getElementById('particle-canvas');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+        // Trigger animation for the first section (Hero) immediately
+        const heroSection = document.querySelector('#hero');
+        heroSection.classList.add('is-visible');
+        const heroElements = heroSection.querySelectorAll('.fade-in');
+        heroElements.forEach(el => el.classList.add('is-visible'));
 
-let particlesArray;
+    }, 2500); // 2.5 second thematic load time
 
-// Particle Object
-class Particle {
-    constructor(x, y, directionX, directionY, size, color) {
-        this.x = x;
-        this.y = y;
-        this.directionX = directionX;
-        this.directionY = directionY;
-        this.size = size;
-        this.color = color;
-    }
+    // --- 2. Intersection Observer for Scroll Animations ---
+    // Creates a smooth fade-in effect for sections and their content as they enter the viewport.
+    const sections = document.querySelectorAll('section');
+    const options = {
+        root: document.querySelector('main'), // Use the main scrolling container
+        rootMargin: '0px',
+        threshold: 0.2 // Trigger when 20% of the section is visible
+    };
 
-    // Method to draw individual particle
-    draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-        ctx.fillStyle = 'rgba(100, 255, 218, 0.1)'; // --accent-color with low alpha
-        ctx.fill();
-    }
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Add 'is-visible' to the section itself
+                entry.target.classList.add('is-visible');
 
-    // Check particle position, check mouse position, move the particle, draw the particle
-    update() {
-        if (this.x > canvas.width || this.x < 0) {
-            this.directionX = -this.directionX;
+                // Add 'is-visible' to elements within the section that need to animate
+                const elementsToAnimate = entry.target.querySelectorAll('.section-title, .about-container, .education-entry, .card, .pub-entry, .cert-item, .skill-category');
+                elementsToAnimate.forEach((el, index) => {
+                    // Apply a staggered delay
+                    setTimeout(() => {
+                        el.classList.add('is-visible');
+                    }, index * 100);
+                });
+
+                // Stop observing the section once it has been animated
+                observer.unobserve(entry.target);
+            }
+        });
+    }, options);
+
+    sections.forEach(section => {
+        // We start observing all sections except the first one, which is handled by the loader logic
+        if (section.id !== 'hero') {
+           observer.observe(section);
         }
-        if (this.y > canvas.height || this.y < 0) {
-            this.directionY = -this.directionY;
-        }
+    });
 
-        this.x += this.directionX;
-        this.y += this.directionY;
-        this.draw();
-    }
-}
-
-// Create particle array
-function init() {
-    particlesArray = [];
-    let numberOfParticles = (canvas.height * canvas.width) / 9000;
-    for (let i = 0; i < numberOfParticles; i++) {
-        let size = (Math.random() * 2) + 1;
-        let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
-        let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
-        let directionX = (Math.random() * .4) - .2;
-        let directionY = (Math.random() * .4) - .2;
-        let color = 'rgba(100, 255, 218, 0.1)';
-
-        particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
-    }
-}
-
-// Animation loop
-function animate() {
-    requestAnimationFrame(animate);
-    ctx.clearRect(0, 0, innerWidth, innerHeight);
-
-    for (let i = 0; i < particlesArray.length; i++) {
-        particlesArray[i].update();
-    }
-}
-
-init();
-animate();
-
-window.addEventListener('resize', () => {
-    canvas.width = innerWidth;
-    canvas.height = innerHeight;
-    init();
+    // --- 3. Interactive Card Flip on Click (for Mobile/Touch) ---
+    // Adds a 'is-flipped' class to toggle the 3D flip animation on cards.
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+        card.addEventListener('click', function() {
+            card.classList.toggle('is-flipped');
+        });
+    });
 });
