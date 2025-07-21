@@ -11,18 +11,18 @@
 <body>
     <!-- Loading Screen -->
     <div id="loader" class="loader">
-        <div class="verilog-synthesis">
-            <div class="synthesis-stage" data-stage="Parse"><span>Parsing HDL...</span></div>
-            <div class="synthesis-stage" data-stage="Elaborate"><span>Elaborating Design...</span></div>
-            <div class="synthesis-stage" data-stage="Optimize"><span>Optimizing Logic...</span></div>
-            <div class="synthesis-stage" data-stage="Map"><span>Technology Mapping...</span></div>
+        <div class="electric-atom">
+            <div class="nucleus"></div>
+            <div class="orbit"><div class="electron"></div></div>
+            <div class="orbit"><div class="electron"></div></div>
+            <div class="orbit"><div class="electron"></div></div>
         </div>
-        <div class="loading-progress"><div class="progress-bar"></div></div>
+        <p class="loader-text">Booting Silicon...</p>
     </div>
 
     <!-- Animated Background -->
     <div class="animated-bg">
-        <canvas id="matrix-canvas"></canvas>
+        <canvas id="neural-canvas"></canvas>
     </div>
 
     <!-- Top Navigation -->
@@ -33,9 +33,8 @@
             <a href="#education" class="nav-link" data-section="education">Education</a>
             <a href="#experience" class="nav-link" data-section="experience">Experience</a>
             <a href="#projects" class="nav-link" data-section="projects">Projects</a>
-            <a href="#publications" class="nav-link" data-section="publications">Publications</a>
-            <a href="#certifications" class="nav-link" data-section="certifications">Certifications</a>
             <a href="#skills" class="nav-link" data-section="skills">Skills</a>
+            <a href="#contact" class="nav-link" data-section="contact">Contact</a>
         </nav>
     </header>
 
@@ -59,7 +58,6 @@
                     <a href="mailto:esanant@u.nus.edu" class="hero-link"><i class="fas fa-envelope"></i><span>Email</span></a>
                     <a href="https://www.linkedin.com/in/sai-anant/" class="hero-link" target="_blank"><i class="fab fa-linkedin"></i><span>LinkedIn</span></a>
                     <a href="https://github.com/ESAnant" class="hero-link" target="_blank"><i class="fab fa-github"></i><span>GitHub</span></a>
-                    <a href="./Edidi_Sai_Anant_Resume.pdf" class="hero-link" target="_blank"><i class="fas fa-file-download"></i><span>Resume</span></a>
                 </div>
             </div>
         </section>
@@ -116,15 +114,6 @@
                                     <span class="duration">2023 - 2025</span>
                                 </div>
                                 <p class="university">National University of Singapore</p>
-                                <div class="coursework">
-                                    <h4>Key Coursework:</h4>
-                                    <div class="course-tags">
-                                        <span class="course-tag">VLSI Digital Circuit Design</span>
-                                        <span class="course-tag">Memory Technologies</span>
-                                        <span class="course-tag">Embedded Hardware System Design</span>
-                                        <span class="course-tag">Computer Architecture</span>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -137,15 +126,6 @@
                                     <span class="duration">2019 - 2023</span>
                                 </div>
                                 <p class="university">SRM Institute of Science and Technology</p>
-                                <div class="coursework">
-                                    <h4>Key Coursework:</h4>
-                                    <div class="course-tags">
-                                        <span class="course-tag">Digital Electronics</span>
-                                        <span class="course-tag">Semiconductor Device Modelling</span>
-                                        <span class="course-tag">VLSI Design</span>
-                                        <span class="course-tag">Embedded System Design</span>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -293,93 +273,57 @@
                 </div>
             </div>
         </section>
-
-        <!-- Publications Section -->
-        <section id="publications" class="section publications-section">
-            <div class="section-container">
-                <h2 class="section-title">Publications & Patents</h2>
-                <div class="publications-list">
-                    <div class="publication-item">
-                        <div class="publication-type"><i class="fas fa-certificate"></i><span>Patent</span></div>
-                        <div class="publication-details">
-                            <h4>A System for Controlling an Autonomous Vehicle and a Method Thereof</h4>
-                            <p class="venue">US Patent Application - Issued Mar 28, 2025</p>
-                            <p class="authors">This intelligent system detects driver medical distress, seamlessly switches to autonomous mode to navigate to a safe location, and alerts emergency services.</p>
-                        </div>
-                    </div>
-                    <div class="publication-item">
-                        <div class="publication-type"><i class="fas fa-file-alt"></i><span>Journal Paper</span></div>
-                        <div class="publication-details">
-                            <h4>Improving Data Integrity with Reversible Logic-based Error Detection and Correction Module on AHB-APB Bridge</h4>
-                            <p class="venue">IEEE - Published May, 2023</p>
-                        </div>
-                    </div>
-                    <div class="publication-item">
-                        <div class="publication-type"><i class="fas fa-file-alt"></i><span>Journal Paper</span></div>
-                        <div class="publication-details">
-                            <h4>A Survey on Affordable Internet of Things (IoT) Enabled Healthcare Systems</h4>
-                            <p class="venue">Grenze International Journal of Engineering and Technology - Published Jun, 2022</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Certifications Section -->
-        <section id="certifications" class="section certifications-section">
-            <div class="section-container">
-                <h2 class="section-title">Certifications</h2>
-                <div class="certifications-grid">
-                    <div class="certification-card">
-                        <div class="cert-icon"><i class="fas fa-microchip"></i></div>
-                        <h4>Advanced VLSI Design</h4><p>Cadence Design Systems</p><span class="cert-year">2024</span>
-                    </div>
-                    <div class="certification-card">
-                        <div class="cert-icon"><i class="fab fa-xilinx"></i></div>
-                        <h4>Xilinx FPGA Developer</h4><p>AMD Xilinx</p><span class="cert-year">2023</span>
-                    </div>
-                    <div class="certification-card">
-                        <div class="cert-icon"><i class="fas fa-tasks"></i></div>
-                        <h4>SystemVerilog Verification</h4><p>Synopsys</p><span class="cert-year">2023</span>
-                    </div>
-                    <div class="certification-card">
-                        <div class="cert-icon"><i class="fab fa-python"></i></div>
-                        <h4>Python for Engineers</h4><p>IEEE Computer Society</p><span class="cert-year">2022</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+        
         <!-- Skills Section -->
         <section id="skills" class="section skills-section">
             <div class="section-container">
                 <h2 class="section-title">Technical Skills</h2>
-                <div class="skills-content">
-                    <div class="skills-category">
+                <div class="skills-showcase">
+                    <div class="skills-category-card">
                         <h3><i class="fas fa-language"></i>Hardware Description Languages</h3>
                         <div class="skills-list">
-                            <div class="skill-item" data-level="95"><span class="skill-name">Verilog</span><div class="skill-bar"><div class="skill-progress"></div></div></div>
-                            <div class="skill-item" data-level="90"><span class="skill-name">SystemVerilog</span><div class="skill-bar"><div class="skill-progress"></div></div></div>
-                            <div class="skill-item" data-level="85"><span class="skill-name">HLS</span><div class="skill-bar"><div class="skill-progress"></div></div></div>
+                            <span>Verilog</span>
+                            <span>SystemVerilog</span>
+                            <span>VHDL</span>
+                            <span>HLS</span>
                         </div>
                     </div>
-                    <div class="skills-category">
+                    <div class="skills-category-card">
                         <h3><i class="fas fa-tools"></i>EDA Tools</h3>
-                        <div class="skills-grid">
-                            <div class="skill-badge"><i class="fas fa-cube"></i><span>Cadence Virtuoso</span></div>
-                            <div class="skill-badge"><i class="fab fa-xilinx"></i><span>Xilinx Vivado</span></div>
-                            <div class="skill-badge"><i class="fas fa-wave-square"></i><span>QuestaSim</span></div>
-                            <div class="skill-badge"><i class="fas fa-cogs"></i><span>Xilinx Vitis</span></div>
-                            <div class="skill-badge"><i class="fas fa-microchip"></i><span>Synopsys Tools</span></div>
+                        <div class="skills-list">
+                            <span>Cadence Virtuoso</span>
+                            <span>Xilinx Vivado</span>
+                            <span>QuestaSim</span>
+                            <span>Synopsys Tools</span>
+                            <span>Xilinx Vitis</span>
                         </div>
                     </div>
-                    <div class="skills-category">
+                    <div class="skills-category-card">
                         <h3><i class="fas fa-code"></i>Programming & Scripting</h3>
                         <div class="skills-list">
-                            <div class="skill-item" data-level="90"><span class="skill-name">C/C++</span><div class="skill-bar"><div class="skill-progress"></div></div></div>
-                            <div class="skill-item" data-level="85"><span class="skill-name">Python</span><div class="skill-bar"><div class="skill-progress"></div></div></div>
-                            <div class="skill-item" data-level="75"><span class="skill-name">Assembly</span><div class="skill-bar"><div class="skill-progress"></div></div></div>
+                            <span>C/C++</span>
+                            <span>Python</span>
+                            <span>Assembly</span>
+                            <span>Tcl</span>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section contact-section">
+            <div class="section-container">
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="contact-content">
+                    <p>
+                        I'm always open to discussing new projects, creative ideas, or opportunities to be part of an ambitious vision. Feel free to reach out.
+                    </p>
+                    <a href="./Edidi_Sai_Anant_Resume.pdf" class="contact-button" target="_blank">View My Resume</a>
+                    <div class="contact-links">
+                        <a href="mailto:esanant@u.nus.edu" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                        <a href="https://www.linkedin.com/in/sai-anant/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/ESAnant" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
             </div>
