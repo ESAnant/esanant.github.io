@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edidi Sai Anant - Hardware Design Engineer</title>
-    <!-- Correct path for CSS file -->
     <link rel="stylesheet" href="css/style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
@@ -13,80 +12,54 @@
     <!-- Loading Screen -->
     <div id="loader" class="loader">
         <div class="verilog-synthesis">
-            <div class="synthesis-stage" data-stage="Parse">
-                <div class="stage-indicator"></div>
-                <span>Parsing HDL...</span>
-            </div>
-            <div class="synthesis-stage" data-stage="Elaborate">
-                <div class="stage-indicator"></div>
-                <span>Elaborating Design...</span>
-            </div>
-            <div class="synthesis-stage" data-stage="Optimize">
-                <div class="stage-indicator"></div>
-                <span>Optimizing Logic...</span>
-            </div>
-            <div class="synthesis-stage" data-stage="Map">
-                <div class="stage-indicator"></div>
-                <span>Technology Mapping...</span>
-            </div>
+            <div class="synthesis-stage" data-stage="Parse"><span>Parsing HDL...</span></div>
+            <div class="synthesis-stage" data-stage="Elaborate"><span>Elaborating Design...</span></div>
+            <div class="synthesis-stage" data-stage="Optimize"><span>Optimizing Logic...</span></div>
+            <div class="synthesis-stage" data-stage="Map"><span>Technology Mapping...</span></div>
         </div>
-        <div class="loading-progress">
-            <div class="progress-bar"></div>
-        </div>
+        <div class="loading-progress"><div class="progress-bar"></div></div>
     </div>
 
     <!-- Animated Background -->
     <div class="animated-bg">
-        <canvas id="circuit-canvas"></canvas>
-        <div class="floating-particles"></div>
+        <canvas id="matrix-canvas"></canvas>
     </div>
 
-    <!-- Navigation Sidebar -->
-    <nav class="nav-sidebar">
-        <div class="nav-items">
-            <a href="#hero" class="nav-item active" data-section="hero"><i class="fas fa-home"></i><span>Home</span></a>
-            <a href="#about" class="nav-item" data-section="about"><i class="fas fa-user"></i><span>About</span></a>
-            <a href="#education" class="nav-item" data-section="education"><i class="fas fa-graduation-cap"></i><span>Education</span></a>
-            <a href="#experience" class="nav-item" data-section="experience"><i class="fas fa-briefcase"></i><span>Experience</span></a>
-            <a href="#projects" class="nav-item" data-section="projects"><i class="fas fa-code-branch"></i><span>Projects</span></a>
-            <a href="#publications" class="nav-item" data-section="publications"><i class="fas fa-file-alt"></i><span>Publications</span></a>
-            <a href="#certifications" class="nav-item" data-section="certifications"><i class="fas fa-certificate"></i><span>Certifications</span></a>
-            <a href="#skills" class="nav-item" data-section="skills"><i class="fas fa-cogs"></i><span>Skills</span></a>
-        </div>
-    </nav>
+    <!-- Top Navigation -->
+    <header class="header">
+        <nav class="top-nav">
+            <a href="#hero" class="nav-link active" data-section="hero">Home</a>
+            <a href="#about" class="nav-link" data-section="about">About</a>
+            <a href="#education" class="nav-link" data-section="education">Education</a>
+            <a href="#experience" class="nav-link" data-section="experience">Experience</a>
+            <a href="#projects" class="nav-link" data-section="projects">Projects</a>
+            <a href="#publications" class="nav-link" data-section="publications">Publications</a>
+            <a href="#certifications" class="nav-link" data-section="certifications">Certifications</a>
+            <a href="#skills" class="nav-link" data-section="skills">Skills</a>
+        </nav>
+    </header>
 
     <!-- Main Content -->
     <main class="main-content">
         <!-- Hero Section -->
         <section id="hero" class="section hero-section">
             <div class="hero-content">
-                <div class="hero-text">
-                    <h1 class="hero-name">
-                        <span class="name-part">Edidi</span>
-                        <span class="name-part">Sai Anant</span>
-                    </h1>
-                    <div class="hero-title">
-                        <span class="typing-text"></span>
-                        <span class="cursor">|</span>
-                    </div>
-                    <p class="hero-description">
-                        Master's candidate in Electrical Engineering with a strong foundation in semiconductor design, embedded systems, and hardware acceleration, passionate about pushing the boundaries of digital logic and system optimization[4].
-                    </p>
-                    <div class="hero-links">
-                        <a href="mailto:esanant@u.nus.edu" class="hero-link"><i class="fas fa-envelope"></i><span>Email</span></a>
-                        <a href="https://www.linkedin.com/in/sai-anant/" class="hero-link" target="_blank"><i class="fab fa-linkedin"></i><span>LinkedIn</span></a>
-                        <a href="https://github.com/ESAnant" class="hero-link" target="_blank"><i class="fab fa-github"></i><span>GitHub</span></a>
-                        <a href="./Edidi_Sai_Anant_Resume.pdf" class="hero-link" target="_blank"><i class="fas fa-file-download"></i><span>Resume</span></a>
-                    </div>
+                <h1 class="hero-name">
+                    <span class="name-part">Edidi</span>
+                    <span class="name-part">Sai Anant</span>
+                </h1>
+                <div class="hero-title">
+                    <span class="typing-text"></span>
+                    <span class="cursor">|</span>
                 </div>
-                <div class="hero-visual">
-                    <div class="circuit-animation">
-                        <div class="chip-container">
-                            <div class="chip">
-                                <div class="chip-label">ESA</div>
-                            </div>
-                        </div>
-                    </div>
+                <p class="hero-description">
+                    Master's candidate in Electrical Engineering with a strong foundation in semiconductor design, embedded systems, and hardware acceleration, passionate about pushing the boundaries of digital logic and system optimization[4].
+                </p>
+                <div class="hero-links">
+                    <a href="mailto:esanant@u.nus.edu" class="hero-link"><i class="fas fa-envelope"></i><span>Email</span></a>
+                    <a href="https://www.linkedin.com/in/sai-anant/" class="hero-link" target="_blank"><i class="fab fa-linkedin"></i><span>LinkedIn</span></a>
+                    <a href="https://github.com/ESAnant" class="hero-link" target="_blank"><i class="fab fa-github"></i><span>GitHub</span></a>
+                    <a href="./Edidi_Sai_Anant_Resume.pdf" class="hero-link" target="_blank"><i class="fas fa-file-download"></i><span>Resume</span></a>
                 </div>
             </div>
         </section>
@@ -412,7 +385,6 @@
             </div>
         </section>
     </main>
-    <!-- Correct path for JS file -->
     <script src="js/script.js"></script>
 </body>
 </html>
