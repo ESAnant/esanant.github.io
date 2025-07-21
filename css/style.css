@@ -17,8 +17,8 @@
     --font-primary: 'Inter', sans-serif;
     --font-mono: 'Fira Code', monospace;
     
+    --header-height: 70px;
     --container-padding: 2rem;
-    --section-spacing: 8rem 0;
     --border-radius: 0.75rem;
     
     --transition-fast: 0.2s ease-out;
@@ -34,8 +34,6 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-snap-type: y mandatory;
-    overflow-x: hidden;
 }
 
 body {
@@ -45,14 +43,18 @@ body {
     line-height: 1.6;
 }
 
+.main-content {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+}
+
 /* ===========================================
    2. Loader & Background
    ========================================== */
 .loader {
     position: fixed;
     inset: 0;
-    width: 100%;
-    height: 100%;
     background: var(--bg-primary);
     display: flex;
     flex-direction: column;
@@ -69,43 +71,20 @@ body {
 
 .verilog-synthesis {
     display: flex;
-    flex-direction: column;
     gap: 1.5rem;
-    margin-bottom: 3rem;
-    width: 250px;
+    margin-bottom: 2rem;
+    font-family: var(--font-mono);
 }
 
 .synthesis-stage {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    opacity: 0.3;
-    transition: opacity var(--transition-medium);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .synthesis-stage.active {
     opacity: 1;
-}
-
-.stage-indicator {
-    width: 12px;
-    height: 12px;
-    border: 2px solid var(--copper-primary);
-    border-radius: 50%;
-    position: relative;
-    background: transparent;
-    transition: all var(--transition-medium);
-}
-
-.synthesis-stage.active .stage-indicator {
-    background: var(--copper-primary);
-    box-shadow: 0 0 20px var(--copper-glow);
-}
-
-.synthesis-stage span {
-    font-family: var(--font-mono);
-    color: var(--text-secondary);
-    font-size: 0.9rem;
+    transform: translateY(0);
 }
 
 .loading-progress {
@@ -118,15 +97,9 @@ body {
 
 .progress-bar {
     height: 100%;
-    width: 100%;
-    background: linear-gradient(90deg, var(--copper-dark), var(--copper-primary), var(--copper-light));
-    border-radius: 2px;
-    transform: translateX(-100%);
-    animation: loading-progress 2.4s ease-in-out forwards;
-}
-
-@keyframes loading-progress {
-    to { transform: translateX(0); }
+    width: 0%;
+    background: linear-gradient(90deg, var(--copper-dark), var(--copper-primary));
+    transition: width 2.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .animated-bg {
@@ -134,94 +107,92 @@ body {
     inset: 0;
     z-index: -1;
     pointer-events: none;
-}
-
-#circuit-canvas {
-    width: 100%;
-    height: 100%;
-    opacity: 0.1;
-}
-
-/* ===========================================
-   3. Navigation
-   ========================================== */
-.nav-sidebar {
-    position: fixed;
-    top: 50%;
-    right: 2rem;
-    transform: translateY(-50%);
-    z-index: 1000;
-}
-
-.nav-items {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.nav-item {
-    display: flex;
-    align-items: center;
-    padding: 0.75rem;
-    background: rgba(26, 26, 26, 0.7);
-    border: 1px solid transparent;
-    border-radius: var(--border-radius);
-    text-decoration: none;
-    color: var(--text-muted);
-    transition: all var(--transition-medium);
-    backdrop-filter: blur(10px);
     overflow: hidden;
 }
 
-.nav-item:hover {
-    color: var(--copper-primary);
-    border-color: var(--copper-primary);
-    transform: translateX(-10px);
+#matrix-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
-.nav-item.active {
-    background: var(--copper-primary);
-    color: white;
-    box-shadow: 0 0 20px rgba(184, 115, 51, 0.3);
+/* ===========================================
+   3. Top Navigation
+   ========================================== */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--bg-secondary);
+    z-index: 1000;
+    transition: top 0.3s;
 }
 
-.nav-item i {
-    font-size: 1rem;
-    width: 20px;
-    text-align: center;
+.top-nav {
+    display: flex;
+    gap: 2rem;
 }
 
-.nav-item span {
-    font-size: 0.85rem;
+.nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
     font-weight: 500;
-    white-space: nowrap;
-    opacity: 0;
-    transform: translateX(-10px);
-    transition: all var(--transition-medium);
-    margin-left: 0.5rem;
-    max-width: 0;
+    position: relative;
+    transition: color var(--transition-medium);
 }
 
-.nav-item:hover span,
-.nav-item.active span {
-    opacity: 1;
-    transform: translateX(0);
-    max-width: 100px;
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--copper-primary);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform var(--transition-medium);
 }
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--text-primary);
+}
+
+.nav-link.active::after {
+    transform: scaleX(1);
+}
+
 
 /* ===========================================
    4. Main Content & Sections
    ========================================== */
 .section {
-    min-height: 100vh;
-    padding: var(--section-spacing);
+    height: 100vh;
+    padding-top: var(--header-height);
     scroll-snap-align: start;
-    scroll-snap-stop: always;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    width: 100%;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .section-container {
@@ -237,7 +208,6 @@ body {
     text-align: center;
     margin-bottom: 4rem;
     position: relative;
-    color: var(--text-primary);
 }
 
 .section-title::after {
@@ -256,16 +226,7 @@ body {
    5. Hero Section
    ========================================== */
 .hero-section {
-    background: radial-gradient(ellipse at center, rgba(184, 115, 51, 0.1) 0%, var(--bg-primary) 70%);
-}
-
-.hero-content {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 4rem;
-    align-items: center;
-    width: 100%;
-    padding: 0 2rem;
+    text-align: center;
 }
 
 .hero-name {
@@ -285,6 +246,7 @@ body {
     margin-bottom: 2rem;
     min-height: 2.5rem;
     display: flex;
+    justify-content: center;
     align-items: center;
     font-family: var(--font-mono);
 }
@@ -305,11 +267,14 @@ body {
     margin-bottom: 3rem;
     line-height: 1.8;
     max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .hero-links {
     display: flex;
     gap: 1.5rem;
+    justify-content: center;
     flex-wrap: wrap;
 }
 
@@ -333,60 +298,6 @@ body {
     box-shadow: 0 10px 30px rgba(184, 115, 51, 0.3);
 }
 
-.hero-visual {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.chip-container {
-    animation: chip-rotate 20s linear infinite;
-}
-
-.chip {
-    width: 150px;
-    height: 150px;
-    background: var(--bg-secondary);
-    border: 3px solid var(--copper-primary);
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 40px rgba(184, 115, 51, 0.3);
-    position: relative;
-}
-
-.chip::before, .chip::after {
-    content: '';
-    position: absolute;
-    width: calc(100% + 16px);
-    height: calc(100% + 16px);
-    border: 1px solid var(--copper-dark);
-    border-radius: 22px;
-    animation: chip-pulse 4s ease-in-out infinite;
-}
-
-.chip::after {
-    animation-delay: 2s;
-}
-
-@keyframes chip-pulse {
-    0% { transform: scale(0.95); opacity: 0; }
-    50% { opacity: 0.5; }
-    100% { transform: scale(1.15); opacity: 0; }
-}
-
-.chip-label {
-    font-family: var(--font-mono);
-    font-weight: 600;
-    color: var(--copper-primary);
-    font-size: 2rem;
-}
-
-@keyframes chip-rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
 
 /* ===========================================
    6. About Section
@@ -475,6 +386,7 @@ body {
     letter-spacing: 1px;
 }
 
+
 /* ===========================================
    7. Education & Experience Sections
    ========================================== */
@@ -541,7 +453,6 @@ body {
 
 .education-header h3 {
     font-size: 1.5rem;
-    color: var(--text-primary);
 }
 
 .duration {
@@ -596,7 +507,6 @@ body {
     height: 320px;
     perspective: 1500px;
     background-color: transparent;
-    border: none;
     cursor: pointer;
 }
 
@@ -608,8 +518,8 @@ body {
     transition: transform var(--transition-slow);
 }
 
-.experience-card.flipped .card-inner,
-.project-card.flipped .card-inner {
+.experience-card:hover .card-inner,
+.project-card:hover .card-inner {
     transform: rotateY(180deg);
 }
 
@@ -633,10 +543,8 @@ body {
     background: var(--bg-tertiary);
 }
 
-/* Card Front Styling */
 .card-header h3 {
     font-size: 1.3rem;
-    color: var(--text-primary);
     margin-bottom: 0.5rem;
 }
 
@@ -669,7 +577,6 @@ body {
     align-self: flex-start;
 }
 
-/* Card Back Styling */
 .card-back h4 {
     color: var(--copper-primary);
     margin-bottom: 1rem;
@@ -677,7 +584,6 @@ body {
 
 .card-back ul {
     list-style: none;
-    padding: 0;
 }
 
 .card-back li {
@@ -695,7 +601,6 @@ body {
     font-size: 0.8rem;
 }
 
-/* Project Cards Specifics */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -711,11 +616,6 @@ body {
     font-size: 2.5rem;
     color: var(--copper-primary);
     margin-bottom: 1.5rem;
-    transition: transform var(--transition-medium);
-}
-
-.project-card:hover .project-icon {
-    transform: scale(1.1);
 }
 
 .project-card .project-tech {
@@ -784,7 +684,6 @@ body {
 
 .publication-details h4 {
     font-size: 1.3rem;
-    color: var(--text-primary);
     margin-bottom: 0.5rem;
 }
 
@@ -827,11 +726,6 @@ body {
     font-size: 2.5rem;
     color: var(--copper-primary);
     margin-bottom: 1.5rem;
-    transition: all var(--transition-medium);
-}
-
-.certification-card:hover .cert-icon {
-    transform: scale(1.1) rotate(15deg);
 }
 
 .certification-card h4 {
@@ -930,13 +824,6 @@ body {
     color: var(--copper-primary);
 }
 
-.skill-badge span {
-    font-family: var(--font-mono);
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-}
-
-
 /* ===========================================
    11. Responsive Design
    ========================================== */
@@ -947,32 +834,28 @@ body {
 }
 
 @media (max-width: 1024px) {
-    .nav-sidebar {
-        display: none;
-    }
-    .hero-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-    .hero-text {
-        order: 2;
-    }
-    .hero-visual {
-        order: 1;
-        margin-bottom: 2rem;
-    }
-    .hero-links {
-        justify-content: center;
-    }
     .about-content {
         grid-template-columns: 1fr;
+    }
+    .top-nav {
+      gap: 1.5rem;
     }
 }
 
 @media (max-width: 768px) {
-    :root {
-        --container-padding: 1rem;
-        --section-spacing: 6rem 0;
+    .header {
+        height: 60px;
+    }
+    .top-nav {
+      display: none; /* Hide for smaller screens, can be replaced with a hamburger menu */
+    }
+    .section {
+        padding-top: 60px;
+        height: auto;
+        min-height: 100vh;
+    }
+    .main-content {
+        scroll-snap-type: none; /* Disable snap on mobile for better usability */
     }
     .section-title {
         font-size: 2.5rem;
