@@ -4,6 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edidi Sai Anant - Hardware Design Engineer</title>
+    <meta name="description" content="The portfolio of Edidi Sai Anant, a hardware design engineer specializing in VLSI, FPGAs, and embedded systems.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://esanant.github.io/">
+    <meta property="og:title" content="Edidi Sai Anant - Hardware Design Engineer">
+    <meta property="og:description" content="Specialized in semiconductor design, embedded systems, and hardware acceleration.">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://esanant.github.io/">
+    <meta property="twitter:title" content="Edidi Sai Anant - Hardware Design Engineer">
+    <meta property="twitter:description" content="Specialized in semiconductor design, embedded systems, and hardware acceleration.">
+
     <link rel="stylesheet" href="css/style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
@@ -37,44 +51,18 @@
     <!-- Animated Background -->
     <div class="animated-bg">
         <canvas id="circuit-canvas"></canvas>
-        <div class="floating-particles"></div>
     </div>
 
     <!-- Navigation -->
     <nav class="nav-sidebar">
         <div class="nav-items">
-            <a href="#hero" class="nav-item active" data-section="hero">
-                <i class="fas fa-home"></i>
-                <span>Home</span>
-            </a>
-            <a href="#about" class="nav-item" data-section="about">
-                <i class="fas fa-user"></i>
-                <span>About</span>
-            </a>
-            <a href="#education" class="nav-item" data-section="education">
-                <i class="fas fa-graduation-cap"></i>
-                <span>Education</span>
-            </a>
-            <a href="#experience" class="nav-item" data-section="experience">
-                <i class="fas fa-briefcase"></i>
-                <span>Experience</span>
-            </a>
-            <a href="#projects" class="nav-item" data-section="projects">
-                <i class="fas fa-code"></i>
-                <span>Projects</span>
-            </a>
-            <a href="#publications" class="nav-item" data-section="publications">
-                <i class="fas fa-file-alt"></i>
-                <span>Publications</span>
-            </a>
-            <a href="#certifications" class="nav-item" data-section="certifications">
-                <i class="fas fa-certificate"></i>
-                <span>Certifications</span>
-            </a>
-            <a href="#skills" class="nav-item" data-section="skills">
-                <i class="fas fa-cogs"></i>
-                <span>Skills</span>
-            </a>
+            <a href="#hero" class="nav-item active" data-section="hero" aria-label="Home"><i class="fas fa-home"></i><span>Home</span></a>
+            <a href="#about" class="nav-item" data-section="about" aria-label="About"><i class="fas fa-user"></i><span>About</span></a>
+            <a href="#education" class="nav-item" data-section="education" aria-label="Education"><i class="fas fa-graduation-cap"></i><span>Education</span></a>
+            <a href="#experience" class="nav-item" data-section="experience" aria-label="Experience"><i class="fas fa-briefcase"></i><span>Experience</span></a>
+            <a href="#projects" class="nav-item" data-section="projects" aria-label="Projects"><i class="fas fa-code"></i><span>Projects</span></a>
+            <a href="#publications" class="nav-item" data-section="publications" aria-label="Publications"><i class="fas fa-file-alt"></i><span>Publications</span></a>
+            <a href="#skills" class="nav-item" data-section="skills" aria-label="Skills"><i class="fas fa-cogs"></i><span>Skills</span></a>
         </div>
     </nav>
 
@@ -89,35 +77,21 @@
                         <span class="name-part">Sai Anant</span>
                     </h1>
                     <div class="hero-title">
-                        <span class="typing-text"></span>
-                        <span class="cursor">|</span>
+                        <span class="typing-text"></span><span class="cursor">|</span>
                     </div>
                     <p class="hero-description">
-                        Specialized in semiconductor design, embedded systems, and hardware acceleration. 
-                        Passionate about pushing the boundaries of digital logic design and system optimization.
+                        Master's candidate in Electrical Engineering with a robust foundation in semiconductor design and embedded systems, passionate about pushing the boundaries of digital logic and system-on-chip innovation[4].
                     </p>
                     <div class="hero-links">
-                        <a href="mailto:edidi.anant@example.com" class="hero-link">
-                            <i class="fas fa-envelope"></i>
-                            <span>Email</span>
-                        </a>
-                        <a href="https://linkedin.com/in/edidi-sai-anant" class="hero-link" target="_blank">
-                            <i class="fab fa-linkedin"></i>
-                            <span>LinkedIn</span>
-                        </a>
-                        <a href="https://github.com/edidianant" class="hero-link" target="_blank">
-                            <i class="fab fa-github"></i>
-                            <span>GitHub</span>
-                        </a>
+                        <a href="mailto:esanant@u.nus.edu" class="hero-link"><i class="fas fa-envelope"></i><span>Email</span></a>
+                        <a href="https://linkedin.com/in/sai-anant" class="hero-link" target="_blank"><i class="fab fa-linkedin"></i><span>LinkedIn</span></a>
+                        <a href="https://github.com/ESAnant" class="hero-link" target="_blank"><i class="fab fa-github"></i><span>GitHub</span></a>
                     </div>
                 </div>
                 <div class="hero-visual">
-                    <div class="circuit-animation">
-                        <div class="chip-container">
-                            <div class="chip">
-                                <div class="chip-pins"></div>
-                                <div class="chip-label">FPGA</div>
-                            </div>
+                    <div class="chip-container">
+                        <div class="chip">
+                            <div class="chip-label">RISC-V</div>
                         </div>
                     </div>
                 </div>
@@ -131,37 +105,31 @@
                 <div class="about-content">
                     <div class="about-text">
                         <p>
-                            I am a passionate hardware design engineer with expertise in digital logic design, 
-                            embedded systems, and semiconductor technologies. My journey in engineering is driven 
-                            by a fascination with the intricate world of silicon and the endless possibilities 
-                            it offers for innovation.
+                           I am a dedicated Electrical Engineering Master's candidate with a strong background in semiconductor processes and IC design. My academic and practical experiences have equipped me with a keen interest in exploring diverse opportunities within the semiconductor industry[4].
                         </p>
                         <p>
-                            With a strong foundation in <code>Verilog</code>, <code>SystemVerilog</code>, and 
-                            various EDA tools, I specialize in creating efficient, scalable hardware solutions. 
-                            My work spans from low-level RTL design to high-level system architecture, always 
-                            with a focus on performance optimization and power efficiency.
+                            Driven by a passion for innovation and equipped with analytical and technical skills, I am committed to contributing to collaborative teams and tackling challenges in a dynamic, future-oriented environment. I specialize in creating efficient, scalable hardware solutions from low-level <code>RTL</code> design to high-level system architecture[1][4].
                         </p>
                         <div class="philosophy-card">
                             <i class="fas fa-lightbulb"></i>
                             <div>
-                                <h4>Design Philosophy</h4>
-                                <p>"Elegant simplicity in complex systems. Every gate matters, every clock cycle counts."</p>
+                                <h4>My Strengths</h4>
+                                <p>"A reliable, patient, and collaborative team player, dedicated to achieving elegant simplicity in complex systems. Every gate matters, every clock cycle counts[1][4]."</p>
                             </div>
                         </div>
                     </div>
                     <div class="about-stats">
                         <div class="stat-item">
-                            <div class="stat-number" data-target="15">0</div>
-                            <div class="stat-label">Projects Completed</div>
-                        </div>
-                        <div class="stat-item">
                             <div class="stat-number" data-target="3">0</div>
-                            <div class="stat-label">Publications</div>
+                            <div class="stat-label">Publications & Patents[6]</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-number" data-target="8">0</div>
-                            <div class="stat-label">Technologies Mastered</div>
+                            <div class="stat-number" data-target="5">0</div>
+                            <div class="stat-label">Years of Experience[4]</div>
+                        </div>
+                         <div class="stat-item">
+                            <div class="stat-number" data-target="15">0</div>
+                            <div class="stat-label">Key Skills Mastered[4]</div>
                         </div>
                     </div>
                 </div>
@@ -178,20 +146,17 @@
                         <div class="timeline-content">
                             <div class="education-card">
                                 <div class="education-header">
-                                    <h3>Master of Engineering</h3>
+                                    <h3>Master of Science, Electrical Engineering</h3>
                                     <span class="duration">2023 - 2025</span>
                                 </div>
-                                <div class="education-details">
-                                    <p class="university">National University of Singapore</p>
-                                    <p class="specialization">Electrical &amp; Computer Engineering</p>
-                                    <div class="coursework">
-                                        <h4>Key Coursework:</h4>
-                                        <div class="course-tags">
-                                            <span class="course-tag">Advanced Digital Design</span>
-                                            <span class="course-tag">VLSI Systems</span>
-                                            <span class="course-tag">Computer Architecture</span>
-                                            <span class="course-tag">Embedded Systems</span>
-                                        </div>
+                                <p class="university">National University of Singapore</p>
+                                <div class="coursework">
+                                    <h4>Key Coursework:</h4>
+                                    <div class="course-tags">
+                                        <span>VLSI Digital Circuit Design</span>
+                                        <span>Memory Technologies</span>
+                                        <span>Embedded Hardware System Design</span>
+                                        <span>Computer Architecture</span>
                                     </div>
                                 </div>
                             </div>
@@ -202,20 +167,17 @@
                         <div class="timeline-content">
                             <div class="education-card">
                                 <div class="education-header">
-                                    <h3>Bachelor of Technology</h3>
+                                    <h3>Bachelor of Technology, ECE</h3>
                                     <span class="duration">2019 - 2023</span>
                                 </div>
-                                <div class="education-details">
-                                    <p class="university">SRM Institute of Science and Technology</p>
-                                    <p class="specialization">Electronics &amp; Communication Engineering</p>
-                                    <div class="coursework">
-                                        <h4>Key Coursework:</h4>
-                                        <div class="course-tags">
-                                            <span class="course-tag">Digital Electronics</span>
-                                            <span class="course-tag">Microprocessors</span>
-                                            <span class="course-tag">Signal Processing</span>
-                                            <span class="course-tag">Communication Systems</span>
-                                        </div>
+                                <p class="university">SRM Institute of Science and Technology</p>
+                                 <div class="coursework">
+                                    <h4>Key Coursework:</h4>
+                                    <div class="course-tags">
+                                        <span>Semiconductor Device Modelling</span>
+                                        <span>Digital Electronics</span>
+                                        <span>VLSI Design</span>
+                                        <span>ARM-Based Embedded Systems</span>
                                     </div>
                                 </div>
                             </div>
@@ -230,53 +192,56 @@
             <div class="section-container">
                 <h2 class="section-title">Experience</h2>
                 <div class="experience-grid">
-                    <div class="experience-card" data-experience="maven">
-                        <div class="card-front">
-                            <div class="card-header">
-                                <h3>Hardware Design Intern</h3>
-                                <span class="company">Maven Silicon</span>
+                    <div class="experience-card">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <h3>Graduate Assistant</h3>
+                                <span class="company">National University of Singapore</span>
+                                <div class="card-tech"><span>Guidance</span><span>Lab Materials</span><span>Faculty Collaboration</span></div>
+                                <span class="card-duration">Aug 2024 - Present</span>
                             </div>
-                            <div class="card-tech">
-                                <span class="tech-tag">Verilog</span>
-                                <span class="tech-tag">SystemVerilog</span>
-                                <span class="tech-tag">UVM</span>
-                            </div>
-                            <div class="card-duration">2024 - Present</div>
-                        </div>
-                        <div class="card-back">
-                            <div class="card-details">
+                            <div class="card-back">
                                 <h4>Key Responsibilities:</h4>
                                 <ul>
-                                    <li>Designed and verified complex digital circuits using SystemVerilog</li>
-                                    <li>Developed comprehensive testbenches with UVM methodology</li>
-                                    <li>Collaborated on ASIC design flow optimization</li>
-                                    <li>Achieved 98% code coverage in verification projects</li>
+                                    <li>Oversee lab sessions for Microcontroller Programming and Computer Architecture[8].</li>
+                                    <li>Provide guidance and feedback on lab work and assignments[8].</li>
+                                    <li>Collaborate with faculty to overhaul lab materials and processes[8].</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-
-                    <div class="experience-card" data-experience="research">
-                        <div class="card-front">
-                            <div class="card-header">
-                                <h3>Research Assistant</h3>
-                                <span class="company">NUS ECE Department</span>
+                    <div class="experience-card">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <h3>Project Intern</h3>
+                                <span class="company">Maven Silicon</span>
+                                <div class="card-tech"><span>Verilog</span><span>RTL Design</span><span>SystemVerilog</span></div>
+                                <span class="card-duration">Dec 2022 - Jan 2023</span>
                             </div>
-                            <div class="card-tech">
-                                <span class="tech-tag">FPGA</span>
-                                <span class="tech-tag">Vivado</span>
-                                <span class="tech-tag">Python</span>
-                            </div>
-                            <div class="card-duration">2023 - 2024</div>
-                        </div>
-                        <div class="card-back">
-                            <div class="card-details">
-                                <h4>Key Achievements:</h4>
+                            <div class="card-back">
+                                <h4>Key Learnings:</h4>
                                 <ul>
-                                    <li>Implemented machine learning accelerators on Xilinx FPGAs</li>
-                                    <li>Optimized memory hierarchies for embedded applications</li>
-                                    <li>Published research on in-memory computing architectures</li>
-                                    <li>Reduced power consumption by 35% in target applications</li>
+                                    <li>Designed and verified an AHB to APB bridge using Verilog HDL[4].</li>
+                                    <li>Decomposed complex designs into manageable modular components[4].</li>
+                                    <li>Interpreted RTL descriptions into gate-level schematics for optimization[4].</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="experience-card">
+                         <div class="card-inner">
+                            <div class="card-front">
+                                <h3>Intern</h3>
+                                <span class="company">Sandeepani School of Embedded System Design</span>
+                                <div class="card-tech"><span>SystemVerilog</span><span>QuestaSim</span><span>UVM</span></div>
+                                <span class="card-duration">Jun 2022 - Jul 2022</span>
+                            </div>
+                            <div class="card-back">
+                                <h4>Key Learnings:</h4>
+                                <ul>
+                                    <li>Developed and verified a UART protocol using Verilog HDL[4].</li>
+                                    <li>Executed in-depth functional verification of a Half Adder with SystemVerilog[4].</li>
+                                    <li>Performed detailed functional coverage analysis using QuestaSim[4].</li>
                                 </ul>
                             </div>
                         </div>
@@ -290,88 +255,23 @@
             <div class="section-container">
                 <h2 class="section-title">Featured Projects</h2>
                 <div class="projects-grid">
-                    <div class="project-card" data-project="processor">
-                        <div class="card-front">
-                            <div class="project-icon">
-                                <i class="fas fa-microchip"></i>
-                            </div>
-                            <h3>32-bit RISC Processor</h3>
-                            <div class="project-tech">
-                                <span class="tech-tag">Verilog</span>
-                                <span class="tech-tag">FPGA</span>
-                                <span class="tech-tag">Assembly</span>
-                            </div>
-                        </div>
-                        <div class="card-back">
-                            <div class="project-details">
-                                <p><strong>Challenge:</strong> Design a complete 32-bit RISC processor with pipeline optimization.</p>
-                                <p><strong>Solution:</strong> Implemented 5-stage pipeline with hazard detection and forwarding mechanisms.</p>
-                                <p><strong>Impact:</strong> Achieved 40% performance improvement over baseline design.</p>
-                            </div>
-                        </div>
+                    <div class="project-card">
+                        <div class="project-icon"><i class="fas fa-microchip"></i></div>
+                        <h3>FPGA Hardware Accelerator</h3>
+                        <p>Developed an accelerator on a Xilinx Zynq-7000 FPGA to improve MLP neural network inference, achieving significant speed and efficiency gains through pipelining, loop unrolling, and array partitioning[7].</p>
+                        <div class="project-tech"><span>HLS</span><span>Verilog</span><span>Pipelining</span></div>
                     </div>
-
-                    <div class="project-card" data-project="accelerator">
-                        <div class="card-front">
-                            <div class="project-icon">
-                                <i class="fas fa-rocket"></i>
-                            </div>
-                            <h3>ML Accelerator IP</h3>
-                            <div class="project-tech">
-                                <span class="tech-tag">SystemVerilog</span>
-                                <span class="tech-tag">AXI4</span>
-                                <span class="tech-tag">Python</span>
-                            </div>
-                        </div>
-                        <div class="card-back">
-                            <div class="project-details">
-                                <p><strong>Challenge:</strong> Create specialized hardware for CNN inference acceleration.</p>
-                                <p><strong>Solution:</strong> Developed systolic array architecture with configurable precision.</p>
-                                <p><strong>Impact:</strong> 10x speedup over software implementation with 60% power reduction.</p>
-                            </div>
-                        </div>
+                    <div class="project-card">
+                        <div class="project-icon"><i class="fas fa-memory"></i></div>
+                        <h3>In-Memory Compute Circuit</h3>
+                        <p>Designed an in-memory compute circuit using NeuroSim and MuMax3 to accelerate neural network computations. Implemented profiling and optimization to improve speed and resource utilization[7].</p>
+                        <div class="project-tech"><span>NeuroSim</span><span>PyTorch</span><span>Quantization</span></div>
                     </div>
-
-                    <div class="project-card" data-project="memory">
-                        <div class="card-front">
-                            <div class="project-icon">
-                                <i class="fas fa-memory"></i>
-                            </div>
-                            <h3>In-Memory Computing Unit</h3>
-                            <div class="project-tech">
-                                <span class="tech-tag">Verilog</span>
-                                <span class="tech-tag">SPICE</span>
-                                <span class="tech-tag">Matlab</span>
-                            </div>
-                        </div>
-                        <div class="card-back">
-                            <div class="project-details">
-                                <p><strong>Challenge:</strong> Implement computing operations directly in memory arrays.</p>
-                                <p><strong>Solution:</strong> Designed SRAM-based compute-in-memory architecture.</p>
-                                <p><strong>Impact:</strong> 80% reduction in data movement energy for ML workloads.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="project-card" data-project="soc">
-                        <div class="card-front">
-                            <div class="project-icon">
-                                <i class="fas fa-sitemap"></i>
-                            </div>
-                            <h3>IoT SoC Platform</h3>
-                            <div class="project-tech">
-                                <span class="tech-tag">SystemVerilog</span>
-                                <span class="tech-tag">ARM</span>
-                                <span class="tech-tag">C/C++</span>
-                            </div>
-                        </div>
-                        <div class="card-back">
-                            <div class="project-details">
-                                <p><strong>Challenge:</strong> Develop ultra-low-power SoC for IoT applications.</p>
-                                <p><strong>Solution:</strong> Integrated ARM Cortex-M0+ with custom peripherals and power management.</p>
-                                <p><strong>Impact:</strong> Extended battery life by 300% compared to existing solutions.</p>
-                            </div>
-                        </div>
+                    <div class="project-card">
+                        <div class="project-icon"><i class="fas fa-sitemap"></i></div>
+                        <h3>VLSI Interconnect Modelling</h3>
+                        <p>Optimized processor interconnects using Elmore RC models and Cadence Virtuoso for a 2-core processor at 45nm technology, focusing on energy-delay tradeoffs to enhance signal integrity and system performance[7].</p>
+                        <div class="project-tech"><span>Cadence Virtuoso</span><span>Elmore RC</span><span>45nm</span></div>
                     </div>
                 </div>
             </div>
@@ -380,91 +280,23 @@
         <!-- Publications Section -->
         <section id="publications" class="section publications-section">
             <div class="section-container">
-                <h2 class="section-title">Publications &amp; Patents</h2>
-                <div class="publications-content">
-                    <div class="publications-list">
-                        <div class="publication-item">
-                            <div class="publication-type">
-                                <i class="fas fa-file-alt"></i>
-                                <span>Journal Paper</span>
-                            </div>
-                            <div class="publication-details">
-                                <h4>"Efficient In-Memory Computing Architecture for Edge AI Applications"</h4>
-                                <p class="authors">E. S. Anant, J. Smith, K. Lee</p>
-                                <p class="venue">IEEE Transactions on Circuits and Systems, 2024</p>
-                                <a href="#" class="publication-link">View Paper <i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
-
-                        <div class="publication-item">
-                            <div class="publication-type">
-                                <i class="fas fa-certificate"></i>
-                                <span>Patent</span>
-                            </div>
-                            <div class="publication-details">
-                                <h4>"Low-Power SRAM-Based Computing Array with Configurable Precision"</h4>
-                                <p class="authors">E. S. Anant, M. Chen</p>
-                                <p class="venue">US Patent Application No. 18/123,456, 2024</p>
-                                <a href="#" class="publication-link">View Patent <i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
-
-                        <div class="publication-item">
-                            <div class="publication-type">
-                                <i class="fas fa-file-alt"></i>
-                                <span>Conference Paper</span>
-                            </div>
-                            <div class="publication-details">
-                                <h4>"Hardware-Software Co-design for ML Acceleration in IoT Devices"</h4>
-                                <p class="authors">E. S. Anant, R. Kumar, S. Wang</p>
-                                <p class="venue">IEEE/ACM International Conference on Computer-Aided Design, 2023</p>
-                                <a href="#" class="publication-link">View Paper <i class="fas fa-external-link-alt"></i></a>
-                            </div>
+                <h2 class="section-title">Publications & Patents</h2>
+                <div class="publications-list">
+                    <div class="publication-item">
+                        <div class="publication-type"><i class="fas fa-certificate"></i><span>Patent</span></div>
+                        <div class="publication-details">
+                            <h4>A System for Controlling an Autonomous Vehicle and a Method Thereof</h4>
+                            <p class="venue">Issued Mar 28, 2025</p>
+                            <p class="description">An intelligent system to detect driver medical distress, switch to autonomous mode, and navigate to safety, enhancing road safety through innovative technology[6].</p>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Certifications Section -->
-        <section id="certifications" class="section certifications-section">
-            <div class="section-container">
-                <h2 class="section-title">Certifications</h2>
-                <div class="certifications-grid">
-                    <div class="certification-card">
-                        <div class="cert-icon">
-                            <i class="fas fa-microchip"></i>
+                    <div class="publication-item">
+                        <div class="publication-type"><i class="fas fa-file-alt"></i><span>Journal Paper</span></div>
+                        <div class="publication-details">
+                            <h4>Improving Data Integrity with Reversible Logic-based Error Detection</h4>
+                            <p class="venue">IEEE - Jun 1, 2023</p>
+                            <p class="description">Published work on an Error Detection and Correction Module on an AHB-APB Bridge to improve data integrity[6].</p>
                         </div>
-                        <h4>Advanced VLSI Design</h4>
-                        <p>Cadence Design Systems</p>
-                        <span class="cert-year">2024</span>
-                    </div>
-
-                    <div class="certification-card">
-                        <div class="cert-icon">
-                            <i class="fab fa-xilinx"></i>
-                        </div>
-                        <h4>Xilinx FPGA Developer</h4>
-                        <p>AMD Xilinx</p>
-                        <span class="cert-year">2023</span>
-                    </div>
-
-                    <div class="certification-card">
-                        <div class="cert-icon">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <h4>SystemVerilog Verification</h4>
-                        <p>Synopsys</p>
-                        <span class="cert-year">2023</span>
-                    </div>
-
-                    <div class="certification-card">
-                        <div class="cert-icon">
-                            <i class="fab fa-python"></i>
-                        </div>
-                        <h4>Python for Engineers</h4>
-                        <p>IEEE Computer Society</p>
-                        <span class="cert-year">2022</span>
                     </div>
                 </div>
             </div>
@@ -476,114 +308,29 @@
                 <h2 class="section-title">Technical Skills</h2>
                 <div class="skills-content">
                     <div class="skills-category">
-                        <h3>
-                            <i class="fas fa-microchip"></i>
-                            Hardware Description Languages
-                        </h3>
+                        <h3><i class="fas fa-wave-square"></i>Hardware Description Languages</h3>
                         <div class="skills-list">
-                            <div class="skill-item" data-level="95">
-                                <span class="skill-name">Verilog</span>
-                                <div class="skill-bar">
-                                    <div class="skill-progress"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item" data-level="90">
-                                <span class="skill-name">SystemVerilog</span>
-                                <div class="skill-bar">
-                                    <div class="skill-progress"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item" data-level="80">
-                                <span class="skill-name">VHDL</span>
-                                <div class="skill-bar">
-                                    <div class="skill-progress"></div>
-                                </div>
-                            </div>
+                            <div class="skill-item"><span class="skill-name">Verilog</span><div class="skill-bar"><div class="skill-progress" style="width: 95%;"></div></div></div>
+                            <div class="skill-item"><span class="skill-name">SystemVerilog</span><div class="skill-bar"><div class="skill-progress" style="width: 90%;"></div></div></div>
+                            <div class="skill-item"><span class="skill-name">HLS</span><div class="skill-bar"><div class="skill-progress" style="width: 85%;"></div></div></div>
                         </div>
                     </div>
-
                     <div class="skills-category">
-                        <h3>
-                            <i class="fas fa-tools"></i>
-                            EDA Tools
-                        </h3>
+                        <h3><i class="fas fa-tools"></i>EDA Tools</h3>
                         <div class="skills-grid">
-                            <div class="skill-badge">
-                                <i class="fas fa-cube"></i>
-                                <span>Vivado</span>
-                            </div>
-                            <div class="skill-badge">
-                                <i class="fas fa-cogs"></i>
-                                <span>Quartus</span>
-                            </div>
-                            <div class="skill-badge">
-                                <i class="fas fa-sitemap"></i>
-                                <span>Synopsys</span>
-                            </div>
-                            <div class="skill-badge">
-                                <i class="fas fa-microchip"></i>
-                                <span>Cadence</span>
-                            </div>
-                            <div class="skill-badge">
-                                <i class="fas fa-wave-square"></i>
-                                <span>ModelSim</span>
-                            </div>
-                            <div class="skill-badge">
-                                <i class="fas fa-chart-line"></i>
-                                <span>Questa</span>
-                            </div>
+                            <div class="skill-badge"><span>Cadence Virtuoso</span></div>
+                            <div class="skill-badge"><span>Xilinx Vivado</span></div>
+                            <div class="skill-badge"><span>QuestaSim</span></div>
+                            <div class="skill-badge"><span>Xilinx Vitis</span></div>
                         </div>
                     </div>
-
                     <div class="skills-category">
-                        <h3>
-                            <i class="fas fa-code"></i>
-                            Programming Languages
-                        </h3>
-                        <div class="skills-list">
-                            <div class="skill-item" data-level="90">
-                                <span class="skill-name">C/C++</span>
-                                <div class="skill-bar">
-                                    <div class="skill-progress"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item" data-level="85">
-                                <span class="skill-name">Python</span>
-                                <div class="skill-bar">
-                                    <div class="skill-progress"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item" data-level="75">
-                                <span class="skill-name">Assembly</span>
-                                <div class="skill-bar">
-                                    <div class="skill-progress"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="skills-category">
-                        <h3>
-                            <i class="fas fa-memory"></i>
-                            Embedded Systems
-                        </h3>
+                        <h3><i class="fas fa-code"></i>Programming & Software</h3>
                         <div class="skills-grid">
-                            <div class="skill-badge">
-                                <i class="fab fa-raspberry-pi"></i>
-                                <span>ARM Cortex</span>
-                            </div>
-                            <div class="skill-badge">
-                                <i class="fas fa-microchip"></i>
-                                <span>RISC-V</span>
-                            </div>
-                            <div class="skill-badge">
-                                <i class="fas fa-wifi"></i>
-                                <span>IoT Protocols</span>
-                            </div>
-                            <div class="skill-badge">
-                                <i class="fas fa-usb"></i>
-                                <span>USB/PCIe</span>
-                            </div>
+                            <div class="skill-badge"><span>C++</span></div>
+                            <div class="skill-badge"><span>Python</span></div>
+                            <div class="skill-badge"><span>LaTeX</span></div>
+                            <div class="skill-badge"><span>Autodesk Eagle</span></div>
                         </div>
                     </div>
                 </div>
