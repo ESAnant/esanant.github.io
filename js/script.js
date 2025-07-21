@@ -9,31 +9,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- CLASSES ---
 
-    class Loader {
+    class LoadingAnimation {
         constructor() {
-            this.element = document.getElementById('loader');
+            this.loader = document.getElementById('loader');
         }
 
-        init() {
-            window.addEventListener('load', () => this.hide());
+        start() {
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => this.hide(), 2500); // Hide after a fixed duration
         }
 
         hide() {
+            this.loader.classList.add('fade-out');
             setTimeout(() => {
-                this.element.classList.add('fade-out');
-                setTimeout(() => {
-                    this.element.style.display = 'none';
-                    document.body.style.overflow = '';
-                    this.startMainAnimations();
-                }, 500);
-            }, 500); // Minimum display time
+                this.loader.style.display = 'none';
+                document.body.style.overflow = '';
+                this.initMainAnimations();
+            }, 800);
         }
         
-        startMainAnimations() {
+        initMainAnimations() {
             new TypingAnimation(TYPING_TEXTS).start();
-            new NeuralNetworkBackground().init();
+            new PlexusBackground().init();
             new Navigation().init();
-            new ScrollObserver().init();
             new StatsCounter().init();
         }
     }
@@ -53,7 +51,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const currentText = this.texts[this.index];
             let delay = this.isDeleting ? 50 : 100;
 
-            this.element.textContent = currentText.substring(0, this.isDeleting ? --this.charIndex : ++this.charIndex);
+            if (this.isDeleting) {
+                this.charIndex--;
+            } else {
+                this.charIndex++;
+            }
+            
+            this.element.textContent = currentText.substring(0, this.charIndex);
 
             if (!this.isDeleting && this.charIndex === currentText.length) {
                 delay = 2000;
@@ -68,13 +72,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    class NeuralNetworkBackground {
+    class PlexusBackground {
         constructor() {
-            this.canvas = document.getElementById('neural-canvas');
+            this.canvas = document.getElementById('plexus-canvas');
             if (!this.canvas) return;
             this.ctx = this.canvas.getContext('2d');
             this.particles = [];
-            this.particleCount = 50;
         }
 
         init() {
@@ -87,21 +90,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 this.createParticles();
             });
         }
-
+        
         setupCanvas() {
             this.canvas.width = window.innerWidth;
             this.canvas.height = window.innerHeight;
         }
 
         createParticles() {
+            const particleCount = Math.floor((this.canvas.width * this.canvas.height) / 20000);
             this.particles = [];
-            for (let i = 0; i < this.particleCount; i++) {
+            for (let i = 0; i < particleCount; i++) {
                 this.particles.push({
                     x: Math.random() * this.canvas.width,
                     y: Math.random() * this.canvas.height,
                     vx: (Math.random() - 0.5) * 0.3,
                     vy: (Math.random() - 0.5) * 0.3,
-                    radius: Math.random() * 1.5 + 1,
+                    size: Math.random() * 2 + 1,
                 });
             }
         }
@@ -124,21 +128,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         drawParticles() {
-            this.ctx.fillStyle = 'rgba(184, 115, 51, 0.5)';
+            this.ctx.fillStyle = 'rgba(184, 115, 51, 0.7)';
             this.particles.forEach(p => {
                 this.ctx.beginPath();
-                this.ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
                 this.ctx.fill();
             });
         }
 
         drawConnections() {
+            this.ctx.strokeStyle = 'rgba(184, 115, 51, 0.1)';
             this.ctx.lineWidth = 0.5;
             for (let i = 0; i < this.particles.length; i++) {
                 for (let j = i + 1; j < this.particles.length; j++) {
                     const dist = Math.hypot(this.particles[i].x - this.particles[j].x, this.particles[i].y - this.particles[j].y);
-                    if (dist < 120) {
-                        this.ctx.strokeStyle = `rgba(205, 127, 50, ${1 - dist / 120})`;
+                    if (dist < 150) {
                         this.ctx.beginPath();
                         this.ctx.moveTo(this.particles[i].x, this.particles[i].y);
                         this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
@@ -158,34 +162,22 @@ document.addEventListener('DOMContentLoaded', () => {
             mainContent.addEventListener('scroll', () => {
                 let current = '';
                 sections.forEach(section => {
-                    const sectionTop = section.offsetTop - (window.innerHeight / 2);
+                    const sectionTop = section.offsetTop - (mainContent.clientHeight / 2);
                     if (mainContent.scrollTop >= sectionTop) {
                         current = section.getAttribute('id');
                     }
                 });
 
                 navLinks.forEach(link => {
-                    link.classList.toggle('active', link.dataset.section === current);
+                    link.classList.remove('active');
+                    if (link.dataset.section === current) {
+                        link.classList.add('active');
+                    }
                 });
             });
         }
     }
 
-    class ScrollObserver {
-        init() {
-            const sections = document.querySelectorAll('.section');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, { threshold: 0.2 });
-
-            sections.forEach(sec => observer.observe(sec));
-        }
-    }
-    
     class StatsCounter {
         init() {
             const numbers = document.querySelectorAll('.stat-number');
@@ -202,16 +194,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
         animate(el) {
             const target = +el.dataset.target;
+            if (isNaN(target)) return;
             let current = 0;
-            const stepTime = 2000 / target;
-            const timer = setInterval(() => {
-                current++;
-                el.textContent = current;
-                if (current === target) clearInterval(timer);
-            }, stepTime);
+            const duration = 2000;
+            const increment = target / (duration / 16);
+
+            const update = () => {
+                current += increment;
+                if (current < target) {
+                    el.textContent = Math.ceil(current);
+                    requestAnimationFrame(update);
+                } else {
+                    el.textContent = target;
+                }
+            };
+            update();
         }
     }
 
     // --- INITIALIZATION ---
-    new Loader().init();
+    new LoadingAnimation().start();
 });
