@@ -260,6 +260,7 @@ body {
     scroll-snap-stop: always;
     display: flex;
     align-items: center;
+    justify-content: center;
     position: relative;
 }
 
@@ -383,6 +384,7 @@ body {
     transition: all var(--transition-medium);
     position: relative;
     overflow: hidden;
+    z-index: 1;
 }
 
 .hero-link::before {
@@ -606,7 +608,7 @@ body {
 
 .timeline-marker {
     position: absolute;
-    left: -2rem;
+    left: -2.7rem;
     top: 1rem;
     width: 12px;
     height: 12px;
@@ -728,13 +730,21 @@ body {
     position: relative;
     border-radius: var(--border-radius);
     cursor: pointer;
-    transform-style: preserve-3d;
-    transition: transform var(--transition-medium);
+    perspective: 1000px; /* Added for 3D effect */
 }
 
-.experience-card:hover,
-.project-card:hover {
-    transform: scale(1.05);
+.experience-card .card-inner,
+.project-card .card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform var(--transition-slow);
+}
+
+.experience-card.flipped .card-inner,
+.project-card.flipped .card-inner {
+    transform: rotateY(180deg);
 }
 
 .card-front,
@@ -760,11 +770,6 @@ body {
     background: var(--bg-tertiary);
     transform: rotateY(180deg);
     border-color: var(--copper-primary);
-}
-
-.experience-card.flipped,
-.project-card.flipped {
-    transform: rotateY(180deg);
 }
 
 .card-header h3 {
@@ -830,6 +835,10 @@ body {
 }
 
 /* Project Cards Specific Styles */
+.project-card .card-front {
+    text-align: center;
+}
+
 .project-icon {
     display: flex;
     justify-content: center;
@@ -1197,21 +1206,17 @@ body {
         text-align: center;
         gap: 3rem;
     }
-    
     .about-content {
         grid-template-columns: 1fr;
         gap: 3rem;
     }
-    
     .nav-sidebar {
         display: none;
     }
-    
     .experience-grid,
     .projects-grid {
         grid-template-columns: 1fr;
     }
-    
     .certifications-grid {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
@@ -1222,43 +1227,34 @@ body {
         --container-padding: 1rem;
         --section-spacing: 4rem;
     }
-    
     .section-title {
         font-size: 2.5rem;
     }
-    
     .hero-name {
         font-size: 3rem;
     }
-    
     .hero-description {
         font-size: 1rem;
     }
-    
     .hero-links {
         flex-direction: column;
         align-items: center;
     }
-    
     .about-stats {
         flex-direction: row;
         justify-content: space-around;
     }
-    
     .publication-item {
         flex-direction: column;
         gap: 1rem;
         text-align: center;
     }
-    
     .timeline {
         padding-left: 1rem;
     }
-    
     .timeline-marker {
-        left: -1rem;
+        left: -1.7rem;
     }
-    
     .education-card {
         margin-left: 1rem;
     }
@@ -1268,22 +1264,19 @@ body {
     .hero-name {
         font-size: 2.5rem;
     }
-    
     .section-title {
         font-size: 2rem;
     }
-    
     .about-stats {
         flex-direction: column;
     }
-    
     .skills-grid {
         grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     }
-    
     .experience-card,
     .project-card {
-        height: 250px;
+        height: auto;
+        min-height: 250px;
     }
 }
 
