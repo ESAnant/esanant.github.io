@@ -1,173 +1,83 @@
-document.addEventListener('DOMContentLoaded', () => {
-
-    // --- LOADER ---
+window.addEventListener('load', () => {
     const loader = document.getElementById('loader');
-    if (loader) {
-        window.addEventListener('load', () => {
-            // Delay hiding to ensure animations complete
-            setTimeout(() => {
-                loader.classList.add('hidden');
-            }, 500); // Should be less than CSS transition-delay
-        });
+    setTimeout(() => {
+        loader.classList.add('loader-hidden');
+    }, 1500); // Keep loader for 1.5 seconds
+});
+
+// Minimalist Particle Background
+const canvas = document.getElementById('particle-canvas');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particlesArray;
+
+// Particle Object
+class Particle {
+    constructor(x, y, directionX, directionY, size, color) {
+        this.x = x;
+        this.y = y;
+        this.directionX = directionX;
+        this.directionY = directionY;
+        this.size = size;
+        this.color = color;
     }
 
-    // --- CUSTOM CURSOR ---
-    const cursorDot = document.getElementById('cursor-dot');
-    const cursorOutline = document.getElementById('cursor-outline');
-    let mouseX = 0, mouseY = 0;
-    let dotX = 0, dotY = 0;
-    let outlineX = 0, outlineY = 0;
+    // Method to draw individual particle
+    draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+        ctx.fillStyle = 'rgba(100, 255, 218, 0.1)'; // --accent-color with low alpha
+        ctx.fill();
+    }
 
-    window.addEventListener('mousemove', e => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-    });
-
-    const animateCursor = () => {
-        // Dot interpolation for smooth follow
-        dotX += (mouseX - dotX) * 0.7;
-        dotY += (mouseY - dotY) * 0.7;
-        
-        // Outline interpolation for a slower, trailing effect
-        outlineX += (mouseX - outlineX) * 0.1;
-        outlineY += (mouseY - outlineY) * 0.1;
-
-        cursorDot.style.left = `${dotX}px`;
-        cursorDot.style.top = `${dotY}px`;
-        cursorOutline.style.left = `${outlineX}px`;
-        cursorOutline.style.top = `${outlineY}px`;
-
-        requestAnimationFrame(animateCursor);
-    };
-    animateCursor();
-
-    // Hover effect for cursor
-    document.querySelectorAll('a, .project-card').forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
-            cursorOutline.style.borderColor = 'var(--accent-gold)';
-        });
-        el.addEventListener('mouseleave', () => {
-            cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
-            cursorOutline.style.borderColor = 'var(--accent-copper)';
-        });
-    });
-
-    // --- HERO PCB/PROCESSOR ANIMATION ---
-    const heroAnimation = document.getElementById('hero-animation');
-    if (heroAnimation) {
-        const nodes = [];
-        const numNodes = 20;
-
-        // Create central core
-        const core = document.createElement('div');
-        core.classList.add('node');
-        core.style.width = '50px';
-        core.style.height = '50px';
-        core.style.left = '50%';
-        core.style.top = '50%';
-        core.style.transform = 'translate(-50%, -50%)';
-        core.style.backgroundColor = 'var(--accent-copper)';
-        heroAnimation.appendChild(core);
-
-        for (let i = 0; i < numNodes; i++) {
-            const node = document.createElement('div');
-            node.classList.add('node');
-            heroAnimation.appendChild(node);
-            nodes.push({
-                el: node,
-                angle: (i / numNodes) * 2 * Math.PI,
-                radius: Math.random() * 100 + 100,
-                speed: (Math.random() - 0.5) * 0.02
-            });
-
-            // Create lines connecting to core
-            const line = document.createElement('div');
-            line.classList.add('line');
-            const dist = Math.sqrt(Math.pow(200 - 50, 2));
-            line.style.width = `${nodes[i].radius}px`;
-            line.style.left = '50%';
-            line.style.top = '50%';
-            line.style.transform = `rotate(${nodes[i].angle}rad)`;
-            heroAnimation.appendChild(line);
-            nodes[i].line = line;
+    // Check particle position, check mouse position, move the particle, draw the particle
+    update() {
+        if (this.x > canvas.width || this.x < 0) {
+            this.directionX = -this.directionX;
+        }
+        if (this.y > canvas.height || this.y < 0) {
+            this.directionY = -this.directionY;
         }
 
-        const animateHero = () => {
-            nodes.forEach(node => {
-                node.angle += node.speed;
-                const x = 50 + (node.radius / heroAnimation.offsetWidth * 100) * Math.cos(node.angle);
-                const y = 50 + (node.radius / heroAnimation.offsetHeight * 100) * Math.sin(node.angle);
-                node.el.style.left = `${x}%`;
-                node.el.style.top = `${y}%`;
-                node.line.style.transform = `rotate(${node.angle}rad)`;
-            });
-            requestAnimationFrame(animateHero);
-        };
-        animateHero();
+        this.x += this.directionX;
+        this.y += this.directionY;
+        this.draw();
     }
-    
-    // --- PROJECT CARD INJECTION ---
-    const projectGrid = document.querySelector('.project-grid');
-    const projects = [
-        {
-            title: "FPGA Hardware Accelerator for MLP",
-            category: "Hardware Acceleration",
-            desc: "Developed a hardware accelerator on a Xilinx Zynq-7000 FPGA to improve MLP neural network inference, implementing designs in HLS and Verilog.",
-            tags: ["FPGA", "HLS", "Verilog", "Neural Networks"]
-        },
-        {
-            title: "Digital Circuit & Standard Cell IP Dev",
-            category: "VLSI Design",
-            desc: "Created a ring oscillator Standard Cell IP in Cadence Virtuoso for 40nm technology, focusing on minimizing area while optimizing PVT.",
-            tags: ["Cadence", "VLSI", "40nm", "DRC/LVS"]
-        },
-        {
-            title: "In-Memory Compute Circuit",
-            category: "Emerging Tech",
-            desc: "Designed an in-memory compute circuit using NeuroSim and MuMax3 to accelerate neural networks, with a focus on quantization techniques.",
-            tags: ["NeuroSim", "PyTorch", "Quantization", "IC Design"]
-        },
-        {
-            title: "VLSI Interconnect Simulation",
-            category: "IC Design",
-            desc: "Optimized processor interconnects using Elmore RC models in Cadence for a 2-core processor at 45nm, enhancing signal integrity.",
-            tags: ["Signal Integrity", "Cadence", "45nm", "RC Delay"]
-        }
-    ];
+}
 
-    if (projectGrid) {
-        projects.forEach((p, i) => {
-            const card = document.createElement('div');
-            card.className = 'project-card reveal-up';
-            card.style.setProperty('--delay', `${i * 0.15}s`);
-            card.innerHTML = `
-                <h4>${p.title}</h4>
-                <p class="category">${p.category}</p>
-                <p>${p.desc}</p>
-                <div class="project-tags">
-                    ${p.tags.map(tag => `<span>${tag}</span>`).join('')}
-                </div>
-            `;
-            projectGrid.appendChild(card);
-        });
+// Create particle array
+function init() {
+    particlesArray = [];
+    let numberOfParticles = (canvas.height * canvas.width) / 9000;
+    for (let i = 0; i < numberOfParticles; i++) {
+        let size = (Math.random() * 2) + 1;
+        let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+        let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+        let directionX = (Math.random() * .4) - .2;
+        let directionY = (Math.random() * .4) - .2;
+        let color = 'rgba(100, 255, 218, 0.1)';
+
+        particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
     }
+}
 
+// Animation loop
+function animate() {
+    requestAnimationFrame(animate);
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
 
-    // --- SCROLL-BASED REVEAL ANIMATIONS ---
-    const revealElements = document.querySelectorAll('.reveal-up, .reveal-fade, .reveal-fade-left, .reveal-fade-right');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
+    for (let i = 0; i < particlesArray.length; i++) {
+        particlesArray[i].update();
+    }
+}
 
-    revealElements.forEach(el => observer.observe(el));
+init();
+animate();
 
-    // --- FOOTER YEAR ---
-    document.getElementById('year').textContent = new Date().getFullYear();
-
+window.addEventListener('resize', () => {
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+    init();
 });
