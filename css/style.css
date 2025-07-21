@@ -28,12 +28,9 @@ body {
     font-family: var(--font-sans);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
-    /* New Subtle Background */
-    background-image: radial-gradient(circle at top right, rgba(100, 255, 218, 0.05), transparent),
-                      radial-gradient(circle at bottom left, rgba(100, 255, 218, 0.05), transparent);
 }
 
-/* Atomic Loader Styles */
+/* Loader Styles */
 #loader {
     position: fixed;
     top: 0;
@@ -53,60 +50,31 @@ body {
     visibility: hidden;
 }
 
-.atom {
-    position: relative;
-    width: 100px;
-    height: 100px;
-}
-
-.nucleus {
-    position: absolute;
-    top: 50%;
-    left: 50%;
+.signal-bar {
     width: 20px;
-    height: 20px;
-    background: var(--accent-color);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.electron {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100px;
     height: 100px;
-    border: 2px solid transparent;
-    border-top: 2px solid var(--accent-color);
-    border-radius: 50%;
-    animation: spin 1.5s linear infinite;
-}
-
-.electron::before {
-    content: '';
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    width: 10px;
-    height: 10px;
+    margin: 0 10px;
     background: var(--accent-color);
-    border-radius: 50%;
+    animation: signal-wave 1.2s infinite ease-in-out;
 }
 
-.electron:nth-child(3) {
-    transform: rotate(60deg);
-    animation-duration: 1s;
+.signal-bar:nth-child(2) { animation-delay: 0.2s; }
+.signal-bar:nth-child(3) { animation-delay: 0.4s; }
+.signal-bar:nth-child(4) { animation-delay: 0.6s; }
+
+@keyframes signal-wave {
+    0%, 40%, 100% { transform: scaleY(0.4); }
+    20% { transform: scaleY(1.0); }
 }
 
-.electron:nth-child(4) {
-    transform: rotate(120deg);
-    animation-duration: 2s;
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
+/* Particle Background */
+#particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
 }
 
 
@@ -115,6 +83,8 @@ body {
     scroll-snap-type: y mandatory;
     overflow-y: scroll;
     height: 100vh;
+    position: relative;
+    z-index: 1;
 }
 
 section {
@@ -239,58 +209,27 @@ h4, h5 {
 }
 
 
-/* Skills Section (Revised) */
+/* Skills Section */
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
     text-align: left;
 }
 .skill-category h3 {
     color: var(--accent-color);
     font-family: var(--font-mono);
-    margin-bottom: 20px;
-    font-size: 1.1rem;
+    margin-bottom: 15px;
 }
 .skill-category ul {
     list-style: none;
-    padding: 0;
 }
 .skill-category li {
     margin-bottom: 10px;
     color: var(--light-slate);
-    position: relative;
-    padding-left: 20px;
 }
-.skill-category li::before {
-    content: '▹';
-    position: absolute;
-    left: 0;
+.skill-category i {
     color: var(--accent-color);
+    margin-right: 10px;
 }
 
-/* Contact Section */
-#contact p {
-    max-width: 600px;
-    margin: 0 auto 40px;
-}
-
-.btn {
-    color: var(--accent-color);
-    background-color: transparent;
-    border: 1px solid var(--accent-color);
-    border-radius: 4px;
-    padding: 1.25rem 1.75rem;
-    font-size: 1rem;
-    font-family: var(--font-mono);
-    line-height: 1;
-    text-decoration: none;
-    cursor: pointer;
-    transition: var(--transition);
-    margin: 10px;
-}
-
-.btn:hover {
-    background-color: rgba(100, 255, 218, 0.1);
-    transform: translateY(-3px);
-}
