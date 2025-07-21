@@ -1,17 +1,17 @@
 /* ---
 --- TABLE OF CONTENTS ---
 --- 1. Root Variables & Global Styles
---- 2. Loader Animation
+--- 2. Loader
 --- 3. Main Layout & Scroll Snap
---- 4. General Section Styling
+--- 4. Section & Title Styles
 --- 5. Hero Section
 --- 6. About Section
 --- 7. Education Section
---- 8. Experience & Project Card System
---- 9. Publications Section
+--- 8. Card System (Experience & Projects)
+--- 9. Publication Section
 --- 10. Certifications Section
 --- 11. Skills & Footer Section
---- 12. Animations & Micro-interactions
+--- 12. Animations & Accessibility
 --- 13. Responsive Design
 --- */
 
@@ -22,11 +22,9 @@
     --text-slate: #8892b0;
     --text-light-slate: #a8b2d1;
     --text-white: #ccd6f6;
-    --accent-copper: #d98a6d; /* Copper accent color */
-
+    --accent-copper: #d98a6d;
     --font-sans: 'Poppins', sans-serif;
     --font-mono: 'Fira Code', monospace;
-
     --transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
@@ -48,8 +46,8 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* 2. Loader Animation */
-#loader {
+/* 2. Loader */
+.loader {
     position: fixed;
     top: 0;
     left: 0;
@@ -59,19 +57,17 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
     z-index: 100;
     transition: opacity 0.5s ease;
 }
-
-.loader-text {
+.loader__text {
     color: var(--accent-copper);
     font-family: var(--font-mono);
     font-size: 1.2rem;
     display: flex;
     align-items: center;
 }
-.loader-dots { display: flex; }
+.loader__dots { display: flex; }
 .dot {
     width: 8px; height: 8px; margin: 0 4px;
     background-color: var(--text-slate);
@@ -86,36 +82,38 @@ body {
 }
 
 /* 3. Main Layout & Scroll Snap */
-main {
+#main-content {
     height: 100vh;
     overflow-y: scroll;
+    overflow-x: hidden;
     scroll-snap-type: y mandatory;
-    display: none; /* Initially hidden */
+    display: none;
 }
-
-section {
+.content-section, .hero-section {
     height: 100vh;
+    width: 100%;
     scroll-snap-align: start;
+    scroll-snap-stop: always;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0 10%;
+    padding: 0 clamp(20px, 10vw, 150px);
     position: relative;
 }
 
-/* 4. General Section Styling */
-.section-title {
+/* 4. Section & Title Styles */
+.content-section__title {
     font-family: var(--font-mono);
     font-size: clamp(26px, 5vw, 32px);
     color: var(--text-white);
     margin-bottom: 40px;
     width: 100%;
+    max-width: 1100px;
     text-align: left;
     position: relative;
 }
-
-.section-title::before {
+.content-section__title::before {
     content: '';
     position: absolute;
     bottom: -10px;
@@ -126,40 +124,31 @@ section {
 }
 
 /* 5. Hero Section */
-#hero .hero-content {
-    text-align: center;
-}
-
-#hero h1 {
+.hero-section__content { text-align: center; }
+.hero-section__content h1 {
     font-size: clamp(40px, 8vw, 80px);
     color: var(--text-white);
     font-weight: 700;
 }
-
-#hero p {
+.hero-section__content p {
     font-size: clamp(20px, 4vw, 30px);
     color: var(--accent-copper);
     font-family: var(--font-mono);
     margin-top: 10px;
 }
-
-#hero .social-links {
-    margin-top: 30px;
-}
-
-#hero .social-links a {
+.hero-section__social-links { margin-top: 30px; }
+.hero-section__social-links a {
     color: var(--text-slate);
     font-size: 24px;
     margin: 0 15px;
     transition: var(--transition);
+    display: inline-block;
 }
-
-#hero .social-links a:hover {
+.hero-section__social-links a:hover {
     color: var(--accent-copper);
     transform: translateY(-3px);
 }
-
-.scroll-down-prompt {
+.hero-section__scroll-prompt {
     position: absolute;
     bottom: 30px;
     left: 50%;
@@ -175,76 +164,61 @@ section {
 }
 
 /* 6. About Section */
-.about-container {
+.about-section__container {
     max-width: 800px;
     line-height: 1.8;
-}
-
-.about-text p {
-    margin-bottom: 15px;
     font-size: 1.1rem;
 }
+.about-section__container p { margin-bottom: 15px; }
 
 /* 7. Education Section */
-.education-container {
-    width: 100%;
-    max-width: 900px;
-}
-
+.education-section__container { width: 100%; max-width: 900px; }
 .education-entry {
     background-color: var(--bg-light-navy);
     padding: 25px;
     border-radius: 5px;
     margin-bottom: 25px;
     border-left: 3px solid var(--accent-copper);
+    display: flex;
+    align-items: center;
+    gap: 25px;
 }
-
-.uni-logo {
+.education-entry__logo {
     height: 50px;
-    margin-bottom: 15px;
-    filter: grayscale(20%) brightness(150%);
+    flex-shrink: 0;
 }
-
-.education-entry h3 {
-    color: var(--text-white);
-    margin-bottom: 5px;
-}
-
-.education-entry h4 {
-    color: var(--text-light-slate);
-    font-weight: 400;
-    margin-bottom: 15px;
-}
-
+.education-entry__details h3 { color: var(--text-white); margin-bottom: 5px; }
+.education-entry__details h4 { color: var(--text-light-slate); font-weight: 400; margin-bottom: 15px; }
 .date { color: var(--text-slate); font-size: 0.9em;}
 
-/* 8. Experience & Project Card System */
+/* 8. Card System (Experience & Projects) */
 .card-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 20px;
     width: 100%;
+    max-width: 1100px;
 }
-
 .card {
     background-color: transparent;
     aspect-ratio: 16 / 10;
     perspective: 1000px;
+    cursor: pointer;
+    outline: none;
 }
-
-.card-inner {
+.card:focus-visible .card__inner {
+    box-shadow: 0 0 0 2px var(--bg-dark-navy), 0 0 0 4px var(--accent-copper);
+    border-radius: 5px;
+}
+.card__inner {
     position: relative;
     width: 100%;
     height: 100%;
-    transition: transform 0.6s;
+    transition: transform 0.6s, box-shadow 0.2s;
     transform-style: preserve-3d;
 }
-
-.card:hover .card-inner, .card.is-flipped .card-inner {
-    transform: rotateY(180deg);
-}
-
-.card-front, .card-back {
+.card.is-flipped .card__inner { transform: rotateY(180deg); }
+.card__front, .card__back {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -256,41 +230,18 @@ section {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    overflow: hidden;
 }
-
-.card-front {
-    text-align: center;
-    border-top: 3px solid var(--accent-copper);
-}
-
-.card-icon {
-    font-size: 48px;
-    color: var(--accent-copper);
-    margin-bottom: 20px;
-}
-
-.company-logo {
-    height: 48px;
-    margin: 0 auto 20px auto;
-    object-fit: contain;
-}
-
-.card-front h3 {
-    color: var(--text-white);
-    margin-bottom: 10px;
-}
-
-.card-back {
-    transform: rotateY(180deg);
-    color: var(--text-light-slate);
-}
-
-.card-back h4 { color: var(--text-white); }
-.card-back h5 { font-weight: normal; margin-bottom: 15px; font-size: 0.9em; }
-.card-back ul { list-style-position: inside; padding-left: 5px; }
-.card-back ul li, .card-back p { font-size: 0.9rem; line-height: 1.6; }
-.card-back ul li::marker { color: var(--accent-copper); }
-
+.card__front { text-align: center; border-top: 3px solid var(--accent-copper); }
+.card__icon { font-size: 48px; color: var(--accent-copper); margin-bottom: 20px; }
+.card__logo { height: 48px; margin: 0 auto 20px auto; object-fit: contain; }
+.card__front figcaption { color: var(--text-white); margin-bottom: 10px; font-size: 1.2rem; font-weight: 600; }
+.card__back { transform: rotateY(180deg); }
+.card__back h3 { color: var(--text-white); }
+.card__back h4 { font-weight: normal; margin-bottom: 15px; font-size: 0.9em; }
+.card__back ul { list-style-position: inside; padding-left: 5px; }
+.card__back ul li, .card__back p { font-size: clamp(0.8rem, 1.5vw, 0.9rem); line-height: 1.6; }
+.card__back ul li::marker { color: var(--accent-copper); }
 .tech-stack {
     font-family: var(--font-mono);
     font-size: 0.8rem;
@@ -299,23 +250,24 @@ section {
     padding-top: 15px;
 }
 
-/* 9. Publications Section */
-.pub-container { width: 100%; max-width: 900px; }
-.pub-entry { display: flex; align-items: flex-start; margin-bottom: 25px; }
-.pub-icon { font-size: 24px; color: var(--accent-copper); margin-right: 20px; margin-top: 5px; }
-.pub-details h4 { color: var(--text-white); margin-bottom: 5px; }
-.pub-details p { line-height: 1.6; }
-.pub-link { color: var(--accent-copper); text-decoration: none; }
-.pub-link:hover { text-decoration: underline; }
+/* 9. Publication Section */
+.publication-container { width: 100%; max-width: 900px; }
+.publication-entry { display: flex; align-items: flex-start; margin-bottom: 25px; }
+.publication-entry__icon { font-size: 24px; color: var(--accent-copper); margin-right: 20px; margin-top: 5px; }
+.publication-entry__details h3 { color: var(--text-white); margin-bottom: 5px; font-size: 1.1rem; }
+.publication-entry__details p { line-height: 1.6; }
+.publication-entry__link { color: var(--accent-copper); text-decoration: none; font-weight: 500; }
+.publication-entry__link:hover { text-decoration: underline; }
 
 /* 10. Certifications Section */
 .cert-grid {
     width: 100%;
+    max-width: 1100px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 15px;
 }
-.cert-item {
+.cert-grid__item {
     background: var(--bg-light-navy);
     padding: 15px 20px;
     border-radius: 4px;
@@ -325,34 +277,20 @@ section {
     border-left: 2px solid var(--accent-copper);
     transition: var(--transition);
 }
-.cert-item:hover {
-    transform: translateY(-3px);
-    color: var(--accent-copper);
-}
+.cert-grid__item:hover { transform: translateY(-3px); color: var(--accent-copper); }
 .issuer { color: var(--text-slate); }
 
 /* 11. Skills & Footer Section */
 .skills-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 20px;
     width: 100%;
+    max-width: 1100px;
 }
-.skill-category h3 {
-    color: var(--accent-copper);
-    font-family: var(--font-mono);
-    margin-bottom: 15px;
-}
-.skill-category ul {
-    list-style: none;
-    line-height: 1.8;
-}
-.skill-category li::before {
-    content: "▹";
-    margin-right: 10px;
-    color: var(--accent-copper);
-}
-
+.skill-category__title { color: var(--accent-copper); font-family: var(--font-mono); margin-bottom: 15px; }
+.skill-category__list { list-style: none; line-height: 1.8; }
+.skill-category__list li::before { content: "▹"; margin-right: 10px; color: var(--accent-copper); }
 footer {
     position: absolute;
     bottom: 20px;
@@ -361,33 +299,41 @@ footer {
     color: var(--text-slate);
 }
 
-/* 12. Animations & Micro-interactions */
+/* 12. Animations & Accessibility */
 .fade-in {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
-.fade-in.is-visible {
+.is-visible {
     opacity: 1;
     transform: translateY(0);
 }
-/* Staggered effect for hero */
-#hero.is-visible .fade-in:nth-child(1) { transition-delay: 100ms; }
-#hero.is-visible .fade-in:nth-child(2) { transition-delay: 200ms; }
-#hero.is-visible .fade-in:nth-child(3) { transition-delay: 300ms; }
+.hero-section.is-visible .fade-in:nth-child(1) { transition-delay: 100ms; }
+.hero-section.is-visible .fade-in:nth-child(2) { transition-delay: 200ms; }
+.hero-section.is-visible .fade-in:nth-child(3) { transition-delay: 300ms; }
+.content-section .is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 
 /* 13. Responsive Design */
-@media (max-width: 768px) {
-    section {
-        padding: 0 5%;
-        height: auto;
-        min-height: 100vh;
+@media (max-width: 1024px) { /* Tablet */
+    .content-section, .hero-section {
+        padding: 0 8%;
     }
-    main {
+    .card-container {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
+@media (max-width: 768px) { /* Mobile */
+    #main-content {
         scroll-snap-type: none;
     }
-    .section-title {
-        margin-bottom: 30px;
+    .content-section, .hero-section {
+        height: auto;
+        min-height: 100vh;
+        padding: 100px 5%;
     }
     .card-container, .skills-container, .cert-grid {
         grid-template-columns: 1fr;
@@ -395,7 +341,11 @@ footer {
     .card {
         min-height: 250px;
     }
-    .scroll-down-prompt {
+    .hero-section__scroll-prompt {
         display: none;
+    }
+    .education-entry {
+        flex-direction: column;
+        align-items: flex-start;
     }
 }
