@@ -11,18 +11,18 @@
 <body>
     <!-- Loading Screen -->
     <div id="loader" class="loader">
-        <div class="electric-atom">
-            <div class="nucleus"></div>
-            <div class="orbit"><div class="electron"></div></div>
-            <div class="orbit"><div class="electron"></div></div>
-            <div class="orbit"><div class="electron"></div></div>
+        <div class="energy-orb">
+            <div class="orb-core"></div>
+            <div class="orb-particle"></div>
+            <div class="orb-particle"></div>
+            <div class="orb-particle"></div>
         </div>
-        <p class="loader-text">Booting Silicon...</p>
+        <p class="loader-text">Initializing Systems...</p>
     </div>
 
     <!-- Animated Background -->
     <div class="animated-bg">
-        <canvas id="neural-canvas"></canvas>
+        <canvas id="plexus-canvas"></canvas>
     </div>
 
     <!-- Top Navigation -->
@@ -114,6 +114,15 @@
                                     <span class="duration">2023 - 2025</span>
                                 </div>
                                 <p class="university">National University of Singapore</p>
+                                <div class="coursework">
+                                    <h4>Key Coursework:</h4>
+                                    <div class="course-tags">
+                                        <span class="course-tag">VLSI Digital Circuit Design</span>
+                                        <span class="course-tag">Memory Technologies</span>
+                                        <span class="course-tag">Embedded Hardware System Design</span>
+                                        <span class="course-tag">Computer Architecture</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -126,6 +135,15 @@
                                     <span class="duration">2019 - 2023</span>
                                 </div>
                                 <p class="university">SRM Institute of Science and Technology</p>
+                                <div class="coursework">
+                                    <h4>Key Coursework:</h4>
+                                    <div class="course-tags">
+                                        <span class="course-tag">Digital Electronics</span>
+                                        <span class="course-tag">Semiconductor Device Modelling</span>
+                                        <span class="course-tag">VLSI Design</span>
+                                        <span class="course-tag">Embedded System Design</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -273,33 +291,32 @@
                 </div>
             </div>
         </section>
-        
+
         <!-- Skills Section -->
         <section id="skills" class="section skills-section">
             <div class="section-container">
                 <h2 class="section-title">Technical Skills</h2>
                 <div class="skills-showcase">
-                    <div class="skills-category-card">
-                        <h3><i class="fas fa-language"></i>Hardware Description Languages</h3>
+                    <div class="skills-category">
+                        <h3><i class="fas fa-language"></i>HDLs</h3>
                         <div class="skills-list">
                             <span>Verilog</span>
                             <span>SystemVerilog</span>
-                            <span>VHDL</span>
                             <span>HLS</span>
                         </div>
                     </div>
-                    <div class="skills-category-card">
+                    <div class="skills-category">
                         <h3><i class="fas fa-tools"></i>EDA Tools</h3>
                         <div class="skills-list">
                             <span>Cadence Virtuoso</span>
                             <span>Xilinx Vivado</span>
                             <span>QuestaSim</span>
-                            <span>Synopsys Tools</span>
                             <span>Xilinx Vitis</span>
+                            <span>Synopsys Tools</span>
                         </div>
                     </div>
-                    <div class="skills-category-card">
-                        <h3><i class="fas fa-code"></i>Programming & Scripting</h3>
+                    <div class="skills-category">
+                        <h3><i class="fas fa-code"></i>Programming</h3>
                         <div class="skills-list">
                             <span>C/C++</span>
                             <span>Python</span>
@@ -315,19 +332,18 @@
         <section id="contact" class="section contact-section">
             <div class="section-container">
                 <h2 class="section-title">Get In Touch</h2>
-                <div class="contact-content">
-                    <p>
-                        I'm always open to discussing new projects, creative ideas, or opportunities to be part of an ambitious vision. Feel free to reach out.
-                    </p>
-                    <a href="./Edidi_Sai_Anant_Resume.pdf" class="contact-button" target="_blank">View My Resume</a>
-                    <div class="contact-links">
-                        <a href="mailto:esanant@u.nus.edu" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                        <a href="https://www.linkedin.com/in/sai-anant/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://github.com/ESAnant" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    </div>
+                <p class="contact-message">I'm currently seeking new opportunities and welcome any inquiries. Whether you have a question or just want to connect, feel free to reach out.</p>
+                <div class="contact-links">
+                    <a href="mailto:esanant@u.nus.edu" class="contact-button email-button">
+                        <i class="fas fa-envelope"></i> Say Hello
+                    </a>
+                    <a href="./Edidi_Sai_Anant_Resume.pdf" class="contact-button resume-button" target="_blank">
+                        <i class="fas fa-file-download"></i> View Resume
+                    </a>
                 </div>
             </div>
         </section>
+
     </main>
     <script src="js/script.js"></script>
 </body>
