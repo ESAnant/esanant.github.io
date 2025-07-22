@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     this.mainContent.style.overflowY = 'scroll';
                     this.startMainAnimations();
                 }, 800);
-            }, 2500);
+            }, 2500); // Loader duration
         }
 
         startMainAnimations() {
@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         constructor(texts) {
             this.texts = texts;
             this.element = document.querySelector('.typing-text');
+            if (!this.element) return;
             this.index = 0;
             this.charIndex = 0;
             this.isDeleting = false;
@@ -84,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         createParticles() {
             this.particles = [];
-            const particleCount = Math.floor((this.canvas.width * this.canvas.height) / 15000);
+            const particleCount = Math.floor((this.canvas.width * this.canvas.height) / 20000);
             for (let i = 0; i < particleCount; i++) {
                 this.particles.push({
                     x: Math.random() * this.canvas.width,
@@ -99,6 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         animate() {
+            if (!this.ctx) return;
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
             this.particles.forEach(p => {
                 p.x += p.vx;
@@ -148,23 +150,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
-                        // Animate the counter if the element is a stat number
+                        
                         if (entry.target.classList.contains('stat-item')) {
                             const numberEl = entry.target.querySelector('.stat-number');
-                            if (numberEl) {
-                                this.animateCounter(numberEl);
-                            }
+                            if (numberEl) this.animateCounter(numberEl);
                         }
                         observer.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.2 });
+            }, { threshold: 0.15 });
             animatedElements.forEach(el => observer.observe(el));
         }
 
         animateCounter(el) {
             const target = +el.dataset.target;
-            if (isNaN(target) || el.textContent != "0") return; // Prevent re-animating
+            if (isNaN(target) || el.textContent !== "0") return;
             let current = 0;
             const duration = 1500;
             const increment = target / (duration / 16);
@@ -188,8 +188,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!heroText) return;
             document.addEventListener('mousemove', (e) => {
                 const { clientX, clientY } = e;
-                const x = (clientX / window.innerWidth - 0.5) * -40;
-                const y = (clientY / window.innerHeight - 0.5) * -20;
+                const x = (clientX / window.innerWidth - 0.5) * -30;
+                const y = (clientY / window.innerHeight - 0.5) * -15;
                 heroText.style.transform = `translate(${x}px, ${y}px)`;
             });
         }
