@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edidi Sai Anant | Digital Architect & VLSI Designer</title>
+    <title>Edidi Sai Anant | VLSI & Computer Architecture</title>
 
     <!-- Embedded SVG Favicon (Microprocessor Icon) -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path fill='%23d38a5c' d='M25,25h50v50h-50z'/><path fill='%23020c1b' d='M30,30h40v40h-40z'/><path fill='%23d38a5c' d='M5,45h15v10h-15z M80,45h15v10h-15z M45,5h10v15h-10z M45,80h10v15h-10z'/></svg>">
@@ -21,128 +21,103 @@
 </head>
 <body>
 
-    <!-- Upgraded Thematic Preloader -->
     <div id="loader">
         <div class="loader-grid">
             <div class="loader-cell"></div><div class="loader-cell"></div><div class="loader-cell"></div>
             <div class="loader-cell"></div><div class="loader-cell core"></div><div class="loader-cell"></div>
             <div class="loader-cell"></div><div class="loader-cell"></div><div class="loader-cell"></div>
         </div>
-        <p class="loader-text">Compiling Verilog Modules...</p>
+        <p class="loader-text">Booting Silicon...</p>
     </div>
 
-    <!-- Interactive Particle Background -->
     <div id="interactive-bg"></div>
 
-    <!-- Navigation Header -->
     <header class="main-header">
         <nav class="main-nav">
             <a href="#hero" class="nav-logo">Edidi Sai Anant</a>
             <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#about" data-section="about">About</a></li>
+                <li><a href="#experience" data-section="experience">Experience</a></li>
+                <li><a href="#projects" data-section="projects">Projects</a></li>
+                <li><a href="#skills" data-section="skills">Skills</a></li>
+                <li><a href="#contact" data-section="contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Main Content Area -->
     <main class="main-container">
 
-        <!-- Section 1: Hero -->
         <section id="hero" class="section">
             <div class="section-container">
                 <p class="hero-intro fade-in">Hi, my name is</p>
                 <h1 class="hero-title fade-in">Edidi Sai Anant.</h1>
-                <h2 class="hero-subtitle fade-in">I build the bedrock of modern computing.</h2>
+                <h2 class="hero-subtitle fade-in">I architect the future of hardware.</h2>
                 <p class="hero-description fade-in">
-                    I am an Electrical and Computer Engineer specializing in VLSI design and computer architecture. My passion lies in architecting the high-performance, energy-efficient hardware that powers our digital world, from concept to silicon.
+                    As a specialist in VLSI design and computer architecture, I transform complex computational challenges into efficient, high-performance silicon, driving the next generation of technology from the foundational level.
                 </p>
             </div>
         </section>
 
-        <!-- Section 2: About Me (Citations Removed) -->
         <section id="about" class="section">
             <div class="section-container fade-in">
                 <h2 class="section-title">About Me</h2>
                 <div class="about-content">
                     <p>
-                        Exploring the realms of Electrical Engineering in pursuit of an MSc at the distinguished National University of Singapore (NUS), I am focused on Nanoelectronics with a fervor for Embedded Systems and Digital Design.
+                        I am a recent Master of Science graduate in Electrical Engineering from the National University of Singapore (NUS), specializing in Nanoelectronics, Embedded Systems, and Digital Design. My academic journey culminated in a strong foundation of practical and research experience in VLSI and semiconductor technology.
                     </p>
                     <p>
-                        Embracing challenges with agility, I'm on a continuous journey of learning and growth, ready to contribute to technological innovation with zeal.
+                        Driven by innovation and collaboration, I am eager to contribute to advanced projects in the semiconductor and embedded systems industries, bringing both theoretical knowledge and hands-on skills to solve complex engineering challenges.
                     </p>
                 </div>
             </div>
         </section>
         
-        <!-- Section 3: Experience -->
         <section id="experience" class="section">
             <div class="section-container fade-in">
-                <h2 class="section-title">Where I've Worked</h2>
-                 <div class="card-grid">
-                    <div class="card experience-card">
-                        <h3>Project Intern <span class="card-company">@ Maven Silicon</span></h3>
-                        <p class="card-date">Dec 2022 – Jan 2023</p>
-                        <p>Designed and implemented a synthesizable AHB to APB bridge, mastering bus protocol communication and modular RTL design in Verilog.</p>
+                <h2 class="section-title">Professional Experience</h2>
+                <div class="experience-tabs">
+                    <div class="tab-list" role="tablist" aria-label="Job History">
+                        <button class="tab-button active" role="tab" aria-selected="true" id="tab-1" aria-controls="panel-1">Maven Silicon</button>
+                        <button class="tab-button" role="tab" aria-selected="false" id="tab-2" aria-controls="panel-2">Sandeepani</button>
                     </div>
-                    <div class="card experience-card">
-                        <h3>Intern <span class="card-company">@ Sandeepani</span></h3>
-                        <p class="card-date">Jun 2022 – Jul 2022</p>
-                        <p>Developed and verified a full UART protocol using Verilog and performed rigorous functional verification with SystemVerilog and QuestaSim.</p>
+                    <div class="tab-panels">
+                        <div class="tab-panel active" role="tabpanel" id="panel-1" aria-labelledby="tab-1">
+                            <h3>Project Intern <span class="panel-company">@ Maven Silicon</span></h3>
+                            <p class="panel-date">Dec 2022 – Jan 2023</p>
+                            <ul class="panel-duties">
+                                <li>Designed and implemented a synthesizable AHB to APB bridge for seamless bus protocol communication.</li>
+                                <li>Advanced proficiency in Verilog and RTL design by decomposing complex architectures into efficient, modular components.</li>
+                                <li>Successfully synthesized and integrated modules into a unified system, ensuring robust performance and timing closure.</li>
+                            </ul>
+                        </div>
+                        <div class="tab-panel" role="tabpanel" id="panel-2" aria-labelledby="tab-2">
+                            <h3>Intern <span class="panel-company">@ Sandeepani</span></h3>
+                            <p class="panel-date">Jun 2022 – Jul 2022</p>
+                            <ul class="panel-duties">
+                                <li>Developed and verified a complete UART communication protocol using Verilog HDL from scratch.</li>
+                                <li>Performed rigorous functional verification of a Half Adder using SystemVerilog and advanced UVM concepts in QuestaSim.</li>
+                                <li>Conducted functional coverage analysis to identify and close verification gaps, ensuring design correctness.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section 4: Projects (UPDATED for Interactivity) -->
         <section id="projects" class="section">
             <div class="section-container fade-in">
                 <h2 class="section-title">Things I've Built</h2>
                  <div class="card-grid-three-col">
-                    <a href="#" class="project-card-link" target="_blank">
-                        <div class="card project-card" data-description="Optimised processor interconnects using Elmore RC models and Cadence Virtuoso at 45nm.">
-                            <div class="card-header"><i class="far fa-folder"></i><i class="fas fa-external-link-alt"></i></div>
-                            <h4>VLSI Interconnect Modelling</h4><ul class="tech-list"><li>Cadence</li><li>Spice</li><li>45nm</li></ul>
-                        </div>
-                    </a>
-                    <a href="#" class="project-card-link" target="_blank">
-                        <div class="card project-card" data-description="Created a ring oscillator Standard Cell IP in Cadence Virtuoso, targeting 40nm technology.">
-                             <div class="card-header"><i class="far fa-folder"></i><i class="fas fa-external-link-alt"></i></div>
-                            <h4>Standard Cell IP Development</h4><ul class="tech-list"><li>Cadence</li><li>40nm</li><li>DRC/LVS</li></ul>
-                        </div>
-                    </a>
-                     <a href="#" class="project-card-link" target="_blank">
-                        <div class="card project-card" data-description="Developed a hardware accelerator on a Xilinx Zynq-7000 FPGA to improve MLP neural network inference.">
-                             <div class="card-header"><i class="far fa-folder"></i><i class="fas fa-external-link-alt"></i></div>
-                            <h4>FPGA Hardware Accelerator</h4><ul class="tech-list"><li>FPGA</li><li>HLS</li><li>Verilog</li></ul>
-                        </div>
-                    </a>
-                     <a href="#" class="project-card-link" target="_blank">
-                        <div class="card project-card" data-description="Designed an in-memory compute circuit with NeuroSim to accelerate neural computations.">
-                             <div class="card-header"><i class="far fa-folder"></i><i class="fas fa-external-link-alt"></i></div>
-                            <h4>In-Memory Compute Circuit</h4><ul class="tech-list"><li>NeuroSim</li><li>PyTorch</li></ul>
-                        </div>
-                    </a>
-                     <a href="#" class="project-card-link" target="_blank">
-                        <div class="card project-card" data-description="Developed a Python-based simulator for modeling Elmore delay in RC interconnects for VLSI.">
-                             <div class="card-header"><i class="far fa-folder"></i><i class="fas fa-external-link-alt"></i></div>
-                            <h4>Elmore Delay Modelling</h4><ul class="tech-list"><li>Python</li><li>VLSI</li><li>Timing</li></ul>
-                        </div>
-                    </a>
-                     <a href="#" class="project-card-link" target="_blank">
-                        <div class="card project-card" data-description="Built an autonomous robot with Raspberry Pi and ROS for real-time pathfinding.">
-                             <div class="card-header"><i class="far fa-folder"></i><i class="fas fa-external-link-alt"></i></div>
-                            <h4>Autonomous Navigation Robot</h4><ul class="tech-list"><li>ROS</li><li>Raspberry Pi</li></ul>
-                        </div>
-                    </a>
+                    <a href="#" class="project-card-link"><div class="card project-card" data-description="Optimised processor interconnects using Elmore RC models and Cadence Virtuoso at 45nm."><div class="card-header"><i class="far fa-folder"></i><i class="fas fa-external-link-alt"></i></div><h4>VLSI Interconnect Modelling</h4><ul class="tech-list"><li>Cadence</li><li>Spice</li><li>45nm</li></ul></div></a>
+                    <a href="#" class="project-card-link"><div class="card project-card" data-description="Created a ring oscillator Standard Cell IP in Cadence Virtuoso, targeting 40nm technology."><div class="card-header"><i class="far fa-folder"></i><i class="fas fa-external-link-alt"></i></div><h4>Standard Cell IP Development</h4><ul class="tech-list"><li>Cadence</li><li>40nm</li><li>DRC/LVS</li></ul></div></a>
+                    <a href="#" class="project-card-link"><div class="card project-card" data-description="Developed a hardware accelerator on a Xilinx Zynq-7000 FPGA to improve MLP neural network inference."><div class="card-header"><i class="far fa-folder"></i><i class="fas fa-external-link-alt"></i></div><h4>FPGA Hardware Accelerator</h4><ul class="tech-list"><li>FPGA</li><li>HLS</li><li>Verilog</li></ul></div></a>
+                    <a href="#" class="project-card-link"><div class="card project-card" data-description="Designed an in-memory compute circuit with NeuroSim to accelerate neural computations."><div class="card-header"><i class="far fa-folder"></i><i class="fas fa-external-link-alt"></i></div><h4>In-Memory Compute Circuit</h4><ul class="tech-list"><li>NeuroSim</li><li>PyTorch</li></ul></div></a>
+                    <a href="#" class="project-card-link"><div class="card project-card" data-description="Developed a Python-based simulator for modeling Elmore delay in RC interconnects for VLSI."><div class="card-header"><i class="far fa-folder"></i><i class="fas fa-external-link-alt"></i></div><h4>Elmore Delay Modelling</h4><ul class="tech-list"><li>Python</li><li>VLSI</li><li>Timing</li></ul></div></a>
+                    <a href="#" class="project-card-link"><div class="card project-card" data-description="Built an autonomous robot with Raspberry Pi and ROS for real-time pathfinding."><div class="card-header"><i class="far fa-folder"></i><i class="fas fa-external-link-alt"></i></div><h4>Autonomous Navigation Robot</h4><ul class="tech-list"><li>ROS</li><li>Raspberry Pi</li></ul></div></a>
                 </div>
             </div>
         </section>
         
-        <!-- Section 5: Technical Skills -->
         <section id="skills" class="section">
             <div class="section-container fade-in">
                  <h2 class="section-title">My Technical Arsenal</h2>
@@ -159,12 +134,11 @@
             </div>
         </section>
 
-        <!-- Section 6: Contact -->
         <section id="contact" class="section">
             <div class="section-container text-center fade-in">
                 <h3 class="contact-lead">What's Next?</h3>
                 <h2 class="contact-title">Get In Touch</h2>
-                <p class="contact-description">I'm currently seeking roles where I can contribute to meaningful projects in the semiconductor and embedded systems industry. Whether you have a question or just want to connect, my inbox is always open.</p>
+                <p class="contact-description">I'm actively seeking innovative roles in the semiconductor and embedded systems industries where I can apply my skills to solve complex challenges. If you're building something remarkable, I'd love to connect.</p>
                 <div class="contact-buttons">
                     <a href="mailto:esanant@u.nus.edu" class="button">Say Hello</a>
                     <a href="resume.pdf" target="_blank" class="button button-outline">Download Resume</a>
@@ -174,16 +148,13 @@
 
     </main>
 
-    <!-- Social Links Sidebar -->
     <div class="social-sidebar">
         <a href="https://github.com/ESAnant" target="_blank"><i class="fab fa-github"></i></a>
         <a href="https://www.linkedin.com/in/sai-anant/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
         <div class="sidebar-line"></div>
     </div>
-
-    <!-- External Libraries -->
+    
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <!-- Main JavaScript File -->
     <script src="script.js"></script>
 </body>
 </html>

@@ -1,6 +1,5 @@
 /* ---
-Portfolio v2.3 Final JavaScript
-Phase 3: Advanced Card Interactivity & Final Polish
+Portfolio v3.0 Final JavaScript
 --- */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -9,12 +8,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const loader = document.getElementById('loader');
     const mainContent = document.querySelector('main');
     const header = document.querySelector('.main-header');
+    const sections = document.querySelectorAll('.section');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    let isScrolling = false;
 
-    // --- 2. Advanced Preloader ---
+    // --- 2. Preloader ---
     setTimeout(() => {
         loader.classList.add('is-hidden');
         mainContent.style.opacity = '1';
         header.style.transform = 'translateY(0)';
+        // Trigger animations for the first section
+        document.querySelector('#hero .fade-in')?.classList.add('is-visible');
     }, 1500);
 
     // --- 3. Interactive Particle Background ---
@@ -24,36 +28,74 @@ document.addEventListener('DOMContentLoaded', () => {
         "retina_detect":true
     });
 
-    // --- 4. Scroll-triggered Animations ---
-    const observer = new IntersectionObserver((entries, observer) => {
+    // --- 4. Robust Snap Scrolling & Active Nav Link ---
+    const observerOptions = { root: mainContent, threshold: 0.5 };
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+        if (isScrolling) return; // Don't interfere with manual scroll
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target);
+                const sectionId = entry.target.id;
+                // Update nav links
+                navLinks.forEach(link => {
+                    link.classList.toggle('active', link.dataset.section === sectionId);
+                });
+                // Trigger fade-in animations
+                entry.target.querySelector('.fade-in')?.classList.add('is-visible');
             }
         });
-    }, { threshold: 0.1 });
+    }, observerOptions);
 
-    document.querySelectorAll('.fade-in').forEach(element => {
-        observer.observe(element);
+    sections.forEach(section => sectionObserver.observe(section));
+
+    // Manual scroll for nav clicks
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            isScrolling = true;
+            const targetId = link.getAttribute('href');
+            document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+            // After manual scroll, let the observer take over again
+            setTimeout(() => { isScrolling = false; }, 1000);
+        });
     });
 
-    // --- 5. NEW: Hover-to-Reveal Project Card Logic ---
-    const projectCards = document.querySelectorAll('.project-card');
+    // --- 5. Experience Tabs Logic ---
+    const tabList = document.querySelector('.tab-list');
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabPanels = document.querySelectorAll('.tab-panel');
 
-    projectCards.forEach(card => {
+    tabList?.addEventListener('click', (e) => {
+        const clickedTab = e.target.closest('button');
+        if (!clickedTab) return;
+
+        tabButtons.forEach(tab => {
+            tab.classList.remove('active');
+            tab.setAttribute('aria-selected', 'false');
+        });
+        clickedTab.classList.add('active');
+        clickedTab.setAttribute('aria-selected', 'true');
+
+        const targetPanelId = clickedTab.getAttribute('aria-controls');
+        tabPanels.forEach(panel => {
+            panel.classList.toggle('active', panel.id === targetPanelId);
+        });
+    });
+
+    // --- 6. Hover-to-Reveal Project Card Logic ---
+    document.querySelectorAll('.project-card').forEach(card => {
         const titleElement = card.querySelector('h4');
         const originalTitle = titleElement.innerHTML;
         const description = card.getAttribute('data-description');
 
         card.addEventListener('mouseenter', () => {
             titleElement.innerHTML = description;
-            titleElement.style.fontSize = '1rem'; // Adjust font size for description
+            titleElement.style.fontSize = '1rem';
         });
 
         card.addEventListener('mouseleave', () => {
             titleElement.innerHTML = originalTitle;
-            titleElement.style.fontSize = ''; // Revert to original size
+            titleElement.style.fontSize = '';
         });
     });
 });
