@@ -12,6 +12,20 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader-grid">
+            <div class="loader-cell"></div>
+            <div class="loader-cell"></div>
+            <div class="loader-cell"></div>
+            <div class="loader-cell"></div>
+        </div>
+        <div class="loader-text">Booting Systems...</div>
+    </div>
+
+    <!-- Dynamic Background -->
+    <canvas id="matrix-bg"></canvas>
+
     <!-- Main Container -->
     <main class="main-container">
         <!-- Hero Section -->
@@ -75,7 +89,6 @@
                         </div>
                     </div>
                     <div class="skills-grid">
-                        <!-- Skills Cards -->
                         <div class="flip-card">
                             <div class="flip-card-inner">
                                 <div class="flip-card-front">
@@ -137,29 +150,11 @@
             </div>
         </section>
 
-        <!-- Experience & Education Section -->
+        <!-- Experience Section -->
         <section id="experience" class="section experience-section">
             <div class="section-container">
-                <h2 class="section-title">Experience & Education</h2>
+                <h2 class="section-title">Professional Experience</h2>
                 <div class="timeline">
-                    <!-- Timeline Items -->
-                    <div class="timeline-item">
-                        <div class="timeline-year">2023-2025</div>
-                        <div class="timeline-content">
-                            <h3>Master of Science, Electrical Engineering</h3>
-                            <h4>National University of Singapore</h4>
-                            <p><strong>Graduate Assistant:</strong> Oversaw lab sessions for EE2028 and CG3207, provided guidance, and collaborated with faculty to overhaul lab materials.</p>
-                            <div class="tech-chips"><span>VLSI Digital Circuit Design</span><span>Memory Technologies</span><span>Embedded Hardware System Design</span></div>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-year">2019-2023</div>
-                        <div class="timeline-content">
-                            <h3>Bachelor of Technology, ECE</h3>
-                            <h4>SRM Institute of Science and Technology</h4>
-                            <div class="tech-chips"><span>Digital Electronics</span><span>Semiconductor Devices</span><span>VLSI Design</span><span>ARM Embedded Systems</span></div>
-                        </div>
-                    </div>
                     <div class="timeline-item">
                         <div class="timeline-year">Dec 2022 - Jan 2023</div>
                         <div class="timeline-content">
@@ -182,12 +177,38 @@
             </div>
         </section>
 
+        <!-- Education Section -->
+        <section id="education" class="section education-section">
+            <div class="section-container">
+                <h2 class="section-title">Academic Journey</h2>
+                <div class="education-grid">
+                    <div class="education-card">
+                        <div class="education-header">
+                            <h3>Master of Science, Electrical Engineering</h3>
+                            <span class="education-year">2023-2025</span>
+                        </div>
+                        <h4>National University of Singapore</h4>
+                        <p><strong>Graduate Assistant:</strong> Oversaw lab sessions for EE2028 and CG3207, providing guidance and collaborating with faculty to overhaul lab materials.</p>
+                        <div class="tech-chips"><span>VLSI Digital Circuit Design</span><span>Memory Technologies</span><span>Embedded Hardware System Design</span></div>
+                    </div>
+                    <div class="education-card">
+                        <div class="education-header">
+                            <h3>Bachelor of Technology, ECE</h3>
+                             <span class="education-year">2019-2023</span>
+                        </div>
+                        <h4>SRM Institute of Science and Technology</h4>
+                         <p>Focused on a comprehensive curriculum covering the fundamentals and advanced topics in electronics and communication engineering.</p>
+                        <div class="tech-chips"><span>Digital Electronics</span><span>Semiconductor Devices</span><span>VLSI Design</span><span>ARM Embedded Systems</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Projects Section -->
         <section id="projects" class="section projects-section">
             <div class="section-container">
                 <h2 class="section-title">Featured Projects</h2>
                 <div class="projects-grid">
-                    <!-- Project Cards -->
                     <div class="project-card">
                         <div class="project-icon"><i class="fas fa-network-wired"></i></div>
                         <h3>VLSI Interconnect Modelling</h3>
@@ -233,9 +254,8 @@
             <div class="section-container">
                  <h2 class="section-title">Research & Certifications</h2>
                  <div class="research-content">
-                    <!-- Publications -->
                     <div class="research-column">
-                        <h3>Publications</h3>
+                        <h3>Publications & Patents</h3>
                         <div class="pub-item">
                             <h4>Improving Data Integrity with Reversible Logic-based EDC on AHB-APB Bridge</h4>
                             <p>IEEE Conference - May 2023</p>
@@ -244,13 +264,11 @@
                             <h4>A Survey on Affordable IoT Enabled Healthcare Systems</h4>
                             <p>Grenze International Journal - June 2022</p>
                         </div>
-                        <h3>Patents</h3>
                         <div class="pub-item">
                             <h4>A System for Controlling an Autonomous Vehicle and a Method Thereof</h4>
                             <p>Indian Patent Application - Filed March 28, 2025</p>
                         </div>
                     </div>
-                    <!-- Certifications -->
                     <div class="research-column">
                         <h3>Certifications</h3>
                         <div class="certifications-grid">
