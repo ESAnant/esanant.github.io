@@ -1,9 +1,6 @@
-// --- PHASE 1: JAVASCRIPT SETUP ---
+// --- PHASE 1 & 2: NO JAVASCRIPT ACTION REQUIRED ---
 
-// Ensures the script runs only after the entire HTML document has been loaded.
 document.addEventListener('DOMContentLoaded', () => {
-
     // Phase 3: Core interactivity and animation logic will be added here.
-    console.log("Portfolio project initialized. Awaiting content and interactivity.");
-
+    console.log("Portfolio content loaded. Ready for Phase 3 interactivity.");
 });
