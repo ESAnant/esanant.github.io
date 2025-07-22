@@ -1,6 +1,6 @@
 /* ---
-Portfolio v2.1 Stylesheet
-Phase 2: Next-Gen Interactivity & Animations
+Portfolio v2.2 Stylesheet
+Phase 2.2: Content & Layout Refinements
 --- */
 
 /* 1. Design System: CSS Variables */
@@ -37,7 +37,7 @@ main {
     transition: opacity 0.5s ease-in;
 }
 
-/* 3. NEW: Loader & Animations */
+/* 3. Loader & Animations */
 #loader {
     position: fixed;
     top: 0;
@@ -59,7 +59,6 @@ main {
 .loader-cell.core { background-color: var(--color-accent-copper); }
 .loader-text { font-family: var(--font-mono); color: var(--color-text-secondary); }
 
-/* Animation keyframes for the loader */
 @keyframes pulse {
     0%, 100% { transform: scale(0.5); opacity: 0.5; }
     50% { transform: scale(1); opacity: 1; }
@@ -69,10 +68,8 @@ main {
 .loader-cell:nth-child(6) { animation-delay: 0.5s; } .loader-cell:nth-child(7) { animation-delay: 0.6s; }
 .loader-cell:nth-child(8) { animation-delay: 0.7s; } .loader-cell:nth-child(9) { animation-delay: 0.8s; }
 
-/* Interactive Background */
 #interactive-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
 
-/* Scroll-triggered Animations */
 .fade-in {
     opacity: 0;
     transform: translateY(20px);
@@ -83,12 +80,11 @@ main {
     transform: translateY(0);
 }
 
-/* 4. Header & Navigation (UPDATED) */
+/* 4. Header & Navigation */
 .main-header { position: fixed; top: 0; left: 0; width: 100%; height: var(--header-height); padding: 0 50px; display: flex; justify-content: space-between; align-items: center; background-color: rgba(2, 12, 27, 0.85); backdrop-filter: blur(10px); z-index: 10; transform: translateY(-100%); transition: transform 0.3s ease-in-out; }
 .nav-logo { color: var(--color-accent-copper); font-weight: 700; font-size: 1.2rem; text-decoration: none; }
 .nav-links { display: flex; list-style: none; align-items: center; gap: 2rem; font-family: var(--font-mono); }
 .nav-links a { color: var(--color-text-primary); text-decoration: none; font-size: 0.9rem; transition: var(--transition-main); }
-/* Removed ::before rule for numbers */
 .nav-links a:hover { color: var(--color-accent-copper); }
 
 /* 5. Reusable Components & Typography */
@@ -105,10 +101,19 @@ main {
 .hero-title { font-size: clamp(40px, 8vw, 72px); font-weight: 700; color: var(--color-text-primary); margin-bottom: 0.5rem; }
 .hero-subtitle { font-size: clamp(30px, 7vw, 60px); font-weight: 700; color: var(--color-text-secondary); margin-bottom: 2rem; }
 .hero-description { max-width: 550px; color: var(--color-text-secondary); }
-.two-column { display: flex; gap: 50px; align-items: center; }
-.about-text { flex: 3; }
-.about-image { flex: 2; }
-.image-placeholder { width: 100%; max-width: 300px; height: 300px; background-color: var(--color-bg-light); border: 2px solid var(--color-accent-copper); border-radius: var(--border-radius); }
+
+/* About Section (UPDATED) */
+.about-content {
+    max-width: 700px; /* Adjusted width for single column */
+    margin: 0 auto;
+    text-align: left; /* Or 'center' if preferred */
+}
+.about-content p {
+    color: var(--color-text-secondary);
+    margin-bottom: 1rem;
+}
+
+/* Cards */
 .card { background-color: var(--color-bg-light); padding: 1.5rem; border-radius: var(--border-radius); transition: var(--transition-main); }
 .card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7); }
 .card h3 { font-size: 1.2rem; color: var(--color-text-primary); }
@@ -117,10 +122,14 @@ main {
 .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
 .card-grid-three-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
 .project-card h4 { margin-bottom: 0.5rem; }
+
+/* Skills */
 .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 1rem; }
 .skill-item { display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: var(--color-bg-light); padding: 1rem; border-radius: var(--border-radius); }
 .skill-item i { font-size: 2.5rem; color: var(--color-accent-copper); margin-bottom: 0.5rem; }
 .skill-item span { font-family: var(--font-mono); font-size: 0.8rem; }
+
+/* Contact */
 .text-center { text-align: center; }
 .contact-lead { font-family: var(--font-mono); font-size: 1rem; color: var(--color-accent-copper); }
 .contact-title { font-size: clamp(40px, 5vw, 60px); margin: 0.5rem 0 1rem; }
@@ -142,6 +151,4 @@ main {
     main { padding: 0 25px; }
     .main-header { padding: 0 25px; }
     .nav-links { display: none; }
-    .two-column { flex-direction: column; }
-    .about-image { margin-top: 2rem; }
 }

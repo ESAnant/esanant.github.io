@@ -1,6 +1,6 @@
 /* ---
-Portfolio v2.1 JavaScript
-Phase 2: Next-Gen Interactivity & Animations
+Portfolio v2.2 JavaScript
+Phase 2.2: Content & Layout Refinements
 --- */
 
 document.addEventListener('DOMContentLoaded', () => {
