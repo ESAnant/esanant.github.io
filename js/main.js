@@ -1,5 +1,5 @@
-// Enhanced Portfolio with Cool Animations and Snap Navigation
-class CoolECEPortfolio {
+// Enhanced Portfolio with Snap Navigation and Animations
+class EnhancedPortfolio {
     constructor() {
         this.currentSection = 0;
         this.sections = document.querySelectorAll('.snap-section');
@@ -16,14 +16,13 @@ class CoolECEPortfolio {
         this.setupSnapNavigation();
         this.setupScrollAnimations();
         this.setupCounterAnimations();
-        this.setupFlipCardInteractions();
         this.setupEventListeners();
         
-        // Hide loader after 4 seconds (longer for fun animation)
+        // Hide loader after 3 seconds
         setTimeout(() => {
             this.hideLoader();
             this.revealSections();
-        }, 4000);
+        }, 3000);
     }
 
     showLoader() {
@@ -47,7 +46,7 @@ class CoolECEPortfolio {
         
         const ctx = canvas.getContext('2d');
         let particles = [];
-        let connectionNodes = [];
+        let animationId;
         
         // Resize canvas
         function resizeCanvas() {
@@ -55,32 +54,19 @@ class CoolECEPortfolio {
             canvas.height = window.innerHeight;
         }
         
-        // Create particles with ECE theme
+        // Create particles
         function createParticles() {
             particles = [];
-            const particleCount = Math.floor((canvas.width * canvas.height) / 12000);
+            const particleCount = Math.floor((canvas.width * canvas.height) / 15000);
             
             for (let i = 0; i < particleCount; i++) {
                 particles.push({
                     x: Math.random() * canvas.width,
                     y: Math.random() * canvas.height,
-                    size: Math.random() * 3 + 1,
-                    speedX: (Math.random() - 0.5) * 0.3,
-                    speedY: (Math.random() - 0.5) * 0.3,
-                    opacity: Math.random() * 0.6 + 0.2,
-                    color: Math.random() > 0.7 ? '#0066ff' : '#00ff88',
-                    pulse: Math.random() * Math.PI * 2
-                });
-            }
-            
-            // Create connection nodes
-            connectionNodes = [];
-            for (let i = 0; i < 5; i++) {
-                connectionNodes.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    radius: 30 + Math.random() * 20,
-                    pulse: Math.random() * Math.PI * 2
+                    size: Math.random() * 2 + 1,
+                    speedX: (Math.random() - 0.5) * 0.2,
+                    speedY: (Math.random() - 0.5) * 0.2,
+                    opacity: Math.random() * 0.5 + 0.2
                 });
             }
         }
@@ -89,11 +75,9 @@ class CoolECEPortfolio {
         function animateParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            // Update and draw particles
-            particles.forEach((particle, index) => {
+            particles.forEach(particle => {
                 particle.x += particle.speedX;
                 particle.y += particle.speedY;
-                particle.pulse += 0.02;
                 
                 // Wrap around edges
                 if (particle.x < 0) particle.x = canvas.width;
@@ -101,48 +85,23 @@ class CoolECEPortfolio {
                 if (particle.y < 0) particle.y = canvas.height;
                 if (particle.y > canvas.height) particle.y = 0;
                 
-                // Pulsing effect
-                const pulseFactor = 0.5 + 0.5 * Math.sin(particle.pulse);
-                const currentOpacity = particle.opacity * pulseFactor;
-                
                 // Draw particle
                 ctx.beginPath();
                 ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-                ctx.fillStyle = particle.color + Math.floor(currentOpacity * 255).toString(16).padStart(2, '0');
+                ctx.fillStyle = `rgba(0, 255, 136, ${particle.opacity})`;
                 ctx.fill();
-                
-                // Add glow effect for special particles
-                if (particle.size > 2) {
-                    ctx.beginPath();
-                    ctx.arc(particle.x, particle.y, particle.size * 2, 0, Math.PI * 2);
-                    ctx.fillStyle = particle.color + '20';
-                    ctx.fill();
-                }
             });
             
-            // Draw connection nodes
-            connectionNodes.forEach(node => {
-                node.pulse += 0.01;
-                const pulseFactor = 0.3 + 0.7 * Math.sin(node.pulse);
-                
-                ctx.beginPath();
-                ctx.arc(node.x, node.y, node.radius * pulseFactor, 0, Math.PI * 2);
-                ctx.strokeStyle = '#00ff88' + '20';
-                ctx.lineWidth = 2;
-                ctx.stroke();
-            });
-            
-            // Connect nearby particles with neural network style
+            // Connect nearby particles
             particles.forEach((particleA, indexA) => {
                 particles.forEach((particleB, indexB) => {
                     if (indexA !== indexB) {
                         const distance = Math.hypot(particleA.x - particleB.x, particleA.y - particleB.y);
-                        if (distance < 120) {
-                            const opacity = (1 - distance / 120) * 0.3;
+                        if (distance < 100) {
                             ctx.beginPath();
                             ctx.moveTo(particleA.x, particleA.y);
                             ctx.lineTo(particleB.x, particleB.y);
-                            ctx.strokeStyle = `#00ff88${Math.floor(opacity * 255).toString(16).padStart(2, '0')}`;
+                            ctx.strokeStyle = `rgba(0, 255, 136, ${0.1 * (1 - distance / 100)})`;
                             ctx.lineWidth = 1;
                             ctx.stroke();
                         }
@@ -150,7 +109,7 @@ class CoolECEPortfolio {
                 });
             });
             
-            requestAnimationFrame(animateParticles);
+            animationId = requestAnimationFrame(animateParticles);
         }
         
         resizeCanvas();
@@ -187,21 +146,19 @@ class CoolECEPortfolio {
             }
         });
         
-        // Wheel navigation with better control
+        // Wheel navigation
         let wheelTimeout;
         this.snapContainer.addEventListener('wheel', (e) => {
             if (this.isScrolling) return;
             
             clearTimeout(wheelTimeout);
             wheelTimeout = setTimeout(() => {
-                if (Math.abs(e.deltaY) > 50) { // Only trigger on significant wheel movement
-                    if (e.deltaY > 0 && this.currentSection < this.sections.length - 1) {
-                        this.scrollToSection(this.currentSection + 1);
-                    } else if (e.deltaY < 0 && this.currentSection > 0) {
-                        this.scrollToSection(this.currentSection - 1);
-                    }
+                if (e.deltaY > 0 && this.currentSection < this.sections.length - 1) {
+                    this.scrollToSection(this.currentSection + 1);
+                } else if (e.deltaY < 0 && this.currentSection > 0) {
+                    this.scrollToSection(this.currentSection - 1);
                 }
-            }, 100);
+            }, 50);
         });
     }
 
@@ -243,17 +200,6 @@ class CoolECEPortfolio {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    
-                    // Special animations for different sections
-                    if (entry.target.classList.contains('about-section')) {
-                        this.animateSkillCards();
-                    }
-                    if (entry.target.classList.contains('experience-section')) {
-                        this.animateExperienceCards();
-                    }
-                    if (entry.target.classList.contains('projects-section')) {
-                        this.animateProjectCards();
-                    }
                 }
             });
         }, {
@@ -263,36 +209,6 @@ class CoolECEPortfolio {
 
         this.sections.forEach(section => {
             observer.observe(section);
-        });
-    }
-
-    animateSkillCards() {
-        const skillCards = document.querySelectorAll('.flip-card');
-        skillCards.forEach((card, index) => {
-            setTimeout(() => {
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0) scale(1)';
-            }, index * 200);
-        });
-    }
-
-    animateExperienceCards() {
-        const expCards = document.querySelectorAll('.experience-flip-card');
-        expCards.forEach((card, index) => {
-            setTimeout(() => {
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0) rotateX(0)';
-            }, index * 300);
-        });
-    }
-
-    animateProjectCards() {
-        const projectCards = document.querySelectorAll('.project-flip-card');
-        projectCards.forEach((card, index) => {
-            setTimeout(() => {
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0) scale(1)';
-            }, index * 250);
         });
     }
 
@@ -323,14 +239,38 @@ class CoolECEPortfolio {
             if (current >= target) {
                 element.textContent = target;
                 clearInterval(timer);
-                
-                // Add completion effect
-                element.style.transform = 'scale(1.1)';
-                setTimeout(() => {
-                    element.style.transform = 'scale(1)';
-                }, 200);
             }
         }, 16);
+    }
+
+    setupEventListeners() {
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = anchor.getAttribute('href').substring(1);
+                
+                // Find section by ID or data-section
+                let sectionIndex = -1;
+                this.sections.forEach((section, index) => {
+                    if (section.id === targetId || section.dataset.section === targetId) {
+                        sectionIndex = index;
+                    }
+                });
+                
+                // Special handling for contact link
+                if (targetId === 'contact') {
+                    sectionIndex = this.sections.length - 1;
+                }
+                
+                if (sectionIndex !== -1) {
+                    this.scrollToSection(sectionIndex);
+                }
+            });
+        });
+
+        // Enhanced flip card interactions
+        this.setupFlipCardInteractions();
     }
 
     setupFlipCardInteractions() {
@@ -338,56 +278,11 @@ class CoolECEPortfolio {
         const skillCards = document.querySelectorAll('.flip-card');
         skillCards.forEach(card => {
             card.addEventListener('click', () => {
-                card.classList.toggle('clicked');
-            });
-            
-            // Auto-flip demo on page load
-            setTimeout(() => {
-                card.addEventListener('mouseenter', () => {
-                    if (!card.classList.contains('clicked')) {
-                        card.querySelector('.flip-card-inner').style.transform = 'rotateY(180deg)';
-                    }
-                });
-                
-                card.addEventListener('mouseleave', () => {
-                    if (!card.classList.contains('clicked')) {
-                        card.querySelector('.flip-card-inner').style.transform = 'rotateY(0deg)';
-                    }
-                });
-            }, 1000);
-        });
-
-        // Experience flip cards with enhanced interactions
-        const experienceCards = document.querySelectorAll('.experience-flip-card');
-        experienceCards.forEach(card => {
-            let flipTimeout;
-            
-            card.addEventListener('mouseenter', () => {
-                clearTimeout(flipTimeout);
-                card.querySelector('.experience-flip-inner').style.transform = 'rotateY(180deg)';
-                
-                // Add company badge animation
-                const badge = card.querySelector('.company-badge');
-                badge.style.transform = 'rotate(360deg) scale(1.1)';
-                setTimeout(() => {
-                    badge.style.transform = 'rotate(0deg) scale(1)';
-                }, 600);
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                flipTimeout = setTimeout(() => {
-                    card.querySelector('.experience-flip-inner').style.transform = 'rotateY(0deg)';
-                }, 300);
-            });
-            
-            card.addEventListener('click', () => {
-                const inner = card.querySelector('.experience-flip-inner');
-                const currentTransform = inner.style.transform;
-                inner.style.transform = currentTransform.includes('180deg') ? 'rotateY(0deg)' : 'rotateY(180deg)';
+                card.classList.toggle('flipped');
             });
         });
 
-        // Project flip cards with cool effects
+        // Project flip cards
         const projectCards = document.querySelectorAll('.project-flip-card');
         projectCards.forEach(card => {
             let flipTimeout;
@@ -395,13 +290,6 @@ class CoolECEPortfolio {
             card.addEventListener('mouseenter', () => {
                 clearTimeout(flipTimeout);
                 card.querySelector('.project-flip-inner').style.transform = 'rotateY(180deg)';
-                
-                // Add icon pulse effect
-                const icon = card.querySelector('.project-icon');
-                icon.style.animation = 'none';
-                setTimeout(() => {
-                    icon.style.animation = 'iconPulse 0.6s ease';
-                }, 10);
             });
             
             card.addEventListener('mouseleave', () => {
@@ -414,105 +302,6 @@ class CoolECEPortfolio {
                 const inner = card.querySelector('.project-flip-inner');
                 const currentTransform = inner.style.transform;
                 inner.style.transform = currentTransform.includes('180deg') ? 'rotateY(0deg)' : 'rotateY(180deg)';
-            });
-        });
-    }
-
-    setupEventListeners() {
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = anchor.getAttribute('href').substring(1);
-                
-                // Map section IDs to section indices
-                const sectionMap = {
-                    'contact': 6,
-                    'research': 5,
-                    'projects': 4,
-                    'experience': 3,
-                    'education': 2,
-                    'about': 1,
-                    'home': 0
-                };
-                
-                const sectionIndex = sectionMap[targetId];
-                if (sectionIndex !== undefined) {
-                    this.scrollToSection(sectionIndex);
-                }
-            });
-        });
-
-        // Add cool processor interactions
-        this.setupProcessorInteractions();
-        
-        // Add publication card interactions
-        this.setupPublicationInteractions();
-    }
-
-    setupProcessorInteractions() {
-        const processorChip = document.querySelector('.processor-chip');
-        const ioPins = document.querySelectorAll('.io-pin');
-        
-        if (processorChip) {
-            processorChip.addEventListener('click', () => {
-                // Trigger enhanced processing animation
-                processorChip.style.animation = 'none';
-                setTimeout(() => {
-                    processorChip.style.animation = 'chipProcessing 1s ease-in-out';
-                }, 10);
-            });
-        }
-        
-        // IO Pin interactions
-        ioPins.forEach(pin => {
-            pin.addEventListener('click', () => {
-                // Create signal pulse effect
-                const signal = document.createElement('div');
-                signal.style.position = 'absolute';
-                signal.style.width = '4px';
-                signal.style.height = '4px';
-                signal.style.background = '#00ff88';
-                signal.style.borderRadius = '50%';
-                signal.style.boxShadow = '0 0 10px #00ff88';
-                signal.style.pointerEvents = 'none';
-                
-                const rect = pin.getBoundingClientRect();
-                const container = document.querySelector('.processor-container');
-                const containerRect = container.getBoundingClientRect();
-                
-                signal.style.left = (rect.left - containerRect.left) + 'px';
-                signal.style.top = (rect.top - containerRect.top) + 'px';
-                
-                container.appendChild(signal);
-                
-                // Animate signal to chip center
-                setTimeout(() => {
-                    signal.style.transition = 'all 0.5s ease';
-                    signal.style.left = '50%';
-                    signal.style.top = '50%';
-                    signal.style.transform = 'translate(-50%, -50%)';
-                    signal.style.opacity = '0';
-                }, 10);
-                
-                setTimeout(() => {
-                    signal.remove();
-                }, 600);
-            });
-        });
-    }
-
-    setupPublicationInteractions() {
-        const pubCards = document.querySelectorAll('.publication-card');
-        pubCards.forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                const icon = card.querySelector('.pub-icon i');
-                icon.style.transform = 'rotateY(180deg) scale(1.1)';
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                const icon = card.querySelector('.pub-icon i');
-                icon.style.transform = 'rotateY(0deg) scale(1)';
             });
         });
     }
@@ -545,9 +334,31 @@ class PerformanceMonitor {
     static init() {
         window.addEventListener('load', () => {
             const loadTime = performance.now();
-            console.log(`🚀 Cool ECE Portfolio loaded in ${Math.round(loadTime)}ms`);
+            console.log(`Portfolio loaded in ${Math.round(loadTime)}ms`);
         });
     }
 }
 
-// Add some extra
+// Initialize everything when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    new EnhancedPortfolio();
+    PerformanceMonitor.init();
+});
+
+// Error handling
+window.addEventListener('error', (e) => {
+    console.error('Portfolio error:', e.error);
+});
+
+// Service worker registration for better performance (optional)
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+                console.log('SW registered: ', registration);
+            })
+            .catch((registrationError) => {
+                console.log('SW registration failed: ', registrationError);
+            });
+    });
+}
