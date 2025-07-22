@@ -271,29 +271,6 @@ class EnhancedPortfolio {
             });
         });
 
-        // Experience flip cards
-        const experienceCards = document.querySelectorAll('.experience-flip-card');
-        experienceCards.forEach(card => {
-            let flipTimeout;
-            
-            card.addEventListener('mouseenter', () => {
-                clearTimeout(flipTimeout);
-                card.querySelector('.experience-flip-inner').style.transform = 'rotateY(180deg)';
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                flipTimeout = setTimeout(() => {
-                    card.querySelector('.experience-flip-inner').style.transform = 'rotateY(0deg)';
-                }, 300);
-            });
-            
-            card.addEventListener('click', () => {
-                const inner = card.querySelector('.experience-flip-inner');
-                const currentTransform = inner.style.transform;
-                inner.style.transform = currentTransform.includes('180deg') ? 'rotateY(0deg)' : 'rotateY(180deg)';
-            });
-        });
-
         // Project flip cards
         const projectCards = document.querySelectorAll('.project-flip-card');
         projectCards.forEach(card => {
