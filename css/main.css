@@ -430,6 +430,10 @@ body {
     line-height: 1.8;
 }
 
+.about-text strong {
+    color: var(--primary);
+}
+
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -545,8 +549,8 @@ body {
     border: 1px solid rgba(0, 255, 136, 0.3);
 }
 
-/* Education Timeline */
-.education-section {
+/* Experience Timeline */
+.experience-section {
     background: var(--bg-primary);
 }
 
@@ -633,130 +637,9 @@ body {
     border: 1px solid var(--border-color);
 }
 
-/* Experience Flipping Cards */
-.experience-section {
-    background: var(--bg-secondary);
-}
-
-.experience-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-}
-
-.experience-flip-card {
-    background-color: transparent;
-    height: 300px;
-    perspective: 1000px;
-    cursor: pointer;
-}
-
-.experience-flip-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: left;
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
-}
-
-.experience-flip-card:hover .experience-flip-inner {
-    transform: rotateY(180deg);
-}
-
-.experience-flip-front, .experience-flip-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    border-radius: 16px;
-    border: 1px solid var(--border-color);
-    background: var(--bg-tertiary);
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.experience-flip-front {
-    background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
-}
-
-.experience-flip-back {
-    background: var(--bg-primary);
-    border-color: var(--primary);
-    transform: rotateY(180deg);
-}
-
-.company-badge {
-    width: 50px;
-    height: 50px;
-    background: var(--primary);
-    color: var(--bg-primary);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-family: var(--font-mono);
-    margin-bottom: 1rem;
-}
-
-.experience-flip-front h3 {
-    font-size: 1.3rem;
-    margin-bottom: 0.5rem;
-}
-
-.experience-flip-front h4 {
-    color: var(--text-secondary);
-    margin-bottom: 1rem;
-}
-
-.duration {
-    font-family: var(--font-mono);
-    color: var(--primary);
-    font-size: 0.9rem;
-    margin-top: auto;
-}
-
-.experience-flip-back ul {
-    list-style: none;
-    margin-bottom: 1.5rem;
-}
-
-.experience-flip-back li {
-    position: relative;
-    padding-left: 1.5rem;
-    margin-bottom: 0.75rem;
-    color: var(--text-secondary);
-}
-
-.experience-flip-back li::before {
-    content: '▶';
-    position: absolute;
-    left: 0;
-    color: var(--primary);
-    font-size: 0.8rem;
-}
-
-.tech-stack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.tech-stack span {
-    padding: 0.3rem 0.8rem;
-    background: rgba(0, 255, 136, 0.1);
-    color: var(--primary);
-    border-radius: 15px;
-    font-size: 0.8rem;
-    border: 1px solid rgba(0, 255, 136, 0.3);
-}
-
 /* Project Flipping Cards */
 .projects-section {
-    background: var(--bg-primary);
+    background: var(--bg-secondary);
 }
 
 .projects-grid {
@@ -792,7 +675,7 @@ body {
     backface-visibility: hidden;
     border-radius: 16px;
     border: 1px solid var(--border-color);
-    background: var(--bg-secondary);
+    background: var(--bg-tertiary);
     padding: 2rem;
     display: flex;
     flex-direction: column;
@@ -800,12 +683,12 @@ body {
 }
 
 .project-flip-front {
-    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+    background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
     text-align: center;
 }
 
 .project-flip-back {
-    background: var(--bg-tertiary);
+    background: var(--bg-primary);
     border-color: var(--primary);
     transform: rotateY(180deg);
     text-align: left;
@@ -831,7 +714,7 @@ body {
 
 .project-preview span {
     padding: 0.3rem 0.8rem;
-    background: var(--bg-tertiary);
+    background: var(--bg-secondary);
     color: var(--text-secondary);
     border-radius: 15px;
     font-size: 0.8rem;
@@ -865,56 +748,13 @@ body {
     border: 1px solid rgba(0, 102, 255, 0.3);
 }
 
-/* Contact Section */
-.contact-section {
-    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+/* Certifications Section */
+.certifications-section {
+    background: var(--bg-primary);
 }
 
-.contact-content {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.contact-info p {
-    font-size: 1.2rem;
-    color: var(--text-secondary);
-    margin-bottom: 3rem;
-    line-height: 1.7;
-}
-
-.contact-links {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-bottom: 3rem;
-    flex-wrap: wrap;
-}
-
-.contact-link {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem 2rem;
-    background: var(--bg-tertiary);
-    color: var(--text-secondary);
-    text-decoration: none;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-    transition: var(--transition);
-}
-
-.contact-link:hover {
-    color: var(--primary);
-    border-color: var(--primary);
-    transform: translateY(-3px);
-}
-
-/* Publications */
 .publications {
-    text-align: left;
-    max-width: 600px;
-    margin: 0 auto;
+    margin-bottom: 3rem;
 }
 
 .publications h3 {
@@ -927,7 +767,7 @@ body {
     display: flex;
     gap: 1.5rem;
     padding: 1.5rem;
-    background: var(--bg-tertiary);
+    background: var(--bg-secondary);
     border-radius: 12px;
     border: 1px solid var(--border-color);
     margin-bottom: 1rem;
@@ -958,6 +798,109 @@ body {
     font-style: italic;
 }
 
+.certifications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.cert-card {
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    padding: 1.5rem;
+    transition: var(--transition);
+    text-align: center;
+}
+
+.cert-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-5px);
+}
+
+.cert-provider {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.cert-provider.google {
+    background: rgba(66, 133, 244, 0.1);
+    color: #4285f4;
+}
+
+.cert-provider.internshala {
+    background: rgba(0, 162, 255, 0.1);
+    color: #00a2ff;
+}
+
+.cert-provider.edx {
+    background: rgba(2, 62, 138, 0.1);
+    color: #023e8a;
+}
+
+.cert-provider.coursera {
+    background: rgba(0, 86, 210, 0.1);
+    color: #0056d2;
+}
+
+.cert-card h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.cert-year {
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* Contact Section */
+.contact-section {
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+}
+
+.contact-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.contact-info p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+    line-height: 1.7;
+}
+
+.contact-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.contact-link:hover {
+    color: var(--primary);
+    border-color: var(--primary);
+    transform: translateY(-3px);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .snap-nav {
@@ -984,7 +927,6 @@ body {
         grid-template-columns: 1fr;
     }
     
-    .experience-grid,
     .projects-grid {
         grid-template-columns: 1fr;
     }
@@ -994,8 +936,7 @@ body {
     }
     
     .contact-links {
-        flex-direction: column;
-        align-items: center;
+        grid-template-columns: 1fr;
     }
     
     .timeline {
@@ -1006,6 +947,10 @@ body {
         left: -4rem;
         writing-mode: horizontal-tb;
         text-orientation: initial;
+    }
+    
+    .certifications-grid {
+        grid-template-columns: 1fr;
     }
 }
 
