@@ -63,16 +63,16 @@
             </div>
         </section>
 
-        <!-- Section 2: About Me (UPDATED) -->
+        <!-- Section 2: About Me (Citations Removed) -->
         <section id="about" class="section">
             <div class="section-container fade-in">
                 <h2 class="section-title">About Me</h2>
                 <div class="about-content">
                     <p>
-                        Exploring the realms of Electrical Engineering in pursuit of an MSc at the distinguished National University of Singapore (NUS), I am focused on Nanoelectronics with a fervor for Embedded Systems and Digital Design[4].
+                        Exploring the realms of Electrical Engineering in pursuit of an MSc at the distinguished National University of Singapore (NUS), I am focused on Nanoelectronics with a fervor for Embedded Systems and Digital Design.
                     </p>
                     <p>
-                        Embracing challenges with agility, I'm on a continuous journey of learning and growth, ready to contribute to technological innovation with zeal[4].
+                        Embracing challenges with agility, I'm on a continuous journey of learning and growth, ready to contribute to technological innovation with zeal.
                     </p>
                 </div>
             </div>
@@ -83,12 +83,12 @@
             <div class="section-container fade-in">
                 <h2 class="section-title">Where I've Worked</h2>
                  <div class="card-grid">
-                    <div class="card interactive-card">
+                    <div class="card experience-card">
                         <h3>Project Intern <span class="card-company">@ Maven Silicon</span></h3>
                         <p class="card-date">Dec 2022 – Jan 2023</p>
                         <p>Designed and implemented a synthesizable AHB to APB bridge, mastering bus protocol communication and modular RTL design in Verilog.</p>
                     </div>
-                    <div class="card interactive-card">
+                    <div class="card experience-card">
                         <h3>Intern <span class="card-company">@ Sandeepani</span></h3>
                         <p class="card-date">Jun 2022 – Jul 2022</p>
                         <p>Developed and verified a full UART protocol using Verilog and performed rigorous functional verification with SystemVerilog and QuestaSim.</p>
@@ -97,17 +97,47 @@
             </div>
         </section>
 
-        <!-- Section 4: Projects -->
+        <!-- Section 4: Projects (UPDATED for Interactivity) -->
         <section id="projects" class="section">
             <div class="section-container fade-in">
                 <h2 class="section-title">Things I've Built</h2>
                  <div class="card-grid-three-col">
-                    <div class="card project-card"><h4>VLSI Interconnect Modelling</h4><p>Optimised processor interconnects using Elmore RC models and Cadence Virtuoso at 45nm.</p></div>
-                    <div class="card project-card"><h4>Standard Cell IP Development</h4><p>Created a ring oscillator Standard Cell IP in Cadence Virtuoso, targeting 40nm technology.</p></div>
-                    <div class="card project-card"><h4>FPGA Hardware Accelerator</h4><p>Developed an accelerator on a Xilinx Zynq-7000 FPGA to improve MLP neural network inference.</p></div>
-                    <div class="card project-card"><h4>In-Memory Compute Circuit</h4><p>Designed an in-memory compute circuit with NeuroSim to accelerate neural computations.</p></div>
-                    <div class="card project-card"><h4>Elmore Delay Modelling</h4><p>Developed a Python-based simulator for modeling Elmore delay in RC interconnects for VLSI.</p></div>
-                    <div class="card project-card"><h4>Autonomous Navigation Robot</h4><p>Built an autonomous robot with Raspberry Pi and ROS for real-time pathfinding.</p></div>
+                    <a href="#" class="project-card-link" target="_blank">
+                        <div class="card project-card" data-description="Optimised processor interconnects using Elmore RC models and Cadence Virtuoso at 45nm.">
+                            <div class="card-header"><i class="far fa-folder"></i><i class="fas fa-external-link-alt"></i></div>
+                            <h4>VLSI Interconnect Modelling</h4><ul class="tech-list"><li>Cadence</li><li>Spice</li><li>45nm</li></ul>
+                        </div>
+                    </a>
+                    <a href="#" class="project-card-link" target="_blank">
+                        <div class="card project-card" data-description="Created a ring oscillator Standard Cell IP in Cadence Virtuoso, targeting 40nm technology.">
+                             <div class="card-header"><i class="far fa-folder"></i><i class="fas fa-external-link-alt"></i></div>
+                            <h4>Standard Cell IP Development</h4><ul class="tech-list"><li>Cadence</li><li>40nm</li><li>DRC/LVS</li></ul>
+                        </div>
+                    </a>
+                     <a href="#" class="project-card-link" target="_blank">
+                        <div class="card project-card" data-description="Developed a hardware accelerator on a Xilinx Zynq-7000 FPGA to improve MLP neural network inference.">
+                             <div class="card-header"><i class="far fa-folder"></i><i class="fas fa-external-link-alt"></i></div>
+                            <h4>FPGA Hardware Accelerator</h4><ul class="tech-list"><li>FPGA</li><li>HLS</li><li>Verilog</li></ul>
+                        </div>
+                    </a>
+                     <a href="#" class="project-card-link" target="_blank">
+                        <div class="card project-card" data-description="Designed an in-memory compute circuit with NeuroSim to accelerate neural computations.">
+                             <div class="card-header"><i class="far fa-folder"></i><i class="fas fa-external-link-alt"></i></div>
+                            <h4>In-Memory Compute Circuit</h4><ul class="tech-list"><li>NeuroSim</li><li>PyTorch</li></ul>
+                        </div>
+                    </a>
+                     <a href="#" class="project-card-link" target="_blank">
+                        <div class="card project-card" data-description="Developed a Python-based simulator for modeling Elmore delay in RC interconnects for VLSI.">
+                             <div class="card-header"><i class="far fa-folder"></i><i class="fas fa-external-link-alt"></i></div>
+                            <h4>Elmore Delay Modelling</h4><ul class="tech-list"><li>Python</li><li>VLSI</li><li>Timing</li></ul>
+                        </div>
+                    </a>
+                     <a href="#" class="project-card-link" target="_blank">
+                        <div class="card project-card" data-description="Built an autonomous robot with Raspberry Pi and ROS for real-time pathfinding.">
+                             <div class="card-header"><i class="far fa-folder"></i><i class="fas fa-external-link-alt"></i></div>
+                            <h4>Autonomous Navigation Robot</h4><ul class="tech-list"><li>ROS</li><li>Raspberry Pi</li></ul>
+                        </div>
+                    </a>
                 </div>
             </div>
         </section>
