@@ -9,36 +9,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- CLASSES ---
 
-    class SiteOrchestrator {
+    class LoadingAnimation {
         constructor() {
             this.loader = document.getElementById('loader');
-            this.mainContent = document.querySelector('.main-content');
         }
 
-        init() {
+        start() {
             document.body.style.overflow = 'hidden';
-            this.mainContent.style.overflowY = 'hidden';
-
-            setTimeout(() => {
-                this.loader.classList.add('fade-out');
-                setTimeout(() => {
-                    this.loader.style.display = 'none';
-                    document.body.style.overflow = '';
-                    this.mainContent.style.overflowY = 'scroll';
-                    this.startMainAnimations();
-                }, 800);
-            }, 2500);
+            setTimeout(() => this.hide(), 2500); // Hide after a fixed duration
         }
 
-        startMainAnimations() {
+        hide() {
+            this.loader.classList.add('fade-out');
+            setTimeout(() => {
+                this.loader.style.display = 'none';
+                document.body.style.overflow = '';
+                this.initMainAnimations();
+            }, 800);
+        }
+        
+        initMainAnimations() {
             new TypingAnimation(TYPING_TEXTS).start();
-            new ConstellationBackground().init();
+            new PlexusBackground().init();
             new Navigation().init();
-            new ScrollAnimator().init();
-            new HeroParallax().init();
+            new StatsCounter().init();
         }
     }
-
+    
     class TypingAnimation {
         constructor(texts) {
             this.texts = texts;
@@ -53,17 +50,31 @@ document.addEventListener('DOMContentLoaded', () => {
         type() {
             const currentText = this.texts[this.index];
             let delay = this.isDeleting ? 50 : 100;
-            if (this.isDeleting) this.charIndex--; else this.charIndex++;
+
+            if (this.isDeleting) {
+                this.charIndex--;
+            } else {
+                this.charIndex++;
+            }
+            
             this.element.textContent = currentText.substring(0, this.charIndex);
-            if (!this.isDeleting && this.charIndex === currentText.length) { delay = 2000; this.isDeleting = true; } 
-            else if (this.isDeleting && this.charIndex === 0) { this.isDeleting = false; this.index = (this.index + 1) % this.texts.length; delay = 500; }
+
+            if (!this.isDeleting && this.charIndex === currentText.length) {
+                delay = 2000;
+                this.isDeleting = true;
+            } else if (this.isDeleting && this.charIndex === 0) {
+                this.isDeleting = false;
+                this.index = (this.index + 1) % this.texts.length;
+                delay = 500;
+            }
+            
             setTimeout(() => this.type(), delay);
         }
     }
 
-    class ConstellationBackground {
+    class PlexusBackground {
         constructor() {
-            this.canvas = document.getElementById('constellation-canvas');
+            this.canvas = document.getElementById('plexus-canvas');
             if (!this.canvas) return;
             this.ctx = this.canvas.getContext('2d');
             this.particles = [];
@@ -74,48 +85,71 @@ document.addEventListener('DOMContentLoaded', () => {
             this.setupCanvas();
             this.createParticles();
             this.animate();
-            window.addEventListener('resize', () => { this.setupCanvas(); this.createParticles(); });
+            window.addEventListener('resize', () => {
+                this.setupCanvas();
+                this.createParticles();
+            });
         }
-
+        
         setupCanvas() {
             this.canvas.width = window.innerWidth;
             this.canvas.height = window.innerHeight;
         }
 
         createParticles() {
+            const particleCount = Math.floor((this.canvas.width * this.canvas.height) / 20000);
             this.particles = [];
-            const particleCount = Math.floor((this.canvas.width * this.canvas.height) / 15000);
             for (let i = 0; i < particleCount; i++) {
                 this.particles.push({
                     x: Math.random() * this.canvas.width,
                     y: Math.random() * this.canvas.height,
-                    size: Math.random() * 2 + 0.5,
-                    opacity: Math.random() * 0.5,
-                    vx: (Math.random() - 0.5) * 0.1,
-                    vy: (Math.random() - 0.5) * 0.1,
-                    fade: 'in'
+                    vx: (Math.random() - 0.5) * 0.3,
+                    vy: (Math.random() - 0.5) * 0.3,
+                    size: Math.random() * 2 + 1,
                 });
             }
         }
 
         animate() {
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            this.updateParticles();
+            this.drawConnections();
+            this.drawParticles();
+            requestAnimationFrame(() => this.animate());
+        }
+        
+        updateParticles() {
             this.particles.forEach(p => {
                 p.x += p.vx;
                 p.y += p.vy;
-
                 if (p.x < 0 || p.x > this.canvas.width) p.vx *= -1;
                 if (p.y < 0 || p.y > this.canvas.height) p.vy *= -1;
-                
-                if (p.fade === 'in') { p.opacity += 0.005; if (p.opacity >= 0.7) p.fade = 'out'; } 
-                else { p.opacity -= 0.005; if (p.opacity <= 0.1) p.fade = 'in'; }
-
+            });
+        }
+        
+        drawParticles() {
+            this.ctx.fillStyle = 'rgba(184, 115, 51, 0.7)';
+            this.particles.forEach(p => {
                 this.ctx.beginPath();
                 this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                this.ctx.fillStyle = `rgba(184, 115, 51, ${p.opacity})`;
                 this.ctx.fill();
             });
-            requestAnimationFrame(() => this.animate());
+        }
+
+        drawConnections() {
+            this.ctx.strokeStyle = 'rgba(184, 115, 51, 0.1)';
+            this.ctx.lineWidth = 0.5;
+            for (let i = 0; i < this.particles.length; i++) {
+                for (let j = i + 1; j < this.particles.length; j++) {
+                    const dist = Math.hypot(this.particles[i].x - this.particles[j].x, this.particles[i].y - this.particles[j].y);
+                    if (dist < 150) {
+                        this.ctx.beginPath();
+                        this.ctx.moveTo(this.particles[i].x, this.particles[i].y);
+                        this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
+                        this.ctx.stroke();
+                    }
+                }
+            }
         }
     }
 
@@ -135,33 +169,34 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 navLinks.forEach(link => {
-                    link.classList.toggle('active', link.dataset.section === current);
+                    link.classList.remove('active');
+                    if (link.dataset.section === current) {
+                        link.classList.add('active');
+                    }
                 });
             });
         }
     }
 
-    class ScrollAnimator {
+    class StatsCounter {
         init() {
-            const animatedElements = document.querySelectorAll('.animate-on-scroll');
-            const observer = new IntersectionObserver((entries) => {
+            const numbers = document.querySelectorAll('.stat-number');
+            const observer = new IntersectionObserver((entries, obs) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        if (entry.target.classList.contains('stat-number')) {
-                            this.animateCounter(entry.target);
-                        }
+                        this.animate(entry.target);
+                        obs.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.1 });
-            animatedElements.forEach(el => observer.observe(el));
+            }, { threshold: 0.8 });
+            numbers.forEach(num => observer.observe(num));
         }
 
-        animateCounter(el) {
+        animate(el) {
             const target = +el.dataset.target;
             if (isNaN(target)) return;
             let current = 0;
-            const duration = 1500;
+            const duration = 2000;
             const increment = target / (duration / 16);
 
             const update = () => {
@@ -177,19 +212,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    class HeroParallax {
-        init() {
-            const heroText = document.querySelector('.hero-text');
-            if (!heroText) return;
-            document.addEventListener('mousemove', (e) => {
-                const { clientX, clientY } = e;
-                const x = (clientX / window.innerWidth - 0.5) * -40;
-                const y = (clientY / window.innerHeight - 0.5) * -20;
-                heroText.style.transform = `translate(${x}px, ${y}px)`;
-            });
-        }
-    }
-
     // --- INITIALIZATION ---
-    new SiteOrchestrator().init();
+    new LoadingAnimation().start();
 });
