@@ -15,7 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 500);
 
     // --- Interactive Particle Background ---
-    particlesJS('interactive-bg', { /* particles.js config from previous step */ });
+    particlesJS('interactive-bg', {
+        "particles": { "number":{ "value":60, "density":{ "enable":true, "value_area":800 } }, "color":{ "value":"#8892b0" }, "shape":{ "type":"circle" }, "opacity":{ "value":0.3, "random":true }, "size":{ "value":2, "random":true }, "line_linked":{ "enable":true, "distance":150, "color":"#8892b0", "opacity":0.2, "width":1 }, "move":{ "enable":true, "speed":1, "direction":"none", "out_mode":"out" } },
+        "interactivity": { "detect_on":"canvas", "events":{ "onhover":{ "enable":true, "mode":"grab" }, "onclick":{ "enable":true, "mode":"push" } }, "modes":{ "grab":{ "distance":140, "line_linked":{ "opacity":0.5 } }, "push":{ "particles_nb":4 } } },
+        "retina_detect":true
+    });
 
     // --- Smooth Snap Scrolling ---
     function smoothScrollTo(index) {
@@ -68,7 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
-            const cardContent = card.querySelector('.card-content');
             
             const rotateX = (y / rect.height - 0.5) * -10; // -5 to 5 degrees
             const rotateY = (x / rect.width - 0.5) * 10;   // -5 to 5 degrees
