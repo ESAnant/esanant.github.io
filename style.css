@@ -1,6 +1,11 @@
-/* --- PHASE 3.2: SNAP SCROLL & FLIP CARDS --- */
+/* ---
+Final Stylesheet for Edidi Sai Anant's Portfolio
+Phase 4: Finalization, Optimization & Deployment
+--- */
 
-/* 1. CSS Variables (Theming) */
+/* 1. CSS Variables (Design System)
+ * Centralized control for colors, fonts, and layout values.
+*/
 :root {
     --color-dark-navy: #0A192F;
     --color-slate-gray: #8892b0;
@@ -17,25 +22,37 @@
 
 /* 2. CSS Reset & Global Styles */
 * { margin: 0; padding: 0; box-sizing: border-box; }
+
 html {
     scroll-padding-top: var(--header-height);
-    /* JS will handle scrolling, so native snap is removed */
 }
+
 body {
     background-color: var(--color-dark-navy);
     color: var(--color-light-slate);
     font-family: var(--font-primary);
     line-height: 1.6;
-    overflow: hidden; /* Prevent native scrollbar */
+    overflow: hidden; /* Prevents double scrollbars; JS handles scrolling */
 }
 
-/* 3. Preloader & Background Styles (from previous step) */
+/* 3. Core Layout & Animation Styles */
+
+/* Preloader styles */
 #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--color-dark-navy); z-index: 9999; display: flex; justify-content: center; align-items: center; opacity: 1; transition: opacity 0.5s ease; }
 #preloader.hidden { opacity: 0; pointer-events: none; }
 .loader-text { color: var(--color-accent-cyan); font-family: var(--font-mono); font-size: 1.2rem; }
+
+/* Animated background canvas */
 #animated-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+
+/* Scroll-triggered fade-in animation */
 .fade-in-element { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
 .fade-in-element.is-visible { opacity: 1; transform: translateY(0); }
+
+/* Main container for snap-scrolling */
+.main-container { height: 100vh; overflow-y: scroll; scroll-behavior: smooth; }
+.section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 120px 20px; position: relative; }
+.section-container { width: 100%; max-width: var(--max-width); margin: 0 auto; }
 
 /* 4. Navigation Header */
 .main-header { position: fixed; top: 0; left: 0; width: 100%; height: var(--header-height); background-color: rgba(10, 25, 47, 0.85); backdrop-filter: blur(10px); z-index: 100; }
@@ -45,86 +62,71 @@ body {
 .main-nav ul li a { color: var(--color-light-slate); text-decoration: none; font-family: var(--font-mono); font-size: 0.9rem; padding: 10px; transition: color var(--transition-speed); }
 .main-nav ul li a:hover { color: var(--color-accent-cyan); }
 
-/* 5. Section & Typography Styles */
-.main-container { height: 100vh; overflow-y: scroll; scroll-behavior: smooth; }
-.section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 120px 20px; position: relative; }
-.section-container { width: 100%; max-width: var(--max-width); margin: 0 auto; }
+/* 5. Typography & Reusable Elements */
 .text-center { text-align: center; }
-.section-title { font-size: 2.5rem; color: var(--color-light-slate); margin-bottom: 3rem; text-align: center; position: relative; padding-bottom: 10px; }
+.section-title { font-size: clamp(2rem, 5vw, 2.5rem); color: var(--color-light-slate); margin-bottom: 3rem; text-align: center; position: relative; padding-bottom: 10px; }
 .section-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background-color: var(--color-accent-copper); }
-h1, h2, h3, h4 { color: var(--color-light-slate); font-weight: 600; }
+h1,h2,h3,h4 { color: var(--color-light-slate); font-weight: 600; }
 p { color: var(--color-slate-gray); margin-bottom: 1rem; }
 ul { list-style: none; }
 li { margin-bottom: 0.5rem; color: var(--color-slate-gray); }
 strong { color: var(--color-accent-cyan); font-weight: 600; }
 
-/* 6. NEW: Interactive Card Styles */
-.interactive-card {
-    perspective: 1500px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    min-height: 200px; /* Ensure cards have a minimum height */
-}
-.card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.7s;
-    transform-style: preserve-3d;
-}
-.interactive-card.is-flipped .card-inner {
-    transform: rotateY(180deg);
-}
-.card-front, .card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    background-color: var(--color-card-bg);
-    border-radius: 4px;
-    border-left: 3px solid var(--color-accent-copper);
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-.card-back {
-    transform: rotateY(180deg);
-    align-items: center;
-    text-align: center;
-}
-.card-front .card-cta {
-    font-family: var(--font-mono);
-    color: var(--color-accent-cyan);
-    font-size: 0.8rem;
-    margin-top: auto;
-    padding-top: 1rem;
-}
-.project-card .card-front {
-    text-align: center;
-}
+/* 6. Component-Specific Styles */
 
-/* 7. Component-Specific Styles */
-.hero-title { font-size: clamp(3rem, 6vw, 5rem); }
-.hero-subtitle { font-size: clamp(1.2rem, 3vw, 1.5rem); font-family: var(--font-mono); color: var(--color-accent-cyan); margin: 0.5rem 0 1.5rem; }
-.hero-description { max-width: 600px; margin: 0 auto; font-size: 1.1rem; }
-.about-content { max-width: 800px; margin: 0 auto; text-align: center; font-size: 1.1rem; }
+/* Hero Section */
+.hero-title { font-size: clamp(3rem, 8vw, 5rem); }
+.hero-subtitle { font-size: clamp(1.2rem, 4vw, 1.5rem); font-family: var(--font-mono); color: var(--color-accent-cyan); margin: 0.5rem 0 1.5rem; }
+.hero-description { max-width: 600px; margin: 0 auto; font-size: clamp(1rem, 2.5vw, 1.1rem); }
+
+/* Cards (Education, Experience, Projects) */
 .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.5rem; }
 .card-grid-three-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-.card:not(.interactive-card) { background-color: var(--color-card-bg); padding: 2rem; border-radius: 4px; border-left: 3px solid var(--color-accent-copper); }
+.card { background-color: var(--color-card-bg); padding: 2rem; border-radius: 4px; border-left: 3px solid var(--color-accent-copper); }
 .card h3 { font-size: 1.25rem; margin-bottom: 0.25rem; }
 .card-subtitle { font-family: var(--font-mono); color: var(--color-slate-gray); font-size: 0.9rem; margin-bottom: 1rem; }
+
+/* Interactive Flip Cards */
+.interactive-card { perspective: 1500px; background-color: transparent; border: none; cursor: pointer; min-height: 200px; }
+.card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.7s; transform-style: preserve-3d; }
+.interactive-card.is-flipped .card-inner { transform: rotateY(180deg); }
+.card-front, .card-back { position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; background-color: var(--color-card-bg); border-radius: 4px; border-left: 3px solid var(--color-accent-copper); padding: 2rem; display: flex; flex-direction: column; justify-content: center; }
+.card-back { transform: rotateY(180deg); align-items: center; text-align: center; }
+.card-front .card-cta { font-family: var(--font-mono); color: var(--color-accent-cyan); font-size: 0.8rem; margin-top: auto; padding-top: 1rem; }
+.project-card .card-front { text-align: center; }
+
+/* Publications */
 .list-styled li { padding-left: 1.5rem; position: relative; }
 .list-styled li::before { content: '»'; position: absolute; left: 0; color: var(--color-accent-copper); }
+
+/* Certifications */
 .cert-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
 .cert-grid span { background-color: var(--color-card-bg); padding: 0.5rem 1rem; border-radius: 20px; font-family: var(--font-mono); font-size: 0.85rem; border: 1px solid var(--color-slate-gray); }
+
+/* Skills */
 .skills-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; text-align: center; }
 .skill-category h3 { font-size: 1.2rem; margin-bottom: 1rem; }
 .skill-category h3 i { margin-right: 0.5rem; color: var(--color-accent-copper); }
 .skill-category ul li { font-family: var(--font-mono); font-size: 1rem; }
-.contact-links { display: flex; gap: 1.5rem; justify-content: center; margin-top: 2rem; }
+
+/* Contact Section */
+.contact-links { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 2rem; }
 .contact-button { background-color: transparent; border: 1px solid var(--color-accent-copper); color: var(--color-accent-copper); padding: 0.75rem 1.5rem; border-radius: 4px; text-decoration: none; font-family: var(--font-mono); transition: background-color var(--transition-speed); }
 .contact-button:hover { background-color: rgba(184, 115, 51, 0.1); }
 .contact-button i { margin-right: 0.5rem; }
+
+/* 7. Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    /* Adjust navigation for smaller screens */
+    .nav-logo { font-size: 1rem; }
+    .main-nav ul { gap: 1rem; }
+    .main-nav ul li a { font-size: 0.8rem; padding: 5px; }
+
+    /* Adjust typography for readability */
+    .section-title { margin-bottom: 2rem; }
+
+    /* Stack card grids on smaller screens */
+    .card-grid, .card-grid-three-col, .skills-container {
+        grid-template-columns: 1fr;
+    }
+}
