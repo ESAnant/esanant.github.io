@@ -3,247 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edidi Sai Anant | VLSI & Embedded Systems Engineer</title>
-    
-    <!-- Favicon - Replace with your own -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡️</text></svg>">
-    
+    <title>Edidi Sai Anant | VLSI Designer</title>
+
+    <!-- Favicon Placeholder -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
     <!-- Google Fonts: Inter (sans-serif) & Fira Code (monospace) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- Stylesheet -->
+    <!-- Main Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- ===== PRELOADER ===== -->
+
+    <!-- Phase 3: Thematic Preloader -->
     <div id="preloader">
-        <div class="processor-loader">
-            <div class="chip"></div>
-            <div class="trace t1"></div>
-            <div class="trace t2"></div>
-            <div class="trace t3"></div>
-            <div class="trace t4"></div>
-        </div>
-        <div class="loader-text">SYNTHESIZING...</div>
+        <!-- Loader elements will be added here -->
     </div>
 
-    <!-- ===== DYNAMIC BACKGROUND ===== -->
-    <canvas id="circuit-bg"></canvas>
+    <!-- Phase 3: Animated Background Canvas -->
+    <canvas id="animated-bg"></canvas>
 
-    <!-- ===== MAIN CONTENT WRAPPER ===== -->
-    <div class="main-container">
-        
-        <!-- 1. HERO SECTION -->
+    <!-- Main Content Wrapper -->
+    <main class="main-container">
+
+        <!-- Section 1: Hero -->
         <section id="hero" class="section">
-            <div class="section-container hero-content">
-                <h1 class="hero-title">Edidi Sai Anant</h1>
-                <h2 class="hero-subtitle">ECE Engineer & VLSI Designer</h2>
-                <p class="hero-description">
-                    Master's candidate with a robust foundation in semiconductor processes and IC design, driven by a passion for innovation and collaborative teamwork in dynamic environments.
-                </p>
+            <div class="section-container">
+                <!-- Hero content will be added in Phase 2 -->
             </div>
         </section>
 
-        <!-- 2. ABOUT ME SECTION -->
+        <!-- Section 2: About Me -->
         <section id="about" class="section">
             <div class="section-container">
-                <h2 class="section-title">About Me</h2>
-                <div class="about-content">
-                    <div class="about-text">
-                        <p>
-                            As a Graduate Assistant at the National University of Singapore, I oversee lab sessions for <strong>Microcontroller Programming</strong> and <strong>Computer Architecture</strong>, where I guide students and collaborate with faculty to enhance course materials.
-                        </p>
-                        <p>
-                            My core expertise spans <strong>VLSI design</strong>, <strong>embedded systems</strong>, and <strong>neural network acceleration</strong>. I am deeply committed to pushing the boundaries of semiconductor technology and thrive in environments that value precision and teamwork.
-                        </p>
-                    </div>
-                </div>
+                <!-- About Me content will be added in Phase 2 -->
             </div>
         </section>
-        
-        <!-- 3. EDUCATION SECTION -->
+
+        <!-- Section 3: Education -->
         <section id="education" class="section">
             <div class="section-container">
-                <h2 class="section-title">Education</h2>
-                <div class="education-grid">
-                    <div class="education-card">
-                        <div class="education-header">
-                            <h3>Master of Science, Electrical Engineering</h3>
-                            <span class="education-year">2023 – 2025</span>
-                        </div>
-                        <h4>National University of Singapore</h4>
-                        <p>Relevant Coursework: VLSI Digital Circuit Design, Memory Technologies, Embedded Hardware System Design.</p>
-                    </div>
-                    <div class="education-card">
-                        <div class="education-header">
-                            <h3>Bachelor of Technology, ECE</h3>
-                            <span class="education-year">2019 – 2023</span>
-                        </div>
-                        <h4>SRM Institute of Science and Technology</h4>
-                        <p>Relevant Coursework: Digital Electronics, Semiconductor Devices, VLSI Design, ARM Embedded Systems.</p>
-                    </div>
-                </div>
+                <!-- Education content will be added in Phase 2 -->
             </div>
         </section>
 
-        <!-- 4. EXPERIENCE SECTION -->
+        <!-- Section 4: Experience -->
         <section id="experience" class="section">
             <div class="section-container">
-                <h2 class="section-title">Experience</h2>
-                <div class="experience-grid">
-                    <!-- Experience Card 1 -->
-                    <div class="flip-card-container">
-                        <div class="flip-card">
-                            <div class="card-front">
-                                <i class="fas fa-microchip card-icon"></i>
-                                <h3>Project Intern</h3>
-                                <p>Maven Silicon</p>
-                                <div class="tech-chips"><span>Verilog</span><span>RTL Design</span><span>AHB/APB</span></div>
-                            </div>
-                            <div class="card-back">
-                                <h3>AHB to APB Bridge</h3>
-                                <p>Designed and synthesized an AHB to APB bridge for seamless bus protocol communication. Decomposed complex designs into efficient, modular components using Verilog HDL.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Experience Card 2 -->
-                    <div class="flip-card-container">
-                        <div class="flip-card">
-                            <div class="card-front">
-                                <i class="fas fa-cogs card-icon"></i>
-                                <h3>Intern</h3>
-                                <p>Sandeepani School of Embedded System Design</p>
-                                <div class="tech-chips"><span>SystemVerilog</span><span>QuestaSim</span><span>UVM</span></div>
-                            </div>
-                            <div class="card-back">
-                                <h3>UART Protocol Verification</h3>
-                                <p>Developed and verified a UART protocol using Verilog. Executed in-depth functional verification and coverage analysis of a Half Adder using SystemVerilog and QuestaSim.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- Experience content will be added in Phase 2 -->
             </div>
         </section>
 
-        <!-- 5. PROJECTS SECTION -->
+        <!-- Section 5: Projects -->
         <section id="projects" class="section">
             <div class="section-container">
-                <h2 class="section-title">Projects</h2>
-                <div class="projects-grid">
-                    <!-- Project Card 1 -->
-                    <div class="flip-card-container">
-                        <div class="flip-card">
-                            <div class="card-front"><h3>VLSI Interconnect Modelling</h3><div class="tech-chips"><span>Cadence Virtuoso</span><span>45nm</span></div></div>
-                            <div class="card-back"><h3>VLSI Interconnect Modelling</h3><p>Optimised processor interconnects using Elmore RC models in Cadence Virtuoso for a 2-core processor, focusing on energy-delay tradeoffs.</p></div>
-                        </div>
-                    </div>
-                    <!-- Project Card 2 -->
-                    <div class="flip-card-container">
-                        <div class="flip-card">
-                            <div class="card-front"><h3>FPGA Hardware Accelerator</h3><div class="tech-chips"><span>Xilinx Zynq-7000</span><span>HLS</span></div></div>
-                            <div class="card-back"><h3>FPGA Hardware Accelerator</h3><p>Developed an accelerator on FPGA to improve MLP neural network inference using HLS/Verilog with pipelining and optimization techniques.</p></div>
-                        </div>
-                    </div>
-                    <!-- Project Card 3 -->
-                    <div class="flip-card-container">
-                        <div class="flip-card">
-                            <div class="card-front"><h3>In-Memory Compute Circuit</h3><div class="tech-chips"><span>NeuroSim</span><span>PyTorch</span></div></div>
-                            <div class="card-back"><h3>In-Memory Compute Circuit</h3><p>Designed an in-memory compute circuit using NeuroSim to accelerate neural computations, focusing on quantization and optimisation.</p></div>
-                        </div>
-                    </div>
-                     <!-- Project Card 4 -->
-                    <div class="flip-card-container">
-                        <div class="flip-card">
-                            <div class="card-front"><h3>Standard Cell IP Development</h3><div class="tech-chips"><span>40nm</span><span>DRC/LVS</span></div></div>
-                            <div class="card-back"><h3>Standard Cell IP Development</h3><p>Created a ring oscillator Standard Cell IP in Cadence Virtuoso, targeting 40nm technology, optimising for area and PVT variations.</p></div>
-                        </div>
-                    </div>
-                </div>
+                <!-- Projects content will be added in Phase 2 -->
             </div>
         </section>
 
-        <!-- 6. PUBLICATIONS & PATENTS SECTION -->
-        <section id="research" class="section">
+        <!-- Section 6: Publications & Patents -->
+        <section id="publications" class="section">
             <div class="section-container">
-                <h2 class="section-title">Publications & Patents</h2>
-                <div class="research-columns">
-                    <div class="pub-item">
-                        <h4>Improving Data Integrity with Reversible Logic-based EDC on AHB-APB Bridge</h4>
-                        <p>IEEE Conference - May 2023</p>
-                    </div>
-                    <div class="pub-item">
-                        <h4>A Survey on Affordable IoT Enabled Healthcare Systems</h4>
-                        <p>Grenze International Journal - June 2022</p>
-                    </div>
-                    <div class="pub-item">
-                        <h4>A System for Controlling an Autonomous Vehicle and a Method Thereof</h4>
-                        <p>Indian Patent Application - Filed March 28, 2025</p>
-                    </div>
-                </div>
+                <!-- Publications & Patents content will be added in Phase 2 -->
             </div>
         </section>
 
-        <!-- 7. CERTIFICATIONS SECTION -->
+        <!-- Section 7: Certifications -->
         <section id="certifications" class="section">
             <div class="section-container">
-                <h2 class="section-title">Certifications</h2>
-                <ul class="cert-list">
-                    <li>Introduction to IoT and Digital Transformation <span>- Cisco</span></li>
-                    <li>Python for Data Science, AI & Development <span>- IBM</span></li>
-                    <li>Building a RISC-V CPU Core <span>- The Linux Foundation</span></li>
-                    <li>Embedded Systems Essentials with Arm <span>- ARM Education</span></li>
-                    <li>PCB Design <span>- Internshala</span></li>
-                    <li>Introduction to Programming in C++ <span>- NYU</span></li>
-                </ul>
+                <!-- Certifications content will be added in Phase 2 -->
             </div>
         </section>
 
-        <!-- 8. TECHNICAL SKILLS SECTION -->
+        <!-- Section 8: Technical Skills -->
         <section id="skills" class="section">
             <div class="section-container">
-                <h2 class="section-title">Technical Skills</h2>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3><i class="fas fa-cogs"></i> EDA Tools</h3>
-                        <ul><li>Cadence Virtuoso</li><li>Xilinx Vivado</li><li>QuestaSim</li><li>Xilinx Vitis</li></ul>
-                    </div>
-                    <div class="skill-category">
-                        <h3><i class="fas fa-microchip"></i> HDLs</h3>
-                        <ul><li>Verilog</li><li>SystemVerilog</li><li>HLS</li></ul>
-                    </div>
-                    <div class="skill-category">
-                        <h3><i class="fas fa-code"></i> Programming</h3>
-                        <ul><li>C++</li><li>Python</li><li>LaTeX</li></ul>
-                    </div>
-                    <div class="skill-category">
-                        <h3><i class="fas fa-robot"></i> Embedded</h3>
-                        <ul><li>Raspberry Pi</li><li>Arduino</li><li>Autodesk Eagle</li></ul>
-                    </div>
-                </div>
+                <!-- Technical Skills content will be added in Phase 2 -->
             </div>
         </section>
-        
-        <!-- 9. GET IN TOUCH SECTION -->
-        <section id="contact" class="section">
-            <div class="section-container contact-content">
-                <h2 class="section-title">Get In Touch</h2>
-                <p>I'm actively seeking new opportunities in the semiconductor industry. Let's connect and discuss how my skills in VLSI and embedded systems can bring value to your team.</p>
-                <div class="contact-links">
-                    <a href="mailto:esanant@u.nus.edu" class="contact-link"><i class="fas fa-envelope"></i> Email</a>
-                    <a href="https://www.linkedin.com/in/sai-anant/" target="_blank" class="contact-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                    <a href="https://github.com/ESAnant/" target="_blank" class="contact-link"><i class="fab fa-github"></i> GitHub</a>
-                </div>
-            </div>
-        </section>
-        
-    </div>
 
-    <!-- JavaScript -->
+        <!-- Section 9: Get In Touch -->
+        <section id="contact" class="section">
+            <div class="section-container">
+                <!-- Contact content will be added in Phase 2 -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Main JavaScript File -->
     <script src="script.js"></script>
 </body>
 </html>
