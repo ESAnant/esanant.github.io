@@ -1,0 +1,231 @@
+/* Loading Animation */
+.loader {
+    position: fixed;
+    inset: 0;
+    background: var(--bg-primary);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+}
+
+.loader.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.oscilloscope {
+    width: 200px;
+    height: 100px;
+    margin-bottom: var(--spacing-md);
+}
+
+.wave-svg {
+    width: 100%;
+    height: 100%;
+}
+
+#wave-path {
+    stroke-dasharray: 300;
+    stroke-dashoffset: 300;
+    animation: drawWave 2s ease-in-out infinite;
+}
+
+@keyframes drawWave {
+    0% {
+        stroke-dashoffset: 300;
+    }
+    50% {
+        stroke-dashoffset: 0;
+    }
+    100% {
+        stroke-dashoffset: -300;
+    }
+}
+
+.loader-text {
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+}
+
+/* Scroll Animations */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Circuit Animations */
+.circuit-board {
+    animation: circuitGlow 4s ease-in-out infinite;
+}
+
+@keyframes circuitGlow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(0, 255, 136, 0.4);
+    }
+}
+
+.chip {
+    animation: chipPulse 2s ease-in-out infinite;
+}
+
+@keyframes chipPulse {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(0, 255, 136, 0.6);
+    }
+}
+
+.trace {
+    animation: dataFlow 3s linear infinite;
+}
+
+.trace-1 {
+    animation-delay: 0s;
+}
+
+.trace-2 {
+    animation-delay: 1s;
+}
+
+.trace-3 {
+    animation-delay: 2s;
+}
+
+@keyframes dataFlow {
+    0% {
+        box-shadow: 0 0 5px rgba(0, 255, 136, 0);
+    }
+    50% {
+        box-shadow: 0 0 15px rgba(0, 255, 136, 0.8);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(0, 255, 136, 0);
+    }
+}
+
+/* Component Animations */
+.component {
+    animation: componentBlink 4s ease-in-out infinite;
+}
+
+.comp-1 {
+    animation-delay: 0.5s;
+}
+
+.comp-2 {
+    animation-delay: 2.5s;
+}
+
+@keyframes componentBlink {
+    0%, 90%, 100% {
+        opacity: 1;
+    }
+    95% {
+        opacity: 0.3;
+    }
+}
+
+/* Navigation Animation */
+.nav-bar.scrolled {
+    background: rgba(10, 10, 10, 0.98);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Text Animation */
+.typing-effect::after {
+    content: '|';
+    color: var(--primary);
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+/* Hover Animations */
+.experience-card:hover .company-logo {
+    animation: logoSpin 0.6s ease;
+}
+
+@keyframes logoSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.project-card:hover .project-icon {
+    animation: iconFloat 0.6s ease;
+}
+
+@keyframes iconFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+/* Signal Animation */
+.signal-path {
+    animation: signalPulse 3s ease-in-out infinite;
+}
+
+@keyframes signalPulse {
+    0%, 100% {
+        border-color: var(--primary);
+        filter: drop-shadow(0 0 5px rgba(0, 255, 136, 0.5));
+    }
+    50% {
+        border-color: var(--secondary);
+        filter: drop-shadow(0 0 15px rgba(0, 102, 255, 0.7));
+    }
+}
+
+/* Counter Animation */
+@keyframes countUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.stat-number.animate {
+    animation: countUp 0.6s ease;
+}
+
+/* Mobile Menu Animation */
+@media (max-width: 768px) {
+    .nav-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .nav-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .nav-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
