@@ -1,29 +1,18 @@
-/* ---
-Portfolio v4.2 Final JavaScript - The Ultimate Edition
---- */
-
 document.addEventListener('DOMContentLoaded', () => {
 
     const loader = document.getElementById('loader');
     const header = document.querySelector('.main-header');
     const sections = document.querySelectorAll('.section');
     const navLinks = document.querySelectorAll('.nav-links a');
-    let currentSectionIndex = 0;
-    let isScrolling = false;
+    const mainContainer = document.querySelector('main');
 
     // --- 1. Loader & Initial Animation ---
     function initLoader() {
         setTimeout(() => {
             loader.classList.add('hidden');
             header.classList.add('visible');
-            document.body.style.overflow = 'visible'; // Allow scrolling after load
-            
-            // Initial reveal of the first section
-            const firstSection = sections[currentSectionIndex];
-            firstSection.querySelector('.section-container').classList.add('visible');
-            navLinks.forEach(link => link.classList.toggle('active', link.dataset.section === firstSection.id));
-
-        }, 1500); // Simulated loading time
+            document.body.style.overflow = 'visible';
+        }, 1500);
     }
     
     // --- 2. Particle Background ---
@@ -37,57 +26,31 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- 3. Ultimate Snap Navigation ---
-    function scrollToSection(index) {
-        if (isScrolling || index < 0 || index >= sections.length) return;
-        
-        isScrolling = true;
-        currentSectionIndex = index;
-        
-        window.scrollTo({
-            top: sections[index].offsetTop,
-            behavior: 'smooth'
-        });
+    // --- 3. Superior Navigation & Content Reveal ---
+    function initNavigation() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const sectionContainer = entry.target.querySelector('.section-container');
+                if (entry.isIntersecting) {
+                    sectionContainer.classList.add('visible');
+                    const sectionId = entry.target.id;
+                    navLinks.forEach(link => {
+                        link.classList.toggle('active', link.dataset.section === sectionId);
+                    });
+                }
+            });
+        }, { root: mainContainer, threshold: 0.5 });
 
-        // Update nav links and reveal section content
-        const targetSection = sections[index];
-        targetSection.querySelector('.section-container').classList.add('visible');
+        sections.forEach(section => observer.observe(section));
+
         navLinks.forEach(link => {
-            link.classList.toggle('active', link.dataset.section === targetSection.id);
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+            });
         });
-
-        // Debounce to prevent scroll spamming
-        setTimeout(() => { isScrolling = false; }, 1000); 
     }
-
-    // Handle user-initiated scroll (wheel)
-    window.addEventListener('wheel', (event) => {
-        if (isScrolling || window.innerWidth <= 768) return;
-        event.preventDefault();
-        
-        const direction = event.deltaY > 0 ? 1 : -1;
-        scrollToSection(currentSectionIndex + direction);
-    }, { passive: false });
-
-    // Handle keyboard navigation
-    window.addEventListener('keydown', (event) => {
-        if (isScrolling || window.innerWidth <= 768) return;
-        if (event.key === 'ArrowDown') {
-            event.preventDefault();
-            scrollToSection(currentSectionIndex + 1);
-        } else if (event.key === 'ArrowUp') {
-            event.preventDefault();
-            scrollToSection(currentSectionIndex - 1);
-        }
-    });
-
-    // Handle nav link clicks
-    navLinks.forEach((link, index) => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            scrollToSection(index);
-        });
-    });
 
     // --- 4. Experience Tabs ---
     function initExperienceTabs() {
@@ -114,5 +77,4 @@ document.addEventListener('DOMContentLoaded', () => {
     initParticles();
     initNavigation();
     initExperienceTabs();
-
 });

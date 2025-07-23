@@ -1,13 +1,9 @@
-/* ---
-Portfolio v4.2 Final Stylesheet - The Ultimate Edition
---- */
-
 :root {
     --color-bg: #020c1b;
     --color-bg-light: #112240;
     --color-text-primary: #e6f1ff;
     --color-text-secondary: #8892b0;
-    --color-text-highlight: #ccd6f6; /* New color for highlighted text */
+    --color-text-highlight: #ccd6f6;
     --color-accent-copper: #d38a5c;
     --font-primary: 'DM Sans', sans-serif;
     --font-mono: 'Roboto Mono', monospace;
@@ -32,7 +28,8 @@ body {
 main {
     padding: 0 150px;
     height: 100vh;
-    overflow: hidden; /* Hide main scrollbar, JS will handle scroll */
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory; /* Superior Snap Scrolling */
 }
 
 #loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--color-bg); z-index: 99; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: opacity 0.5s ease-out, visibility 0s 0.5s; }
@@ -53,7 +50,13 @@ main {
 .nav-links a { color: var(--color-text-secondary); text-decoration: none; font-size: 0.9rem; transition: var(--transition-main); }
 .nav-links a:hover, .nav-links a.active { color: var(--color-accent-copper); }
 
-.section { min-height: 100vh; padding: 120px 0; display: flex; align-items: center; }
+.section {
+    min-height: 100vh;
+    padding: 120px 0;
+    display: flex;
+    align-items: center;
+    scroll-snap-align: start; /* Align each section to the top */
+}
 .section-container { width: 100%; max-width: 900px; margin: 0 auto; opacity: 0; transition: opacity 0.6s ease-out, transform 0.6s ease-out; transform: translateY(20px); }
 .section.visible .section-container { opacity: 1; transform: translateY(0); }
 .section-title { font-size: clamp(26px, 5vw, 32px); color: var(--color-text-primary); margin-bottom: 2.5rem; display: flex; align-items: center; }
@@ -89,16 +92,20 @@ main {
 .card-back { transform: rotateY(180deg); align-items: center; text-align: center; }
 .card-front h4 { font-size: 1.2rem; margin-bottom: auto; }
 .tech-list { list-style: none; display: flex; flex-wrap: wrap; gap: 1rem; font-family: var(--font-mono); font-size: 0.8rem; margin-top: 1rem; }
-/* UPDATED: Tech list highlighting */
-.tech-list li { color: var(--color-text-highlight); }
+.tech-list li { color: var(--color-text-highlight); font-weight: 500; }
 
-.education-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem; }
-.education-card { background-color: var(--color-bg-light); padding: 1.5rem; border-radius: var(--border-radius); }
-.education-card h3 { color: var(--color-text-primary); font-size: 1.1rem; }
-.institution { color: var(--color-accent-copper); font-family: var(--font-mono); font-size: 0.9rem; margin: 0.25rem 0 0.5rem; }
-.certifications-list, .publications-list { background-color: var(--color-bg-light); padding: 1.5rem; border-radius: var(--border-radius); margin-bottom: 1rem; }
-.certifications-list h3, .publications-list h3 { color: var(--color-text-primary); margin-bottom: 0.5rem; }
-.certifications-list span { margin: 0 0.5rem; color: var(--color-text-secondary); }
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; }
+.skill-item { display: flex; align-items: center; gap: 1rem; background-color: var(--color-bg-light); padding: 1rem; border-radius: var(--border-radius); transition: var(--transition-main); }
+.skill-item:hover { transform: translateY(-5px); color: var(--color-accent-copper); }
+.skill-item i { font-size: 2rem; color: var(--color-accent-copper); }
+.skill-item span { font-family: var(--font-mono); font-size: 0.9rem; }
+
+.education-grid, .awards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.education-card, .award-card { background-color: var(--color-bg-light); padding: 1.5rem; border-radius: var(--border-radius); }
+.education-card h3, .award-card h3 { color: var(--color-text-primary); font-size: 1.1rem; margin-bottom: 0.5rem; }
+.institution { color: var(--color-accent-copper); font-family: var(--font-mono); font-size: 0.9rem; margin-bottom: 0.5rem; }
+.award-card ul { list-style: none; } .award-card li { padding-left: 1.5rem; position: relative; margin-bottom: 0.5rem; }
+.award-card li::before { content: "▸"; position: absolute; left: 0; color: var(--color-accent-copper); }
 
 .contact-lead { font-family: var(--font-mono); color: var(--color-accent-copper); }
 .contact-title { font-size: clamp(40px, 5vw, 60px); margin: 0.5rem 0 1rem; }
@@ -112,4 +119,4 @@ main {
 .sidebar-line { width: 1px; height: 90px; background-color: var(--color-text-secondary); }
 
 @media (max-width: 1080px) { main { padding: 0 100px; } .social-sidebar { display: none; } }
-@media (max-width: 768px) { main { padding: 0 25px; height: auto; overflow: auto; } .main-header { padding: 0 25px; } .nav-links { display: none; } .education-grid { grid-template-columns: 1fr; } .experience-tabs { flex-direction: column; } .tab-list { flex-direction: row; overflow-x: auto; } }
+@media (max-width: 768px) { main { padding: 0 25px; scroll-snap-type: none; } .main-header { padding: 0 25px; } .nav-links { display: none; } .education-grid, .awards-grid { grid-template-columns: 1fr; } .experience-tabs { flex-direction: column; } .tab-list { flex-direction: row; overflow-x: auto; } }
