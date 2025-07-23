@@ -1,5 +1,5 @@
 /* ---
-Portfolio v4.1 Final JavaScript
+Portfolio v4.2 Final JavaScript - The Ultimate Edition
 --- */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -8,17 +8,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const header = document.querySelector('.main-header');
     const sections = document.querySelectorAll('.section');
     const navLinks = document.querySelectorAll('.nav-links a');
-    const mainContainer = document.querySelector('main');
+    let currentSectionIndex = 0;
+    let isScrolling = false;
 
-    // --- 1. Loader Logic ---
+    // --- 1. Loader & Initial Animation ---
     function initLoader() {
-        // Hide loader after a simulated delay
         setTimeout(() => {
             loader.classList.add('hidden');
             header.classList.add('visible');
-            // Reveal the first section after loader is gone
-            document.querySelector('#hero').classList.add('visible');
-        }, 1500);
+            document.body.style.overflow = 'visible'; // Allow scrolling after load
+            
+            // Initial reveal of the first section
+            const firstSection = sections[currentSectionIndex];
+            firstSection.querySelector('.section-container').classList.add('visible');
+            navLinks.forEach(link => link.classList.toggle('active', link.dataset.section === firstSection.id));
+
+        }, 1500); // Simulated loading time
     }
     
     // --- 2. Particle Background ---
@@ -32,29 +37,57 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- 3. Smooth Scrolling & Active Nav Highlighting ---
-    function initNavigation() {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    const sectionId = entry.target.id;
-                    navLinks.forEach(link => {
-                        link.classList.toggle('active', link.dataset.section === sectionId);
-                    });
-                }
-            });
-        }, { root: mainContainer, threshold: 0.4 });
-
-        sections.forEach(section => observer.observe(section));
-
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                document.querySelector(link.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-            });
+    // --- 3. Ultimate Snap Navigation ---
+    function scrollToSection(index) {
+        if (isScrolling || index < 0 || index >= sections.length) return;
+        
+        isScrolling = true;
+        currentSectionIndex = index;
+        
+        window.scrollTo({
+            top: sections[index].offsetTop,
+            behavior: 'smooth'
         });
+
+        // Update nav links and reveal section content
+        const targetSection = sections[index];
+        targetSection.querySelector('.section-container').classList.add('visible');
+        navLinks.forEach(link => {
+            link.classList.toggle('active', link.dataset.section === targetSection.id);
+        });
+
+        // Debounce to prevent scroll spamming
+        setTimeout(() => { isScrolling = false; }, 1000); 
     }
+
+    // Handle user-initiated scroll (wheel)
+    window.addEventListener('wheel', (event) => {
+        if (isScrolling || window.innerWidth <= 768) return;
+        event.preventDefault();
+        
+        const direction = event.deltaY > 0 ? 1 : -1;
+        scrollToSection(currentSectionIndex + direction);
+    }, { passive: false });
+
+    // Handle keyboard navigation
+    window.addEventListener('keydown', (event) => {
+        if (isScrolling || window.innerWidth <= 768) return;
+        if (event.key === 'ArrowDown') {
+            event.preventDefault();
+            scrollToSection(currentSectionIndex + 1);
+        } else if (event.key === 'ArrowUp') {
+            event.preventDefault();
+            scrollToSection(currentSectionIndex - 1);
+        }
+    });
+
+    // Handle nav link clicks
+    navLinks.forEach((link, index) => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            scrollToSection(index);
+        });
+    });
 
     // --- 4. Experience Tabs ---
     function initExperienceTabs() {
@@ -67,11 +100,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const targetTab = tabButton.dataset.tab;
             
-            // Update buttons
             tabList.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
             tabButton.classList.add('active');
 
-            // Update panels
             const panelContainer = document.querySelector('.tab-panels');
             panelContainer.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
             panelContainer.querySelector(`[data-panel='${targetTab}']`).classList.add('active');
