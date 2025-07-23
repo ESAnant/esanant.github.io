@@ -36,13 +36,20 @@ document.addEventListener('DOMContentLoaded', () => {
                     navLinks.forEach(link => {
                         link.classList.toggle('active', link.dataset.section === sectionId);
                     });
-                } else {
-                    sectionContainer.classList.remove('visible');
                 }
             });
-        }, { root: mainContainer, threshold: 0.6 }); // Use a threshold of 0.6 for accurate detection
+        }, { root: mainContainer, threshold: 0.5 }); // Adjust threshold for better detection
 
         sections.forEach(section => observer.observe(section));
+
+        // Handle smooth scroll for nav link clicks
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
     }
 
     // --- 4. Experience Tabs ---
