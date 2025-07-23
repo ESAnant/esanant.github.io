@@ -603,7 +603,7 @@ html {
     color: transparent;
     width: 2rem;
     height: 2rem;
-    filter: hue-rotate(160deg) brightness(1.2) contrast(1.1);
+    filter: hue-rotate(10deg) saturate(0.8) brightness(0.9) contrast(1.1);
     font-size: 0;
 }
 
@@ -612,7 +612,7 @@ html {
     color: transparent;
     width: 2rem;
     height: 2rem;
-    filter: hue-rotate(160deg) brightness(1.2) contrast(1.1);
+    filter: hue-rotate(10deg) saturate(0.8) brightness(0.9) contrast(1.1);
     font-size: 0;
 }
 
