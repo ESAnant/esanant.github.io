@@ -200,9 +200,10 @@ html {
     left: 50%;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, var(--color-accent-copper), var(--color-accent-cyan));
-    transition: var(--transition-smooth);
+    background: var(--color-accent-copper);
+    transition: all 0.3s ease;
     transform: translateX(-50%);
+    border-radius: 1px;
 }
 
 .nav-links a:hover,
@@ -213,7 +214,7 @@ html {
 
 .nav-links a:hover::before,
 .nav-links a.active::before {
-    width: 80%;
+    width: 100%;
 }
 
 /* Main Container */
