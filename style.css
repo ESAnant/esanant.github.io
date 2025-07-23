@@ -121,13 +121,13 @@ body {
     z-index: -1;
 }
 
-/* Header */
+/* Enhanced Header - Cleaner banner styling */
 .main-header {
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: var(--header-height);
-    background: rgba(10, 14, 26, 0.9);
-    backdrop-filter: blur(10px);
+    background: rgba(10, 14, 26, 0.95);
+    backdrop-filter: blur(15px);
     border-bottom: 1px solid rgba(100, 255, 218, 0.1);
     z-index: 100;
     transform: translateY(-100%);
@@ -152,7 +152,7 @@ body {
     color: var(--color-accent-copper);
     font-weight: 700;
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -162,6 +162,10 @@ body {
 .nav-logo:hover {
     color: var(--color-accent-cyan);
     transform: scale(1.05);
+}
+
+.nav-logo i {
+    font-size: 1.4rem;
 }
 
 .nav-links {
@@ -826,7 +830,7 @@ body {
     flex-wrap: wrap;
 }
 
-/* Social Sidebar */
+/* Social Sidebar - Simplified for LinkedIn and GitHub only */
 .social-sidebar {
     position: fixed;
     bottom: 0;
@@ -840,21 +844,31 @@ body {
 
 .social-sidebar a {
     color: var(--color-text-secondary);
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     transition: var(--transition-bounce);
-    padding: 0.5rem;
+    padding: 0.75rem;
+    border-radius: 50%;
+    background: rgba(26, 31, 53, 0.8);
+    backdrop-filter: blur(10px);
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .social-sidebar a:hover {
     color: var(--color-accent-copper);
-    transform: translateY(-3px);
+    transform: translateY(-5px);
+    background: rgba(211, 138, 92, 0.1);
+    box-shadow: 0 0 20px rgba(100, 255, 218, 0.3);
 }
 
 .sidebar-line {
     width: 1px;
     height: 90px;
-    background: var(--color-text-secondary);
-    opacity: 0.5;
+    background: linear-gradient(180deg, var(--color-text-secondary), transparent);
+    opacity: 0.6;
 }
 
 /* Utility Classes */

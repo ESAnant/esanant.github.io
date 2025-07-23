@@ -309,30 +309,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
     
-    // Smooth scroll polyfill for older browsers
-    function smoothScrollTo(targetY, duration = 1000) {
-        const startY = window.scrollY;
-        const difference = targetY - startY;
-        const startTime = performance.now();
-        
-        function step() {
-            const progress = (performance.now() - startTime) / duration;
-            const ease = easeInOutCubic(progress);
-            
-            window.scrollTo(0, startY + (difference * ease));
-            
-            if (progress < 1) {
-                requestAnimationFrame(step);
-            }
-        }
-        
-        requestAnimationFrame(step);
-    }
-    
-    function easeInOutCubic(t) {
-        return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
-    }
-    
     // Performance optimization
     let ticking = false;
     
