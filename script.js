@@ -1,144 +1,78 @@
-// script.js
-document.addEventListener('DOMContentLoaded', () => {
-  const loader = document.getElementById('loader');
-  const header = document.querySelector('.main-header');
-  const navLinks = document.querySelectorAll('.nav-links a');
-  const mainContainer = document.querySelector('main');
-  const sections = document.querySelectorAll('section');
+/* -------------------------------  Helper  ------------------------------- */
+const $ = (sel, ctx = document) => ctx.querySelector(sel);
+const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 
-  // Animated background canvas setup
-  const canvas = document.getElementById('interactive-bg');
-  const ctx = canvas.getContext('2d');
-  let particlesArray = [];
+/* ---------------------------  Pipeline Loader  -------------------------- */
+const loader     = $('#loader');
+const stages     = $$('.stage rect');
+let   stageIndex = 0;
+const animateLoader = () => {
+  stages.forEach(r => r.classList.remove('stage-lit'));
+  stages[stageIndex].classList.add('stage-lit');
+  stageIndex = (stageIndex + 1) % stages.length;
+};
+const loaderTimer = setInterval(animateLoader, 350);
 
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+/* ---------------------------  Canvas Fabric BG  ------------------------- */
+const canvas = $('#fabric-bg');
+const ctx    = canvas.getContext('2d');
+const resize = () => { canvas.width = innerWidth; canvas.height = innerHeight; };
+resize(); addEventListener('resize', resize);
+
+class Node {
+  constructor(x, y) { this.x = this.baseX = x; this.y = this.baseY = y; this.ph = Math.random()*2*Math.PI; }
+  update(t){
+    this.x = this.baseX + Math.sin(t + this.ph)*6;
+    this.y = this.baseY + Math.cos(t + this.ph)*6;
+    ctx.fillStyle = 'rgba(211,138,92,.7)';
+    ctx.beginPath(); ctx.arc(this.x, this.y, 2, 0, 2*Math.PI); ctx.fill();
   }
-  resizeCanvas();
-  window.addEventListener('resize', resizeCanvas);
+}
+let nodes = [];
+const grid = 90;
+for(let y = grid/2; y < innerHeight; y+=grid){
+  for(let x = grid/2; x < innerWidth; x+=grid){ nodes.push(new Node(x,y)); }
+}
+const animateBG = t => {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  nodes.forEach(n => n.update(t/800));
+  requestAnimationFrame(animateBG);
+};
+requestAnimationFrame(animateBG);
 
-  // Particle class for animated hardware-inspired background
-  class Particle {
-    constructor(x, y, size, speedX, speedY, color) {
-      this.x = x;
-      this.y = y;
-      this.size = size;
-      this.speedX = speedX;
-      this.speedY = speedY;
-      this.color = color;
-      this.baseX = x;
-      this.baseY = y;
-      this.angle = Math.random() * Math.PI * 2;
-      this.radius = 10 + Math.random() * 15;
-    }
+/* ---------------------------  After Load Fade In ------------------------ */
+setTimeout(() => {
+  loader.classList.add('hidden');
+  clearInterval(loaderTimer);
+  $('.main-header').classList.add('show');
+}, 2000);
 
-    draw() {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fillStyle = this.color;
-      ctx.shadowColor = this.color;
-      ctx.shadowBlur = 6;
-      ctx.fill();
-    }
-
-    update() {
-      this.angle += 0.01;
-      this.x = this.baseX + Math.cos(this.angle) * this.radius;
-      this.y = this.baseY + Math.sin(this.angle) * this.radius * 0.7;
-      this.draw();
-    }
-  }
-
-  function initParticles() {
-    particlesArray = [];
-    const spacing = 80;
-    const cols = Math.floor(window.innerWidth / spacing);
-    const rows = Math.floor(window.innerHeight / spacing);
-
-    for (let y = 0; y < rows; y++) {
-      for (let x = 0; x < cols; x++) {
-        const posX = x * spacing + spacing / 2;
-        const posY = y * spacing + spacing / 2;
-        particlesArray.push(
-          new Particle(posX, posY, 3, 0, 0, 'rgba(211,138,92,0.8)')
-        );
-      }
-    }
-  }
-  initParticles();
-
-  function animateParticles() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particlesArray.forEach((p) => p.update());
-    requestAnimationFrame(animateParticles);
-  }
-  animateParticles();
-
-  // Loader hide and reveal main content after delay
-  setTimeout(() => {
-    loader.classList.add('hidden');
-    header.classList.add('visible');
-    document.querySelector('#hero').classList.add('visible');
-    mainContainer.style.opacity = '1';
-  }, 1500);
-
-  // Intersection Observer for section visibility and nav highlights
-  const observerOptions = {
-    root: mainContainer,
-    threshold: 0.5,
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        const id = entry.target.getAttribute('id');
-        navLinks.forEach((link) =>
-          link.classList.toggle('active', link.dataset.section === id)
-        );
-      }
-    });
-  }, observerOptions);
-
-  sections.forEach((section) => observer.observe(section));
-
-  // Smooth scroll and nav link click handling
-  navLinks.forEach((link) => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const targetId = link.getAttribute('href').substring(1);
-      const target = document.getElementById(targetId);
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth' });
-        // For accessibility: focus the section
-        target.focus();
-      }
-    });
+/* -----------------------  Intersection Observers  ----------------------- */
+const sections = $$('.section');
+const navLinks = $$('.nav a');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    entry.target.classList.add('show');
+    const id = entry.target.id;
+    navLinks.forEach(a => a.classList.toggle('active', a.dataset.sec === id));
   });
+}, { threshold: .55, rootMargin: '0px 0px -10% 0px' });
+sections.forEach(sec => observer.observe(sec));
 
-  // Flip-card keyboard accessibility
-  const flipCards = document.querySelectorAll('.flip-card');
-  flipCards.forEach((card) => {
-    const inner = card.querySelector('.card-inner');
+/* -----------------------------  Smooth Links  --------------------------- */
+navLinks.forEach(a => a.addEventListener('click', e => {
+  e.preventDefault();
+  $('#'+a.dataset.sec).scrollIntoView({ behavior:'smooth' });
+}));
 
-    card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        const expanded = inner.getAttribute('aria-expanded') === 'true';
-        inner.style.transform = expanded ? 'none' : 'rotateY(180deg)';
-        inner.setAttribute('aria-expanded', (!expanded).toString());
-      }
-    });
-
-    card.addEventListener('mouseenter', () => {
-      inner.style.transform = 'rotateY(180deg)';
-      inner.setAttribute('aria-expanded', 'true');
-    });
-
-    card.addEventListener('mouseleave', () => {
-      inner.style.transform = 'none';
-      inner.setAttribute('aria-expanded', 'false');
-    });
+/* --------------------------  Flip-Card Keyboard  ------------------------ */
+$$('.flip-card').forEach(card=>{
+  const inner = $('.flip-inner', card);
+  card.addEventListener('keydown', e=>{
+    if(e.key==='Enter' || e.key===' '){
+      e.preventDefault();
+      inner.style.transform = inner.style.transform ? '' : 'rotateY(180deg)';
+    }
   });
 });
