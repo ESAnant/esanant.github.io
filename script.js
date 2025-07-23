@@ -1,95 +1,144 @@
-/* Portfolio v4.2 Final JavaScript
-Advanced Snap Navigation & Interactivity with Highlighted Skills
-*/
+// script.js
+document.addEventListener('DOMContentLoaded', () => {
+  const loader = document.getElementById('loader');
+  const header = document.querySelector('.main-header');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const mainContainer = document.querySelector('main');
+  const sections = document.querySelectorAll('section');
 
-document.addEventListener("DOMContentLoaded", () => {
-  const loader = document.getElementById("loader");
-  const header = document.querySelector(".main-header");
-  const navLinks = document.querySelectorAll(".nav-links a");
-  const mainContainer = document.querySelector("main");
-  const sections = document.querySelectorAll("section[id]");
-  const tabList = document.querySelector(".experience-tabs .tab-list");
-  const tabButtons = document.querySelectorAll(".experience-tabs .tab-button");
-  const tabPanels = document.querySelectorAll(".experience-tabs .tab-panel");
+  // Animated background canvas setup
+  const canvas = document.getElementById('interactive-bg');
+  const ctx = canvas.getContext('2d');
+  let particlesArray = [];
 
-  // Hide loader and show content
-  setTimeout(() => {
-    loader.classList.add("hidden");
-    header.classList.add("visible");
-    document.querySelector("#hero").classList.add("visible");
-    mainContainer.style.opacity = "1";
-  }, 1500);
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
 
-  // Initialize particles.js for background
-  if (typeof particlesJS !== "undefined") {
-    particlesJS("interactive-bg", {
-      particles: {
-        number: { value: 60, density: { enable: true, value_area: 800 } },
-        color: { value: "#8892b0" },
-        shape: { type: "circle" },
-        opacity: { value: 0.3, random: true },
-        size: { value: 2, random: true },
-        line_linked: { enable: true, distance: 150, color: "#8892b0", opacity: 0.2, width: 1 },
-        move: { enable: true, speed: 1, direction: "none", out_mode: "out" }
-      },
-      interactivity: {
-        detect_on: "canvas",
-        events: { onhover: { enable: true, mode: "grab" }, onclick: { enable: true, mode: "push" } },
-        modes: { grab: { distance: 140, line_linked: { opacity: 0.5 } }, push: { particles_nb: 4 } }
-      },
-      retina_detect: true
-    });
+  // Particle class for animated hardware-inspired background
+  class Particle {
+    constructor(x, y, size, speedX, speedY, color) {
+      this.x = x;
+      this.y = y;
+      this.size = size;
+      this.speedX = speedX;
+      this.speedY = speedY;
+      this.color = color;
+      this.baseX = x;
+      this.baseY = y;
+      this.angle = Math.random() * Math.PI * 2;
+      this.radius = 10 + Math.random() * 15;
+    }
+
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = this.color;
+      ctx.shadowColor = this.color;
+      ctx.shadowBlur = 6;
+      ctx.fill();
+    }
+
+    update() {
+      this.angle += 0.01;
+      this.x = this.baseX + Math.cos(this.angle) * this.radius;
+      this.y = this.baseY + Math.sin(this.angle) * this.radius * 0.7;
+      this.draw();
+    }
   }
 
-  // Intersection Observer for section reveal & nav highlight
-  const observerOptions = { root: mainContainer, threshold: 0.5 };
-  const sectionObserver = new IntersectionObserver((entries) => {
+  function initParticles() {
+    particlesArray = [];
+    const spacing = 80;
+    const cols = Math.floor(window.innerWidth / spacing);
+    const rows = Math.floor(window.innerHeight / spacing);
+
+    for (let y = 0; y < rows; y++) {
+      for (let x = 0; x < cols; x++) {
+        const posX = x * spacing + spacing / 2;
+        const posY = y * spacing + spacing / 2;
+        particlesArray.push(
+          new Particle(posX, posY, 3, 0, 0, 'rgba(211,138,92,0.8)')
+        );
+      }
+    }
+  }
+  initParticles();
+
+  function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particlesArray.forEach((p) => p.update());
+    requestAnimationFrame(animateParticles);
+  }
+  animateParticles();
+
+  // Loader hide and reveal main content after delay
+  setTimeout(() => {
+    loader.classList.add('hidden');
+    header.classList.add('visible');
+    document.querySelector('#hero').classList.add('visible');
+    mainContainer.style.opacity = '1';
+  }, 1500);
+
+  // Intersection Observer for section visibility and nav highlights
+  const observerOptions = {
+    root: mainContainer,
+    threshold: 0.5,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        // Highlight nav link
-        const id = entry.target.id;
-        navLinks.forEach(link => link.classList.toggle("active", link.dataset.section === id));
+        entry.target.classList.add('visible');
+        const id = entry.target.getAttribute('id');
+        navLinks.forEach((link) =>
+          link.classList.toggle('active', link.dataset.section === id)
+        );
       }
     });
   }, observerOptions);
-  sections.forEach(section => sectionObserver.observe(section));
 
-  // Smooth scroll nav links
-  navLinks.forEach(link => {
-    link.addEventListener("click", e => {
+  sections.forEach((section) => observer.observe(section));
+
+  // Smooth scroll and nav link click handling
+  navLinks.forEach((link) => {
+    link.addEventListener('click', (e) => {
       e.preventDefault();
-      const target = document.querySelector(link.getAttribute("href"));
-      if (target) target.scrollIntoView({ behavior: "smooth" });
-    });
-  });
-
-  // Experience tabs logic
-  tabList.addEventListener("click", e => {
-    const clicked = e.target.closest(".tab-button");
-    if (!clicked) return;
-    const tabId = clicked.dataset.tab;
-    tabButtons.forEach(btn => {
-      btn.classList.toggle("active", btn.dataset.tab === tabId);
-      btn.setAttribute("aria-selected", btn.dataset.tab === tabId);
-    });
-    tabPanels.forEach(panel => panel.classList.toggle("active", panel.dataset.panel === tabId));
-  });
-
-  // Flip card keyboard accessibility & hover
-  const flipCards = document.querySelectorAll(".flip-card");
-  flipCards.forEach(card => {
-    card.addEventListener("keydown", e => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        card.querySelector(".card-inner").classList.toggle("flipped");
+      const targetId = link.getAttribute('href').substring(1);
+      const target = document.getElementById(targetId);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+        // For accessibility: focus the section
+        target.focus();
       }
     });
-    card.addEventListener("mouseenter", () => {
-      card.querySelector(".card-inner").classList.add("flipped");
+  });
+
+  // Flip-card keyboard accessibility
+  const flipCards = document.querySelectorAll('.flip-card');
+  flipCards.forEach((card) => {
+    const inner = card.querySelector('.card-inner');
+
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        const expanded = inner.getAttribute('aria-expanded') === 'true';
+        inner.style.transform = expanded ? 'none' : 'rotateY(180deg)';
+        inner.setAttribute('aria-expanded', (!expanded).toString());
+      }
     });
-    card.addEventListener("mouseleave", () => {
-      card.querySelector(".card-inner").classList.remove("flipped");
+
+    card.addEventListener('mouseenter', () => {
+      inner.style.transform = 'rotateY(180deg)';
+      inner.setAttribute('aria-expanded', 'true');
+    });
+
+    card.addEventListener('mouseleave', () => {
+      inner.style.transform = 'none';
+      inner.setAttribute('aria-expanded', 'false');
     });
   });
 });
