@@ -4,24 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const header = document.querySelector('.main-header');
     const sections = document.querySelectorAll('.section');
     const navLinks = document.querySelectorAll('.nav-links a');
-    let currentSectionIndex = 0;
-    let isScrolling = false;
+    const mainContainer = document.querySelector('main');
 
     // --- 1. Loader & Initial Animation ---
     function initLoader() {
         setTimeout(() => {
             loader.classList.add('hidden');
             header.classList.add('visible');
-            document.body.style.overflow = 'visible';
-            
-            // Set initial positions for all sections
-            sections.forEach((section, index) => {
-                section.style.transform = `translateY(${index * 100}vh)`;
-            });
-
-            // Make the first section active
-            sections[currentSectionIndex].classList.add('active');
-            navLinks[currentSectionIndex].classList.add('active');
         }, 1500);
     }
     
@@ -36,52 +25,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- 3. Superior JS-Driven Snap Navigation ---
-    function scrollToSection(index) {
-        if (isScrolling || index < 0 || index >= sections.length) return;
-        
-        isScrolling = true;
-        currentSectionIndex = index;
+    // --- 3. Navigation Highlighting & Content Reveal ---
+    function initNavigation() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const sectionContainer = entry.target.querySelector('.section-container');
+                if (entry.isIntersecting) {
+                    sectionContainer.classList.add('visible');
+                    const sectionId = entry.target.id;
+                    navLinks.forEach(link => {
+                        link.classList.toggle('active', link.dataset.section === sectionId);
+                    });
+                } else {
+                    sectionContainer.classList.remove('visible');
+                }
+            });
+        }, { root: mainContainer, threshold: 0.6 }); // Use a threshold of 0.6 for accurate detection
 
-        // Move all sections
-        sections.forEach((section, i) => {
-            section.style.transform = `translateY(${(i - currentSectionIndex) * 100}vh)`;
-        });
-
-        // Update active classes
-        sections.forEach(section => section.classList.remove('active'));
-        sections[currentSectionIndex].classList.add('active');
-        
-        navLinks.forEach(link => link.classList.remove('active'));
-        navLinks[currentSectionIndex].classList.add('active');
-
-        setTimeout(() => { isScrolling = false; }, 1200); // Cooldown matches CSS transition
+        sections.forEach(section => observer.observe(section));
     }
-
-    if (window.innerWidth > 768) {
-        window.addEventListener('wheel', (event) => {
-            if (isScrolling) return;
-            const direction = event.deltaY > 0 ? 1 : -1;
-            scrollToSection(currentSectionIndex + direction);
-        }, { passive: true });
-
-        window.addEventListener('keydown', (event) => {
-            if (isScrolling) return;
-            if (event.key === 'ArrowDown') scrollToSection(currentSectionIndex + 1);
-            else if (event.key === 'ArrowUp') scrollToSection(currentSectionIndex - 1);
-        });
-    }
-
-    navLinks.forEach((link, index) => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            if (window.innerWidth > 768) {
-                scrollToSection(index);
-            } else {
-                document.querySelector(link.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-            }
-        });
-    });
 
     // --- 4. Experience Tabs ---
     function initExperienceTabs() {
@@ -106,14 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Initialize All Components ---
     initLoader();
     initParticles();
+    initNavigation();
     initExperienceTabs();
-    
-    // Recalculate section positions on resize if not on mobile
-    window.addEventListener('resize', () => {
-        if (window.innerWidth > 768) {
-             sections.forEach((section, i) => {
-                section.style.transform = `translateY(${(i - currentSectionIndex) * 100}vh)`;
-            });
-        }
-    });
 });
