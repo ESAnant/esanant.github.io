@@ -42,13 +42,9 @@
     <!-- Interactive Background -->
     <div id="interactive-bg"></div>
 
-    <!-- Navigation - Updated order and cleaned styling -->
+    <!-- Clean Navigation Banner - ESA removed -->
     <header class="main-header">
         <nav class="nav-container">
-            <a href="#hero" class="nav-logo">
-                <i class="fas fa-microchip"></i>
-                <span>ESA</span>
-            </a>
             <ul class="nav-links">
                 <li><a href="#hero" data-section="hero">Home</a></li>
                 <li><a href="#about" data-section="about">About</a></li>
@@ -63,8 +59,7 @@
         </nav>
     </header>
 
-
-    <!-- Main Content -->
+    <!-- Main Content - Sections in correct order -->
     <main class="main-container">
         <!-- Hero Section -->
         <section id="hero" class="section hero-section">
@@ -102,7 +97,7 @@
             </div>
         </section>
 
-        <!-- Education Section - Moved up in order -->
+        <!-- Education Section -->
         <section id="education" class="section education-section">
             <div class="section-container">
                 <h2 class="section-title">Education</h2>
@@ -133,6 +128,60 @@
                                 <li>Analog Electronic Circuits</li>
                                 <li>VLSI Design</li>
                                 <li>ARM-Based Embedded System Design</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="section experience-section">
+            <div class="section-container">
+                <h2 class="section-title">Professional Experience</h2>
+                <div class="experience-tabs">
+                    <div class="tab-list" role="tablist">
+                        <button class="tab-button active" data-tab="graduate-assistant" role="tab" aria-selected="true">Graduate Assistant</button>
+                        <button class="tab-button" data-tab="maven-silicon" role="tab" aria-selected="false">Maven Silicon</button>
+                        <button class="tab-button" data-tab="sandeepani" role="tab" aria-selected="false">Sandeepani</button>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-panel active" data-panel="graduate-assistant" role="tabpanel">
+                            <h3>Graduate Assistant <span class="panel-company">@ National University of Singapore</span></h3>
+                            <p class="panel-date">Aug 2024 - Nov 2024 • 4 mos</p>
+                            <p class="panel-location">Singapore • On-site</p>
+                            <ul>
+                                <li>Oversaw laboratory sessions and assisted with assignments and grading for EE2028 Microcontroller Programming and Interfacing and CG3207 Computer Architecture</li>
+                                <li>Provided guidance and feedback on lab work to enhance student understanding</li>
+                                <li>Collaborated with faculty to overhaul lab materials and processes, improving educational outcomes</li>
+                                <li>Demonstrated strong interpersonal communication and collaborative skills in academic environment</li>
+                            </ul>
+                        </div>
+                        <div class="tab-panel" data-panel="maven-silicon" role="tabpanel">
+                            <h3>Project Intern <span class="panel-company">@ Maven Silicon</span></h3>
+                            <p class="panel-date">Dec 2022 - Jan 2023 • 2 mos</p>
+                            <p class="panel-location">Bangalore, India • Remote</p>
+                            <ul>
+                                <li>Developed expertise in analyzing project requirements to establish clear and efficient development plans</li>
+                                <li>Designed an AHB to APB bridge, tailoring it to meet specific project needs and facilitating seamless communication between distinct bus protocols</li>
+                                <li>Decomposed complex designs into modular components, increasing manageability and design efficiency</li>
+                                <li>Executed module-level design, honing the ability to realize projects from concept to completion with keen attention to detail</li>
+                                <li>Advanced proficiency in writing robust, functional RTL code in Verilog HDL, ensuring optimal performance</li>
+                                <li>Interpreted RTL descriptions into gate-level schematics and refined design for efficiency and reliability</li>
+                                <li>Synthesized individual modules into a unified, top-tier system architecture, ensuring cohesive operation and performance</li>
+                            </ul>
+                        </div>
+                        <div class="tab-panel" data-panel="sandeepani" role="tabpanel">
+                            <h3>Intern <span class="panel-company">@ Sandeepani School of Embedded System Design</span></h3>
+                            <p class="panel-date">Jun 2022 - Jul 2022 • 2 mos</p>
+                            <p class="panel-location">Bangalore, India • Remote</p>
+                            <ul>
+                                <li>Collaborated on the development and meticulous verification of a UART protocol using Verilog HDL, concentrating on data transmission reliability and system integrity</li>
+                                <li>Executed in-depth functional verification of a Half Adder utilizing SystemVerilog, ensuring alignment with precise performance specifications</li>
+                                <li>Performed detailed functional coverage analysis employing QuestaSim, aiming for exhaustive assessment and optimization of test scenarios</li>
+                                <li>Understanding of the basics of System Verilog and workflow for verification of a DUT</li>
+                                <li>Generated Random Stimuli for testing larger test case scenarios and developed coverage for DUT</li>
+                                <li>Gained expertise in Object Oriented Concepts with System Verilog</li>
                             </ul>
                         </div>
                     </div>
@@ -244,7 +293,7 @@
             </div>
         </section>
 
-        <!-- Publications Section - Moved up in order -->
+        <!-- Publications Section -->
         <section id="publications" class="section publications-section">
             <div class="section-container">
                 <h2 class="section-title">Publications & Patents</h2>
@@ -433,61 +482,7 @@
             </div>
         </section>
 
-        <!-- Experience Section - Moved down in order -->
-        <section id="experience" class="section experience-section">
-            <div class="section-container">
-                <h2 class="section-title">Professional Experience</h2>
-                <div class="experience-tabs">
-                    <div class="tab-list" role="tablist">
-                        <button class="tab-button active" data-tab="graduate-assistant" role="tab" aria-selected="true">Graduate Assistant</button>
-                        <button class="tab-button" data-tab="maven-silicon" role="tab" aria-selected="false">Maven Silicon</button>
-                        <button class="tab-button" data-tab="sandeepani" role="tab" aria-selected="false">Sandeepani</button>
-                    </div>
-                    <div class="tab-content">
-                        <div class="tab-panel active" data-panel="graduate-assistant" role="tabpanel">
-                            <h3>Graduate Assistant <span class="panel-company">@ National University of Singapore</span></h3>
-                            <p class="panel-date">Aug 2024 - Nov 2024 • 4 mos</p>
-                            <p class="panel-location">Singapore • On-site</p>
-                            <ul>
-                                <li>Oversaw laboratory sessions and assisted with assignments and grading for EE2028 Microcontroller Programming and Interfacing and CG3207 Computer Architecture</li>
-                                <li>Provided guidance and feedback on lab work to enhance student understanding</li>
-                                <li>Collaborated with faculty to overhaul lab materials and processes, improving educational outcomes</li>
-                                <li>Demonstrated strong interpersonal communication and collaborative skills in academic environment</li>
-                            </ul>
-                        </div>
-                        <div class="tab-panel" data-panel="maven-silicon" role="tabpanel">
-                            <h3>Project Intern <span class="panel-company">@ Maven Silicon</span></h3>
-                            <p class="panel-date">Dec 2022 - Jan 2023 • 2 mos</p>
-                            <p class="panel-location">Bangalore, India • Remote</p>
-                            <ul>
-                                <li>Developed expertise in analyzing project requirements to establish clear and efficient development plans</li>
-                                <li>Designed an AHB to APB bridge, tailoring it to meet specific project needs and facilitating seamless communication between distinct bus protocols</li>
-                                <li>Decomposed complex designs into modular components, increasing manageability and design efficiency</li>
-                                <li>Executed module-level design, honing the ability to realize projects from concept to completion with keen attention to detail</li>
-                                <li>Advanced proficiency in writing robust, functional RTL code in Verilog HDL, ensuring optimal performance</li>
-                                <li>Interpreted RTL descriptions into gate-level schematics and refined design for efficiency and reliability</li>
-                                <li>Synthesized individual modules into a unified, top-tier system architecture, ensuring cohesive operation and performance</li>
-                            </ul>
-                        </div>
-                        <div class="tab-panel" data-panel="sandeepani" role="tabpanel">
-                            <h3>Intern <span class="panel-company">@ Sandeepani School of Embedded System Design</span></h3>
-                            <p class="panel-date">Jun 2022 - Jul 2022 • 2 mos</p>
-                            <p class="panel-location">Bangalore, India • Remote</p>
-                            <ul>
-                                <li>Collaborated on the development and meticulous verification of a UART protocol using Verilog HDL, concentrating on data transmission reliability and system integrity</li>
-                                <li>Executed in-depth functional verification of a Half Adder utilizing SystemVerilog, ensuring alignment with precise performance specifications</li>
-                                <li>Performed detailed functional coverage analysis employing QuestaSim, aiming for exhaustive assessment and optimization of test scenarios</li>
-                                <li>Understanding of the basics of System Verilog and workflow for verification of a DUT</li>
-                                <li>Generated Random Stimuli for testing larger test case scenarios and developed coverage for DUT</li>
-                                <li>Gained expertise in Object Oriented Concepts with System Verilog</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section - Updated with only Say Hello and View Resume -->
+        <!-- Contact Section -->
         <section id="contact" class="section contact-section">
             <div class="section-container text-center">
                 <p class="contact-lead">What's Next?</p>
@@ -500,8 +495,8 @@
                         <i class="fas fa-envelope"></i>
                         Say Hello
                     </a>
-                    <a href="Edidi_Sai_Anant_Resume.pdf" class="button button-outline" target="_blank" rel="noopener noreferrer">
-                        <i class="fas fa-download"></i>
+                    <a href="https://github.com/ESAnant/ESAnant.github.io/raw/main/Edidi_Sai_Anant_Resume.pdf" class="button button-outline" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-file-pdf"></i>
                         View Resume
                     </a>
                 </div>
@@ -509,7 +504,7 @@
         </section>
     </main>
 
-    <!-- Social Sidebar - Fixed with correct LinkedIn and GitHub links -->
+    <!-- Social Sidebar -->
     <div class="social-sidebar">
         <a href="https://www.linkedin.com/in/sai-anant/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
             <i class="fab fa-linkedin"></i>

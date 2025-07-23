@@ -1,4 +1,4 @@
-// Advanced Portfolio JavaScript - Edidi Sai Anant
+// Advanced Portfolio JavaScript - Edidi Sai Anant - Final
 
 document.addEventListener("DOMContentLoaded", () => {
     // Elements
@@ -21,13 +21,13 @@ document.addEventListener("DOMContentLoaded", () => {
         setupFlipCards();
         setupScrollSnap();
         setupIntersectionObserver();
+        setupAccessibility();
     }
     
     // Loader Animation
     function setupLoader() {
         setTimeout(() => {
             loader.classList.add("hidden");
-            header.classList.add("visible");
             
             // Reveal first section
             const heroSection = document.querySelector("#hero");
@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
     
-    // Navigation Setup - Updated for new section order
+    // Navigation Setup
     function setupNavigation() {
         navLinks.forEach(link => {
             link.addEventListener("click", (e) => {
@@ -108,13 +108,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 const targetSection = document.querySelector(targetId);
                 
                 if (targetSection) {
-                    // Smooth scroll to section
                     targetSection.scrollIntoView({ 
                         behavior: "smooth",
                         block: "start"
                     });
                     
-                    // Update active nav link
                     updateActiveNavLink(targetId.substring(1));
                 }
             });
@@ -138,7 +136,6 @@ document.addEventListener("DOMContentLoaded", () => {
             button.addEventListener("click", () => {
                 const tabId = button.dataset.tab;
                 
-                // Update active tab button
                 tabButtons.forEach(btn => {
                     btn.classList.remove("active");
                     btn.setAttribute("aria-selected", "false");
@@ -146,7 +143,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 button.classList.add("active");
                 button.setAttribute("aria-selected", "true");
                 
-                // Update active tab panel
                 tabPanels.forEach(panel => {
                     panel.classList.remove("active");
                 });
@@ -157,7 +153,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
         
-        // Keyboard support for tabs
         tabButtons.forEach(button => {
             button.addEventListener("keydown", (e) => {
                 if (e.key === "Enter" || e.key === " ") {
@@ -171,7 +166,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Flip Cards Setup
     function setupFlipCards() {
         flipCards.forEach(card => {
-            // Keyboard accessibility
             card.addEventListener("keydown", (e) => {
                 if (e.key === "Enter" || e.key === " ") {
                     e.preventDefault();
@@ -179,7 +173,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
             
-            // Mouse interactions
             card.addEventListener("mouseenter", () => {
                 card.querySelector(".card-inner").classList.add("flipped");
             });
@@ -188,7 +181,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 card.querySelector(".card-inner").classList.remove("flipped");
             });
             
-            // Touch support for mobile
             card.addEventListener("touchstart", () => {
                 const cardInner = card.querySelector(".card-inner");
                 cardInner.classList.toggle("flipped");
@@ -218,7 +210,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }, { passive: false });
     }
     
-    // Intersection Observer for section visibility
+    // Intersection Observer
     function setupIntersectionObserver() {
         const observerOptions = {
             root: null,
@@ -229,14 +221,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Add visible class
                     entry.target.classList.add("visible");
-                    
-                    // Update navigation
                     const sectionId = entry.target.id;
                     updateActiveNavLink(sectionId);
-                    
-                    // Animate section content
                     animateSectionContent(entry.target);
                 }
             });
@@ -309,79 +296,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
     
-    // Performance optimization
-    let ticking = false;
-    
-    function requestTick() {
-        if (!ticking) {
-            requestAnimationFrame(updateScrollPosition);
-            ticking = true;
-        }
-    }
-    
-    function updateScrollPosition() {
-        // Update any scroll-dependent animations here
-        ticking = false;
-    }
-    
-    window.addEventListener("scroll", requestTick);
-    
-    // Resize handler
-    window.addEventListener("resize", debounce(() => {
-        // Handle responsive adjustments
-        if (window.innerWidth <= 768) {
-            // Mobile-specific adjustments
-            flipCards.forEach(card => {
-                card.removeEventListener("mouseenter", () => {});
-                card.removeEventListener("mouseleave", () => {});
-            });
-        }
-    }, 250));
-    
-    // Debounce utility
-    function debounce(func, wait) {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
-    }
-    
-    // Accessibility improvements
+    // Accessibility
     function setupAccessibility() {
-        // Skip to content link
-        const skipLink = document.createElement("a");
-        skipLink.href = "#hero";
-        skipLink.textContent = "Skip to main content";
-        skipLink.className = "skip-link";
-        skipLink.style.cssText = `
-            position: absolute;
-            top: -40px;
-            left: 6px;
-            background: var(--color-accent-copper);
-            color: var(--color-bg);
-            padding: 8px;
-            text-decoration: none;
-            border-radius: 4px;
-            z-index: 1000;
-            transition: top 0.3s;
-        `;
-        
-        skipLink.addEventListener("focus", () => {
-            skipLink.style.top = "6px";
-        });
-        
-        skipLink.addEventListener("blur", () => {
-            skipLink.style.top = "-40px";
-        });
-        
-        document.body.insertBefore(skipLink, document.body.firstChild);
-        
-        // Announce section changes to screen readers
         const announcer = document.createElement("div");
         announcer.setAttribute("aria-live", "polite");
         announcer.setAttribute("aria-atomic", "true");
@@ -394,7 +310,6 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
         document.body.appendChild(announcer);
         
-        // Update announcer when section changes
         const originalUpdateActiveNavLink = updateActiveNavLink;
         updateActiveNavLink = function(sectionId) {
             originalUpdateActiveNavLink(sectionId);
@@ -403,5 +318,25 @@ document.addEventListener("DOMContentLoaded", () => {
         };
     }
     
-    setupAccessibility();
+    // Performance optimization
+    window.addEventListener("resize", debounce(() => {
+        if (window.innerWidth <= 768) {
+            flipCards.forEach(card => {
+                card.removeEventListener("mouseenter", () => {});
+                card.removeEventListener("mouseleave", () => {});
+            });
+        }
+    }, 250));
+    
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
 });
