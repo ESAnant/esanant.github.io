@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
     
-    // Navigation Setup
+    // Navigation Setup - Updated for new section order
     function setupNavigation() {
         navLinks.forEach(link => {
             link.addEventListener("click", (e) => {
