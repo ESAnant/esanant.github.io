@@ -33,9 +33,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
     // Loader Animation
+    // In your existing script.js, update the loader setup function:
+
     function setupLoader() {
+        // Add loading class to body
+        document.body.classList.add('loading');
+        
         setTimeout(() => {
             loader.classList.add("hidden");
+            
+            // Remove loading class to show scrollbar
+            document.body.classList.remove('loading');
             
             // Reveal first section
             const heroSection = document.querySelector("#hero");
@@ -44,6 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }, 2000);
     }
+
     
     // Particles.js Background - Mobile Optimized
     function setupParticles() {

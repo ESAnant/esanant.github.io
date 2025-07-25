@@ -988,6 +988,20 @@ body.menu-open {
     position: fixed;
     width: 100%;
 }
+/* Hide scrollbar during loading */
+body.loading {
+    overflow: hidden;
+}
+
+body.loading::-webkit-scrollbar {
+    display: none;
+}
+
+/* Firefox */
+body.loading {
+    scrollbar-width: none;
+}
+
 
 /* Mobile Responsive Design */
 @media (max-width: 1024px) {
