@@ -1,7 +1,6 @@
-/* Advanced Portfolio Stylesheet - Edidi Sai Anant - Mobile-Compatible */
+/* Advanced Portfolio Stylesheet - Edidi Sai Anant - Mobile Compatible */
 
 :root {
-    /* Color Palette */
     --color-bg: #0a0e1a;
     --color-bg-light: #1a1f35;
     --color-bg-card: #161b2e;
@@ -11,12 +10,8 @@
     --color-accent-copper: #d38a5c;
     --color-accent-cyan: #64ffda;
     --color-accent-gold: #ffd700;
-    
-    /* Typography */
     --font-primary: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-mono: 'Roboto Mono', 'SF Mono', Monaco, monospace;
-    
-    /* Layout */
     --header-height: 70px;
     --transition-smooth: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
     --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
@@ -25,7 +20,6 @@
     --box-shadow-hover: 0 20px 30px -15px rgba(2, 12, 27, 0.8);
 }
 
-/* Reset & Base Styles */
 * {
     margin: 0;
     padding: 0;
@@ -35,7 +29,6 @@
 html {
     scroll-behavior: smooth;
     scroll-snap-type: y mandatory;
-    -webkit-overflow-scrolling: touch;
 }
 
 body {
@@ -46,8 +39,6 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     position: relative;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
 
 /* Custom Accent Scrollbar */
@@ -68,7 +59,6 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(180deg, var(--color-accent-gold), var(--color-accent-copper));
-    transform: scale(1.1);
 }
 
 /* Firefox Scrollbar */
@@ -157,7 +147,7 @@ html {
     z-index: -1;
 }
 
-/* Fixed Clean Header */
+/* Fixed Clean Header - Mobile Compatible */
 .main-header {
     position: fixed;
     top: 0; 
@@ -177,9 +167,8 @@ html {
     padding: 0 2rem;
     height: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    position: relative;
 }
 
 .nav-links {
@@ -220,8 +209,6 @@ html {
     cursor: pointer;
     padding: 0.5rem;
     z-index: 101;
-    position: absolute;
-    right: 1rem;
 }
 
 .mobile-menu-toggle span {
@@ -309,7 +296,7 @@ html {
     transition: var(--transition-bounce);
     font-size: 0.9rem;
     box-shadow: var(--box-shadow);
-    min-height: 44px; /* Touch-friendly minimum */
+    min-height: 44px; /* Touch-friendly size */
 }
 
 .button:hover {
@@ -354,7 +341,7 @@ html {
 }
 
 .hero-subtitle {
-    font-size: clamp(2rem, 7vw, 4rem);
+    font-size: clamp(1.5rem, 6vw, 3.5rem);
     font-weight: 700;
     color: var(--color-text-secondary);
     margin-bottom: 2rem;
@@ -363,7 +350,7 @@ html {
 .hero-description {
     max-width: 600px;
     color: var(--color-text-secondary);
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
     line-height: 1.7;
     margin-bottom: 3rem;
 }
@@ -379,7 +366,7 @@ html {
     color: var(--color-text-secondary);
     margin-bottom: 1.5rem;
     max-width: 700px;
-    font-size: 1.05rem;
+    font-size: clamp(1rem, 2.5vw, 1.05rem);
     line-height: 1.7;
 }
 
@@ -495,12 +482,6 @@ html {
     height: 280px;
     perspective: 1000px;
     cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.flip-card:focus {
-    outline: 2px solid var(--color-accent-copper);
-    outline-offset: 4px;
 }
 
 .card-inner {
@@ -511,8 +492,7 @@ html {
     transform-style: preserve-3d;
 }
 
-.flip-card:hover .card-inner,
-.flip-card.tapped .card-inner {
+.flip-card:hover .card-inner {
     transform: rotateY(180deg);
 }
 
@@ -625,7 +605,7 @@ html {
     border-radius: var(--border-radius);
     transition: var(--transition-bounce);
     cursor: pointer;
-    min-height: 80px;
+    min-height: 100px;
 }
 
 .skill-item:hover {
@@ -874,7 +854,7 @@ html {
 }
 
 .contact-title {
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(2rem, 5vw, 3.5rem);
     margin-bottom: 2rem;
     color: var(--color-text-primary);
     font-weight: 700;
@@ -884,7 +864,7 @@ html {
     max-width: 600px;
     margin: 0 auto 3rem;
     color: var(--color-text-secondary);
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
     line-height: 1.7;
 }
 
@@ -920,7 +900,6 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 44px; /* Touch-friendly */
 }
 
 .social-sidebar a:hover {
@@ -942,7 +921,7 @@ html {
     text-align: center;
 }
 
-/* Mobile Optimizations */
+/* Responsive Design - Mobile Optimizations */
 @media (max-width: 1024px) {
     .main-container {
         padding: 0 1.5rem;
@@ -995,6 +974,7 @@ html {
 @media (max-width: 768px) {
     html {
         scroll-snap-type: y proximity; /* Less strict snapping on mobile */
+        -webkit-overflow-scrolling: touch;
     }
     
     .main-container {
@@ -1022,7 +1002,7 @@ html {
         padding: 2rem 0;
         transition: left 0.3s ease;
         gap: 1rem;
-        backdrop-filter: blur(15px);
+        backdrop-filter: blur(20px);
     }
     
     .nav-links.open {
@@ -1044,10 +1024,20 @@ html {
     .section {
         padding: calc(var(--header-height) + 1rem) 0 2rem;
         min-height: auto;
+        scroll-snap-align: start;
     }
     
     .section-container {
-        padding: 0;
+        padding: 0 1rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+    
+    .section-title::after {
+        margin-left: 1rem;
     }
     
     .hero-actions {
@@ -1056,22 +1046,10 @@ html {
         gap: 1rem;
     }
     
-    .hero-actions .button {
-        width: 100%;
-        max-width: 300px;
-        justify-content: center;
-    }
-    
     .contact-buttons {
         flex-direction: column;
         align-items: center;
         gap: 1rem;
-    }
-    
-    .contact-buttons .button {
-        width: 100%;
-        max-width: 300px;
-        justify-content: center;
     }
     
     .education-grid,
@@ -1090,24 +1068,28 @@ html {
         height: 300px; /* Slightly taller for mobile */
     }
     
+    .card-front,
+    .card-back {
+        padding: 1.5rem;
+    }
+    
+    /* Disable hover effects on mobile, use tap instead */
     .flip-card:hover .card-inner {
-        transform: none; /* Disable hover on mobile */
+        transform: none;
     }
     
-    .section-title {
-        font-size: 2rem;
-        margin-bottom: 2rem;
+    .flip-card.tapped .card-inner {
+        transform: rotateY(180deg);
     }
     
-    .section-title::after {
-        margin-left: 1rem;
+    .skills-list {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 0.75rem;
     }
     
-    .hero-description,
-    .about-content p,
-    .contact-description {
-        font-size: 1rem;
-        line-height: 1.6;
+    .skill-item {
+        padding: 0.75rem;
+        min-height: 80px;
     }
 }
 
@@ -1118,6 +1100,15 @@ html {
     
     .nav-container {
         padding: 0 1rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .section-title::after {
+        margin-left: 0.5rem;
     }
     
     .hero-title {
@@ -1133,22 +1124,12 @@ html {
     }
     
     .flip-card {
-        height: 250px;
+        height: 280px;
     }
     
     .card-front,
     .card-back {
-        padding: 1.5rem;
-    }
-    
-    .skills-list {
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-        gap: 0.75rem;
-    }
-    
-    .skill-item {
-        padding: 0.75rem;
-        min-height: 70px;
+        padding: 1.25rem;
     }
     
     .certifications-grid {
@@ -1160,22 +1141,18 @@ html {
     }
     
     .tab-button {
-        padding: 0.75rem 0.75rem;
+        padding: 0.75rem 1rem;
         font-size: 0.8rem;
         min-width: 100px;
     }
     
-    .section-title {
-        font-size: 1.8rem;
-        margin-bottom: 1.5rem;
-    }
-    
-    .section-title::after {
-        margin-left: 0.5rem;
+    .button {
+        font-size: 0.85rem;
+        padding: 0.75rem 1.25rem;
     }
 }
 
-/* Accessibility & Performance */
+/* Performance Optimizations */
 @media (prefers-reduced-motion: reduce) {
     * {
         animation-duration: 0.01ms !important;
@@ -1184,8 +1161,7 @@ html {
         scroll-behavior: auto !important;
     }
     
-    .flip-card:hover .card-inner,
-    .flip-card.tapped .card-inner {
+    .flip-card:hover .card-inner {
         transform: none;
     }
     
@@ -1199,47 +1175,28 @@ html {
     }
 }
 
-/* High Contrast Mode */
-@media (prefers-contrast: high) {
-    :root {
-        --color-bg: #000000;
-        --color-bg-card: #1a1a1a;
-        --color-text-primary: #ffffff;
-        --color-text-secondary: #cccccc;
-        --color-accent-copper: #ff6b35;
-        --color-accent-cyan: #00ffff;
-    }
-}
-
-/* Print Styles */
-@media print {
-    .loader,
-    .main-header,
-    .social-sidebar,
-    #interactive-bg,
-    .mobile-menu-toggle {
-        display: none !important;
-    }
-    
-    .section {
-        page-break-inside: avoid;
-        padding: 1rem 0;
-        min-height: auto;
-        opacity: 1;
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .flip-card:hover .card-inner {
         transform: none;
     }
     
-    .flip-card .card-inner {
-        transform: none !important;
+    .skill-item:hover {
+        background: rgba(100, 255, 218, 0.05);
+        transform: none;
     }
     
-    .card-back {
-        display: none;
+    .skill-category:hover {
+        transform: none;
+        box-shadow: var(--box-shadow);
+        border-color: rgba(100, 255, 218, 0.1);
     }
-    
-    .contact-buttons .button {
-        border: 1px solid #000;
-        color: #000;
-        background: transparent;
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .skill-item.xilinx-vivado i,
+    .skill-item.xilinx-vitis i {
+        background-size: contain;
     }
 }
