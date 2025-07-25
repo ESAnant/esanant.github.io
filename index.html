@@ -2,9 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Edidi Sai Anant - VLSI & Computer Architecture Specialist</title>
     <meta name="description" content="VLSI Design and Computer Architecture Specialist - Master's graduate from NUS specializing in semiconductor technology and embedded systems.">
+    
+    <!-- Mobile Optimizations -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#0a0e1a">
+    <meta name="mobile-web-app-capable" content="yes">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,10 +48,10 @@
     <!-- Interactive Background -->
     <div id="interactive-bg"></div>
 
-    <!-- Clean Navigation Banner - ESA removed -->
+    <!-- Clean Navigation Banner with Mobile Menu -->
     <header class="main-header">
         <nav class="nav-container">
-            <ul class="nav-links">
+            <ul class="nav-links" id="nav-links">
                 <li><a href="#hero" data-section="hero">Home</a></li>
                 <li><a href="#about" data-section="about">About</a></li>
                 <li><a href="#education" data-section="education">Education</a></li>
@@ -56,10 +62,16 @@
                 <li><a href="#skills" data-section="skills">Skills</a></li>
                 <li><a href="#contact" data-section="contact">Contact</a></li>
             </ul>
+            <!-- Mobile Hamburger Menu -->
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </nav>
     </header>
 
-    <!-- Main Content - Sections in correct order -->
+    <!-- Main Content -->
     <main class="main-container">
         <!-- Hero Section -->
         <section id="hero" class="section hero-section">
@@ -447,7 +459,6 @@
                         </div>
                     </div>
 
-
                     <div class="skill-category">
                         <h3>Embedded Systems</h3>
                         <div class="skills-list">
@@ -496,7 +507,7 @@
                         <i class="fas fa-envelope"></i>
                         Say Hello
                     </a>
-                    <a href="https://esanant.github.io/Edidi_Sai_Anant_Resume.pdf" class="button button-outline" target="_blank" rel="noopener noreferrer">
+                    <a href="Edidi_Sai_Anant_Resume.pdf" class="button button-outline" target="_blank" rel="noopener noreferrer">
                         <i class="fas fa-file-pdf"></i>
                         View Resume
                     </a>
