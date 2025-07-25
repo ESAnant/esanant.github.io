@@ -527,11 +527,13 @@ html {
 }
 
 .card-front h4 {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     color: var(--color-text-primary);
     font-weight: 600;
     margin-bottom: auto;
+    line-height: 1.3;
 }
+
 
 .tech-badges {
     display: flex;
@@ -541,22 +543,39 @@ html {
 }
 
 .tech-badge {
-    background: linear-gradient(135deg, var(--color-accent-copper), var(--color-accent-gold));
+    background: linear-gradient(135deg, var(--color-accent-copper), var(--color-accent-cyan));
     color: var(--color-bg);
-    padding: 0.3rem 0.8rem;
+    padding: 0.4rem 1rem;
     border-radius: 20px;
     font-family: var(--font-mono);
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    border: 1px solid rgba(100, 255, 218, 0.2);
 }
+
 
 .card-back p {
     color: var(--color-text-secondary);
-    line-height: 1.6;
-    font-size: 1rem;
+    line-height: 1.7;
+    font-size: 1.05rem;
+    font-weight: 400;
 }
+
+/* Enhanced Project Card Hover Effects */
+.flip-card:hover .card-front {
+    background: linear-gradient(135deg, var(--color-bg-card), rgba(100, 255, 218, 0.05));
+}
+
+.tech-badge:hover {
+    background: linear-gradient(135deg, var(--color-accent-cyan), var(--color-accent-copper));
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
+
+
 
 /* Skills Section */
 .skills-grid {
