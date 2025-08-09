@@ -1,58 +1,37 @@
 /**
- * Enhanced Portfolio Script - Edidi Sai Anant
- * NAND EFA Engineer | Advanced VLSI & Computer Architecture Specialist
- * Performance-optimized with smooth animations and mobile enhancements
+ * Refined Portfolio Script - Balanced Enhancement
+ * Smooth snap navigation with original charm preserved
+ * Edidi Sai Anant - NAND EFA Engineer Portfolio
  */
 
-// Enhanced Configuration and State Management
+// Configuration
 const CONFIG = {
-    // Performance settings
-    INTERSECTION_THRESHOLD: 0.15,
-    DEBOUNCE_DELAY: 16, // ~60fps
+    INTERSECTION_THRESHOLD: 0.2,
+    DEBOUNCE_DELAY: 16,
     SCROLL_DEBOUNCE: 10,
-    RESIZE_DEBOUNCE: 100,
-    PARTICLE_COUNT: window.innerWidth < 768 ? 30 : 50,
     ANIMATION_DURATION: 600,
-    
-    // Mobile detection
+    PARTICLE_COUNT: window.innerWidth < 768 ? 30 : 50,
     IS_MOBILE: window.innerWidth <= 768,
-    IS_TOUCH_DEVICE: 'ontouchstart' in window || navigator.maxTouchPoints > 0,
-    IS_REDUCED_MOTION: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
-    
-    // Selectors (cached for performance)
-    SELECTORS: {
-        loader: '#loader',
-        mobileToggle: '#mobile-menu-toggle',
-        navLinks: '#nav-links',
-        navLinkItems: '.nav-links a',
-        sections: '.section',
-        tabButtons: '.tab-button',
-        tabPanels: '.tab-panel',
-        flipCards: '.flip-card',
-        skillItems: '.skill-item',
-        interactiveBg: '#interactive-bg'
-    }
+    IS_TOUCH_DEVICE: 'ontouchstart' in window,
+    IS_REDUCED_MOTION: window.matchMedia('(prefers-reduced-motion: reduce)').matches
 };
 
-// Enhanced State Management
+// State Management
 const AppState = {
     isLoading: true,
     isMobileMenuOpen: false,
     activeSection: 'hero',
     activeTab: 'micron',
-    scrollDirection: 'down',
+    isNavigating: false,
     lastScrollY: 0,
-    particlesInitialized: false,
-    intersectionObserver: null,
+    scrollDirection: 'down',
     currentFlippedCard: null,
-    touchStartY: 0,
-    isScrolling: false,
-    performanceMode: 'high' // high, medium, low
+    particlesInitialized: false,
+    intersectionObserver: null
 };
 
-// Enhanced Utility Functions
+// Utility Functions
 class Utils {
-    // Performance-optimized debounce
     static debounce(func, wait, immediate = false) {
         let timeout;
         return function executedFunction(...args) {
@@ -67,7 +46,6 @@ class Utils {
         };
     }
 
-    // Smooth throttle for scroll events
     static throttle(func, limit) {
         let inThrottle;
         return function(...args) {
@@ -79,55 +57,39 @@ class Utils {
         };
     }
 
-    // Enhanced smooth scroll with easing
-    static smoothScrollTo(element, offset = 0, duration = CONFIG.ANIMATION_DURATION) {
-        if (CONFIG.IS_REDUCED_MOTION) {
-            element.scrollIntoView({ behavior: 'auto', block: 'start' });
-            return;
-        }
-
-        const targetPosition = element.offsetTop - offset;
-        const startPosition = window.pageYOffset;
-        const distance = targetPosition - startPosition;
-        let startTime = null;
-
-        const easeInOutCubic = t => t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
-
-        function animate(currentTime) {
-            if (startTime === null) startTime = currentTime;
-            const timeElapsed = currentTime - startTime;
-            const progress = Math.min(timeElapsed / duration, 1);
-            const ease = easeInOutCubic(progress);
+    // Enhanced smooth scroll with easing for snap navigation
+    static smoothScrollToSection(targetSection) {
+        return new Promise((resolve) => {
+            const headerOffset = CONFIG.IS_MOBILE ? 80 : 90;
+            const targetPosition = targetSection.offsetTop - headerOffset;
+            const startPosition = window.pageYOffset;
+            const distance = targetPosition - startPosition;
+            const duration = Math.min(800, Math.abs(distance) * 0.8); // Dynamic duration
             
-            window.scrollTo(0, startPosition + distance * ease);
+            let startTime = null;
+
+            // Enhanced easing function for smoother snap
+            const easeInOutQuart = t => t < 0.5 ? 8 * t * t * t * t : 1 - 8 * (--t) * t * t * t;
+
+            const animate = (currentTime) => {
+                if (startTime === null) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                const progress = Math.min(timeElapsed / duration, 1);
+                const ease = easeInOutQuart(progress);
+                
+                window.scrollTo(0, startPosition + distance * ease);
+                
+                if (timeElapsed < duration) {
+                    requestAnimationFrame(animate);
+                } else {
+                    resolve();
+                }
+            };
             
-            if (timeElapsed < duration) {
-                requestAnimationFrame(animate);
-            }
-        }
-        
-        requestAnimationFrame(animate);
+            requestAnimationFrame(animate);
+        });
     }
 
-    // Performance detection
-    static detectPerformance() {
-        const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-        const memory = navigator.deviceMemory || 4;
-        const cores = navigator.hardwareConcurrency || 2;
-        
-        // Check for low-end device indicators
-        if (memory < 2 || cores < 4 || (connection && connection.effectiveType === 'slow-2g')) {
-            return 'low';
-        }
-        
-        if (memory < 4 || cores < 6 || (connection && connection.effectiveType === '2g')) {
-            return 'medium';
-        }
-        
-        return 'high';
-    }
-
-    // Enhanced element visibility check
     static isElementVisible(element, threshold = 0.1) {
         const rect = element.getBoundingClientRect();
         const windowHeight = window.innerHeight || document.documentElement.clientHeight;
@@ -137,40 +99,12 @@ class Utils {
             rect.bottom >= windowHeight * threshold
         );
     }
-
-    // Add CSS class with performance optimization
-    static addClassWithTransition(element, className, callback) {
-        element.classList.add(className);
-        if (callback && !CONFIG.IS_REDUCED_MOTION) {
-            setTimeout(callback, CONFIG.ANIMATION_DURATION);
-        } else if (callback) {
-            callback();
-        }
-    }
-
-    // Enhanced touch event handling
-    static handleTouchEvent(element, onTouchStart, onTouchEnd, onTouchMove) {
-        if (!CONFIG.IS_TOUCH_DEVICE) return;
-
-        element.addEventListener('touchstart', (e) => {
-            AppState.touchStartY = e.touches[0].clientY;
-            if (onTouchStart) onTouchStart(e);
-        }, { passive: true });
-
-        element.addEventListener('touchmove', (e) => {
-            if (onTouchMove) onTouchMove(e);
-        }, { passive: true });
-
-        element.addEventListener('touchend', (e) => {
-            if (onTouchEnd) onTouchEnd(e);
-        }, { passive: true });
-    }
 }
 
-// Enhanced Loader Management
+// Enhanced Loader Manager
 class LoaderManager {
     constructor() {
-        this.loader = document.querySelector(CONFIG.SELECTORS.loader);
+        this.loader = document.querySelector('#loader');
         this.loadStartTime = Date.now();
         this.minLoadTime = 1200; // Minimum loading time for UX
     }
@@ -205,24 +139,16 @@ class LoaderManager {
             }, 800);
         });
     }
-
-    show() {
-        if (!this.loader) return;
-        
-        this.loader.style.display = 'flex';
-        this.loader.classList.remove('hidden');
-        document.body.classList.add('loading');
-        AppState.isLoading = true;
-    }
 }
 
-// Enhanced Navigation Manager
+// Refined Navigation with Smooth Snap
 class NavigationManager {
     constructor() {
         this.header = document.querySelector('.main-header');
-        this.mobileToggle = document.querySelector(CONFIG.SELECTORS.mobileToggle);
-        this.navLinks = document.querySelector(CONFIG.SELECTORS.navLinks);
-        this.navLinkItems = document.querySelectorAll(CONFIG.SELECTORS.navLinkItems);
+        this.mobileToggle = document.querySelector('#mobile-menu-toggle');
+        this.navLinks = document.querySelector('#nav-links');
+        this.navLinkItems = document.querySelectorAll('.nav-links a');
+        this.isNavigating = false;
         
         this.init();
     }
@@ -230,8 +156,115 @@ class NavigationManager {
     init() {
         this.setupMobileMenu();
         this.setupNavigation();
-        this.setupScrollBehavior();
+        this.setupSmoothSnapScroll();
         this.setupKeyboardNavigation();
+    }
+
+    setupNavigation() {
+        this.navLinkItems.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                if (this.isNavigating) return; // Prevent rapid clicks
+                
+                const targetId = link.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                
+                if (targetSection) {
+                    this.navigateToSection(targetSection, link);
+                }
+            });
+
+            // Enhanced hover effects for desktop
+            if (!CONFIG.IS_TOUCH_DEVICE) {
+                link.addEventListener('mouseenter', () => {
+                    if (!CONFIG.IS_REDUCED_MOTION) {
+                        link.style.transform = 'translateY(-2px)';
+                    }
+                });
+
+                link.addEventListener('mouseleave', () => {
+                    if (!CONFIG.IS_REDUCED_MOTION) {
+                        link.style.transform = '';
+                    }
+                });
+            }
+        });
+    }
+
+    navigateToSection(targetSection, clickedLink) {
+        this.isNavigating = true;
+        
+        // Update active states immediately for better UX
+        this.updateActiveNavLink(clickedLink);
+        AppState.activeSection = targetSection.id;
+        
+        // Enhanced smooth scroll with better easing
+        Utils.smoothScrollToSection(targetSection).then(() => {
+            // Update URL after scroll completes
+            if (history.pushState) {
+                history.pushState(null, null, `#${targetSection.id}`);
+            }
+            
+            setTimeout(() => {
+                this.isNavigating = false;
+            }, 300);
+        });
+    }
+
+    updateActiveNavLink(activeLink) {
+        this.navLinkItems.forEach(link => {
+            link.classList.remove('active');
+            link.removeAttribute('aria-current');
+        });
+        
+        if (activeLink) {
+            activeLink.classList.add('active');
+            activeLink.setAttribute('aria-current', 'page');
+        }
+    }
+
+    setupSmoothSnapScroll() {
+        let scrollTimeout;
+        
+        // Enhanced scroll snap behavior
+        const handleScroll = Utils.throttle(() => {
+            if (AppState.isLoading || this.isNavigating) return;
+
+            const currentScrollY = window.pageYOffset;
+            AppState.scrollDirection = currentScrollY > AppState.lastScrollY ? 'down' : 'up';
+            AppState.lastScrollY = currentScrollY;
+
+            clearTimeout(scrollTimeout);
+            
+            scrollTimeout = setTimeout(() => {
+                this.updateActiveNavFromScroll();
+            }, 100);
+        }, CONFIG.SCROLL_DEBOUNCE);
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+    }
+
+    updateActiveNavFromScroll() {
+        const sections = document.querySelectorAll('.section');
+        const scrollPosition = window.pageYOffset + 150;
+        
+        let activeSection = null;
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                activeSection = section;
+            }
+        });
+        
+        if (activeSection && activeSection.id !== AppState.activeSection) {
+            AppState.activeSection = activeSection.id;
+            const activeLink = document.querySelector(`a[href="#${activeSection.id}"]`);
+            this.updateActiveNavLink(activeLink);
+        }
     }
 
     setupMobileMenu() {
@@ -254,7 +287,6 @@ class NavigationManager {
             }
         };
 
-        // Click handler
         this.mobileToggle.addEventListener('click', (e) => {
             e.stopPropagation();
             toggleMenu();
@@ -264,7 +296,7 @@ class NavigationManager {
         this.navLinkItems.forEach(link => {
             link.addEventListener('click', () => {
                 if (CONFIG.IS_MOBILE) {
-                    setTimeout(() => toggleMenu(false), 150);
+                    setTimeout(() => toggleMenu(false), 200);
                 }
             });
         });
@@ -285,111 +317,6 @@ class NavigationManager {
                 this.mobileToggle.focus();
             }
         });
-
-        // Touch gestures for mobile
-        if (CONFIG.IS_TOUCH_DEVICE) {
-            Utils.handleTouchEvent(
-                this.navLinks,
-                (e) => {
-                    AppState.touchStartY = e.touches[0].clientY;
-                },
-                null,
-                (e) => {
-                    const touchY = e.touches[0].clientY;
-                    const deltaY = AppState.touchStartY - touchY;
-                    
-                    // Close menu on upward swipe
-                    if (deltaY > 50 && AppState.isMobileMenuOpen) {
-                        toggleMenu(false);
-                    }
-                }
-            );
-        }
-    }
-
-    setupNavigation() {
-        this.navLinkItems.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                
-                const targetId = link.getAttribute('href').substring(1);
-                const targetSection = document.getElementById(targetId);
-                
-                if (targetSection) {
-                    this.navigateToSection(targetSection, link);
-                }
-            });
-
-            // Enhanced hover effects
-            if (!CONFIG.IS_TOUCH_DEVICE) {
-                link.addEventListener('mouseenter', () => {
-                    if (!CONFIG.IS_REDUCED_MOTION) {
-                        link.style.transform = 'translateY(-2px)';
-                    }
-                });
-
-                link.addEventListener('mouseleave', () => {
-                    if (!CONFIG.IS_REDUCED_MOTION) {
-                        link.style.transform = '';
-                    }
-                });
-            }
-        });
-    }
-
-    navigateToSection(targetSection, clickedLink) {
-        // Update active states
-        this.updateActiveNavLink(clickedLink);
-        AppState.activeSection = targetSection.id;
-        
-        // Smooth scroll to section
-        const headerOffset = CONFIG.IS_MOBILE ? 80 : 90;
-        Utils.smoothScrollTo(targetSection, headerOffset);
-        
-        // Update URL without triggering scroll
-        if (history.pushState) {
-            history.pushState(null, null, `#${targetSection.id}`);
-        }
-    }
-
-    updateActiveNavLink(activeLink) {
-        this.navLinkItems.forEach(link => {
-            link.classList.remove('active');
-            link.removeAttribute('aria-current');
-        });
-        
-        if (activeLink) {
-            activeLink.classList.add('active');
-            activeLink.setAttribute('aria-current', 'page');
-        }
-    }
-
-    setupScrollBehavior() {
-        const handleScroll = Utils.throttle(() => {
-            if (AppState.isLoading) return;
-
-            const currentScrollY = window.pageYOffset;
-            AppState.scrollDirection = currentScrollY > AppState.lastScrollY ? 'down' : 'up';
-            AppState.lastScrollY = currentScrollY;
-            AppState.isScrolling = true;
-
-            // Auto-hide/show header on scroll (optional enhancement)
-            if (CONFIG.IS_MOBILE && Math.abs(currentScrollY - AppState.lastScrollY) > 5) {
-                if (AppState.scrollDirection === 'down' && currentScrollY > 100) {
-                    this.header?.style.setProperty('transform', 'translateY(-100%)');
-                } else {
-                    this.header?.style.setProperty('transform', 'translateY(0)');
-                }
-            }
-
-            // Clear scrolling state after scroll ends
-            clearTimeout(this.scrollTimeout);
-            this.scrollTimeout = setTimeout(() => {
-                AppState.isScrolling = false;
-            }, 150);
-        }, CONFIG.SCROLL_DEBOUNCE);
-
-        window.addEventListener('scroll', handleScroll, { passive: true });
     }
 
     setupKeyboardNavigation() {
@@ -401,13 +328,14 @@ class NavigationManager {
             switch(e.key) {
                 case 'Home':
                     e.preventDefault();
-                    this.navigateToSection(document.getElementById('hero'));
+                    const heroSection = document.getElementById('hero');
+                    if (heroSection) this.navigateToSection(heroSection);
                     break;
                 case 'End':
                     e.preventDefault();
-                    this.navigateToSection(document.getElementById('contact'));
+                    const contactSection = document.getElementById('contact');
+                    if (contactSection) this.navigateToSection(contactSection);
                     break;
-                // Add more keyboard shortcuts as needed
             }
         });
     }
@@ -416,13 +344,10 @@ class NavigationManager {
 // Enhanced Particle Background System
 class ParticleSystem {
     constructor() {
-        this.container = document.querySelector(CONFIG.SELECTORS.interactiveBg);
-        this.particles = [];
-        this.mouse = { x: 0, y: 0 };
-        this.animationId = null;
+        this.container = document.querySelector('#interactive-bg');
         this.isInitialized = false;
         
-        if (CONFIG.IS_REDUCED_MOTION || AppState.performanceMode === 'low') {
+        if (CONFIG.IS_REDUCED_MOTION || CONFIG.IS_MOBILE) {
             return;
         }
         
@@ -437,7 +362,7 @@ class ParticleSystem {
             if (window.particlesJS) {
                 this.initParticlesJS();
             } else {
-                this.initCustomParticles();
+                console.warn('Particles.js not loaded, skipping particle system');
             }
             this.isInitialized = true;
         } catch (error) {
@@ -473,7 +398,7 @@ class ParticleSystem {
                 },
                 move: {
                     enable: true,
-                    speed: AppState.performanceMode === 'high' ? 1 : 0.5,
+                    speed: 1,
                     direction: 'none',
                     random: true,
                     straight: false,
@@ -499,101 +424,10 @@ class ParticleSystem {
         AppState.particlesInitialized = true;
     }
 
-    initCustomParticles() {
-        // Fallback custom particle system
-        this.canvas = document.createElement('canvas');
-        this.ctx = this.canvas.getContext('2d');
-        this.container.appendChild(this.canvas);
-        
-        this.resize();
-        this.createParticles();
-        this.setupMouseTracking();
-        this.animate();
-        
-        window.addEventListener('resize', Utils.debounce(() => this.resize(), CONFIG.RESIZE_DEBOUNCE));
-    }
-
-    createParticles() {
-        this.particles = [];
-        for (let i = 0; i < CONFIG.PARTICLE_COUNT; i++) {
-            this.particles.push({
-                x: Math.random() * this.canvas.width,
-                y: Math.random() * this.canvas.height,
-                vx: (Math.random() - 0.5) * 0.5,
-                vy: (Math.random() - 0.5) * 0.5,
-                size: Math.random() * 3 + 1,
-                color: `hsl(${Math.random() * 60 + 180}, 70%, 60%)`,
-                opacity: Math.random() * 0.5 + 0.2
-            });
-        }
-    }
-
-    resize() {
-        if (!this.canvas) return;
-        
-        this.canvas.width = window.innerWidth;
-        this.canvas.height = window.innerHeight;
-        this.canvas.style.position = 'fixed';
-        this.canvas.style.top = '0';
-        this.canvas.style.left = '0';
-        this.canvas.style.pointerEvents = 'none';
-        this.canvas.style.zIndex = '-1';
-    }
-
-    setupMouseTracking() {
-        if (CONFIG.IS_TOUCH_DEVICE) return;
-
-        document.addEventListener('mousemove', Utils.throttle((e) => {
-            this.mouse.x = e.clientX;
-            this.mouse.y = e.clientY;
-        }, 16), { passive: true });
-    }
-
-    animate() {
-        if (!this.ctx || CONFIG.IS_REDUCED_MOTION) return;
-
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        
-        this.particles.forEach(particle => {
-            // Update position
-            particle.x += particle.vx;
-            particle.y += particle.vy;
-            
-            // Boundary collision
-            if (particle.x < 0 || particle.x > this.canvas.width) particle.vx *= -1;
-            if (particle.y < 0 || particle.y > this.canvas.height) particle.vy *= -1;
-            
-            // Mouse interaction
-            if (!CONFIG.IS_TOUCH_DEVICE) {
-                const dx = this.mouse.x - particle.x;
-                const dy = this.mouse.y - particle.y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-                
-                if (distance < 100) {
-                    particle.x -= dx * 0.01;
-                    particle.y -= dy * 0.01;
-                }
-            }
-            
-            // Draw particle
-            this.ctx.save();
-            this.ctx.globalAlpha = particle.opacity;
-            this.ctx.fillStyle = particle.color;
-            this.ctx.beginPath();
-            this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-            this.ctx.fill();
-            this.ctx.restore();
-        });
-        
-        this.animationId = requestAnimationFrame(() => this.animate());
-    }
-
     destroy() {
-        if (this.animationId) {
-            cancelAnimationFrame(this.animationId);
-        }
-        if (this.canvas) {
-            this.canvas.remove();
+        if (window.pJSDom && window.pJSDom[0] && window.pJSDom[0].pJS) {
+            window.pJSDom[0].pJS.fn.vendors.destroypJS();
+            window.pJSDom = [];
         }
         this.isInitialized = false;
     }
@@ -602,8 +436,7 @@ class ParticleSystem {
 // Enhanced Section Manager with Intersection Observer
 class SectionManager {
     constructor() {
-        this.sections = document.querySelectorAll(CONFIG.SELECTORS.sections);
-        this.navLinks = document.querySelectorAll(CONFIG.SELECTORS.navLinkItems);
+        this.sections = document.querySelectorAll('.section');
         this.observer = null;
         
         this.init();
@@ -617,7 +450,7 @@ class SectionManager {
     createIntersectionObserver() {
         const options = {
             root: null,
-            rootMargin: `-${CONFIG.IS_MOBILE ? 80 : 90}px 0px -60% 0px`,
+            rootMargin: `-${CONFIG.IS_MOBILE ? 80 : 90}px 0px -50% 0px`,
             threshold: CONFIG.INTERSECTION_THRESHOLD
         };
 
@@ -645,20 +478,27 @@ class SectionManager {
 
     handleSectionVisible(section) {
         const sectionId = section.id;
-        AppState.activeSection = sectionId;
         
-        // Update navigation
-        this.updateActiveNavigation(sectionId);
+        // Only update if not currently navigating
+        if (!AppState.isNavigating) {
+            AppState.activeSection = sectionId;
+            this.updateActiveNavigation(sectionId);
+        }
         
         // Trigger section-specific animations
         this.triggerSectionAnimations(section);
     }
 
     updateActiveNavigation(sectionId) {
-        this.navLinks.forEach(link => {
+        const navLinks = document.querySelectorAll('.nav-links a');
+        navLinks.forEach(link => {
             const isActive = link.getAttribute('href') === `#${sectionId}`;
             link.classList.toggle('active', isActive);
-            link.toggleAttribute('aria-current', isActive);
+            if (isActive) {
+                link.setAttribute('aria-current', 'page');
+            } else {
+                link.removeAttribute('aria-current');
+            }
         });
     }
 
@@ -680,8 +520,8 @@ class SectionManager {
 // Enhanced Tab Manager for Experience Section
 class TabManager {
     constructor() {
-        this.tabButtons = document.querySelectorAll(CONFIG.SELECTORS.tabButtons);
-        this.tabPanels = document.querySelectorAll(CONFIG.SELECTORS.tabPanels);
+        this.tabButtons = document.querySelectorAll('.tab-button');
+        this.tabPanels = document.querySelectorAll('.tab-panel');
         
         this.init();
     }
@@ -700,7 +540,7 @@ class TabManager {
                 this.switchTab(tabName, button);
             });
 
-            // Enhanced hover effects
+            // Enhanced hover effects for desktop
             if (!CONFIG.IS_TOUCH_DEVICE) {
                 button.addEventListener('mouseenter', () => {
                     if (!CONFIG.IS_REDUCED_MOTION) {
@@ -798,41 +638,39 @@ class TabManager {
         let startX = 0;
         let currentIndex = 0;
 
-        Utils.handleTouchEvent(
-            tabContainer,
-            (e) => {
-                startX = e.touches[0].clientX;
-                currentIndex = Array.from(this.tabButtons).findIndex(btn => btn.classList.contains('active'));
-            },
-            (e) => {
-                const endX = e.changedTouches[0].clientX;
-                const diff = startX - endX;
-                const threshold = 50;
+        tabContainer.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            currentIndex = Array.from(this.tabButtons).findIndex(btn => btn.classList.contains('active'));
+        }, { passive: true });
 
-                if (Math.abs(diff) > threshold) {
-                    let newIndex = currentIndex;
-                    
-                    if (diff > 0 && currentIndex < this.tabButtons.length - 1) {
-                        newIndex = currentIndex + 1;
-                    } else if (diff < 0 && currentIndex > 0) {
-                        newIndex = currentIndex - 1;
-                    }
-                    
-                    if (newIndex !== currentIndex) {
-                        const newButton = this.tabButtons[newIndex];
-                        this.switchTab(newButton.dataset.tab, newButton);
-                    }
+        tabContainer.addEventListener('touchend', (e) => {
+            const endX = e.changedTouches[0].clientX;
+            const diff = startX - endX;
+            const threshold = 50;
+
+            if (Math.abs(diff) > threshold) {
+                let newIndex = currentIndex;
+                
+                if (diff > 0 && currentIndex < this.tabButtons.length - 1) {
+                    newIndex = currentIndex + 1;
+                } else if (diff < 0 && currentIndex > 0) {
+                    newIndex = currentIndex - 1;
+                }
+                
+                if (newIndex !== currentIndex) {
+                    const newButton = this.tabButtons[newIndex];
+                    this.switchTab(newButton.dataset.tab, newButton);
                 }
             }
-        );
+        }, { passive: true });
     }
 }
 
 // Enhanced Card Interaction Manager
 class CardManager {
     constructor() {
-        this.flipCards = document.querySelectorAll(CONFIG.SELECTORS.flipCards);
-        this.skillItems = document.querySelectorAll(CONFIG.SELECTORS.skillItems);
+        this.flipCards = document.querySelectorAll('.flip-card');
+        this.skillItems = document.querySelectorAll('.skill-item');
         
         this.init();
     }
@@ -859,18 +697,16 @@ class CardManager {
             if (CONFIG.IS_TOUCH_DEVICE) {
                 let touchStartTime = 0;
                 
-                Utils.handleTouchEvent(
-                    card,
-                    () => {
-                        touchStartTime = Date.now();
-                    },
-                    () => {
-                        const touchDuration = Date.now() - touchStartTime;
-                        if (touchDuration < 300) { // Quick tap
-                            this.toggleCard(card);
-                        }
+                card.addEventListener('touchstart', () => {
+                    touchStartTime = Date.now();
+                }, { passive: true });
+
+                card.addEventListener('touchend', () => {
+                    const touchDuration = Date.now() - touchStartTime;
+                    if (touchDuration < 300) { // Quick tap
+                        this.toggleCard(card);
                     }
-                );
+                }, { passive: true });
             }
 
             // Auto-flip back on mobile after delay
@@ -903,14 +739,14 @@ class CardManager {
 
     setupSkillCards() {
         this.skillItems.forEach(item => {
-            // Enhanced hover effects
+            // Enhanced hover effects for desktop
             if (!CONFIG.IS_TOUCH_DEVICE && !CONFIG.IS_REDUCED_MOTION) {
                 item.addEventListener('mouseenter', () => {
-                    item.style.transform = 'translateY(-8px) scale(1.05)';
+                    item.style.transform = 'translateY(-3px) scale(1.02)';
                     
                     const icon = item.querySelector('i');
                     if (icon) {
-                        icon.style.transform = 'scale(1.2) rotate(5deg)';
+                        icon.style.transform = 'scale(1.1)';
                     }
                 });
 
@@ -924,10 +760,10 @@ class CardManager {
                 });
             }
 
-            // Touch feedback
+            // Touch feedback for mobile
             if (CONFIG.IS_TOUCH_DEVICE) {
                 item.addEventListener('touchstart', () => {
-                    item.style.transform = 'scale(0.95)';
+                    item.style.transform = 'scale(0.98)';
                 }, { passive: true });
 
                 item.addEventListener('touchend', () => {
@@ -961,56 +797,7 @@ class CardManager {
     }
 }
 
-// Enhanced Performance Monitor
-class PerformanceMonitor {
-    constructor() {
-        this.frameCount = 0;
-        this.lastTime = performance.now();
-        this.fps = 60;
-        this.isMonitoring = false;
-    }
-
-    start() {
-        this.isMonitoring = true;
-        this.monitor();
-    }
-
-    stop() {
-        this.isMonitoring = false;
-    }
-
-    monitor() {
-        if (!this.isMonitoring) return;
-
-        const currentTime = performance.now();
-        this.frameCount++;
-
-        if (currentTime - this.lastTime >= 1000) {
-            this.fps = Math.round((this.frameCount * 1000) / (currentTime - this.lastTime));
-            this.frameCount = 0;
-            this.lastTime = currentTime;
-
-            // Adjust performance based on FPS
-            this.adjustPerformance();
-        }
-
-        requestAnimationFrame(() => this.monitor());
-    }
-
-    adjustPerformance() {
-        if (this.fps < 30 && AppState.performanceMode !== 'low') {
-            AppState.performanceMode = 'low';
-            document.body.classList.add('low-performance');
-            console.warn('Performance degraded, switching to low performance mode');
-        } else if (this.fps > 45 && AppState.performanceMode === 'low') {
-            AppState.performanceMode = 'medium';
-            document.body.classList.remove('low-performance');
-            console.info('Performance improved, switching to medium performance mode');
-        }
-    }
-}
-
-// Enhanced Application Class
+// Main Application Class
 class PortfolioApp {
     constructor() {
         this.loader = new LoaderManager();
@@ -1019,26 +806,14 @@ class PortfolioApp {
         this.sections = null;
         this.tabs = null;
         this.cards = null;
-        this.performanceMonitor = new PerformanceMonitor();
         
         this.init();
     }
 
     async init() {
         try {
-            // Detect performance capabilities
-            AppState.performanceMode = Utils.detectPerformance();
-            
-            // Apply performance class to body
-            document.body.classList.add(`performance-${AppState.performanceMode}`);
-            
             // Initialize core systems
             await this.initializeSystems();
-            
-            // Start performance monitoring in development
-            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-                this.performanceMonitor.start();
-            }
             
             console.info('Portfolio application initialized successfully');
         } catch (error) {
@@ -1064,7 +839,7 @@ class PortfolioApp {
         this.cards = new CardManager();
         
         // Initialize particle system (least critical)
-        if (AppState.performanceMode !== 'low') {
+        if (!CONFIG.IS_REDUCED_MOTION && !CONFIG.IS_MOBILE) {
             setTimeout(() => {
                 this.particles = new ParticleSystem();
             }, 500);
@@ -1107,7 +882,7 @@ class PortfolioApp {
             if (this.particles && !CONFIG.IS_REDUCED_MOTION) {
                 CONFIG.PARTICLE_COUNT = CONFIG.IS_MOBILE ? 20 : 40;
             }
-        }, CONFIG.RESIZE_DEBOUNCE);
+        }, 200);
 
         window.addEventListener('resize', handleResize, { passive: true });
     }
@@ -1119,15 +894,13 @@ class PortfolioApp {
                 if (this.particles) {
                     this.particles.destroy();
                 }
-                this.performanceMonitor.stop();
             } else {
                 // Resume animations when page becomes visible
-                if (!CONFIG.IS_REDUCED_MOTION && AppState.performanceMode !== 'low') {
+                if (!CONFIG.IS_REDUCED_MOTION && !CONFIG.IS_MOBILE) {
                     setTimeout(() => {
                         this.particles = new ParticleSystem();
                     }, 500);
                 }
-                this.performanceMonitor.start();
             }
         });
     }
@@ -1147,8 +920,8 @@ class PortfolioApp {
     handleMobileStateChange() {
         // Close mobile menu if switching to desktop
         if (!CONFIG.IS_MOBILE && AppState.isMobileMenuOpen) {
-            const mobileToggle = document.querySelector(CONFIG.SELECTORS.mobileToggle);
-            const navLinks = document.querySelector(CONFIG.SELECTORS.navLinks);
+            const mobileToggle = document.querySelector('#mobile-menu-toggle');
+            const navLinks = document.querySelector('#nav-links');
             
             if (mobileToggle && navLinks) {
                 mobileToggle.classList.remove('active');
@@ -1161,15 +934,12 @@ class PortfolioApp {
 
     handleError(error) {
         // Graceful error handling - don't break the user experience
-        if (AppState.performanceMode !== 'low') {
-            AppState.performanceMode = 'low';
-            document.body.classList.add('low-performance');
-            
-            // Destroy resource-intensive features
-            if (this.particles) {
-                this.particles.destroy();
-                this.particles = null;
-            }
+        console.warn('Handling error gracefully:', error);
+        
+        // Destroy resource-intensive features if needed
+        if (this.particles) {
+            this.particles.destroy();
+            this.particles = null;
         }
     }
 
@@ -1198,7 +968,7 @@ class PortfolioApp {
     }
 }
 
-// Enhanced Initialization with Error Handling
+// Initialize Application
 document.addEventListener('DOMContentLoaded', () => {
     try {
         // Initialize the application
@@ -1241,6 +1011,19 @@ window.addEventListener('pageshow', (e) => {
     if (e.persisted) {
         // Page was restored from cache, reinitialize if needed
         location.reload();
+    }
+});
+
+// Handle hash changes from browser navigation
+window.addEventListener('hashchange', () => {
+    const hash = window.location.hash;
+    if (hash) {
+        const targetSection = document.querySelector(hash);
+        if (targetSection) {
+            setTimeout(() => {
+                Utils.smoothScrollToSection(targetSection);
+            }, 100);
+        }
     }
 });
 
