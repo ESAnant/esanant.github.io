@@ -1,6 +1,6 @@
-// Portfolio JS – Edidi Sai Anant
+// Advanced, accessible, performant portfolio JS for Edidi Sai Anant
 document.addEventListener("DOMContentLoaded", () => {
-  // ------ Elements ------
+  // ---- Elements ----
   const loader = document.getElementById("loader");
   const navLinks = document.querySelectorAll(".nav-links a");
   const sections = document.querySelectorAll(".section");
@@ -9,12 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const flipCards = document.querySelectorAll(".flip-card");
   const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
   const navLinksContainer = document.getElementById("nav-links");
-
-  // ------ State ------
   let isScrolling = false;
   let isMobile = window.innerWidth <= 768;
 
-  // ------ Init (call all setup) ------
+  // ---- Init all features ----
   setupLoader();
   setupParticles();
   setupNavigation();
@@ -26,23 +24,21 @@ document.addEventListener("DOMContentLoaded", () => {
   setupAccessibility();
   setupPerformanceOptimizations();
 
-  // -----------------------------------
-  // Loader
+  // Loader effect
   function setupLoader() {
     if (!loader) return;
     document.body.classList.add('loading');
     setTimeout(() => {
       loader.classList.add("hidden");
       document.body.classList.remove('loading');
-      const heroSection = document.getElementById("hero");
+      const heroSection = document.querySelector("#hero");
       if (heroSection) heroSection.classList.add("visible");
     }, 2000);
   }
 
-  // -----------------------------------
-  // Particles.js background (mobile-aware)
+  // Particles.js background, mobile-aware (add particles.js via CDN as-needed)
   function setupParticles() {
-    if (typeof particlesJS !== "undefined") {
+    if (typeof particlesJS !== "undefined" && document.getElementById("interactive-bg")) {
       try {
         particlesJS("interactive-bg", {
           particles: {
@@ -52,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
             opacity: { value: isMobile ? 0.2 : 0.3, random: true, anim: { enable: true, speed: 1, opacity_min: 0.1 } },
             size: { value: isMobile ? 1.5 : 2, random: true, anim: { enable: true, speed: 2, size_min: 0.1 } },
             line_linked: { enable: true, distance: isMobile ? 100 : 150, color: "#d38a5c", opacity: 0.2, width: 1 },
-            move: { enable: true, speed: isMobile ? 0.5 : 1, direction: "none", random: true, straight: false, out_mode: "out", bounce: false }
+            move: { enable: true, speed: isMobile ? 0.5 : 1, direction: "none", random: true, straight: false, out_mode: "out" }
           },
           interactivity: {
             detect_on: "canvas",
@@ -69,12 +65,11 @@ document.addEventListener("DOMContentLoaded", () => {
           },
           retina_detect: true
         });
-      } catch (e) { /* ignore initialization errors */ }
+      } catch (e) { /* Do nothing if particle load fails */ }
     }
   }
 
-  // -----------------------------------
-  // Navigation (click & keyboard)
+  // Nav click and keyboard: scroll, highlight
   function setupNavigation() {
     navLinks.forEach(link => {
       link.addEventListener("click", e => {
@@ -86,16 +81,14 @@ document.addEventListener("DOMContentLoaded", () => {
         updateActiveNavLink(targetId.replace("#", ""));
       });
     });
-
     document.addEventListener("keydown", e => {
       if (e.key === "ArrowDown" || e.key === "PageDown") { e.preventDefault(); scrollToNextSection(); }
-      else if (e.key === "ArrowUp" || e.key === "PageUp") { e.preventDefault(); scrollToPrevSection(); }
-      else if (e.key === "Escape" && isMobile) { closeMobileMenu(); }
+      if (e.key === "ArrowUp" || e.key === "PageUp")   { e.preventDefault(); scrollToPrevSection(); }
+      if (e.key === "Escape" && isMobile) closeMobileMenu();
     });
   }
 
-  // -----------------------------------
-  // Mobile Menu (open/close + a11y)
+  // Mobile menu show/hide
   function setupMobileMenu() {
     if (!mobileMenuToggle || !navLinksContainer) return;
     mobileMenuToggle.addEventListener("click", toggleMobileMenu);
@@ -126,8 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.remove("menu-open");
   }
 
-  // -----------------------------------
-  // Tabs (Experience, etc)
+  // Tabs: experience, accessible, keyboard
   function setupTabs() {
     tabButtons.forEach(btn => {
       btn.addEventListener("click", () => {
@@ -144,8 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // -----------------------------------
-  // Flip Cards (keyboard & touch/mobile)
+  // Flip cards: hover, tap, keyboard
   function setupFlipCards() {
     flipCards.forEach(card => {
       let isFlipped = false;
@@ -180,8 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // -----------------------------------
-  // Scroll Snap (desktop wheel & mobile swipe)
+  // Desktop wheel scroll and mobile swipe snap navigation
   function setupScrollSnap() {
     let wheelTimeout;
     if (!isMobile) {
@@ -190,8 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
         clearTimeout(wheelTimeout);
         wheelTimeout = setTimeout(() => {
           const delta = Math.sign(e.deltaY);
-          if (delta > 0) scrollToNextSection(); 
-          else scrollToPrevSection();
+          if (delta > 0) scrollToNextSection(); else scrollToPrevSection();
         }, 50);
       }, { passive: true });
     }
@@ -215,27 +204,26 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // -----------------------------------
-  // Intersection Observer - animate-in & update nav
+  // Reveal sections and update nav on scroll using IntersectionObserver
   function setupIntersectionObserver() {
     const obsOpts = { root: null, rootMargin: isMobile ? "-20% 0px -20% 0px" : "-10% 0px -10% 0px", threshold: isMobile ? 0.3 : 0.5 };
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add("visible");
-        updateActiveNavLink(entry.target.id);
-        animateSectionContent(entry.target);
-      });
-    }, obsOpts);
-    sections.forEach(s => io.observe(s));
-    // Fallback for very old browsers
-    if (!("IntersectionObserver" in window)) {
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("visible");
+          updateActiveNavLink(entry.target.id);
+          animateSectionContent(entry.target);
+        });
+      }, obsOpts);
+      sections.forEach(s => io.observe(s));
+    } else {
+      // Fallback for unsupported browsers
       sections.forEach(s => s.classList.add("visible"));
     }
   }
 
-  // -----------------------------------
-  // Accessibility (live region, mobile focus)
+  // Accessibility and live regions
   function setupAccessibility() {
     const announcer = document.createElement("div");
     announcer.setAttribute("aria-live", "polite");
@@ -245,18 +233,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const original = updateActiveNavLink;
     updateActiveNavLink = function(sectionId) {
       original(sectionId);
-      const sectionName = sectionId.charAt(0).toUpperCase() + sectionId.slice(1);
-      announcer.textContent = `Navigated to ${sectionName} section`;
+      if (!sectionId) return;
+      const name = sectionId.charAt(0).toUpperCase() + sectionId.slice(1);
+      announcer.textContent = `Navigated to ${name} section`;
     };
-    if (isMobile) {
-      document.querySelectorAll("[tabindex]").forEach(el => {
-        el.addEventListener("touchstart", () => el.focus());
-      });
-    }
-    // Error fallback and iOS
-    window.addEventListener('error', () => {
-      if (loader && !loader.classList.contains('hidden')) loader.classList.add("hidden");
-    });
+    // iOS double-tap prevention
     let lastTouchEnd = 0;
     document.addEventListener('touchend', function(event) {
       const now = Date.now();
@@ -268,10 +249,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const viewport = document.querySelector('meta[name="viewport"]');
       if (viewport) viewport.content = "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover";
     }
+    // Error fallback: ensure loader always gets hidden on error
+    window.addEventListener('error', () => {
+      if (loader && !loader.classList.contains('hidden')) loader.classList.add("hidden");
+    });
   }
 
-  // -----------------------------------
-  // Performance & Device Optimizations
+  // Device & performance optimizations
   function setupPerformanceOptimizations() {
     let resizeTimeout;
     window.addEventListener("resize", () => {
@@ -279,14 +263,11 @@ document.addEventListener("DOMContentLoaded", () => {
       resizeTimeout = setTimeout(() => {
         const wasMobile = isMobile;
         isMobile = window.innerWidth <= 768;
-        if (wasMobile !== isMobile) {
-          setupParticles();
-          setupFlipCards();
-        }
+        if (wasMobile !== isMobile) { setupParticles(); setupFlipCards(); }
         if (!isMobile && navLinksContainer.classList.contains("open")) closeMobileMenu();
       }, 250);
     });
-    // Network-aware BG
+    // Network aware: disable bg on slow connection
     if ("connection" in navigator) {
       const conn = navigator.connection;
       if (conn.effectiveType === "slow-2g" || conn.effectiveType === "2g") {
@@ -294,10 +275,9 @@ document.addEventListener("DOMContentLoaded", () => {
         if (bg) bg.style.display = 'none';
       }
     }
-    if (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) {
-      document.body.classList.add("low-performance");
-    }
-    // Styles for low-performance/reduced-motion
+    // Very low-power optimization
+    if (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) document.body.classList.add("low-performance");
+    // Reduced motion for accessibility (also CSS will take effect)
     const style = document.createElement('style');
     style.textContent = `
       .low-performance * { animation-duration: 0.1s !important; transition-duration: 0.1s !important; }
@@ -312,8 +292,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.head.appendChild(style);
   }
 
-  // -----------------------------------
-  // Helpers
+
+  // Helpers: scroll and active nav
   function getCurrentSectionIndex() {
     const y = window.scrollY + window.innerHeight / 2;
     for (let i = 0; i < sections.length; i++) {
@@ -332,12 +312,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   function scrollToNextSection() { scrollToSection(getCurrentSectionIndex() + 1); }
   function scrollToPrevSection() { scrollToSection(getCurrentSectionIndex() - 1); }
-
   function updateActiveNavLink(sectionId) {
     navLinks.forEach(link => {
       link.classList.toggle("active", link.dataset.section === sectionId);
     });
   }
+  // Animate content reveal for cards, panels, grids
   function animateSectionContent(section) {
     const items = section.querySelectorAll(".education-card, .cert-card, .skill-category, .flip-card, .publication-item, .patent-item");
     items.forEach((el, idx) => {
@@ -353,7 +333,4 @@ document.addEventListener("DOMContentLoaded", () => {
       }, delay);
     });
   }
-
-  // -----------------------
-  // End DOMContentLoaded
 });
