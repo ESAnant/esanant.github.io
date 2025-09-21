@@ -1,18 +1,6 @@
-// Advanced Portfolio JavaScript - Edidi Sai Anant - Mobile Enhanced & Smoother UX
+// Advanced Portfolio JavaScript - Edidi Sai Anant - Mobile Enhanced
 
 document.addEventListener("DOMContentLoaded", () => {
-
-    // ADDED: Lenis smooth scrolling initialization
-    const lenis = new Lenis()
-
-    function raf(time) {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
-    }
-
-    requestAnimationFrame(raf);
-    // END: Lenis smooth scrolling initialization
-
     // Elements
     const loader = document.getElementById("loader");
     const header = document.querySelector(".main-header");
@@ -42,10 +30,11 @@ document.addEventListener("DOMContentLoaded", () => {
         setupIntersectionObserver();
         setupAccessibility();
         setupPerformanceOptimizations();
-        setupCursorFollower(); // ADDED: setup for cursor
     }
     
     // Loader Animation
+    // In your existing script.js, update the loader setup function:
+
     function setupLoader() {
         // Add loading class to body
         document.body.classList.add('loading');
@@ -143,8 +132,10 @@ document.addEventListener("DOMContentLoaded", () => {
                         closeMobileMenu();
                     }
                     
-                    // Use Lenis for smooth scroll
-                    lenis.scrollTo(targetSection);
+                    targetSection.scrollIntoView({ 
+                        behavior: "smooth",
+                        block: "start"
+                    });
                     
                     updateActiveNavLink(targetId.substring(1));
                 }
@@ -301,14 +292,80 @@ document.addEventListener("DOMContentLoaded", () => {
                         card.classList.remove("mobile-flipped");
                     }
                 });
+            } else {
+                // Desktop hover handling
+                card.addEventListener("mouseenter", () => {
+                    card.classList.add("mobile-flipped");
+                });
+                
+                card.addEventListener("mouseleave", () => {
+                    card.classList.remove("mobile-flipped");
+                });
             }
         });
     }
     
     // Scroll Snap Functionality - Mobile Optimized
     function setupScrollSnap() {
-        // Scroll snapping is now primarily handled by CSS and the smooth scrolling library (Lenis)
-        // This function can be simplified or removed if Lenis handles all desired scroll behavior.
+        let wheelTimeout;
+        
+        // Desktop wheel event handling
+        if (!isMobile) {
+            document.addEventListener("wheel", (e) => {
+                if (isScrolling) return;
+                
+                clearTimeout(wheelTimeout);
+                wheelTimeout = setTimeout(() => {
+                    const delta = Math.sign(e.deltaY);
+                    
+                    if (delta > 0) {
+                        scrollToNextSection();
+                    } else {
+                        scrollToPrevSection();
+                    }
+                }, 50);
+            }, { passive: true });
+        }
+        
+        // Mobile touch handling for swipe navigation
+        if (isMobile) {
+            let startY = 0;
+            let endY = 0;
+            let isSwipeNavigation = false;
+            
+            document.addEventListener("touchstart", (e) => {
+                if (navLinksContainer.classList.contains("open")) return;
+                startY = e.touches[0].clientY;
+                isSwipeNavigation = false;
+            }, { passive: true });
+            
+            document.addEventListener("touchmove", (e) => {
+                if (navLinksContainer.classList.contains("open")) return;
+                endY = e.touches[0].clientY;
+                const deltaY = Math.abs(startY - endY);
+                
+                if (deltaY > 50) {
+                    isSwipeNavigation = true;
+                }
+            }, { passive: true });
+            
+            document.addEventListener("touchend", () => {
+                if (navLinksContainer.classList.contains("open")) return;
+                
+                if (isSwipeNavigation && !isScrolling) {
+                    const deltaY = startY - endY;
+                    const threshold = 80;
+                    
+                    if (Math.abs(deltaY) > threshold) {
+                        if (deltaY > 0) {
+                            scrollToNextSection();
+                        } else {
+                            scrollToPrevSection();
+                        }
+                    }
+                }
+            }, { passive: true });
+        }
     }
     
     // Intersection Observer
@@ -370,24 +427,33 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Helper Functions
     function getCurrentSectionIndex() {
-        let currentSectionIndex = 0;
-        let minDistance = Infinity;
-
-        sections.forEach((section, index) => {
+        const scrollPosition = window.scrollY + window.innerHeight / 2;
+        
+        for (let i = 0; i < sections.length; i++) {
+            const section = sections[i];
             const rect = section.getBoundingClientRect();
-            // Check distance from the top of the viewport
-            const distance = Math.abs(rect.top);
-            if (distance < minDistance) {
-                minDistance = distance;
-                currentSectionIndex = index;
+            const sectionTop = rect.top + window.scrollY;
+            const sectionBottom = sectionTop + rect.height;
+            
+            if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                return i;
             }
-        });
-        return currentSectionIndex;
+        }
+        return 0;
     }
     
     function scrollToSection(index) {
-        if (index >= 0 && index < sections.length) {
-            lenis.scrollTo(sections[index]);
+        if (index >= 0 && index < sections.length && !isScrolling) {
+            isScrolling = true;
+            
+            sections[index].scrollIntoView({ 
+                behavior: "smooth",
+                block: "start"
+            });
+            
+            setTimeout(() => {
+                isScrolling = false;
+            }, isMobile ? 800 : 1000);
         }
     }
     
@@ -421,8 +487,7 @@ document.addEventListener("DOMContentLoaded", () => {
             setTimeout(() => {
                 element.style.opacity = "0";
                 element.style.transform = "translateY(30px)";
-                // UPDATED: Refined easing function for a smoother animation
-                element.style.transition = "opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1), transform 0.8s cubic-bezier(0.23, 1, 0.32, 1)";
+                element.style.transition = "opacity 0.6s ease-out, transform 0.6s ease-out";
                 
                 requestAnimationFrame(() => {
                     element.style.opacity = "1";
@@ -450,7 +515,7 @@ document.addEventListener("DOMContentLoaded", () => {
         updateActiveNavLink = function(sectionId) {
             originalUpdateActiveNavLink(sectionId);
             const sectionName = sectionId.charAt(0).toUpperCase() + sectionId.slice(1);
-            announcer.textContent = `Mapsd to ${sectionName} section`;
+            announcer.textContent = `Navigated to ${sectionName} section`;
         };
         
         // Enhanced focus management for mobile
@@ -458,33 +523,6 @@ document.addEventListener("DOMContentLoaded", () => {
             document.querySelectorAll("[tabindex]").forEach(element => {
                 element.addEventListener("touchstart", () => {
                     element.focus();
-                });
-            });
-        }
-    }
-
-    // ADDED: Custom Cursor Follower Logic
-    function setupCursorFollower() {
-        if (!isMobile) {
-            const follower = document.createElement('div');
-            follower.classList.add('cursor-follower');
-            document.body.appendChild(follower);
-
-            window.addEventListener('mousemove', e => {
-                // Using transform for smoother movement
-                follower.style.transform = `translate3d(${e.clientX - 15}px, ${e.clientY - 15}px, 0)`;
-            });
-
-            document.querySelectorAll('a, button, .flip-card, .skill-item, .tab-button').forEach(el => {
-                el.addEventListener('mouseenter', () => {
-                    follower.style.width = '50px';
-                    follower.style.height = '50px';
-                    follower.style.backgroundColor = 'rgba(211, 138, 92, 0.1)';
-                });
-                el.addEventListener('mouseleave', () => {
-                    follower.style.width = '30px';
-                    follower.style.height = '30px';
-                    follower.style.backgroundColor = 'transparent';
                 });
             });
         }
