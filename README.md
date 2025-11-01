@@ -4,9 +4,6 @@ This repository contains the source code for my personal portfolio website, buil
 
 **[➡️ View the Live Site](https://esanant.github.io)**
 
-![A screenshot of the portfolio website's hero section](https://i.imgur.com/example.png)
-*(Suggestion: Take a screenshot of your site, upload it to a service like Imgur, and replace this link)*
-
 ---
 
 ### 🚀 Features
