@@ -1,264 +1,526 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#080b10" />
-  <meta name="description" content="Edidi Sai Anant is a NAND Electrical Failure Analysis Engineer at Micron, working in NTI / NAND R&D across semiconductor debug, tools, automation, AI workflows, VLSI, FPGA, and embedded systems." />
-  <meta name="author" content="Edidi Sai Anant" />
-  <meta property="og:title" content="Edidi Sai Anant | NAND Electrical Failure Analysis Engineer" />
-  <meta property="og:description" content="Semiconductor FA engineer at Micron NTI / NAND R&D. Tools, automation, AI workflows, VLSI, FPGA, and embedded systems." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://esanant.github.io/" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <title>Edidi Sai Anant | NAND EFA Engineer</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edidi Sai Anant — NAND EFA Engineer</title>
+  <meta name="description" content="Edidi Sai Anant — NAND Electrical Failure Analysis Engineer at Micron Technology, Singapore. Semiconductor engineer, tool builder, vibe coder.">
+  <meta name="theme-color" content="#070b16">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Edidi Sai Anant — NAND EFA Engineer">
+  <meta property="og:description" content="Semiconductor engineer at Micron NTI. I find out why bits misbehave.">
+  <meta property="og:type" content="website">
 
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/responsive.css" />
+  <!-- Fonts: Instrument Serif (name), DM Sans (body), JetBrains Mono (code) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Edidi Sai Anant",
-    "url": "https://esanant.github.io/",
-    "email": "mailto:esanant@gmail.com",
-    "sameAs": [
-      "https://www.linkedin.com/in/sai-anant/",
-      "https://github.com/ESAnant"
-    ],
-    "jobTitle": "NAND Electrical Failure Analysis Engineer",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "Micron Technology"
-    },
-    "knowsAbout": [
-      "Electrical Failure Analysis",
-      "NAND Flash Memory",
-      "Semiconductor Yield Analysis",
-      "Automation",
-      "AI-assisted Engineering Workflows",
-      "VLSI Design",
-      "FPGA Acceleration",
-      "Embedded Systems"
-    ]
-  }
-  </script>
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Favicon: copper-tinted die -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%23070b16'/><rect x='22' y='22' width='56' height='56' rx='4' fill='none' stroke='%23d38a5c' stroke-width='3'/><line x1='38' y1='22' x2='38' y2='10' stroke='%23d38a5c' stroke-width='2'/><line x1='50' y1='22' x2='50' y2='10' stroke='%23d38a5c' stroke-width='2'/><line x1='62' y1='22' x2='62' y2='10' stroke='%23d38a5c' stroke-width='2'/><line x1='38' y1='78' x2='38' y2='90' stroke='%23d38a5c' stroke-width='2'/><line x1='50' y1='78' x2='50' y2='90' stroke='%23d38a5c' stroke-width='2'/><line x1='62' y1='78' x2='62' y2='90' stroke='%23d38a5c' stroke-width='2'/><circle cx='50' cy='50' r='8' fill='%23d38a5c' opacity='0.9'/></svg>" type="image/svg+xml">
+
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
 
-  <div id="loader" class="loader" aria-hidden="true">
-    <div class="wafer-loader" role="img" aria-label="Loading portfolio">
-      <span></span><span></span><span></span><span></span><span></span><span></span>
-      <strong>SA</strong>
+  <!-- Loader -->
+  <div id="loader" class="loader">
+    <div class="loader-inner">
+      <div class="loader-die">
+        <div class="die-pin" style="--i:0"></div>
+        <div class="die-pin" style="--i:1"></div>
+        <div class="die-pin" style="--i:2"></div>
+        <div class="die-pin" style="--i:3"></div>
+        <div class="die-pin" style="--i:4"></div>
+        <div class="die-pin" style="--i:5"></div>
+      </div>
+      <p class="loader-label">Initializing...</p>
     </div>
-    <p>powering up failure-analysis workspace</p>
   </div>
 
-  <div class="ambient-grid" aria-hidden="true"></div>
-  <div class="cursor-spotlight" id="cursor-spotlight" aria-hidden="true"></div>
+  <!-- Scroll progress -->
+  <div id="scroll-progress" class="scroll-progress"></div>
 
+  <!-- Navigation -->
   <header class="site-header" id="site-header">
-    <nav class="nav-shell" aria-label="Primary navigation">
-      <a class="brand" href="#hero" aria-label="Go to home">
-        <span class="brand-mark">SA</span>
-        <span class="brand-text">Sai Anant</span>
-      </a>
-
-      <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-controls="nav-links" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-
+    <nav class="nav-wrap">
+      <a href="#hero" class="nav-logo" aria-label="Home">ESA<span class="logo-dot">.</span></a>
       <ul class="nav-links" id="nav-links">
-        <li><a href="#about">Signal</a></li>
-        <li><a href="#workflow">FA Flow</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#projects">Work</a></li>
-        <li><a href="#skills">Stack</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Work</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#publications">Research</a></li>
+        <li><a href="#skills">Skills</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-
-      <button class="command-button" id="command-button" aria-label="Open command palette">
-        <i class="fa-solid fa-bolt"></i>
-        <span>Ctrl K</span>
+      <button class="nav-resume-btn" onclick="window.open('Edidi_Sai_Anant_Resume.pdf','_blank')">
+        Resume <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.7em"></i>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
       </button>
     </nav>
   </header>
 
-  <main id="main">
-    <section id="hero" class="section hero-section" aria-labelledby="hero-title">
-      <div class="section-shell hero-grid">
-        <div class="hero-copy reveal">
-          <p class="eyebrow">Micron • NTI / NAND R&D • Failure Analysis</p>
-          <h1 id="hero-title" class="balance-text">Edidi Sai Anant</h1>
-          <p class="hero-role">
-            NAND Electrical Failure Analysis Engineer building
-            <span id="typed-role" class="typed-role">debug systems</span> for real engineering work.
-          </p>
-          <p class="hero-summary pretext-fit" data-pretext-label="hero">
-            I work at the intersection of semiconductor failure analysis, NAND R&D tooling, automation, and AI-assisted engineering workflows. My background spans VLSI, memory technologies, FPGA acceleration, embedded systems, and practical scripts that make teams faster without making systems messy.
-          </p>
+  <!-- Left Sidebar -->
+  <aside class="sidebar sidebar-left">
+    <a href="https://github.com/ESAnant" target="_blank" rel="noopener" aria-label="GitHub">
+      <i class="fab fa-github"></i>
+    </a>
+    <a href="https://www.linkedin.com/in/sai-anant/" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <i class="fab fa-linkedin-in"></i>
+    </a>
+    <a href="mailto:esanant@gmail.com" aria-label="Email">
+      <i class="fa-solid fa-envelope"></i>
+    </a>
+    <div class="sidebar-line"></div>
+  </aside>
 
-          <div class="hero-actions">
-            <a class="button primary" href="#workflow">See my FA mindset</a>
-            <a class="button ghost" href="assets/docs/Edidi_Sai_Anant_Resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
-            <a class="button text" href="mailto:esanant@gmail.com">esanant@gmail.com</a>
-          </div>
+  <!-- Right Sidebar -->
+  <aside class="sidebar sidebar-right">
+    <a href="mailto:esanant@gmail.com" class="sidebar-email">esanant@gmail.com</a>
+    <div class="sidebar-line"></div>
+  </aside>
 
-          <div class="hero-metrics" aria-label="Portfolio highlights">
-            <div><strong>NAND EFA</strong><span>current role</span></div>
-            <div><strong>Micron NTI</strong><span>R&D environment</span></div>
-            <div><strong>NUS EE</strong><span>MSc foundation</span></div>
-          </div>
-        </div>
+  <main>
 
-        <aside class="debug-panel reveal" aria-label="Failure analysis console">
-          <div class="panel-topbar"><span></span><span></span><span></span><em>fa-console</em></div>
-          <div class="wafer-map" aria-hidden="true" id="wafer-map"></div>
-          <div class="console-lines">
-            <p><b>$ role</b><span>NAND Electrical Failure Analysis Engineer</span></p>
-            <p><b>$ domain</b><span>NTI · yield · debug · tools</span></p>
-            <p><b>$ method</b><span>verify → localize → learn → automate</span></p>
-            <p><b>$ edge</b><span>hardware roots + AI workflow thinking</span></p>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <section id="about" class="section" aria-labelledby="about-title">
-      <div class="section-shell split-section">
-        <div class="section-kicker">01 / Signal</div>
-        <div class="section-main reveal">
-          <h2 id="about-title" class="balance-text">Not a generic software portfolio. A semiconductor engineer’s workspace.</h2>
-          <p>
-            My work is shaped by failure analysis: start with evidence, isolate what matters, communicate the signature clearly, and build repeatable systems so the next debug loop is faster.
-          </p>
-          <p>
-            Outside confidential work, this site highlights the public pieces of my profile: NAND/FA direction, automation mindset, AI workflow interest, VLSI and embedded foundations, publications, and hardware projects from my NUS and undergraduate work.
-          </p>
-          <div class="principle-strip" id="principle-strip"></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="workflow" class="section compact-section" aria-labelledby="workflow-title">
-      <div class="section-shell">
-        <div class="section-heading reveal">
-          <p class="section-kicker">02 / FA Flow</p>
-          <h2 id="workflow-title" class="balance-text">How I think through engineering problems.</h2>
-          <p>Simple, traceable, and useful—the same shape I want my tools and automation to follow.</p>
-        </div>
-        <div class="workflow-grid" id="workflow-grid"></div>
-      </div>
-    </section>
-
-    <section id="experience" class="section" aria-labelledby="experience-title">
-      <div class="section-shell split-section">
-        <div class="section-kicker">03 / Experience</div>
-        <div class="section-main reveal">
-          <h2 id="experience-title" class="balance-text">Experience</h2>
-          <div class="timeline" id="experience-list"></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="projects" class="section" aria-labelledby="projects-title">
-      <div class="section-shell">
-        <div class="section-heading reveal">
-          <p class="section-kicker">04 / Work</p>
-          <h2 id="projects-title" class="balance-text">Selected work, projects, and technical anchors.</h2>
-          <p>Professional work is intentionally high-level. Academic and public projects carry the technical details.</p>
-        </div>
-        <div class="project-controls reveal" aria-label="Project filters">
-          <button class="filter-button active" data-filter="all">All</button>
-          <button class="filter-button" data-filter="fa">FA</button>
-          <button class="filter-button" data-filter="automation">Automation</button>
-          <button class="filter-button" data-filter="ai">AI</button>
-          <button class="filter-button" data-filter="vlsi">VLSI</button>
-          <button class="filter-button" data-filter="fpga">FPGA</button>
-          <button class="filter-button" data-filter="embedded">Embedded</button>
-        </div>
-        <div class="project-grid" id="project-grid"></div>
-      </div>
-    </section>
-
-    <section id="education" class="section compact-section" aria-labelledby="education-title">
-      <div class="section-shell split-section">
-        <div class="section-kicker">05 / Education</div>
-        <div class="section-main reveal">
-          <h2 id="education-title" class="balance-text">Education</h2>
-          <div class="education-grid" id="education-grid"></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="publications" class="section compact-section" aria-labelledby="publications-title">
-      <div class="section-shell split-section">
-        <div class="section-kicker">06 / Publications</div>
-        <div class="section-main reveal">
-          <h2 id="publications-title" class="balance-text">Publications and patent</h2>
-          <div class="publication-grid" id="publication-grid"></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="skills" class="section" aria-labelledby="skills-title">
-      <div class="section-shell">
-        <div class="section-heading reveal">
-          <p class="section-kicker">07 / Stack</p>
-          <h2 id="skills-title" class="balance-text">Tools I can reason with.</h2>
-          <p>Grouped around the kind of engineering problems I like: debug, hardware, automation, and systems.</p>
-        </div>
-        <div class="skills-grid" id="skills-grid"></div>
-      </div>
-    </section>
-
-    <section id="contact" class="section contact-section" aria-labelledby="contact-title">
-      <div class="section-shell contact-card reveal">
-        <p class="section-kicker">08 / Contact</p>
-        <h2 id="contact-title" class="balance-text">Want to talk semiconductors, tools, or AI workflows?</h2>
-        <p>
-          I’m based in Singapore and currently building my path as a NAND Electrical Failure Analysis Engineer. Reach me directly at my main email.
+    <!-- HERO ─────────────────────────────── -->
+    <section id="hero" class="section section-hero">
+      <div class="hero-inner">
+        <p class="hero-pre reveal-up">
+          <span class="tag-chip">NAND EFA · Micron NTI · Singapore</span>
         </p>
-        <div class="contact-actions">
-          <a class="button primary" href="mailto:esanant@gmail.com"><i class="fa-solid fa-paper-plane"></i> Email me</a>
-          <a class="button ghost" href="https://www.linkedin.com/in/sai-anant/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-          <a class="button ghost" href="https://github.com/ESAnant" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
+        <h1 class="hero-name reveal-up" style="animation-delay:0.1s">
+          Edidi Sai&nbsp;Anant<span class="name-period">.</span>
+        </h1>
+        <h2 class="hero-sub reveal-up" style="animation-delay:0.2s">
+          I find out why bits misbehave.
+        </h2>
+        <p class="hero-desc reveal-up" style="animation-delay:0.3s">
+          Electrical Failure Analysis engineer at Micron's NAND Technology Integration group.
+          I trace fail signatures back to root cause, build tools to make the process faster,
+          and occasionally write code just because a script is more satisfying than a spreadsheet.
+        </p>
+        <div class="hero-actions reveal-up" style="animation-delay:0.4s">
+          <a href="#projects" class="btn btn-primary">See my work</a>
+          <a href="#contact" class="btn btn-ghost">Get in touch</a>
+        </div>
+      </div>
+
+      <!-- Decorative PCB corner art -->
+      <div class="hero-pcb" aria-hidden="true">
+        <svg viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Die outline -->
+          <rect x="60" y="60" width="140" height="140" rx="6" stroke="var(--copper)" stroke-width="1.5" opacity="0.5"/>
+          <!-- Die pads -->
+          <rect x="60" y="80" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.6"/>
+          <rect x="60" y="100" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.4"/>
+          <rect x="60" y="120" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.6"/>
+          <rect x="60" y="140" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.4"/>
+          <rect x="60" y="160" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.6"/>
+          <rect x="192" y="80" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.6"/>
+          <rect x="192" y="100" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.4"/>
+          <rect x="192" y="120" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.6"/>
+          <rect x="192" y="140" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.4"/>
+          <rect x="192" y="160" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.6"/>
+          <rect x="80" y="60" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.4"/>
+          <rect x="100" y="60" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.6"/>
+          <rect x="120" y="60" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.4"/>
+          <rect x="140" y="60" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.6"/>
+          <rect x="160" y="60" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.4"/>
+          <rect x="80" y="192" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.4"/>
+          <rect x="100" y="192" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.6"/>
+          <rect x="120" y="192" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.4"/>
+          <rect x="140" y="192" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.6"/>
+          <rect x="160" y="192" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.4"/>
+          <!-- Internal grid lines -->
+          <line x1="78" y1="68" x2="182" y2="68" stroke="var(--copper)" stroke-width="0.5" opacity="0.2"/>
+          <line x1="78" y1="88" x2="182" y2="88" stroke="var(--copper)" stroke-width="0.5" opacity="0.2"/>
+          <line x1="78" y1="108" x2="182" y2="108" stroke="var(--copper)" stroke-width="0.5" opacity="0.2"/>
+          <line x1="78" y1="128" x2="182" y2="128" stroke="var(--copper)" stroke-width="0.5" opacity="0.15"/>
+          <line x1="78" y1="148" x2="182" y2="148" stroke="var(--copper)" stroke-width="0.5" opacity="0.2"/>
+          <line x1="78" y1="168" x2="182" y2="168" stroke="var(--copper)" stroke-width="0.5" opacity="0.2"/>
+          <line x1="78" y1="188" x2="182" y2="188" stroke="var(--copper)" stroke-width="0.5" opacity="0.2"/>
+          <line x1="88" y1="68" x2="88" y2="192" stroke="var(--copper)" stroke-width="0.5" opacity="0.2"/>
+          <line x1="108" y1="68" x2="108" y2="192" stroke="var(--copper)" stroke-width="0.5" opacity="0.2"/>
+          <line x1="128" y1="68" x2="128" y2="192" stroke="var(--copper)" stroke-width="0.5" opacity="0.15"/>
+          <line x1="148" y1="68" x2="148" y2="192" stroke="var(--copper)" stroke-width="0.5" opacity="0.2"/>
+          <line x1="168" y1="68" x2="168" y2="192" stroke="var(--copper)" stroke-width="0.5" opacity="0.2"/>
+          <!-- Center cell highlight -->
+          <rect x="108" y="108" width="44" height="44" rx="3" fill="var(--copper)" opacity="0.08" stroke="var(--copper)" stroke-width="1" stroke-opacity="0.4"/>
+          <!-- Circuit traces radiating out -->
+          <line x1="68" y1="128" x2="40" y2="128" stroke="var(--copper)" stroke-width="1" opacity="0.35"/>
+          <line x1="40" y1="128" x2="40" y2="90" stroke="var(--copper)" stroke-width="1" opacity="0.35"/>
+          <line x1="40" y1="90" x2="20" y2="90" stroke="var(--copper)" stroke-width="1" opacity="0.25"/>
+          <line x1="192" y1="128" x2="220" y2="128" stroke="var(--copper)" stroke-width="1" opacity="0.35"/>
+          <line x1="220" y1="128" x2="220" y2="170" stroke="var(--copper)" stroke-width="1" opacity="0.35"/>
+          <line x1="220" y1="170" x2="240" y2="170" stroke="var(--copper)" stroke-width="1" opacity="0.25"/>
+          <line x1="130" y1="60" x2="130" y2="30" stroke="var(--copper)" stroke-width="1" opacity="0.35"/>
+          <line x1="130" y1="30" x2="160" y2="30" stroke="var(--copper)" stroke-width="1" opacity="0.25"/>
+          <line x1="130" y1="200" x2="130" y2="230" stroke="var(--copper)" stroke-width="1" opacity="0.35"/>
+          <line x1="130" y1="230" x2="100" y2="230" stroke="var(--copper)" stroke-width="1" opacity="0.25"/>
+          <!-- Trace end pads -->
+          <circle cx="20" cy="90" r="3" fill="var(--copper)" opacity="0.3"/>
+          <circle cx="240" cy="170" r="3" fill="var(--copper)" opacity="0.3"/>
+          <circle cx="160" cy="30" r="3" fill="var(--copper)" opacity="0.3"/>
+          <circle cx="100" cy="230" r="3" fill="var(--copper)" opacity="0.3"/>
+          <!-- Notch (wafer alignment mark) -->
+          <path d="M60 60 L72 60 L60 72 Z" fill="var(--copper)" opacity="0.3"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ABOUT ────────────────────────────── -->
+    <section id="about" class="section section-about">
+      <div class="section-inner">
+        <h2 class="section-label reveal-up"><span>01</span>About</h2>
+        <div class="about-grid">
+          <div class="about-text reveal-up">
+            <p>
+              Right now I'm at <strong class="copper">Micron Technology</strong> in Singapore, doing electrical failure analysis on NAND memory devices within the NTI (NAND Technology Integration) group. When a bit doesn't behave, I'm the one trying to figure out the electrical story behind it — verify the failure, localize the site, root-cause the physics.
+            </p>
+            <p>
+              Before that: an MSc in Electrical Engineering from <strong class="copper">NUS</strong>, where I got deep into memory technologies, VLSI design, and enough Cadence Virtuoso to have genuine opinions about it. I also TA'd microcontroller and computer architecture labs, which taught me a lot about explaining things clearly.
+            </p>
+            <p>
+              I'm a vibe coder at heart — I'd rather write a script than do the same thing twice, and I build tools and AI-assisted workflows for my team in Python. I find the intersection of hardware and software genuinely interesting, not just as a skill combination but as a way of thinking.
+            </p>
+            <p>
+              Outside of work: I solve puzzles, cook things that sometimes work, play video games, listen to music too loud, and travel when I can.
+            </p>
+          </div>
+          <div class="about-now reveal-up" style="animation-delay:0.15s">
+            <h3 class="now-title">Currently</h3>
+            <ul class="now-list">
+              <li>
+                <span class="now-icon"><i class="fa-solid fa-microchip"></i></span>
+                <div>
+                  <strong>NAND EFA Engineer</strong>
+                  <span>Micron Technology · NTI · Singapore</span>
+                </div>
+              </li>
+              <li>
+                <span class="now-icon"><i class="fa-solid fa-terminal"></i></span>
+                <div>
+                  <strong>Tool builder</strong>
+                  <span>Automation + AI for FA workflows</span>
+                </div>
+              </li>
+              <li>
+                <span class="now-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></span>
+                <div>
+                  <strong>Debug mindset</strong>
+                  <span>Verify → Localize → Root-cause</span>
+                </div>
+              </li>
+              <li>
+                <span class="now-icon"><i class="fa-solid fa-code"></i></span>
+                <div>
+                  <strong>Vibe coding</strong>
+                  <span>Python · whatever needs building</span>
+                </div>
+              </li>
+            </ul>
+            <p class="memory-quip">
+              <span class="mono">// Stored in long-term memory</span>
+            </p>
+          </div>
         </div>
       </div>
     </section>
+
+    <!-- EXPERIENCE ───────────────────────── -->
+    <section id="experience" class="section section-experience">
+      <div class="section-inner">
+        <h2 class="section-label reveal-up"><span>02</span>Work</h2>
+        <div class="exp-layout reveal-up">
+          <div class="exp-tabs" role="tablist" aria-label="Work experience">
+            <button class="exp-tab active" data-tab="micron" role="tab" aria-selected="true">Micron</button>
+            <button class="exp-tab" data-tab="nus-ga" role="tab" aria-selected="false">NUS</button>
+            <button class="exp-tab" data-tab="maven" role="tab" aria-selected="false">Maven Silicon</button>
+            <button class="exp-tab" data-tab="sandeepani" role="tab" aria-selected="false">Sandeepani</button>
+          </div>
+          <div class="exp-panels">
+
+            <div class="exp-panel active" data-panel="micron" role="tabpanel">
+              <h3>NAND EFA Engineer <span class="at-company">@ Micron Technology</span></h3>
+              <p class="exp-meta"><span class="mono">2025 – Present</span> · Singapore · On-site</p>
+              <ul>
+                <li>Perform electrical failure analysis on NAND memory devices within the NTI (NAND Technology Integration) R&D group</li>
+                <li>Investigate fail signatures to determine root cause — from electrical verification through physical localization and mechanism understanding</li>
+                <li>Build Python-based automation tools and AI-assisted workflows to streamline FA triage and reporting</li>
+                <li>Support yield and debug teams by translating electrical failure data into actionable engineering conclusions</li>
+                <li>Work at the intersection of hardware characterization, circuit analysis, and software tooling</li>
+              </ul>
+            </div>
+
+            <div class="exp-panel" data-panel="nus-ga" role="tabpanel">
+              <h3>Graduate Assistant <span class="at-company">@ National University of Singapore</span></h3>
+              <p class="exp-meta"><span class="mono">Aug 2024 – Nov 2024 · 4 mos</span> · Singapore · On-site</p>
+              <ul>
+                <li>TA for EE2028 (Microcontroller Programming and Interfacing) and CG3207 (Computer Architecture)</li>
+                <li>Ran lab sessions, graded assignments, gave feedback on lab work</li>
+                <li>Collaborated with faculty to overhaul lab materials — improved clarity and reduced common student errors</li>
+                <li>Good reminder that explaining something clearly is its own skill</li>
+              </ul>
+            </div>
+
+            <div class="exp-panel" data-panel="maven" role="tabpanel">
+              <h3>Project Intern <span class="at-company">@ Maven Silicon</span></h3>
+              <p class="exp-meta"><span class="mono">Dec 2022 – Jan 2023 · 2 mos</span> · Bangalore, India · Remote</p>
+              <ul>
+                <li>Designed a synthesizable AHB to APB bus bridge in Verilog HDL, including a reversible logic-based error detection and correction module</li>
+                <li>Decomposed complex design into modular components from RTL through gate-level synthesis</li>
+                <li>Turned this work into an IEEE publication — the paper came out of a genuine question about data integrity on bus architectures</li>
+              </ul>
+            </div>
+
+            <div class="exp-panel" data-panel="sandeepani" role="tabpanel">
+              <h3>Intern <span class="at-company">@ Sandeepani School of Embedded System Design</span></h3>
+              <p class="exp-meta"><span class="mono">Jun 2022 – Jul 2022 · 2 mos</span> · Bangalore, India · Remote</p>
+              <ul>
+                <li>Developed and verified a UART protocol implementation in Verilog HDL</li>
+                <li>Ran functional verification of a Half Adder in SystemVerilog with QuestaSim coverage analysis</li>
+                <li>First real exposure to verification methodology — random stimuli, coverage goals, the whole workflow</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS ─────────────────────────── -->
+    <section id="projects" class="section section-projects">
+      <div class="section-inner">
+        <h2 class="section-label reveal-up"><span>03</span>Projects</h2>
+        <div class="projects-grid">
+
+          <div class="proj-card reveal-up">
+            <div class="proj-card-top">
+              <i class="fa-solid fa-layer-group proj-icon" aria-hidden="true"></i>
+              <div class="proj-links">
+                <span class="proj-tag">Cadence</span>
+                <span class="proj-tag">SPICE</span>
+                <span class="proj-tag">45nm</span>
+              </div>
+            </div>
+            <h3>VLSI Interconnect Modelling</h3>
+            <p>Optimized processor interconnects using Elmore RC models and Cadence Virtuoso for a 2-core processor at 45nm technology. Focused on energy-delay tradeoffs and signal integrity.</p>
+          </div>
+
+          <div class="proj-card reveal-up" style="animation-delay:0.05s">
+            <div class="proj-card-top">
+              <i class="fa-solid fa-circle-nodes proj-icon" aria-hidden="true"></i>
+              <div class="proj-links">
+                <span class="proj-tag">Cadence</span>
+                <span class="proj-tag">40nm</span>
+                <span class="proj-tag">DRC/LVS</span>
+              </div>
+            </div>
+            <h3>Standard Cell IP Development</h3>
+            <p>Ring oscillator Standard Cell IP in Cadence Virtuoso at 40nm. Hierarchical design, DRC/LVS clean, area-minimized with PVT corner analysis.</p>
+          </div>
+
+          <div class="proj-card reveal-up" style="animation-delay:0.1s">
+            <div class="proj-card-top">
+              <i class="fa-solid fa-bolt proj-icon" aria-hidden="true"></i>
+              <div class="proj-links">
+                <span class="proj-tag">FPGA</span>
+                <span class="proj-tag">HLS</span>
+                <span class="proj-tag">Verilog</span>
+              </div>
+            </div>
+            <h3>FPGA Hardware Accelerator</h3>
+            <p>MLP neural network inference accelerator on Xilinx Zynq-7000. Implemented in software, HLS, and Verilog — profiled and optimized with pipelining, loop unrolling, and array partitioning.</p>
+          </div>
+
+          <div class="proj-card reveal-up" style="animation-delay:0.15s">
+            <div class="proj-card-top">
+              <i class="fa-solid fa-brain proj-icon" aria-hidden="true"></i>
+              <div class="proj-links">
+                <span class="proj-tag">NeuroSim</span>
+                <span class="proj-tag">PyTorch</span>
+                <span class="proj-tag">MuMax3</span>
+              </div>
+            </div>
+            <h3>In-Memory Compute Circuit</h3>
+            <p>Designed an in-memory compute circuit using NeuroSim for neural network acceleration. Explored quantization (float64 → int4) and its effect on accuracy vs. efficiency tradeoffs.</p>
+          </div>
+
+          <div class="proj-card reveal-up" style="animation-delay:0.2s">
+            <div class="proj-card-top">
+              <i class="fa-solid fa-sitemap proj-icon" aria-hidden="true"></i>
+              <div class="proj-links">
+                <span class="proj-tag">Verilog</span>
+                <span class="proj-tag">RTL</span>
+                <span class="proj-tag">AMBA</span>
+              </div>
+            </div>
+            <h3>AHB-APB Bridge + ECC</h3>
+            <p>Synthesizable AHB to APB bridge with reversible logic-based error detection and correction module. Led to an IEEE publication on improving data integrity in bus bridge architectures.</p>
+            <div class="proj-pub-badge"><i class="fa-solid fa-file-lines"></i> IEEE · Jun 2023</div>
+          </div>
+
+          <div class="proj-card reveal-up" style="animation-delay:0.25s">
+            <div class="proj-card-top">
+              <i class="fa-solid fa-car-burst proj-icon" aria-hidden="true"></i>
+              <div class="proj-links">
+                <span class="proj-tag">Embedded</span>
+                <span class="proj-tag">IoT</span>
+                <span class="proj-tag">Safety</span>
+              </div>
+            </div>
+            <h3>Autonomous Vehicle Safety System</h3>
+            <p>Intelligent system that detects driver medical distress and responds automatically. Continuous vitals monitoring with embedded safety response. Filed and granted a patent.</p>
+            <div class="proj-pub-badge"><i class="fa-solid fa-certificate"></i> Patent No. 202341043496 · Mar 2025</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PUBLICATIONS ─────────────────────── -->
+    <section id="publications" class="section section-publications">
+      <div class="section-inner">
+        <h2 class="section-label reveal-up"><span>04</span>Research</h2>
+        <div class="research-grid">
+
+          <div class="research-group reveal-up">
+            <h3 class="research-group-title">Publications</h3>
+            <div class="research-item">
+              <p class="research-venue mono">IEEE · May 2023</p>
+              <h4>Improving Data Integrity with Reversible Logic-based Error Detection and Correction Module on AHB-APB Bridge</h4>
+              <p class="research-desc">Research on enhancing data integrity in bus bridge architectures using reversible logic — grew out of the Maven Silicon internship project.</p>
+            </div>
+            <div class="research-item">
+              <p class="research-venue mono">Grenze International Journal · Jun 2022</p>
+              <h4>A Survey on Affordable Internet of Things (IoT) Enabled Healthcare Systems</h4>
+              <p class="research-desc">Comprehensive survey on cost-effective IoT solutions for healthcare applications.</p>
+            </div>
+          </div>
+
+          <div class="research-group reveal-up" style="animation-delay:0.1s">
+            <h3 class="research-group-title">Patent</h3>
+            <div class="research-item patent-item">
+              <p class="research-venue mono">IN Patent No. 202341043496 · Issued Mar 28, 2025</p>
+              <h4>A System for Controlling an Autonomous Vehicle and a Method Thereof</h4>
+              <p class="research-desc">An intelligent safety system for autonomous vehicles that monitors driver vitals for medical distress and responds automatically to ensure occupant and road safety.</p>
+              <span class="patent-granted">Granted</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS ───────────────────────────── -->
+    <section id="skills" class="section section-skills">
+      <div class="section-inner">
+        <h2 class="section-label reveal-up"><span>05</span>Skills</h2>
+        <p class="mono skills-comment reveal-up">// what's actually stored in long-term memory</p>
+        <div class="skills-grid">
+
+          <div class="skill-group reveal-up">
+            <h3>Languages</h3>
+            <div class="skill-pills">
+              <span>Python</span>
+              <span>C++</span>
+              <span>Verilog</span>
+              <span>SystemVerilog</span>
+              <span>HLS</span>
+            </div>
+          </div>
+
+          <div class="skill-group reveal-up" style="animation-delay:0.07s">
+            <h3>EDA / CAD</h3>
+            <div class="skill-pills">
+              <span>Cadence Virtuoso</span>
+              <span>Xilinx Vivado</span>
+              <span>Xilinx Vitis</span>
+              <span>QuestaSim</span>
+            </div>
+          </div>
+
+          <div class="skill-group reveal-up" style="animation-delay:0.14s">
+            <h3>Embedded</h3>
+            <div class="skill-pills">
+              <span>Arduino</span>
+              <span>Raspberry Pi</span>
+              <span>NodeMCU</span>
+            </div>
+          </div>
+
+          <div class="skill-group reveal-up" style="animation-delay:0.21s">
+            <h3>Other</h3>
+            <div class="skill-pills">
+              <span>PCB Design (Eagle)</span>
+              <span>LaTeX</span>
+              <span>Git</span>
+            </div>
+          </div>
+
+          <div class="skill-group reveal-up" style="animation-delay:0.28s">
+            <h3>Education</h3>
+            <div class="skill-pills edu-pills">
+              <span class="edu-pill">
+                <strong>MSc Electrical Engineering</strong>
+                <em>NUS · 2023–2025</em>
+              </span>
+              <span class="edu-pill">
+                <strong>BTech ECE</strong>
+                <em>SRM Institute · 2019–2023</em>
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT ──────────────────────────── -->
+    <section id="contact" class="section section-contact">
+      <div class="section-inner contact-inner">
+        <p class="contact-pre mono reveal-up">05. what's next?</p>
+        <h2 class="contact-title reveal-up">Let's connect.</h2>
+        <p class="contact-desc reveal-up">
+          Whether you're curious about failure analysis, want to talk semiconductor stuff, 
+          have a tool that needs building, or just want to say hi — I'm reachable. 
+          No write errors guaranteed.
+        </p>
+        <div class="contact-actions reveal-up">
+          <a href="mailto:esanant@gmail.com" class="btn btn-primary btn-large">
+            <i class="fa-solid fa-envelope"></i> Say hello
+          </a>
+          <a href="Edidi_Sai_Anant_Resume.pdf" target="_blank" class="btn btn-ghost">
+            <i class="fa-solid fa-file-pdf"></i> Resume
+          </a>
+        </div>
+        <div class="contact-links reveal-up" style="animation-delay:0.1s">
+          <a href="https://www.linkedin.com/in/sai-anant/" target="_blank" rel="noopener">
+            <i class="fab fa-linkedin-in"></i> LinkedIn
+          </a>
+          <a href="https://github.com/ESAnant" target="_blank" rel="noopener">
+            <i class="fab fa-github"></i> GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <div class="command-palette" id="command-palette" aria-hidden="true">
-    <div class="command-dialog" role="dialog" aria-modal="true" aria-labelledby="command-title">
-      <div class="command-header">
-        <h2 id="command-title">Navigate</h2>
-        <button id="command-close" aria-label="Close command palette"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <div class="command-list" id="command-list"></div>
-    </div>
-  </div>
-
   <footer class="site-footer">
-    <div class="section-shell footer-grid">
-      <p>© <span id="year"></span> Edidi Sai Anant. Built as a minimal FA-inspired portfolio.</p>
-      <p class="library-note">Enhanced with Pretext text measurement, GSAP motion, and Lenis scroll.</p>
-    </div>
+    <p class="mono">Built bit by bit · <a href="https://github.com/ESAnant/esanant.github.io" target="_blank" rel="noopener">Open on GitHub</a></p>
+    <p class="mono footer-copy">© 2025 Edidi Sai Anant</p>
   </footer>
 
-  <script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-  <script src="js/content.js" defer></script>
-  <script src="js/pretext-fit.js" type="module"></script>
-  <script src="js/main.js" defer></script>
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
