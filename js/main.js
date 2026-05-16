@@ -2,21 +2,9 @@
   "use strict";
 
   const data = window.PORTFOLIO_DATA || {};
-  const $ = (selector, root = document) => root.querySelector(selector);
-  const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
-
-  const state = {
-    activeFilter: "all",
-    paletteOpen: false
-  };
-
-  const iconMap = {
-    Google: "fa-brands fa-google",
-    Internshala: "fa-solid fa-graduation-cap",
-    edX: "fa-solid fa-university",
-    Coursera: "fa-brands fa-python",
-    Cisco: "fa-solid fa-network-wired"
-  };
+  const $ = (selector, scope = document) => scope.querySelector(selector);
+  const $$ = (selector, scope = document) => Array.from(scope.querySelectorAll(selector));
+  const state = { activeFilter: "all", typedIndex: 0, typedChar: 0, deleting: false };
 
   const escapeHTML = (value = "") => String(value)
     .replace(/&/g, "&amp;")
@@ -27,7 +15,7 @@
 
   document.addEventListener("DOMContentLoaded", init);
   window.addEventListener("load", hideLoader, { once: true });
-  window.setTimeout(hideLoader, 1200);
+  window.setTimeout(hideLoader, 850);
 
   function init() {
     renderContent();
@@ -36,62 +24,66 @@
     setupProjectFilters();
     setupCommandPalette();
     setupSpotlight();
-    setupParticles();
+    setupWaferMap();
     setupTypedText();
     setupHeaderState();
+    setupLenis();
+    setupMotion();
+    hydrateLinks();
+    const year = $("#year");
+    if (year) year.textContent = new Date().getFullYear();
   }
 
   function hideLoader() {
     const loader = $("#loader");
     if (!loader || loader.classList.contains("hidden")) return;
     loader.classList.add("hidden");
-    window.setTimeout(() => loader.remove(), 500);
+    window.setTimeout(() => loader.remove(), 450);
+  }
+
+  function hydrateLinks() {
+    const profile = data.profile || {};
+    if (profile.email) {
+      $$("a[href^='mailto:']").forEach((link) => { link.href = `mailto:${profile.email}`; });
+    }
+    if (profile.resume) {
+      $$("a[href$='.pdf']").forEach((link) => { link.href = profile.resume; });
+    }
   }
 
   function renderContent() {
-    renderFocusAreas();
-    renderEducation();
+    renderPrinciples();
+    renderWorkflow();
     renderExperience();
     renderProjects();
+    renderEducation();
     renderPublications();
     renderSkills();
-    renderCertifications();
-    hydrateProfileLinks();
+    window.dispatchEvent(new Event("portfolio:content-rendered"));
   }
 
-  function hydrateProfileLinks() {
-    const email = data.profile?.email;
-    const resume = data.profile?.resume;
-    if (email) {
-      $$("a[href^='mailto:']").forEach((link) => link.href = `mailto:${email}`);
-    }
-    if (resume) {
-      $$("a[href$='.pdf']").forEach((link) => link.href = resume);
-    }
-  }
-
-  function renderFocusAreas() {
-    const root = $("#focus-grid");
-    if (!root || !data.focusAreas) return;
-    root.innerHTML = data.focusAreas.map((item) => `
-      <article class="focus-card reveal">
-        <i class="${escapeHTML(item.icon)}" aria-hidden="true"></i>
-        <h3>${escapeHTML(item.title)}</h3>
-        <p>${escapeHTML(item.description)}</p>
+  function renderPrinciples() {
+    const root = $("#principle-strip");
+    if (!root || !data.principles) return;
+    root.innerHTML = data.principles.map((item) => `
+      <article class="principle-card reveal">
+        <strong>${escapeHTML(item.label)}</strong>
+        <span>${escapeHTML(item.detail)}</span>
       </article>
     `).join("");
   }
 
-
-  function renderEducation() {
-    const root = $("#education-grid");
-    if (!root || !data.education) return;
-    root.innerHTML = data.education.map((item) => `
-      <article class="education-card reveal">
-        <div class="education-date">${escapeHTML(item.date)}</div>
-        <h3>${escapeHTML(item.degree)}</h3>
-        <p>${escapeHTML(item.institution)}</p>
-        <div class="skill-cloud">${item.courses.map((course) => `<span>${escapeHTML(course)}</span>`).join("")}</div>
+  function renderWorkflow() {
+    const root = $("#workflow-grid");
+    if (!root || !data.workflow) return;
+    root.innerHTML = data.workflow.map((item) => `
+      <article class="workflow-card reveal">
+        <div class="workflow-step">
+          <span>${escapeHTML(item.step)}</span>
+          <i class="${escapeHTML(item.icon)}" aria-hidden="true"></i>
+        </div>
+        <h3>${escapeHTML(item.title)}</h3>
+        <p class="pretext-fit">${escapeHTML(item.description)}</p>
       </article>
     `).join("");
   }
@@ -120,23 +112,35 @@
   function renderProjects() {
     const root = $("#project-grid");
     if (!root || !data.projects) return;
-    const projects = data.projects.filter((project) => {
-      return state.activeFilter === "all" || project.category.includes(state.activeFilter);
-    });
-
+    const projects = data.projects.filter((project) => state.activeFilter === "all" || project.category.includes(state.activeFilter));
     root.innerHTML = projects.map((project) => `
       <article class="project-card reveal" data-categories="${escapeHTML(project.category.join(" "))}">
         <div class="project-card-top">
           <span class="project-status">${escapeHTML(project.status)}</span>
-          <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+          <span class="project-index">${escapeHTML(project.category[0] || "work")}</span>
         </div>
         <h3>${escapeHTML(project.title)}</h3>
-        <p>${escapeHTML(project.summary)}</p>
+        <p class="pretext-fit">${escapeHTML(project.summary)}</p>
         <div class="highlight-row">${project.highlights.map((item) => `<span>${escapeHTML(item)}</span>`).join("")}</div>
         <div class="tech-row">${project.tech.map((item) => `<span>${escapeHTML(item)}</span>`).join("")}</div>
       </article>
     `).join("");
     observeNewReveals(root);
+    window.dispatchEvent(new Event("resize"));
+  }
+
+  function renderEducation() {
+    const root = $("#education-grid");
+    if (!root || !data.education) return;
+    root.innerHTML = data.education.map((item) => `
+      <article class="education-card reveal">
+        <div class="education-date">${escapeHTML(item.date)}</div>
+        <h3>${escapeHTML(item.degree)}</h3>
+        <p><strong>${escapeHTML(item.institution)}</strong></p>
+        <p>${escapeHTML(item.notes)}</p>
+        <div class="skill-cloud">${item.courses.map((course) => `<span>${escapeHTML(course)}</span>`).join("")}</div>
+      </article>
+    `).join("");
   }
 
   function renderPublications() {
@@ -147,7 +151,7 @@
         <span>${escapeHTML(item.type)}</span>
         <h3>${escapeHTML(item.title)}</h3>
         <p class="publication-meta">${escapeHTML(item.meta)}</p>
-        <p>${escapeHTML(item.description)}</p>
+        <p class="pretext-fit">${escapeHTML(item.description)}</p>
       </article>
     `).join("");
   }
@@ -158,23 +162,7 @@
     root.innerHTML = data.skills.map((group) => `
       <article class="skill-card reveal">
         <h3>${escapeHTML(group.title)}</h3>
-        <div class="skill-cloud">
-          ${group.items.map((item) => `<span>${escapeHTML(item)}</span>`).join("")}
-        </div>
-      </article>
-    `).join("");
-  }
-
-  function renderCertifications() {
-    const root = $("#cert-grid");
-    if (!root || !data.certifications) return;
-    root.innerHTML = data.certifications.map((item) => `
-      <article class="cert-card reveal">
-        <i class="${iconMap[item.provider] || "fa-solid fa-certificate"}" aria-hidden="true"></i>
-        <div>
-          <h3>${escapeHTML(item.name)}</h3>
-          <p>${escapeHTML(item.provider)} · ${escapeHTML(item.date)}</p>
-        </div>
+        <div class="skill-cloud">${group.items.map((item) => `<span>${escapeHTML(item)}</span>`).join("")}</div>
       </article>
     `).join("");
   }
@@ -182,7 +170,6 @@
   function setupNavigation() {
     const toggle = $("#menu-toggle");
     const links = $("#nav-links");
-    const navLinks = $$(".nav-links a, .brand");
 
     toggle?.addEventListener("click", () => {
       const isOpen = document.body.classList.toggle("nav-open");
@@ -190,7 +177,7 @@
       toggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
     });
 
-    navLinks.forEach((link) => {
+    $$(".nav-links a, .brand").forEach((link) => {
       link.addEventListener("click", () => {
         document.body.classList.remove("nav-open");
         toggle?.setAttribute("aria-expanded", "false");
@@ -215,8 +202,8 @@
 
   let revealObserver;
   function setupRevealAnimations() {
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReducedMotion) {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) {
       $$(".reveal").forEach((el) => el.classList.add("visible"));
       return;
     }
@@ -239,7 +226,7 @@
           link.classList.toggle("active", link.getAttribute("href") === `#${id}`);
         });
       });
-    }, { threshold: 0.3, rootMargin: "-20% 0px -60% 0px" });
+    }, { threshold: 0.25, rootMargin: "-20% 0px -60% 0px" });
 
     $$("main section[id]").forEach((section) => sectionObserver.observe(section));
   }
@@ -263,7 +250,7 @@
     const header = $("#site-header");
     let ticking = false;
     const update = () => {
-      header?.classList.toggle("scrolled", window.scrollY > 24);
+      header?.classList.toggle("scrolled", window.scrollY > 18);
       ticking = false;
     };
     window.addEventListener("scroll", () => {
@@ -277,128 +264,140 @@
   function setupSpotlight() {
     const spotlight = $("#cursor-spotlight");
     if (!spotlight || window.matchMedia("(pointer: coarse)").matches) return;
-
     window.addEventListener("pointermove", (event) => {
       spotlight.style.setProperty("--x", `${event.clientX}px`);
       spotlight.style.setProperty("--y", `${event.clientY}px`);
     }, { passive: true });
   }
 
-  function setupParticles() {
-    if (!window.particlesJS || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
-    window.particlesJS("particles-js", {
-      particles: {
-        number: { value: isMobile ? 22 : 58, density: { enable: true, value_area: 900 } },
-        color: { value: ["#64ffda", "#d38a5c", "#7c5cff"] },
-        shape: { type: "circle" },
-        opacity: { value: 0.22, random: true },
-        size: { value: isMobile ? 1.5 : 2.2, random: true },
-        line_linked: { enable: true, distance: isMobile ? 100 : 150, color: "#64ffda", opacity: 0.12, width: 1 },
-        move: { enable: true, speed: isMobile ? 0.25 : 0.45, random: true, out_mode: "out" }
-      },
-      interactivity: {
-        detect_on: "canvas",
-        events: { onhover: { enable: !isMobile, mode: "grab" }, onclick: { enable: true, mode: "push" }, resize: true },
-        modes: { grab: { distance: 160, line_linked: { opacity: 0.25 } }, push: { particles_nb: 2 } }
-      },
-      retina_detect: true
-    });
+  function setupWaferMap() {
+    const root = $("#wafer-map");
+    if (!root) return;
+    const cells = 72;
+    root.innerHTML = Array.from({ length: cells }, (_, index) => {
+      const ring = Math.abs((index % 12) - 5.5) + Math.abs(Math.floor(index / 12) - 2.5);
+      const stateClass = ring > 7 ? "off" : (index % 17 === 0 || index % 31 === 0 ? "hot" : index % 9 === 0 ? "watch" : "ok");
+      return `<span class="${stateClass}" aria-hidden="true"></span>`;
+    }).join("");
   }
 
   function setupTypedText() {
     const target = $("#typed-role");
-    if (!target || !window.Typed || !data.typedRoles) return;
-    new window.Typed(target, {
-      strings: data.typedRoles,
-      typeSpeed: 45,
-      backSpeed: 24,
-      backDelay: 1400,
-      loop: true,
-      smartBackspace: true
-    });
+    const words = data.typedRoles || [];
+    if (!target || !words.length) return;
+
+    const tick = () => {
+      const word = words[state.typedIndex % words.length];
+      state.typedChar += state.deleting ? -1 : 1;
+      target.textContent = word.slice(0, state.typedChar);
+
+      if (!state.deleting && state.typedChar === word.length) {
+        state.deleting = true;
+        window.setTimeout(tick, 1200);
+        return;
+      }
+
+      if (state.deleting && state.typedChar === 0) {
+        state.deleting = false;
+        state.typedIndex += 1;
+      }
+
+      window.setTimeout(tick, state.deleting ? 34 : 58);
+    };
+    tick();
   }
 
   function setupCommandPalette() {
     const palette = $("#command-palette");
     const button = $("#command-button");
-    const search = $("#command-search");
-    const results = $("#command-results");
-    if (!palette || !button || !search || !results) return;
-
+    const close = $("#command-close");
+    const list = $("#command-list");
     const commands = [
-      { label: "About", detail: "Who Sai is now", href: "#about", icon: "fa-solid fa-user" },
-      { label: "Education", detail: "NUS and SRM", href: "#education", icon: "fa-solid fa-graduation-cap" },
-      { label: "Experience", detail: "Micron, NUS, internships", href: "#experience", icon: "fa-solid fa-briefcase" },
-      { label: "Projects", detail: "Automation, AI, VLSI, FPGA", href: "#projects", icon: "fa-solid fa-diagram-project" },
-      { label: "Publications", detail: "Papers and patent", href: "#publications", icon: "fa-solid fa-book" },
-      { label: "Skills", detail: "Tools and technical stack", href: "#skills", icon: "fa-solid fa-code" },
-      { label: "Resume", detail: "Open PDF", href: data.profile?.resume || "assets/docs/Edidi_Sai_Anant_Resume.pdf", icon: "fa-solid fa-file-pdf", external: true },
-      { label: "LinkedIn", detail: "Open profile", href: data.profile?.linkedin || "https://www.linkedin.com/in/sai-anant/", icon: "fa-brands fa-linkedin", external: true },
-      { label: "GitHub", detail: "Open projects", href: data.profile?.github || "https://github.com/ESAnant", icon: "fa-brands fa-github", external: true }
+      { label: "Signal", href: "#about", icon: "fa-solid fa-fingerprint" },
+      { label: "FA Flow", href: "#workflow", icon: "fa-solid fa-wave-square" },
+      { label: "Experience", href: "#experience", icon: "fa-solid fa-briefcase" },
+      { label: "Work", href: "#projects", icon: "fa-solid fa-microchip" },
+      { label: "Stack", href: "#skills", icon: "fa-solid fa-layer-group" },
+      { label: "Resume", href: data.profile?.resume || "assets/docs/Edidi_Sai_Anant_Resume.pdf", icon: "fa-solid fa-file-lines", external: true },
+      { label: "Email", href: `mailto:${data.profile?.email || "esanant@gmail.com"}`, icon: "fa-solid fa-envelope", external: true }
     ];
 
-    const renderCommands = () => {
-      const query = search.value.trim().toLowerCase();
-      const visible = commands.filter((command) => {
-        return `${command.label} ${command.detail}`.toLowerCase().includes(query);
-      });
-      results.innerHTML = visible.map((command, index) => `
-        <button class="command-item" data-index="${index}" data-href="${escapeHTML(command.href)}" data-external="${command.external ? "true" : "false"}">
+    if (list) {
+      list.innerHTML = commands.map((command) => `
+        <a class="command-item" href="${escapeHTML(command.href)}" ${command.external ? 'target="_blank" rel="noopener noreferrer"' : ""}>
           <i class="${escapeHTML(command.icon)}" aria-hidden="true"></i>
-          <span><strong>${escapeHTML(command.label)}</strong><small>${escapeHTML(command.detail)}</small></span>
-        </button>
-      `).join("") || `<p class="empty-state">No matches found.</p>`;
+          <span>${escapeHTML(command.label)}</span>
+        </a>
+      `).join("");
+    }
+
+    const openPalette = () => {
+      if (!palette) return;
+      document.body.classList.add("palette-open");
+      palette.setAttribute("aria-hidden", "false");
+      $(".command-item")?.focus();
     };
 
-    button.addEventListener("click", openPalette);
-    search.addEventListener("input", renderCommands);
+    window.closePalette = closePalette;
+    button?.addEventListener("click", openPalette);
+    close?.addEventListener("click", closePalette);
+    palette?.addEventListener("click", (event) => {
+      if (event.target === palette) closePalette();
+    });
+    $$(".command-item").forEach((item) => item.addEventListener("click", closePalette));
 
     document.addEventListener("keydown", (event) => {
-      const isShortcut = (event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k";
-      if (isShortcut) {
+      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
         event.preventDefault();
-        state.paletteOpen ? closePalette() : openPalette();
-      }
-      if (state.paletteOpen && event.key === "Enter") {
-        const first = $(".command-item", results);
-        first?.click();
+        openPalette();
       }
     });
-
-    palette.addEventListener("click", (event) => {
-      if (event.target.closest("[data-close-palette]")) closePalette();
-      const command = event.target.closest(".command-item");
-      if (!command) return;
-      navigateToCommand(command.dataset.href, command.dataset.external === "true");
-    });
-
-    function openPalette() {
-      state.paletteOpen = true;
-      palette.hidden = false;
-      document.body.classList.add("palette-open");
-      search.value = "";
-      renderCommands();
-      window.requestAnimationFrame(() => search.focus());
-    }
   }
 
   function closePalette() {
     const palette = $("#command-palette");
-    if (!palette) return;
-    state.paletteOpen = false;
-    palette.hidden = true;
     document.body.classList.remove("palette-open");
+    palette?.setAttribute("aria-hidden", "true");
   }
 
-  function navigateToCommand(href, external) {
-    closePalette();
-    if (!href) return;
-    if (external) {
-      window.open(href, "_blank", "noopener,noreferrer");
-      return;
+  function setupLenis() {
+    if (!window.Lenis || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const lenis = new window.Lenis({ duration: 0.9, smoothWheel: true, wheelMultiplier: 0.85 });
+    function raf(time) {
+      lenis.raf(time);
+      window.requestAnimationFrame(raf);
     }
-    $(href)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.requestAnimationFrame(raf);
+    document.documentElement.dataset.lenis = "active";
+  }
+
+  function setupMotion() {
+    if (!window.gsap || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const gsap = window.gsap;
+    if (window.ScrollTrigger) gsap.registerPlugin(window.ScrollTrigger);
+
+    gsap.from(".brand-mark", { rotate: -12, scale: 0.86, duration: 0.7, ease: "power3.out" });
+    gsap.to(".wafer-map span.hot", {
+      opacity: 0.38,
+      scale: 0.72,
+      yoyo: true,
+      repeat: -1,
+      duration: 1.4,
+      stagger: 0.08,
+      ease: "sine.inOut"
+    });
+
+    if (window.ScrollTrigger) {
+      gsap.utils.toArray(".workflow-card").forEach((card, index) => {
+        gsap.from(card, {
+          scrollTrigger: { trigger: card, start: "top 88%" },
+          y: 24,
+          opacity: 0,
+          duration: 0.55,
+          delay: index * 0.04,
+          ease: "power2.out"
+        });
+      });
+    }
   }
 })();

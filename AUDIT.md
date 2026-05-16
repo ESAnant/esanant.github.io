@@ -1,71 +1,63 @@
-# Portfolio Audit Notes
+# Website Audit & Redesign Notes
 
-## Issues found in the previous version
+## What changed in this pass
 
-1. **Content was stale**
-   - The old copy positioned Sai primarily as a recent graduate seeking opportunities.
-   - It did not reflect current work in Micron's NTI / NAND R&D team.
-   - Tools, automation, and AI projects were not visible enough.
+### Positioning
 
-2. **Forced scrolling felt buggy**
-   - The old JavaScript intercepted wheel, arrow, page, and swipe navigation.
-   - This made normal browser scrolling feel jumpy, especially on long sections and mobile.
+The site has been repositioned around Sai's actual current identity:
 
-3. **Scroll snap was too aggressive**
-   - `scroll-snap-type: y mandatory` plus full-height sections can trap or skip content when sections are taller than the viewport.
+- NAND Electrical Failure Analysis Engineer
+- Micron Technology · NTI / NAND R&D
+- Failure-analysis thinking, semiconductor debug, tools, automation, and AI-assisted workflows
 
-4. **Mobile accessibility problems**
-   - The old viewport used `maximum-scale=1.0, user-scalable=no`, which prevents zooming.
-   - The old script also prevented double-tap zoom.
+The older copy sounded like a generic AI/automation portfolio. The new copy is more specific to semiconductor work while avoiding confidential Micron details.
 
-5. **Repeated event binding risk**
-   - The old `setupFlipCards()` function could run after resize and attach duplicate listeners to the same cards.
+### UI / UX direction
 
-6. **Fixed loader delay**
-   - The old loader waited roughly two seconds regardless of actual load state.
-   - This made the site feel slower than necessary.
+The design is now intentionally minimal and personal:
 
-7. **Files were not separated enough**
-   - Most content lived inside `index.html`, making frequent content updates harder.
+- Dark semiconductor-lab visual language
+- Wafer-map / die-grid hero panel
+- FA workflow section: Verify → Localize → Explain → Automate
+- Fewer generic buzzwords
+- Stronger hierarchy and shorter section names
+- Mobile-first responsive cleanup
+- Command palette retained because it is useful and distinctive without being noisy
 
-## Improvements made
+### Libraries
 
-1. **Current positioning**
-   - Added Micron NTI / NAND R&D as the current focus.
-   - Added explicit tools, automation, and AI workflow positioning.
+Added a controlled library layer:
 
-2. **Separated control layers**
-   - `index.html` handles structure.
-   - `js/content.js` handles portfolio data and copy.
-   - `js/main.js` handles behavior.
-   - `css/base.css`, `css/components.css`, and `css/responsive.css` split styling responsibilities.
+- `@chenglou/pretext` through `js/pretext-fit.js`
+  - Used for experimental text measurement and line-count metadata.
+  - Fails safely to CSS-only layout if the CDN or browser support is unavailable.
+- GSAP
+  - Used only for small entrance/wafer pulse animations.
+- Lenis
+  - Smooth scroll with reduced-motion fallback.
 
-3. **Removed scroll-jacking**
-   - Normal browser scrolling is preserved.
-   - Smooth anchor navigation remains.
+### Bugs / performance concerns addressed
 
-4. **Better effects without breaking usability**
-   - Particle background.
-   - Cursor spotlight.
-   - Typed hero text.
-   - Reveal animations.
-   - Command palette using Ctrl/Cmd + K.
-   - Project filters.
+- Removed heavy particle background dependency.
+- Removed scroll-jacking behavior.
+- Kept animations subtle and motion-safe.
+- Split content, behavior, and styles into separate files.
+- Kept professional details high-level to avoid confidentiality risk.
+- Updated main email to `esanant@gmail.com`.
 
-5. **Accessibility and performance**
-   - Restored zoom-friendly viewport.
-   - Added skip link.
-   - Added reduced-motion support.
-   - Added semantic sections and aria labels.
-   - Replaced fixed loader with load/fallback behavior.
+## Key files
 
-6. **SEO and sharing**
-   - Added Open Graph tags.
-   - Added description and author metadata.
-   - Added JSON-LD Person schema.
+- `index.html` — semantic page structure and SEO metadata.
+- `js/content.js` — editable personal content.
+- `js/main.js` — rendering, navigation, filters, command palette, animations.
+- `js/pretext-fit.js` — Pretext integration with safe fallback.
+- `css/base.css` — design tokens and global layout.
+- `css/components.css` — components and sections.
+- `css/responsive.css` — mobile and tablet behavior.
 
-## Notes for future edits
+## Next polish ideas
 
-- Keep confidential Micron/internal details high-level.
-- Public project cards should avoid disclosing internal tool names, flows, data, or proprietary process details.
-- Use `js/content.js` for quick content changes instead of editing `index.html`.
+- Add 1–2 approved, non-confidential project screenshots if available.
+- Add a real project write-up for one public academic project.
+- Replace generic project statuses with links where public code or papers are available.
+- Add a short `/notes` or `/writing` section later if Sai wants to publish learning notes about semiconductors, EFA, FPGA, or AI tooling.

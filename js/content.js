@@ -1,177 +1,189 @@
 window.PORTFOLIO_DATA = {
   profile: {
     name: "Edidi Sai Anant",
-    email: "esanant@u.nus.edu",
+    email: "esanant@gmail.com",
     linkedin: "https://www.linkedin.com/in/sai-anant/",
     github: "https://github.com/ESAnant",
-    resume: "assets/docs/Edidi_Sai_Anant_Resume.pdf"
+    resume: "assets/docs/Edidi_Sai_Anant_Resume.pdf",
+    currentTitle: "NAND Electrical Failure Analysis Engineer",
+    location: "Singapore"
   },
 
-  focusAreas: [
-    {
-      icon: "fa-solid fa-screwdriver-wrench",
-      title: "Tools for R&D",
-      description: "Build and refine utilities that make engineering work easier to run, inspect, and repeat."
-    },
-    {
-      icon: "fa-solid fa-robot",
-      title: "Automation",
-      description: "Turn recurring manual workflows into reliable scripts, checks, dashboards, and reusable flows."
-    },
-    {
-      icon: "fa-solid fa-brain",
-      title: "AI projects",
-      description: "Explore controlled AI-assisted workflows for productivity, knowledge retrieval, and documentation."
-    },
-    {
-      icon: "fa-solid fa-microchip",
-      title: "Semiconductor fundamentals",
-      description: "VLSI, embedded systems, computer architecture, memory technology, and digital design."
-    }
+  typedRoles: [
+    "failure signatures",
+    "debug systems",
+    "automation loops",
+    "AI-assisted workflows",
+    "semiconductor tools"
   ],
 
-  typedRoles: [
-    "NAND R&D tools",
-    "automation systems",
-    "AI-assisted workflows",
-    "VLSI and embedded projects",
-    "clean engineering systems"
+  principles: [
+    { label: "evidence first", detail: "debug decisions should come from measurements, not guesses" },
+    { label: "repeatable", detail: "good tools make the next loop easier" },
+    { label: "clear handoff", detail: "analysis is only useful when the signature is communicated well" },
+    { label: "human-controlled AI", detail: "AI helps structure work; engineers keep judgement" }
+  ],
+
+  workflow: [
+    {
+      step: "01",
+      title: "Verify",
+      description: "Confirm the failure electrically and separate noise from signal before jumping into conclusions.",
+      icon: "fa-solid fa-wave-square"
+    },
+    {
+      step: "02",
+      title: "Localize",
+      description: "Narrow the signature, connect it to process or product context, and keep the path traceable.",
+      icon: "fa-solid fa-crosshairs"
+    },
+    {
+      step: "03",
+      title: "Explain",
+      description: "Turn debug output into clean notes, plots, and reports that help teams align quickly.",
+      icon: "fa-solid fa-diagram-project"
+    },
+    {
+      step: "04",
+      title: "Automate",
+      description: "Convert repeated steps into scripts, checks, dashboards, or AI-assisted workflows with review built in.",
+      icon: "fa-solid fa-robot"
+    }
   ],
 
   education: [
     {
       degree: "Master of Science, Electrical Engineering",
       institution: "National University of Singapore",
-      date: "2023 - 2025",
-      courses: ["VLSI Digital Circuit Design", "Memory Technologies and Their Emerging Applications", "Embedded Hardware System Design"]
+      date: "2023 — 2025",
+      notes: "Graduate Assistant for EE2028 Microcontroller Programming and Interfacing and CG3207 Computer Architecture.",
+      courses: ["VLSI Digital Circuit Design", "Memory Technologies", "Embedded Hardware System Design", "Computer Architecture"]
     },
     {
       degree: "Bachelor of Technology, Electronics and Communication Engineering",
       institution: "SRM Institute of Science and Technology",
-      date: "2019 - 2023",
-      courses: ["Digital Electronics", "Semiconductor Device Modelling", "Analog Electronic Circuits", "VLSI Design", "ARM-Based Embedded System Design"]
+      date: "2019 — 2023",
+      notes: "Built a strong base across digital electronics, semiconductor devices, communication systems, and embedded design.",
+      courses: ["Semiconductor Device Modelling", "Analog Circuits", "VLSI Design", "ARM Embedded Systems", "Microcontrollers"]
     }
   ],
 
   experience: [
     {
-      title: "NTI / NAND R&D Team",
-      company: "Micron Technology",
+      title: "NAND Electrical Failure Analysis Engineer",
+      company: "Micron Technology · NTI / NAND R&D",
       date: "Current",
       location: "Singapore",
-      tags: ["NAND R&D", "Tools", "Automation", "AI"],
+      tags: ["NAND", "Electrical FA", "Yield", "Tools", "Automation", "AI Workflows"],
       bullets: [
-        "Work on tools and automation projects that support NAND R&D engineering workflows.",
-        "Contribute to AI-assisted productivity ideas for team workflows while keeping confidentiality, accuracy, and engineering control in mind.",
-        "Bridge semiconductor domain knowledge with practical scripting, process improvement, and maintainable internal tooling.",
-        "Focus on dependable execution, clear communication, and reusable solutions for team needs."
+        "Work in Micron's NTI / NAND R&D environment with a focus on failure-analysis thinking, engineering tools, automation, and team productivity.",
+        "Support workflows where electrical verification, failure signatures, structured analysis, and clear communication matter.",
+        "Build and improve internal utilities at a high level: repeatable scripts, workflow aids, documentation support, and AI-assisted productivity ideas.",
+        "Keep professional work intentionally high-level here to respect confidentiality while still showing the engineering direction."
       ]
     },
     {
       title: "Graduate Assistant",
       company: "National University of Singapore",
-      date: "Aug 2024 - Nov 2024",
+      date: "Aug 2024 — Nov 2024",
       location: "Singapore",
-      tags: ["Teaching", "Computer Architecture", "Microcontrollers"],
+      tags: ["Teaching", "Microcontrollers", "Computer Architecture", "Lab Systems"],
       bullets: [
-        "Oversaw laboratory sessions and assisted with assignments and grading for EE2028 Microcontroller Programming and Interfacing and CG3207 Computer Architecture.",
-        "Provided guidance and feedback on lab work to strengthen student understanding.",
-        "Collaborated with faculty to improve lab materials and workflow quality.",
-        "Applied patient, reliable, and collaborative communication in an academic environment."
+        "Oversaw lab sessions and assisted with assignments and grading for EE2028 Microcontroller Programming and Interfacing and CG3207 Computer Architecture.",
+        "Guided students through lab work and gave practical feedback on debugging and implementation quality.",
+        "Collaborated with faculty to overhaul lab materials and improve process clarity."
       ]
     },
     {
       title: "Project Intern",
       company: "Maven Silicon",
-      date: "Dec 2022 - Jan 2023",
+      date: "Dec 2022 — Jan 2023",
       location: "Bangalore, India · Remote",
-      tags: ["RTL", "Verilog", "AMBA"],
+      tags: ["RTL", "Verilog", "AMBA", "Synthesis"],
       bullets: [
-        "Designed an AHB to APB bridge for communication between bus protocols.",
-        "Decomposed the design into modular components to improve manageability and verification readiness.",
-        "Wrote functional RTL in Verilog HDL and translated RTL intent into gate-level schematic understanding.",
-        "Integrated individual modules into a cohesive top-level system architecture."
+        "Designed an AHB-to-APB bridge to support communication between AMBA bus protocols.",
+        "Broke the system into modular blocks, wrote Verilog RTL, and connected design intent to gate-level understanding.",
+        "Strengthened habits around clean decomposition, interface clarity, and verification readiness."
       ]
     },
     {
-      title: "Intern",
+      title: "Embedded Systems Intern",
       company: "Sandeepani School of Embedded System Design",
-      date: "Jun 2022 - Jul 2022",
+      date: "Jun 2022 — Jul 2022",
       location: "Bangalore, India · Remote",
-      tags: ["SystemVerilog", "Verification", "QuestaSim"],
+      tags: ["SystemVerilog", "UART", "Verification", "QuestaSim"],
       bullets: [
         "Worked on UART protocol development and verification using Verilog HDL.",
-        "Performed functional verification for a half adder using SystemVerilog.",
-        "Built familiarity with random stimulus generation, functional coverage, and object-oriented SystemVerilog concepts.",
-        "Used QuestaSim for simulation and verification workflow practice."
+        "Performed functional verification of a half adder with SystemVerilog and QuestaSim.",
+        "Practiced coverage-oriented thinking through random stimulus generation and functional coverage concepts."
       ]
     }
   ],
 
   projects: [
     {
-      title: "NAND R&D Tooling & Automation",
-      category: ["automation", "ai"],
-      status: "Current focus",
-      summary: "Internal team-oriented tooling and workflow automation for engineering productivity. Details intentionally stay high-level because this work is team and company-context specific.",
-      highlights: ["Automation-first", "Reusable workflows", "AI-assisted productivity"],
-      tech: ["Python", "Scripting", "Dashboards", "AI workflows"]
+      title: "NAND FA Workflow Tooling",
+      category: ["fa", "automation"],
+      status: "Current direction",
+      summary: "High-level professional focus: tools and automation that support FA-style workflows, debug traceability, and team execution in an R&D setting.",
+      highlights: ["failure signatures", "repeatable flows", "team tools"],
+      tech: ["Python", "automation", "dashboards", "documentation"]
     },
     {
-      title: "AI Workflow Concepts for Engineering Teams",
+      title: "AI-Assisted Engineering Notes",
       category: ["ai", "automation"],
-      status: "Professional focus",
-      summary: "Exploring practical AI-assisted flows for documentation, knowledge retrieval, summaries, and repetitive engineering support tasks with human review in the loop.",
-      highlights: ["Human-in-the-loop", "Documentation", "Knowledge workflows"],
-      tech: ["LLM workflows", "Prompting", "Python", "Process design"]
+      status: "Current direction",
+      summary: "Human-in-the-loop AI concepts for organizing notes, retrieving context, summarizing repeated work, and making team knowledge easier to reuse.",
+      highlights: ["human review", "knowledge retrieval", "clean summaries"],
+      tech: ["LLM workflows", "prompting", "Python", "process design"]
     },
     {
       title: "VLSI Interconnect Modelling",
       category: ["vlsi"],
-      status: "Academic project",
-      summary: "Optimized processor interconnects using Elmore RC models and Cadence Virtuoso for a 2-core processor at 45nm technology, focusing on energy-delay tradeoffs.",
-      highlights: ["45nm", "Energy-delay", "RC modeling"],
-      tech: ["Cadence", "SPICE", "Elmore delay", "VLSI"]
+      status: "NUS project",
+      summary: "Optimized processor interconnects using Elmore RC models and Cadence Virtuoso for a 2-core processor at 45nm technology.",
+      highlights: ["45nm", "energy-delay", "signal integrity"],
+      tech: ["Cadence Virtuoso", "SPICE", "Elmore delay", "VLSI"]
     },
     {
-      title: "Standard Cell IP Development",
+      title: "Standard Cell IP: Ring Oscillator",
       category: ["vlsi"],
-      status: "Academic project",
-      summary: "Created a ring oscillator standard cell IP using hierarchical design in Cadence Virtuoso, targeting area efficiency in 40nm technology.",
-      highlights: ["40nm", "DRC/LVS", "Hierarchical design"],
-      tech: ["Cadence Virtuoso", "Layout", "DRC", "LVS"]
+      status: "NUS project",
+      summary: "Developed a ring oscillator standard-cell IP with hierarchical design in Cadence Virtuoso, targeting compact layout and PVT awareness at 40nm.",
+      highlights: ["40nm", "DRC/LVS", "layout discipline"],
+      tech: ["Cadence", "layout", "DRC", "LVS"]
     },
     {
-      title: "FPGA Hardware Accelerator",
+      title: "FPGA Hardware Accelerator for MLP",
       category: ["fpga", "ai"],
-      status: "Academic project",
-      summary: "Developed a hardware accelerator on Xilinx Zynq-7000 FPGA to improve MLP neural network inference using pipelining and loop unrolling optimizations.",
-      highlights: ["Zynq-7000", "MLP inference", "Loop unrolling"],
-      tech: ["FPGA", "HLS", "Verilog", "Xilinx"]
+      status: "NUS project",
+      summary: "Built an MLP inference accelerator on Xilinx Zynq-7000 using software, HLS, and Verilog paths with profiling-driven optimization.",
+      highlights: ["Zynq-7000", "MLP inference", "loop unrolling"],
+      tech: ["FPGA", "HLS", "Verilog", "Xilinx Vitis"]
     },
     {
       title: "In-Memory Compute Circuit",
       category: ["vlsi", "ai"],
-      status: "Academic project",
-      summary: "Designed an in-memory compute concept using NeuroSim and MuMax3 to accelerate neural network computations with quantization techniques.",
-      highlights: ["Compute-in-memory", "Quantization", "Neural networks"],
-      tech: ["NeuroSim", "MuMax3", "PyTorch"]
+      status: "NUS project",
+      summary: "Explored compute-in-memory for neural-network acceleration using NeuroSim, MuMax3, PyTorch, and quantization comparisons.",
+      highlights: ["CIM", "quantization", "model efficiency"],
+      tech: ["NeuroSim", "MuMax3", "PyTorch", "int8/int4"]
     },
     {
-      title: "AHB-APB Bridge Design",
+      title: "AHB–APB Bridge with Error Detection",
       category: ["vlsi"],
-      status: "RTL project",
-      summary: "Developed a synthesizable AHB to APB bridge with a reversible-logic-based error detection and correction module for stronger data integrity.",
-      highlights: ["AMBA", "RTL", "Data integrity"],
-      tech: ["Verilog", "RTL", "AMBA", "Simulation"]
+      status: "Publication-linked",
+      summary: "Designed a bus bridge with reversible-logic-based error detection and correction ideas for improved data integrity.",
+      highlights: ["AMBA", "data integrity", "RTL"],
+      tech: ["Verilog", "RTL", "AMBA", "simulation"]
     },
     {
       title: "Autonomous Vehicle Safety Control",
       category: ["embedded"],
-      status: "Patent-linked project",
-      summary: "Designed an intelligent system concept for autonomous vehicles that detects driver medical distress and responds automatically to improve safety.",
-      highlights: ["Safety systems", "IoT", "Monitoring"],
-      tech: ["Embedded systems", "IoT", "Sensors"]
+      status: "Patent-linked",
+      summary: "System concept for detecting driver medical distress and triggering an automated vehicle response to improve safety.",
+      highlights: ["safety", "IoT", "monitoring"],
+      tech: ["embedded systems", "sensors", "IoT"]
     }
   ],
 
@@ -179,27 +191,31 @@ window.PORTFOLIO_DATA = {
     {
       type: "Publication",
       title: "Improving Data Integrity with Reversible Logic-based Error Detection and Correction Module on AHB-APB Bridge",
-      meta: "IEEE · Jun 1, 2023",
-      description: "Research on enhancing data integrity in bus bridge architectures using reversible logic techniques."
+      meta: "IEEE · 2023",
+      description: "Research connecting RTL bus-bridge design with data-integrity techniques."
     },
     {
       type: "Publication",
       title: "A Survey on Affordable Internet of Things (IoT) Enabled Healthcare Systems",
-      meta: "Grenze Scientific Society · Jul 25, 2022",
-      description: "Survey of cost-effective IoT approaches for healthcare systems."
+      meta: "Grenze International Journal of Engineering and Technology · 2022",
+      description: "Survey of affordable IoT-enabled healthcare system approaches."
     },
     {
       type: "Patent",
       title: "A System for Controlling an Autonomous Vehicle and a Method Thereof",
-      meta: "Patent No. 202341043496 · Issued Mar 28, 2025",
-      description: "System concept for detecting driver medical distress and triggering an automated response to improve vehicle safety."
+      meta: "Patent No. 202341043496 · Issued 2025",
+      description: "Autonomous-vehicle safety concept for detecting medical distress and triggering a safer response."
     }
   ],
 
   skills: [
     {
+      title: "Failure Analysis Direction",
+      items: ["electrical verification", "failure signatures", "yield-oriented thinking", "root-cause communication", "debug traceability"]
+    },
+    {
       title: "Automation & AI",
-      items: ["Python automation", "Scripting", "Workflow design", "LLM-assisted workflows", "Documentation systems", "Process improvement"]
+      items: ["Python automation", "workflow design", "LLM-assisted workflows", "documentation systems", "dashboard thinking", "process improvement"]
     },
     {
       title: "Programming & HDL",
@@ -211,20 +227,20 @@ window.PORTFOLIO_DATA = {
     },
     {
       title: "Semiconductor & Systems",
-      items: ["NAND R&D", "VLSI design", "Computer architecture", "Embedded systems", "Memory technologies", "FPGA acceleration"]
+      items: ["NAND memory", "VLSI design", "memory technologies", "computer architecture", "embedded systems", "FPGA acceleration"]
     },
     {
       title: "Embedded Platforms",
-      items: ["Arduino", "Raspberry Pi", "NodeMCU", "Sensors", "UART", "Microcontrollers"]
+      items: ["Arduino", "Raspberry Pi", "NodeMCU", "UART", "microcontrollers", "sensors"]
     }
   ],
 
   certifications: [
-    { provider: "Google", name: "Foundations of Project Management", date: "Nov 2024" },
-    { provider: "Internshala", name: "Arduino", date: "Jan 2022" },
-    { provider: "edX", name: "Building a RISC-V CPU Core", date: "Nov 2021" },
-    { provider: "Coursera", name: "Python for Data Science, AI & Development", date: "Sep 2021" },
-    { provider: "Internshala", name: "PCB Design", date: "Nov 2021" },
-    { provider: "Cisco", name: "Introduction to IoT and Digital Transformation", date: "Oct 2021" }
+    "Python for Data Science, AI & Development — IBM / Coursera",
+    "Building a RISC-V CPU Core — edX / Linux Foundation",
+    "Embedded Systems Essentials with Arm — Arm Education",
+    "IoT Systems and Industrial Applications with Design Thinking — EPFL / edX",
+    "Introduction to IoT and Digital Transformation — Cisco",
+    "PCB Design — Internshala"
   ]
 };

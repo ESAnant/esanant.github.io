@@ -1,57 +1,59 @@
 # Edidi Sai Anant Portfolio
 
-Static GitHub Pages portfolio for Edidi Sai Anant. The site is intentionally kept framework-free so it can be edited quickly and deployed directly from the repository root.
+Minimal, FA-inspired GitHub Pages portfolio for **Edidi Sai Anant**.
 
-## What changed
+Current positioning:
 
-- Updated positioning for current Micron NTI / NAND R&D work.
-- Added stronger emphasis on tools, automation, and AI-assisted engineering workflows.
-- Split content, styling, and behavior into separate files for easier control.
-- Removed forced scroll-jacking and heavy fixed delays that made the old version feel buggy.
-- Added project filters, command palette, typed hero text, particle background, responsive cards, SEO metadata, and structured data.
+- NAND Electrical Failure Analysis Engineer
+- Micron Technology · NTI / NAND R&D
+- Tools, automation, and AI-assisted engineering workflows
+- VLSI, FPGA, embedded systems, memory technology, and semiconductor foundations
 
 ## File structure
 
 ```text
 .
 ├── index.html
-├── README.md
-├── AUDIT.md
-├── LICENSE
-├── Edidi_Sai_Anant_Resume.pdf          # compatibility copy for old links
 ├── assets/
-│   ├── docs/
-│   │   └── Edidi_Sai_Anant_Resume.pdf
+│   ├── docs/Edidi_Sai_Anant_Resume.pdf
 │   ├── favicon.svg
 │   └── images/
-│       └── XLNX.png
 ├── css/
 │   ├── base.css
 │   ├── components.css
 │   └── responsive.css
 └── js/
-    ├── content.js       # edit portfolio text/data here first
-    └── main.js          # site behavior and rendering
+    ├── content.js
+    ├── main.js
+    └── pretext-fit.js
 ```
 
-## Editing content
+## Edit your content
 
-Most content is in `js/content.js`:
+Most personal content lives in:
 
-- `experience` controls timeline cards.
-- `projects` controls project cards and filters.
-- `skills` controls skill groups.
-- `certifications` controls the credential cards.
-- `profile` controls resume, email, LinkedIn, and GitHub links.
+```text
+js/content.js
+```
 
-## Deploying to GitHub Pages
+Change your email, role, experience bullets, projects, publications, and skills there without touching layout code.
 
-1. Replace the files in your `ESAnant/esanant.github.io` repository with this folder's contents.
+## Libraries used
+
+The site intentionally uses a small number of high-signal libraries rather than adding random effects:
+
+- **Pretext** via `js/pretext-fit.js` for experimental text measurement and line-count stability.
+- **GSAP** for subtle, controlled motion.
+- **Lenis** for smooth scrolling.
+
+All effects respect `prefers-reduced-motion`.
+
+## Deployment
+
+1. Copy the folder contents into the root of `ESAnant/esanant.github.io`.
 2. Commit and push to `main`.
-3. GitHub Pages will serve the root `index.html` at `https://esanant.github.io/`.
+3. GitHub Pages will serve the site from `https://esanant.github.io/`.
 
-## Optional next steps
+## Confidentiality note
 
-- Replace the resume PDF with an updated Micron-current version.
-- Add project links when public repositories or writeups are available.
-- Replace high-level internal project summaries with approved public wording if company policy allows it.
+Professional Micron work is intentionally described at a high level. Keep internal process names, product details, data, methodologies, and screenshots out of this public site unless you have explicit approval.
