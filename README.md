@@ -1,31 +1,57 @@
-# Personal Portfolio Website - Edidi Sai Anant
+# Edidi Sai Anant Portfolio
 
-This repository contains the source code for my personal portfolio website, built to showcase my skills, projects, and experience in VLSI, Computer Architecture, and Embedded Systems.
+Static GitHub Pages portfolio for Edidi Sai Anant. The site is intentionally kept framework-free so it can be edited quickly and deployed directly from the repository root.
 
-**[➡️ View the Live Site](https://esanant.github.io)**
+## What changed
 
----
+- Updated positioning for current Micron NTI / NAND R&D work.
+- Added stronger emphasis on tools, automation, and AI-assisted engineering workflows.
+- Split content, styling, and behavior into separate files for easier control.
+- Removed forced scroll-jacking and heavy fixed delays that made the old version feel buggy.
+- Added project filters, command palette, typed hero text, particle background, responsive cards, SEO metadata, and structured data.
 
-### 🚀 Features
+## File structure
 
-* **Responsive Design:** Fully mobile-first and scales to any device.
-* **Interactive:** Features a particle.js background, animated skill cards, and smooth-scrolling.
-* **Accessible:** Built with semantic HTML and accessibility in mind, including keyboard navigation, `aria` attributes, and `prefers-reduced-motion` support.
-* **Modern Stack:** Built with pure HTML5, CSS3 (using variables & flexbox/grid), and modern JavaScript (ES6+).
+```text
+.
+├── index.html
+├── README.md
+├── AUDIT.md
+├── LICENSE
+├── Edidi_Sai_Anant_Resume.pdf          # compatibility copy for old links
+├── assets/
+│   ├── docs/
+│   │   └── Edidi_Sai_Anant_Resume.pdf
+│   ├── favicon.svg
+│   └── images/
+│       └── XLNX.png
+├── css/
+│   ├── base.css
+│   ├── components.css
+│   └── responsive.css
+└── js/
+    ├── content.js       # edit portfolio text/data here first
+    └── main.js          # site behavior and rendering
+```
 
----
+## Editing content
 
-### 🛠️ Built With
+Most content is in `js/content.js`:
 
-* **HTML5**
-* **CSS3** (with CSS Variables)
-* **JavaScript (ES6+)**
-* [**Particles.js**](https://vincentgarreau.com/particles.js/) - For the interactive background.
-* [**Font Awesome**](https://fontawesome.com/) - For icons.
-* [**Google Fonts**](https://fonts.google.com/) - For typography.
+- `experience` controls timeline cards.
+- `projects` controls project cards and filters.
+- `skills` controls skill groups.
+- `certifications` controls the credential cards.
+- `profile` controls resume, email, LinkedIn, and GitHub links.
 
----
+## Deploying to GitHub Pages
 
-### 📄 License
+1. Replace the files in your `ESAnant/esanant.github.io` repository with this folder's contents.
+2. Commit and push to `main`.
+3. GitHub Pages will serve the root `index.html` at `https://esanant.github.io/`.
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## Optional next steps
+
+- Replace the resume PDF with an updated Micron-current version.
+- Add project links when public repositories or writeups are available.
+- Replace high-level internal project summaries with approved public wording if company policy allows it.

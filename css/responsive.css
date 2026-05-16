@@ -1,0 +1,168 @@
+@media (max-width: 1100px) {
+  .project-grid,
+  .skills-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cert-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .terminal-card {
+    max-width: 680px;
+  }
+}
+
+@media (max-width: 880px) {
+  :root {
+    --header: 68px;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .command-button span {
+    display: none;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: var(--header);
+    right: 16px;
+    left: 16px;
+    display: grid;
+    gap: 0.4rem;
+    padding: 1rem;
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    background: rgba(7, 17, 31, 0.96);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(18px);
+    transform: translateY(-16px);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  body.nav-open .nav-links {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav-links a {
+    justify-content: center;
+    padding: 0.85rem;
+    font-size: 0.9rem;
+  }
+
+  .split-section {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .section-kicker {
+    margin-bottom: 0.5rem;
+  }
+
+  .social-rail {
+    display: none;
+  }
+}
+
+@media (max-width: 680px) {
+  body {
+    font-size: 15px;
+  }
+
+  .section {
+    padding: 78px 18px;
+  }
+
+  .hero-section {
+    padding-top: calc(var(--header) + 28px);
+  }
+
+  .brand-text {
+    display: none;
+  }
+
+  .hero-actions,
+  .contact-actions {
+    display: grid;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .hero-metrics,
+  .focus-grid,
+  .project-grid,
+  .skills-grid,
+  .cert-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline::before {
+    display: none;
+  }
+
+  .timeline-item {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-dot {
+    display: none;
+  }
+
+  .timeline-header {
+    display: grid;
+  }
+
+  .timeline-header time {
+    order: -1;
+  }
+
+  .project-card {
+    min-height: auto;
+  }
+
+  .command-palette {
+    padding-top: 9vh;
+  }
+}
+
+@media (max-width: 440px) {
+  .nav-shell {
+    padding: 0 16px;
+  }
+
+  .section {
+    padding-inline: 14px;
+  }
+
+  .terminal-card pre {
+    font-size: 0.78rem;
+  }
+
+  .project-controls {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .filter-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 680px) {
+  .education-grid {
+    grid-template-columns: 1fr;
+  }
+}
