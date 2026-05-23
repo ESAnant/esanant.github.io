@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     TagCloud('#tag-sphere', [
       'NAND Flash', 'Failure Analysis', 'EFA', 'Root Cause',
       'VLSI', 'Cadence Virtuoso', 'QuestaSim', 'Xilinx Vivado',
-      'Verilog', 'SystemVerilog', 'HLS', 'C++',
+      'Python', 'Verilog', 'SystemVerilog', 'HLS', 'C++',
       'Nanoelectronics', 'Memory Technologies', 'Semiconductor',
       'FPGA', 'RTL Design', 'DRC / LVS', 'PVT Analysis',
       'Signal Integrity', 'Embedded Systems', 'PCB Design',
