@@ -41,8 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // ─── TagCloud — rotating skills sphere ────────────────────
   if (typeof TagCloud !== 'undefined' && document.getElementById('tag-sphere')) {
     TagCloud('#tag-sphere', [
-      'NAND Flash', 'Failure Analysis', 'EFA', 'Root Cause',
-      'VLSI', 'Cadence Virtuoso', 'QuestaSim', 'Xilinx Vivado',
+      'NAND Flash', 'Failure Analysis', 'EFA', 'EMMI', 'Testers / ATE',
+      'VLSI', 'Cadence Virtuoso', 'Avalon', 'QuestaSim', 'Xilinx Vivado',
       'Python', 'Verilog', 'SystemVerilog', 'HLS', 'C++',
       'Nanoelectronics', 'Memory Technologies', 'Semiconductor',
       'FPGA', 'RTL Design', 'DRC / LVS', 'PVT Analysis',
