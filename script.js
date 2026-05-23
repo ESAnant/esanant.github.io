@@ -26,8 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
     new Typed('#typed-target', {
       strings: [
         'NAND EFA Engineer at Micron NTI.',
-        'I find out why bits misbehave.',
         'Fail signature → root cause → fixed.',
+        'Electrical failure analysis on NAND flash.',
       ],
       typeSpeed: 38,
       backSpeed: 18,
@@ -39,7 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ─── TagCloud — rotating skills sphere ────────────────────
-  if (typeof TagCloud !== 'undefined' && document.getElementById('tag-sphere')) {
+  function initTagCloud() {
+    const sphere = document.getElementById('tag-sphere');
+    if (typeof TagCloud === 'undefined' || !sphere) return;
     TagCloud('#tag-sphere', [
       'NAND Flash', 'Failure Analysis', 'EFA', 'EMMI', 'Testers / ATE',
       'VLSI', 'Cadence Virtuoso', 'Avalon', 'QuestaSim', 'Xilinx Vivado',
@@ -55,6 +57,11 @@ document.addEventListener('DOMContentLoaded', () => {
       direction: 135,
       keep: true,
     });
+  }
+  if (document.readyState === 'complete') {
+    initTagCloud();
+  } else {
+    window.addEventListener('load', initTagCloud);
   }
 
 
