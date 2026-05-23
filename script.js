@@ -72,12 +72,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const elapsed = Date.now() - start;
       if (document.readyState === 'complete' && elapsed >= minDelay) {
         loader.classList.add('hidden');
+        const fallback = setTimeout(() => { loader.remove(); revealHeroElements(); }, 700);
         loader.addEventListener('transitionend', () => {
+          clearTimeout(fallback);
           loader.remove();
           revealHeroElements();
         }, { once: true });
-        // Fallback: if transitionend doesn't fire
-        setTimeout(revealHeroElements, 700);
       } else {
         requestAnimationFrame(tryHide);
       }
