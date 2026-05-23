@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Edidi Sai Anant — NAND EFA Engineer</title>
-  <meta name="description" content="Edidi Sai Anant — NAND Electrical Failure Analysis Engineer at Micron Technology, Singapore. Semiconductor engineer, tool builder, vibe coder.">
+  <meta name="description" content="Edidi Sai Anant — NAND EFA Engineer at Micron Technology, Singapore. MSc Nanoelectronics, NUS. Semiconductor FA, Python automation, VLSI.">
   <meta name="theme-color" content="#070b16">
 
   <!-- Open Graph -->
@@ -12,7 +12,7 @@
   <meta property="og:description" content="Semiconductor engineer at Micron NTI. I find out why bits misbehave.">
   <meta property="og:type" content="website">
 
-  <!-- Fonts: Instrument Serif (name), DM Sans (body), JetBrains Mono (code) -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
   <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <!-- Splitting.js — char-level text animation -->
+  <!-- Splitting.js -->
   <link rel="stylesheet" href="https://unpkg.com/splitting@1.0.6/dist/splitting.css">
 
   <!-- Favicon: copper-tinted die -->
@@ -51,13 +51,14 @@
   <!-- Navigation -->
   <header class="site-header" id="site-header">
     <nav class="nav-wrap">
-      <a href="#hero" class="nav-logo" aria-label="Home">ESA<span class="logo-dot">.</span></a>
+      <a href="#hero" class="nav-logo" aria-label="Home">sai<span class="logo-dot">.</span></a>
       <ul class="nav-links" id="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#experience">Work</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#publications">Research</a></li>
         <li><a href="#skills">Skills</a></li>
+        <li><a href="#education">Education</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
       <button class="nav-resume-btn" onclick="window.open('Edidi_Sai_Anant_Resume.pdf','_blank')">
@@ -91,143 +92,189 @@
 
   <main>
 
-    <!-- HERO ─────────────────────────────── -->
+    <!-- HERO -->
     <section id="hero" class="section section-hero">
       <div class="hero-inner">
-        <p class="hero-pre reveal-up">
-          <span class="tag-chip">NAND EFA · Micron NTI · Singapore</span>
-        </p>
-        <h1 class="hero-name reveal-up" style="animation-delay:0.1s">
-          Edidi Sai&nbsp;Anant<span class="name-period">.</span>
-        </h1>
-        <h2 class="hero-sub reveal-up" style="animation-delay:0.2s">
-          I find out why bits misbehave.
-        </h2>
-        <p class="hero-desc reveal-up" style="animation-delay:0.3s">
-          Electrical Failure Analysis engineer at Micron's NAND Technology Integration group.
-          I trace fail signatures back to root cause, build tools to make the process faster,
-          and occasionally write code just because a script is more satisfying than a spreadsheet.
-        </p>
-        <div class="hero-actions reveal-up" style="animation-delay:0.4s">
-          <a href="#projects" class="btn btn-primary">See my work</a>
-          <a href="#contact" class="btn btn-ghost">Get in touch</a>
+        <div class="hero-content">
+          <p class="hero-pre reveal-clip">
+            <span class="tag-chip">NAND EFA · Micron NTI · Singapore</span>
+          </p>
+          <h1 class="hero-name" data-splitting>
+            Edidi Sai&nbsp;Anant<span class="name-period">.</span>
+          </h1>
+          <h2 class="hero-sub reveal-clip" style="transition-delay:0.55s">
+            <span id="typed-target"></span>
+          </h2>
+          <p class="hero-desc reveal-clip" style="transition-delay:0.7s">
+            Electrical Failure Analysis on NAND flash at Micron's R&amp;D group in Singapore. I trace fail signatures, isolate root causes, and build the automation that makes the next debug faster.
+          </p>
+          <div class="hero-actions reveal-clip" style="transition-delay:0.85s">
+            <a href="#projects" class="btn btn-primary">See my work</a>
+            <a href="#contact" class="btn btn-ghost">Get in touch</a>
+          </div>
+        </div>
+        <div class="hero-visual reveal-clip" style="transition-delay:0.4s" aria-hidden="true">
+          <div id="tag-sphere"></div>
         </div>
       </div>
 
-      <!-- Decorative PCB corner art -->
-      <div class="hero-pcb" aria-hidden="true">
+      <!-- kept for backward compat but hidden -->
+      <div class="hero-pcb" aria-hidden="true" style="display:none">
         <svg viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Die outline -->
-          <rect x="60" y="60" width="140" height="140" rx="6" stroke="var(--copper)" stroke-width="1.5" opacity="0.5"/>
-          <!-- Die pads -->
-          <rect x="60" y="80" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.6"/>
-          <rect x="60" y="100" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.4"/>
-          <rect x="60" y="120" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.6"/>
-          <rect x="60" y="140" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.4"/>
-          <rect x="60" y="160" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.6"/>
-          <rect x="192" y="80" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.6"/>
-          <rect x="192" y="100" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.4"/>
-          <rect x="192" y="120" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.6"/>
-          <rect x="192" y="140" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.4"/>
-          <rect x="192" y="160" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.6"/>
-          <rect x="80" y="60" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.4"/>
-          <rect x="100" y="60" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.6"/>
-          <rect x="120" y="60" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.4"/>
-          <rect x="140" y="60" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.6"/>
-          <rect x="160" y="60" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.4"/>
-          <rect x="80" y="192" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.4"/>
-          <rect x="100" y="192" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.6"/>
-          <rect x="120" y="192" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.4"/>
-          <rect x="140" y="192" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.6"/>
-          <rect x="160" y="192" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.4"/>
-          <!-- Internal grid lines -->
-          <line x1="78" y1="68" x2="182" y2="68" stroke="var(--copper)" stroke-width="0.5" opacity="0.2"/>
-          <line x1="78" y1="88" x2="182" y2="88" stroke="var(--copper)" stroke-width="0.5" opacity="0.2"/>
-          <line x1="78" y1="108" x2="182" y2="108" stroke="var(--copper)" stroke-width="0.5" opacity="0.2"/>
-          <line x1="78" y1="128" x2="182" y2="128" stroke="var(--copper)" stroke-width="0.5" opacity="0.15"/>
-          <line x1="78" y1="148" x2="182" y2="148" stroke="var(--copper)" stroke-width="0.5" opacity="0.2"/>
-          <line x1="78" y1="168" x2="182" y2="168" stroke="var(--copper)" stroke-width="0.5" opacity="0.2"/>
-          <line x1="78" y1="188" x2="182" y2="188" stroke="var(--copper)" stroke-width="0.5" opacity="0.2"/>
-          <line x1="88" y1="68" x2="88" y2="192" stroke="var(--copper)" stroke-width="0.5" opacity="0.2"/>
-          <line x1="108" y1="68" x2="108" y2="192" stroke="var(--copper)" stroke-width="0.5" opacity="0.2"/>
-          <line x1="128" y1="68" x2="128" y2="192" stroke="var(--copper)" stroke-width="0.5" opacity="0.15"/>
-          <line x1="148" y1="68" x2="148" y2="192" stroke="var(--copper)" stroke-width="0.5" opacity="0.2"/>
-          <line x1="168" y1="68" x2="168" y2="192" stroke="var(--copper)" stroke-width="0.5" opacity="0.2"/>
-          <!-- Center cell highlight -->
-          <rect x="108" y="108" width="44" height="44" rx="3" fill="var(--copper)" opacity="0.08" stroke="var(--copper)" stroke-width="1" stroke-opacity="0.4"/>
-          <!-- Circuit traces radiating out -->
-          <line x1="68" y1="128" x2="40" y2="128" stroke="var(--copper)" stroke-width="1" opacity="0.35"/>
-          <line x1="40" y1="128" x2="40" y2="90" stroke="var(--copper)" stroke-width="1" opacity="0.35"/>
-          <line x1="40" y1="90" x2="20" y2="90" stroke="var(--copper)" stroke-width="1" opacity="0.25"/>
-          <line x1="192" y1="128" x2="220" y2="128" stroke="var(--copper)" stroke-width="1" opacity="0.35"/>
-          <line x1="220" y1="128" x2="220" y2="170" stroke="var(--copper)" stroke-width="1" opacity="0.35"/>
-          <line x1="220" y1="170" x2="240" y2="170" stroke="var(--copper)" stroke-width="1" opacity="0.25"/>
-          <line x1="130" y1="60" x2="130" y2="30" stroke="var(--copper)" stroke-width="1" opacity="0.35"/>
-          <line x1="130" y1="30" x2="160" y2="30" stroke="var(--copper)" stroke-width="1" opacity="0.25"/>
-          <line x1="130" y1="200" x2="130" y2="230" stroke="var(--copper)" stroke-width="1" opacity="0.35"/>
-          <line x1="130" y1="230" x2="100" y2="230" stroke="var(--copper)" stroke-width="1" opacity="0.25"/>
-          <!-- Trace end pads -->
-          <circle cx="20" cy="90" r="3" fill="var(--copper)" opacity="0.3"/>
-          <circle cx="240" cy="170" r="3" fill="var(--copper)" opacity="0.3"/>
-          <circle cx="160" cy="30" r="3" fill="var(--copper)" opacity="0.3"/>
-          <circle cx="100" cy="230" r="3" fill="var(--copper)" opacity="0.3"/>
-          <!-- Notch (wafer alignment mark) -->
-          <path d="M60 60 L72 60 L60 72 Z" fill="var(--copper)" opacity="0.3"/>
+          <!-- Board boundary -->
+          <rect x="3" y="3" width="254" height="254" rx="12" stroke="var(--copper)" stroke-width="0.5" opacity="0.07" fill="none"/>
+          <!-- Chip package -->
+          <rect x="60" y="60" width="140" height="140" rx="6" stroke="var(--copper)" stroke-width="1.5" opacity="0.55" fill="none"/>
+          <!-- Left pins -->
+          <rect x="52" y="80" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.6"/>
+          <rect x="52" y="100" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.4"/>
+          <rect x="52" y="120" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.6"/>
+          <rect x="52" y="140" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.4"/>
+          <rect x="52" y="160" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.6"/>
+          <!-- Right pins -->
+          <rect x="200" y="80" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.6"/>
+          <rect x="200" y="100" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.4"/>
+          <rect x="200" y="120" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.6"/>
+          <rect x="200" y="140" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.4"/>
+          <rect x="200" y="160" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.6"/>
+          <!-- Top pins -->
+          <rect x="80" y="52" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.4"/>
+          <rect x="100" y="52" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.6"/>
+          <rect x="120" y="52" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.4"/>
+          <rect x="140" y="52" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.6"/>
+          <rect x="160" y="52" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.4"/>
+          <!-- Bottom pins -->
+          <rect x="80" y="200" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.4"/>
+          <rect x="100" y="200" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.6"/>
+          <rect x="120" y="200" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.4"/>
+          <rect x="140" y="200" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.6"/>
+          <rect x="160" y="200" width="8" height="8" rx="1" fill="var(--copper)" opacity="0.4"/>
+          <!-- Internal grid -->
+          <line x1="75" y1="68" x2="185" y2="68" stroke="var(--copper)" stroke-width="0.5" opacity="0.15"/>
+          <line x1="75" y1="88" x2="185" y2="88" stroke="var(--copper)" stroke-width="0.5" opacity="0.15"/>
+          <line x1="75" y1="108" x2="185" y2="108" stroke="var(--copper)" stroke-width="0.5" opacity="0.12"/>
+          <line x1="75" y1="128" x2="185" y2="128" stroke="var(--copper)" stroke-width="0.5" opacity="0.1"/>
+          <line x1="75" y1="148" x2="185" y2="148" stroke="var(--copper)" stroke-width="0.5" opacity="0.15"/>
+          <line x1="75" y1="168" x2="185" y2="168" stroke="var(--copper)" stroke-width="0.5" opacity="0.15"/>
+          <line x1="75" y1="188" x2="185" y2="188" stroke="var(--copper)" stroke-width="0.5" opacity="0.12"/>
+          <line x1="88" y1="65" x2="88" y2="195" stroke="var(--copper)" stroke-width="0.5" opacity="0.15"/>
+          <line x1="108" y1="65" x2="108" y2="195" stroke="var(--copper)" stroke-width="0.5" opacity="0.15"/>
+          <line x1="128" y1="65" x2="128" y2="195" stroke="var(--copper)" stroke-width="0.5" opacity="0.1"/>
+          <line x1="148" y1="65" x2="148" y2="195" stroke="var(--copper)" stroke-width="0.5" opacity="0.15"/>
+          <line x1="168" y1="65" x2="168" y2="195" stroke="var(--copper)" stroke-width="0.5" opacity="0.15"/>
+          <!-- Die area -->
+          <rect x="108" y="105" width="44" height="50" rx="3" fill="var(--copper)" opacity="0.07" stroke="var(--copper)" stroke-width="1" stroke-opacity="0.4"/>
+          <!-- Die labels -->
+          <text x="130" y="122" font-family="'JetBrains Mono',monospace" font-size="5.5" fill="var(--copper)" opacity="0.5" text-anchor="middle" letter-spacing="1.2">NAND</text>
+          <text x="130" y="132" font-family="'JetBrains Mono',monospace" font-size="4" fill="var(--copper)" opacity="0.3" text-anchor="middle">128Gb</text>
+          <!-- Die center dot + sonar pulse ring -->
+          <circle cx="130" cy="143" r="3.5" fill="var(--copper)" opacity="0.7"/>
+          <circle cx="130" cy="143" r="3.5" fill="none" stroke="var(--copper)" stroke-width="1.5" class="pcb-ring-pulse"/>
+          <!-- Via dots at grid corners -->
+          <circle cx="88" cy="88" r="2" fill="var(--copper)" opacity="0.22"/>
+          <circle cx="168" cy="88" r="2" fill="var(--copper)" opacity="0.22"/>
+          <circle cx="88" cy="168" r="2" fill="var(--copper)" opacity="0.18"/>
+          <circle cx="168" cy="168" r="2" fill="var(--copper)" opacity="0.22"/>
+          <!-- LEFT traces -->
+          <line x1="52" y1="84" x2="32" y2="84" stroke="var(--copper)" stroke-width="0.9" opacity="0.4"/>
+          <line x1="32" y1="84" x2="32" y2="52" stroke="var(--copper)" stroke-width="0.9" opacity="0.35"/>
+          <rect x="25" y="43" width="14" height="6" rx="1" fill="none" stroke="var(--copper)" stroke-width="0.7" opacity="0.28"/>
+          <line x1="32" y1="43" x2="32" y2="35" stroke="var(--copper)" stroke-width="0.8" opacity="0.28"/>
+          <circle cx="32" cy="33" r="2" fill="var(--copper)" opacity="0.2"/>
+          <line x1="52" y1="124" x2="16" y2="124" stroke="var(--copper)" stroke-width="0.9" opacity="0.35"/>
+          <line x1="16" y1="124" x2="16" y2="158" stroke="var(--copper)" stroke-width="0.9" opacity="0.3"/>
+          <circle cx="16" cy="158" r="2.5" fill="var(--copper)" opacity="0.2"/>
+          <line x1="52" y1="164" x2="6" y2="164" stroke="var(--copper)" stroke-width="0.8" opacity="0.28"/>
+          <circle cx="6" cy="164" r="2" fill="var(--copper)" opacity="0.18"/>
+          <!-- RIGHT traces -->
+          <line x1="208" y1="84" x2="232" y2="84" stroke="var(--copper)" stroke-width="0.9" opacity="0.4"/>
+          <line x1="232" y1="84" x2="232" y2="58" stroke="var(--copper)" stroke-width="0.9" opacity="0.35"/>
+          <line x1="232" y1="58" x2="252" y2="58" stroke="var(--copper)" stroke-width="0.8" opacity="0.25"/>
+          <circle cx="252" cy="58" r="2" fill="var(--copper)" opacity="0.2"/>
+          <line x1="208" y1="124" x2="242" y2="124" stroke="var(--copper)" stroke-width="0.9" opacity="0.35"/>
+          <line x1="242" y1="124" x2="242" y2="150" stroke="var(--copper)" stroke-width="0.9" opacity="0.3"/>
+          <line x1="236" y1="150" x2="248" y2="150" stroke="var(--copper)" stroke-width="1.2" opacity="0.32"/>
+          <line x1="236" y1="155" x2="248" y2="155" stroke="var(--copper)" stroke-width="1.2" opacity="0.32"/>
+          <line x1="242" y1="155" x2="242" y2="168" stroke="var(--copper)" stroke-width="0.8" opacity="0.22"/>
+          <circle cx="242" cy="169" r="2" fill="var(--copper)" opacity="0.18"/>
+          <line x1="208" y1="164" x2="254" y2="164" stroke="var(--copper)" stroke-width="0.8" opacity="0.28"/>
+          <circle cx="254" cy="164" r="2" fill="var(--copper)" opacity="0.18"/>
+          <!-- TOP traces -->
+          <line x1="104" y1="52" x2="104" y2="28" stroke="var(--copper)" stroke-width="0.9" opacity="0.4"/>
+          <line x1="104" y1="28" x2="76" y2="28" stroke="var(--copper)" stroke-width="0.9" opacity="0.3"/>
+          <circle cx="76" cy="28" r="2.5" fill="var(--copper)" opacity="0.2"/>
+          <line x1="144" y1="52" x2="144" y2="14" stroke="var(--copper)" stroke-width="0.9" opacity="0.35"/>
+          <line x1="144" y1="14" x2="172" y2="14" stroke="var(--copper)" stroke-width="0.8" opacity="0.25"/>
+          <circle cx="172" cy="14" r="2" fill="var(--copper)" opacity="0.18"/>
+          <line x1="164" y1="52" x2="164" y2="36" stroke="var(--copper)" stroke-width="0.8" opacity="0.3"/>
+          <rect x="157" y="28" width="14" height="6" rx="1" fill="none" stroke="var(--copper)" stroke-width="0.7" opacity="0.24"/>
+          <line x1="164" y1="28" x2="164" y2="20" stroke="var(--copper)" stroke-width="0.8" opacity="0.22"/>
+          <circle cx="164" cy="18" r="2" fill="var(--copper)" opacity="0.15"/>
+          <!-- BOTTOM traces -->
+          <line x1="104" y1="208" x2="104" y2="232" stroke="var(--copper)" stroke-width="0.9" opacity="0.4"/>
+          <line x1="104" y1="232" x2="132" y2="232" stroke="var(--copper)" stroke-width="0.8" opacity="0.3"/>
+          <circle cx="132" cy="232" r="2.5" fill="var(--copper)" opacity="0.2"/>
+          <line x1="144" y1="208" x2="144" y2="247" stroke="var(--copper)" stroke-width="0.9" opacity="0.35"/>
+          <line x1="144" y1="247" x2="116" y2="247" stroke="var(--copper)" stroke-width="0.8" opacity="0.25"/>
+          <circle cx="116" cy="247" r="2" fill="var(--copper)" opacity="0.18"/>
+          <line x1="164" y1="208" x2="164" y2="226" stroke="var(--copper)" stroke-width="0.8" opacity="0.3"/>
+          <line x1="164" y1="226" x2="190" y2="226" stroke="var(--copper)" stroke-width="0.8" opacity="0.24"/>
+          <circle cx="190" cy="226" r="2" fill="var(--copper)" opacity="0.18"/>
+          <!-- Floating component top-right -->
+          <rect x="194" y="22" width="22" height="11" rx="2" fill="none" stroke="var(--copper)" stroke-width="0.7" opacity="0.2"/>
+          <line x1="194" y1="27" x2="216" y2="27" stroke="var(--copper)" stroke-width="0.4" opacity="0.12"/>
+          <!-- Via bottom-left -->
+          <circle cx="40" cy="194" r="3" fill="none" stroke="var(--copper)" stroke-width="1" opacity="0.2"/>
+          <circle cx="40" cy="194" r="1.2" fill="var(--copper)" opacity="0.2"/>
+          <!-- Index corner mark -->
+          <path d="M60 60 L73 60 L60 73 Z" fill="var(--copper)" opacity="0.35"/>
         </svg>
       </div>
     </section>
 
-    <!-- ABOUT ────────────────────────────── -->
+    <!-- ABOUT -->
     <section id="about" class="section section-about">
       <div class="section-inner">
-        <h2 class="section-label reveal-up"><span>01</span>About</h2>
+        <h2 class="section-label reveal-clip"><span>01</span>About</h2>
         <div class="about-grid">
-          <div class="about-text reveal-up">
+          <div class="about-text reveal-clip">
             <p>
-              Right now I'm at <strong class="copper">Micron Technology</strong> in Singapore, doing electrical failure analysis on NAND memory devices within the NTI (NAND Technology Integration) group. When a bit doesn't behave, I'm the one trying to figure out the electrical story behind it — verify the failure, localize the site, root-cause the physics.
+              Currently at <strong class="copper">Micron Technology</strong> in Singapore, doing Electrical Failure Analysis on NAND memory devices within the NTI (NAND Technology Integration) R&amp;D group. I investigate electrical fail signatures from triage through physical localization to root-cause determination.
             </p>
             <p>
-              Before that: an MSc in Electrical Engineering from <strong class="copper">NUS</strong>, where I got deep into memory technologies, VLSI design, and enough Cadence Virtuoso to have genuine opinions about it. I also TA'd microcontroller and computer architecture labs, which taught me a lot about explaining things clearly.
+              Before that: an MSc in Electrical Engineering from <strong class="copper">NUS</strong>, specializing in Nanoelectronics, where I got deep into memory technologies, VLSI design, and enough Cadence Virtuoso to have genuine opinions about it. I also TA'd microcontroller and computer architecture labs, which taught me a lot about explaining things clearly.
             </p>
             <p>
-              I'm a vibe coder at heart — I'd rather write a script than do the same thing twice, and I build tools and AI-assisted workflows for my team in Python. I find the intersection of hardware and software genuinely interesting, not just as a skill combination but as a way of thinking.
+              I find the intersection of hardware and software genuinely interesting — I'd rather write a script than repeat a task, and I build automation tools and AI-assisted workflows to make the team's analysis faster.
             </p>
             <p>
               Outside of work: I solve puzzles, cook things that sometimes work, play video games, listen to music too loud, and travel when I can.
             </p>
           </div>
-          <div class="about-now reveal-up" style="animation-delay:0.15s">
-            <h3 class="now-title">Currently</h3>
-            <ul class="now-list">
-              <li>
-                <span class="now-icon"><i class="fa-solid fa-microchip"></i></span>
-                <div>
-                  <strong>NAND EFA Engineer</strong>
-                  <span>Micron Technology · NTI · Singapore</span>
-                </div>
-              </li>
-              <li>
-                <span class="now-icon"><i class="fa-solid fa-terminal"></i></span>
-                <div>
-                  <strong>Tool builder</strong>
-                  <span>Automation + AI for FA workflows</span>
-                </div>
-              </li>
-              <li>
-                <span class="now-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></span>
-                <div>
-                  <strong>Debug mindset</strong>
-                  <span>Verify → Localize → Root-cause</span>
-                </div>
-              </li>
-              <li>
-                <span class="now-icon"><i class="fa-solid fa-code"></i></span>
-                <div>
-                  <strong>Vibe coding</strong>
-                  <span>Python · whatever needs building</span>
-                </div>
-              </li>
-            </ul>
+          <div class="about-glance reveal-clip" style="transition-delay:0.15s">
+            <h3 class="now-title">At a glance</h3>
+            <div class="glance-stack">
+              <div class="glance-row">
+                <span class="glance-key mono">Domain</span>
+                <span class="glance-val">NAND Flash · FA · VLSI</span>
+              </div>
+              <div class="glance-row">
+                <span class="glance-key mono">Tooling</span>
+                <span class="glance-val">Python · Cadence · Xilinx</span>
+              </div>
+              <div class="glance-row">
+                <span class="glance-key mono">MSc</span>
+                <span class="glance-val">Nanoelectronics · NUS · 2025</span>
+              </div>
+              <div class="glance-row">
+                <span class="glance-key mono">BTech</span>
+                <span class="glance-val">ECE · SRMIST · 2023</span>
+              </div>
+              <div class="glance-row">
+                <span class="glance-key mono">Based</span>
+                <span class="glance-val">Singapore</span>
+              </div>
+            </div>
             <p class="memory-quip">
               <span class="mono">// Stored in long-term memory</span>
             </p>
@@ -236,11 +283,11 @@
       </div>
     </section>
 
-    <!-- EXPERIENCE ───────────────────────── -->
+    <!-- EXPERIENCE -->
     <section id="experience" class="section section-experience">
       <div class="section-inner">
-        <h2 class="section-label reveal-up"><span>02</span>Work</h2>
-        <div class="exp-layout reveal-up">
+        <h2 class="section-label reveal-clip"><span>02</span>Work</h2>
+        <div class="exp-layout reveal-clip">
           <div class="exp-tabs" role="tablist" aria-label="Work experience">
             <button class="exp-tab active" data-tab="micron" role="tab" aria-selected="true">Micron</button>
             <button class="exp-tab" data-tab="nus-ga" role="tab" aria-selected="false">NUS</button>
@@ -297,103 +344,115 @@
       </div>
     </section>
 
-    <!-- PROJECTS ─────────────────────────── -->
+    <!-- PROJECTS -->
     <section id="projects" class="section section-projects">
       <div class="section-inner">
-        <h2 class="section-label reveal-up"><span>03</span>Projects</h2>
+        <h2 class="section-label reveal-clip"><span>03</span>Projects</h2>
         <div class="projects-grid">
 
-          <div class="proj-card reveal-up">
-            <div class="proj-card-top">
-              <i class="fa-solid fa-layer-group proj-icon" aria-hidden="true"></i>
-              <div class="proj-links">
-                <span class="proj-tag">Cadence</span>
-                <span class="proj-tag">SPICE</span>
-                <span class="proj-tag">45nm</span>
+          <div class="proj-card reveal-clip">
+            <div class="proj-flip-inner">
+              <div class="proj-flip-front">
+                <div class="proj-card-top">
+                  <i class="fa-solid fa-layer-group proj-icon" aria-hidden="true"></i>
+                  <div class="proj-links"><span class="proj-tag">Cadence</span><span class="proj-tag">SPICE</span><span class="proj-tag">45nm</span></div>
+                </div>
+                <h3>VLSI Interconnect Modelling</h3>
+              </div>
+              <div class="proj-flip-back">
+                <p>Optimized processor interconnects using Elmore RC models and Cadence Virtuoso for a 2-core processor at 45nm. Focused on energy-delay tradeoffs and signal integrity.</p>
               </div>
             </div>
-            <h3>VLSI Interconnect Modelling</h3>
-            <p>Optimized processor interconnects using Elmore RC models and Cadence Virtuoso for a 2-core processor at 45nm technology. Focused on energy-delay tradeoffs and signal integrity.</p>
           </div>
 
-          <div class="proj-card reveal-up" style="animation-delay:0.05s">
-            <div class="proj-card-top">
-              <i class="fa-solid fa-circle-nodes proj-icon" aria-hidden="true"></i>
-              <div class="proj-links">
-                <span class="proj-tag">Cadence</span>
-                <span class="proj-tag">40nm</span>
-                <span class="proj-tag">DRC/LVS</span>
+          <div class="proj-card reveal-clip" style="transition-delay:0.05s">
+            <div class="proj-flip-inner">
+              <div class="proj-flip-front">
+                <div class="proj-card-top">
+                  <i class="fa-solid fa-circle-nodes proj-icon" aria-hidden="true"></i>
+                  <div class="proj-links"><span class="proj-tag">Cadence</span><span class="proj-tag">40nm</span><span class="proj-tag">DRC/LVS</span></div>
+                </div>
+                <h3>Standard Cell IP Development</h3>
+              </div>
+              <div class="proj-flip-back">
+                <p>Ring oscillator Standard Cell IP in Cadence Virtuoso at 40nm. Hierarchical design, DRC/LVS clean, area-minimized with PVT corner analysis.</p>
               </div>
             </div>
-            <h3>Standard Cell IP Development</h3>
-            <p>Ring oscillator Standard Cell IP in Cadence Virtuoso at 40nm. Hierarchical design, DRC/LVS clean, area-minimized with PVT corner analysis.</p>
           </div>
 
-          <div class="proj-card reveal-up" style="animation-delay:0.1s">
-            <div class="proj-card-top">
-              <i class="fa-solid fa-bolt proj-icon" aria-hidden="true"></i>
-              <div class="proj-links">
-                <span class="proj-tag">FPGA</span>
-                <span class="proj-tag">HLS</span>
-                <span class="proj-tag">Verilog</span>
+          <div class="proj-card reveal-clip" style="transition-delay:0.1s">
+            <div class="proj-flip-inner">
+              <div class="proj-flip-front">
+                <div class="proj-card-top">
+                  <i class="fa-solid fa-bolt proj-icon" aria-hidden="true"></i>
+                  <div class="proj-links"><span class="proj-tag">FPGA</span><span class="proj-tag">HLS</span><span class="proj-tag">Verilog</span></div>
+                </div>
+                <h3>FPGA Hardware Accelerator</h3>
+              </div>
+              <div class="proj-flip-back">
+                <p>MLP neural network inference accelerator on Xilinx Zynq-7000. Implemented in software, HLS, and Verilog — profiled with pipelining, loop unrolling, and array partitioning.</p>
               </div>
             </div>
-            <h3>FPGA Hardware Accelerator</h3>
-            <p>MLP neural network inference accelerator on Xilinx Zynq-7000. Implemented in software, HLS, and Verilog — profiled and optimized with pipelining, loop unrolling, and array partitioning.</p>
           </div>
 
-          <div class="proj-card reveal-up" style="animation-delay:0.15s">
-            <div class="proj-card-top">
-              <i class="fa-solid fa-brain proj-icon" aria-hidden="true"></i>
-              <div class="proj-links">
-                <span class="proj-tag">NeuroSim</span>
-                <span class="proj-tag">PyTorch</span>
-                <span class="proj-tag">MuMax3</span>
+          <div class="proj-card reveal-clip" style="transition-delay:0.15s">
+            <div class="proj-flip-inner">
+              <div class="proj-flip-front">
+                <div class="proj-card-top">
+                  <i class="fa-solid fa-brain proj-icon" aria-hidden="true"></i>
+                  <div class="proj-links"><span class="proj-tag">NeuroSim</span><span class="proj-tag">PyTorch</span><span class="proj-tag">MuMax3</span></div>
+                </div>
+                <h3>In-Memory Compute Circuit</h3>
+              </div>
+              <div class="proj-flip-back">
+                <p>In-memory compute circuit using NeuroSim for neural network acceleration. Explored quantization float64 → int4 and its effect on accuracy vs. efficiency tradeoffs.</p>
               </div>
             </div>
-            <h3>In-Memory Compute Circuit</h3>
-            <p>Designed an in-memory compute circuit using NeuroSim for neural network acceleration. Explored quantization (float64 → int4) and its effect on accuracy vs. efficiency tradeoffs.</p>
           </div>
 
-          <div class="proj-card reveal-up" style="animation-delay:0.2s">
-            <div class="proj-card-top">
-              <i class="fa-solid fa-sitemap proj-icon" aria-hidden="true"></i>
-              <div class="proj-links">
-                <span class="proj-tag">Verilog</span>
-                <span class="proj-tag">RTL</span>
-                <span class="proj-tag">AMBA</span>
+          <div class="proj-card reveal-clip" style="transition-delay:0.2s">
+            <div class="proj-flip-inner">
+              <div class="proj-flip-front">
+                <div class="proj-card-top">
+                  <i class="fa-solid fa-sitemap proj-icon" aria-hidden="true"></i>
+                  <div class="proj-links"><span class="proj-tag">Verilog</span><span class="proj-tag">RTL</span><span class="proj-tag">AMBA</span></div>
+                </div>
+                <h3>AHB-APB Bridge + ECC</h3>
+              </div>
+              <div class="proj-flip-back">
+                <p>Synthesizable AHB to APB bridge with reversible logic-based error detection and correction. Led to an IEEE publication on data integrity in bus bridge architectures.</p>
+                <div class="proj-pub-badge"><i class="fa-solid fa-file-lines"></i> IEEE · Jun 2023</div>
               </div>
             </div>
-            <h3>AHB-APB Bridge + ECC</h3>
-            <p>Synthesizable AHB to APB bridge with reversible logic-based error detection and correction module. Led to an IEEE publication on improving data integrity in bus bridge architectures.</p>
-            <div class="proj-pub-badge"><i class="fa-solid fa-file-lines"></i> IEEE · Jun 2023</div>
           </div>
 
-          <div class="proj-card reveal-up" style="animation-delay:0.25s">
-            <div class="proj-card-top">
-              <i class="fa-solid fa-car-burst proj-icon" aria-hidden="true"></i>
-              <div class="proj-links">
-                <span class="proj-tag">Embedded</span>
-                <span class="proj-tag">IoT</span>
-                <span class="proj-tag">Safety</span>
+          <div class="proj-card reveal-clip" style="transition-delay:0.25s">
+            <div class="proj-flip-inner">
+              <div class="proj-flip-front">
+                <div class="proj-card-top">
+                  <i class="fa-solid fa-car-burst proj-icon" aria-hidden="true"></i>
+                  <div class="proj-links"><span class="proj-tag">Embedded</span><span class="proj-tag">IoT</span><span class="proj-tag">Safety</span></div>
+                </div>
+                <h3>Autonomous Vehicle Safety System</h3>
+              </div>
+              <div class="proj-flip-back">
+                <p>Intelligent system detecting driver medical distress with automatic response. Continuous vitals monitoring with embedded safety logic.</p>
+                <div class="proj-pub-badge"><i class="fa-solid fa-certificate"></i> Patent No. 202341043496 · Mar 2025</div>
               </div>
             </div>
-            <h3>Autonomous Vehicle Safety System</h3>
-            <p>Intelligent system that detects driver medical distress and responds automatically. Continuous vitals monitoring with embedded safety response. Filed and granted a patent.</p>
-            <div class="proj-pub-badge"><i class="fa-solid fa-certificate"></i> Patent No. 202341043496 · Mar 2025</div>
           </div>
 
         </div>
       </div>
     </section>
 
-    <!-- PUBLICATIONS ─────────────────────── -->
+    <!-- PUBLICATIONS -->
     <section id="publications" class="section section-publications">
       <div class="section-inner">
-        <h2 class="section-label reveal-up"><span>04</span>Research</h2>
+        <h2 class="section-label reveal-clip"><span>04</span>Research</h2>
         <div class="research-grid">
 
-          <div class="research-group reveal-up">
+          <div class="research-group reveal-clip">
             <h3 class="research-group-title">Publications</h3>
             <div class="research-item">
               <p class="research-venue mono">IEEE · May 2023</p>
@@ -407,7 +466,7 @@
             </div>
           </div>
 
-          <div class="research-group reveal-up" style="animation-delay:0.1s">
+          <div class="research-group reveal-clip" style="transition-delay:0.1s">
             <h3 class="research-group-title">Patent</h3>
             <div class="research-item patent-item">
               <p class="research-venue mono">IN Patent No. 202341043496 · Issued Mar 28, 2025</p>
@@ -421,14 +480,24 @@
       </div>
     </section>
 
-    <!-- SKILLS ───────────────────────────── -->
+    <!-- SKILLS -->
     <section id="skills" class="section section-skills">
       <div class="section-inner">
-        <h2 class="section-label reveal-up"><span>05</span>Skills</h2>
-        <p class="mono skills-comment reveal-up">// what's actually stored in long-term memory</p>
+        <h2 class="section-label reveal-clip"><span>05</span>Skills</h2>
+        <p class="mono skills-comment reveal-clip">// what's actually stored in long-term memory</p>
         <div class="skills-grid">
 
-          <div class="skill-group reveal-up">
+          <div class="skill-group reveal-clip">
+            <h3>Domain</h3>
+            <div class="skill-pills">
+              <span>Failure Analysis</span>
+              <span>Flash Memory (NAND)</span>
+              <span>Semiconductor Device Physics</span>
+              <span>VLSI</span>
+            </div>
+          </div>
+
+          <div class="skill-group reveal-clip" style="transition-delay:0.07s">
             <h3>Languages</h3>
             <div class="skill-pills">
               <span>Python</span>
@@ -439,7 +508,7 @@
             </div>
           </div>
 
-          <div class="skill-group reveal-up" style="animation-delay:0.07s">
+          <div class="skill-group reveal-clip" style="transition-delay:0.14s">
             <h3>EDA / CAD</h3>
             <div class="skill-pills">
               <span>Cadence Virtuoso</span>
@@ -449,35 +518,76 @@
             </div>
           </div>
 
-          <div class="skill-group reveal-up" style="animation-delay:0.14s">
-            <h3>Embedded</h3>
-            <div class="skill-pills">
-              <span>Arduino</span>
-              <span>Raspberry Pi</span>
-              <span>NodeMCU</span>
-            </div>
-          </div>
-
-          <div class="skill-group reveal-up" style="animation-delay:0.21s">
+          <div class="skill-group reveal-clip" style="transition-delay:0.21s">
             <h3>Other</h3>
             <div class="skill-pills">
               <span>PCB Design (Eagle)</span>
+              <span>Arduino / NodeMCU / RPi</span>
               <span>LaTeX</span>
               <span>Git</span>
             </div>
           </div>
 
-          <div class="skill-group reveal-up" style="animation-delay:0.28s">
-            <h3>Education</h3>
-            <div class="skill-pills edu-pills">
-              <span class="edu-pill">
-                <strong>MSc Electrical Engineering</strong>
-                <em>NUS · 2023–2025</em>
-              </span>
-              <span class="edu-pill">
-                <strong>BTech ECE</strong>
-                <em>SRM Institute · 2019–2023</em>
-              </span>
+          <div class="skill-group reveal-clip" style="transition-delay:0.28s">
+            <h3>Certifications</h3>
+            <div class="skill-pills">
+              <span>Python for Data Science &amp; AI — IBM · Coursera</span>
+              <span>Building a RISC-V CPU Core — Linux Foundation · edX</span>
+              <span>Embedded Systems with Arm — ARM Education · edX</span>
+              <span>Programming in C++ — NYU · edX</span>
+              <span>PCB Design — Internshala</span>
+              <span>5G with Edge, IoT &amp; AI — Linux Foundation · edX</span>
+              <span>IoT Systems &amp; Design Thinking — EPFL · edX</span>
+              <span>Introduction to IoT — Cisco Networking Academy</span>
+              <span>Python Fundamentals — University of Michigan · Coursera</span>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" class="section section-education">
+      <div class="section-inner">
+        <h2 class="section-label reveal-clip"><span>06</span>Education</h2>
+        <div class="edu-grid">
+
+          <div class="edu-card reveal-clip">
+            <div class="edu-card-header">
+              <div>
+                <h3>MSc Electrical Engineering</h3>
+                <p class="edu-school">National University of Singapore</p>
+              </div>
+              <p class="edu-meta">08/2023 – 06/2025 · Singapore</p>
+            </div>
+            <p class="edu-spec">Specialization: Nanoelectronics</p>
+            <div class="edu-courses">
+              <span>VLSI Digital Circuit Design</span>
+              <span>Memory Technologies</span>
+              <span>Embedded Hardware System Design</span>
+            </div>
+            <div class="edu-note">
+              <p><strong>Graduate Assistant</strong> — EE2028 Microcontroller Programming &amp; Interfacing · CG3207 Computer Architecture</p>
+            </div>
+          </div>
+
+          <div class="edu-card reveal-clip" style="transition-delay:0.1s">
+            <div class="edu-card-header">
+              <div>
+                <h3>BTech Electronics &amp; Communication Engineering</h3>
+                <p class="edu-school">SRM Institute of Science and Technology</p>
+              </div>
+              <p class="edu-meta">06/2019 – 07/2023 · Chennai, India</p>
+            </div>
+            <div class="edu-courses">
+              <span>Semiconductor Device Modelling</span>
+              <span>VLSI Design</span>
+              <span>Digital Electronics</span>
+              <span>Microcontroller &amp; Interfacing</span>
+              <span>ARM-Based Embedded Systems</span>
+              <span>Analog &amp; Digital Communication</span>
             </div>
           </div>
 
@@ -485,17 +595,17 @@
       </div>
     </section>
 
-    <!-- CONTACT ──────────────────────────── -->
+    <!-- CONTACT -->
     <section id="contact" class="section section-contact">
       <div class="section-inner contact-inner">
-        <p class="contact-pre mono reveal-up">05. what's next?</p>
-        <h2 class="contact-title reveal-up">Let's connect.</h2>
-        <p class="contact-desc reveal-up">
-          Whether you're curious about failure analysis, want to talk semiconductor stuff, 
-          have a tool that needs building, or just want to say hi — I'm reachable. 
+        <p class="contact-pre mono reveal-clip">07. what's next?</p>
+        <h2 class="contact-title reveal-clip">Let's connect.</h2>
+        <p class="contact-desc reveal-clip">
+          Whether you're curious about failure analysis, want to talk semiconductor stuff,
+          have a tool that needs building, or just want to say hi — I'm reachable.
           No write errors guaranteed.
         </p>
-        <div class="contact-actions reveal-up">
+        <div class="contact-actions reveal-clip">
           <a href="mailto:esanant@gmail.com" class="btn btn-primary btn-large">
             <i class="fa-solid fa-envelope"></i> Say hello
           </a>
@@ -503,7 +613,7 @@
             <i class="fa-solid fa-file-pdf"></i> Resume
           </a>
         </div>
-        <div class="contact-links reveal-up" style="animation-delay:0.1s">
+        <div class="contact-links reveal-clip" style="transition-delay:0.1s">
           <a href="https://www.linkedin.com/in/sai-anant/" target="_blank" rel="noopener">
             <i class="fab fa-linkedin-in"></i> LinkedIn
           </a>
@@ -518,12 +628,20 @@
 
   <footer class="site-footer">
     <p class="mono">Built bit by bit · <a href="https://github.com/ESAnant/esanant.github.io" target="_blank" rel="noopener">Open on GitHub</a></p>
-    <p class="mono footer-copy">© 2025 Edidi Sai Anant</p>
+    <p class="mono footer-copy">© 2026 Edidi Sai Anant</p>
   </footer>
 
   <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <!-- Splitting.js -->
+  <script src="https://unpkg.com/splitting@1.0.6/dist/splitting.min.js"></script>
+  <!-- TagCloud.js -->
+  <script src="https://unpkg.com/TagCloud@2.3.4/dist/TagCloud.min.js"></script>
+  <!-- Typed.js -->
+  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+  <!-- Vanilla Tilt -->
+  <script src="https://unpkg.com/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
