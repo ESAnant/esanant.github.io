@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'Yield Analysis', 'Arduino', 'LaTeX',
     ];
 
-    const R = 150;
+    const R = Math.max(80, Math.min(150, container.offsetWidth * 0.38));
     const n = tags.length;
 
     // Fibonacci sphere — even distribution of N points on a sphere
