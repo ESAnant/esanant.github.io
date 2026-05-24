@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'Yield Analysis', 'Arduino', 'LaTeX',
     ];
 
-    const R = Math.max(80, Math.min(150, container.offsetWidth * 0.38));
+    const R = Math.max(90, Math.min(180, container.offsetWidth * 0.4));
     const n = tags.length;
 
     // Fibonacci sphere — even distribution of N points on a sphere
@@ -95,6 +95,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }());
 
+
+  // ─── Loader status cycling ─────────────────────────────────
+  const loaderStep = document.querySelector('.loader-step');
+  if (loaderStep) {
+    const steps = JSON.parse(loaderStep.dataset.steps);
+    let si = 0;
+    loaderStep.textContent = steps[0];
+    const stepInterval = setInterval(() => {
+      si = (si + 1) % steps.length;
+      loaderStep.textContent = steps[si];
+    }, 320);
+    loader.addEventListener('transitionend', () => clearInterval(stepInterval), { once: true });
+  }
 
   // ─── Loader ────────────────────────────────────────────────
   function revealHeroElements() {
