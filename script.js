@@ -21,21 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  // ─── Typed.js — hero subtitle ──────────────────────────────
-  if (typeof Typed !== 'undefined') {
-    new Typed('#typed-target', {
-      strings: [
-        'NAND EFA Engineer at Micron NTI.',
-        'Fail signature → root cause → fixed.',
-        'Electrical failure analysis on NAND flash.',
-      ],
-      typeSpeed: 38,
-      backSpeed: 18,
-      backDelay: 2800,
-      loop: true,
-      smartBackspace: true,
-    });
-  }
 
 
   // ─── Rotating skills sphere (custom, no CDN) ──────────────
