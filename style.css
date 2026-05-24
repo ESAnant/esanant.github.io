@@ -163,12 +163,15 @@ main, header, footer, aside { position: relative; z-index: 1; }
   height: 100%; display: flex; align-items: center; gap: 2rem;
 }
 .nav-logo {
-  font-family: var(--font-mono); font-size: 1rem; font-weight: 500;
-  color: var(--copper); text-decoration: none; letter-spacing: 0.02em;
-  flex-shrink: 0; transition: opacity 0.2s;
+  display: flex; align-items: center;
+  text-decoration: none; flex-shrink: 0;
+  transition: opacity 0.2s;
 }
-.nav-logo:hover { opacity: 0.75; }
-.logo-dot { color: var(--text-dim); }
+.nav-logo:hover { opacity: 0.8; }
+.nav-logo-img {
+  height: 36px; width: 36px;
+  object-fit: contain; display: block;
+}
 .nav-links { display: flex; list-style: none; gap: 0.25rem; margin-left: auto; }
 .nav-links a {
   font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-secondary);
