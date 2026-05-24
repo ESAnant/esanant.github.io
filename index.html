@@ -32,15 +32,38 @@
   <!-- Loader -->
   <div id="loader" class="loader">
     <div class="loader-inner">
-      <div class="loader-die">
-        <div class="die-pin" style="--i:0"></div>
-        <div class="die-pin" style="--i:1"></div>
-        <div class="die-pin" style="--i:2"></div>
-        <div class="die-pin" style="--i:3"></div>
-        <div class="die-pin" style="--i:4"></div>
-        <div class="die-pin" style="--i:5"></div>
+
+      <!-- IC die package -->
+      <div class="die-pkg">
+        <div class="die-pins die-pins-top">
+          <span style="--i:0"></span><span style="--i:2"></span><span style="--i:4"></span><span style="--i:6"></span>
+        </div>
+        <div class="die-body-row">
+          <div class="die-pins die-pins-side">
+            <span style="--i:1"></span><span style="--i:3"></span><span style="--i:5"></span><span style="--i:7"></span>
+          </div>
+          <div class="die-body">
+            <div class="die-corner"></div>
+            <div class="die-grid-lines">
+              <span></span><span></span><span></span>
+              <span></span><span></span><span></span>
+              <span></span><span></span><span></span>
+            </div>
+            <img src="logo.png" alt="SA" class="die-logo">
+          </div>
+          <div class="die-pins die-pins-side">
+            <span style="--i:0"></span><span style="--i:2"></span><span style="--i:4"></span><span style="--i:6"></span>
+          </div>
+        </div>
+        <div class="die-pins die-pins-top">
+          <span style="--i:3"></span><span style="--i:5"></span><span style="--i:7"></span><span style="--i:1"></span>
+        </div>
       </div>
-      <p class="loader-label">Initializing...</p>
+
+      <div class="loader-trace">
+        <div class="loader-trace-line"></div>
+      </div>
+      <p class="loader-label"><span class="loader-step" data-steps='["Power on.","Running diagnostics.","No fail signatures.","All clear."]'></span></p>
     </div>
   </div>
 
