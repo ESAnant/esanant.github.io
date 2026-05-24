@@ -293,20 +293,18 @@ strong.copper { font-weight: 500; }
 
 /* ─── Tag sphere ──────────────────────────────────────────── */
 #tag-sphere {
-  width: 420px; height: 420px; position: relative;
+  width: 380px; height: 380px; position: relative;
 }
-#tag-sphere .tagcloud--item {
+#tag-sphere .sphere-tag {
+  position: absolute;
+  left: 50%; top: 50%;
   font-family: var(--font-mono);
-  font-size: 0.72rem !important;
-  color: var(--copper-dim);
-  text-decoration: none;
-  letter-spacing: 0.03em;
-  transition: color 0.3s, text-shadow 0.3s;
-  cursor: default;
-}
-#tag-sphere .tagcloud--item:hover {
+  font-size: 0.7rem;
   color: var(--copper);
-  text-shadow: 0 0 10px rgba(211,138,92,0.35);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: 0.03em;
 }
 
 /* ─── ABOUT ───────────────────────────────────────────────── */

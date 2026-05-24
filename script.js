@@ -38,11 +38,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  // ─── TagCloud — rotating skills sphere ────────────────────
-  function initTagCloud() {
-    const sphere = document.getElementById('tag-sphere');
-    if (typeof TagCloud === 'undefined' || !sphere) return;
-    TagCloud('#tag-sphere', [
+  // ─── Rotating skills sphere (custom, no CDN) ──────────────
+  (function () {
+    const container = document.getElementById('tag-sphere');
+    if (!container) return;
+
+    const tags = [
       'NAND Flash', 'Failure Analysis', 'EFA', 'EMMI', 'Testers / ATE',
       'VLSI', 'Cadence Virtuoso', 'Avalon', 'QuestaSim', 'Xilinx Vivado',
       'Python', 'Verilog', 'SystemVerilog', 'HLS', 'C++',
@@ -50,19 +51,64 @@ document.addEventListener('DOMContentLoaded', () => {
       'FPGA', 'RTL Design', 'DRC / LVS', 'PVT Analysis',
       'Signal Integrity', 'Embedded Systems', 'PCB Design',
       'Yield Analysis', 'Arduino', 'LaTeX',
-    ], {
-      radius: 180,
-      maxSpeed: 'normal',
-      initSpeed: 'normal',
-      direction: 135,
-      keep: true,
+    ];
+
+    const R = 150;
+    const n = tags.length;
+
+    // Fibonacci sphere — even distribution of N points on a sphere
+    const pts = tags.map((_, i) => {
+      const phi   = Math.acos(1 - 2 * (i + 0.5) / n);
+      const theta = Math.PI * (1 + Math.sqrt(5)) * i;
+      return {
+        x: R * Math.sin(phi) * Math.cos(theta),
+        y: R * Math.sin(phi) * Math.sin(theta),
+        z: R * Math.cos(phi),
+      };
     });
-  }
-  if (document.readyState === 'complete') {
-    initTagCloud();
-  } else {
-    window.addEventListener('load', initTagCloud);
-  }
+
+    const spans = tags.map(text => {
+      const s = document.createElement('span');
+      s.className = 'sphere-tag';
+      s.textContent = text;
+      container.appendChild(s);
+      return s;
+    });
+
+    // Fixed slight X tilt
+    const TILT   = 0.18;
+    const cosT   = Math.cos(TILT);
+    const sinT   = Math.sin(TILT);
+    let   rotY   = 0;
+    let   rafId;
+
+    function frame() {
+      rotY += 0.0035;
+      const cosY = Math.cos(rotY), sinY = Math.sin(rotY);
+
+      spans.forEach((s, i) => {
+        const { x: ox, y: oy, z: oz } = pts[i];
+        const x1 =  ox * cosY + oz * sinY;
+        const z1 = -ox * sinY + oz * cosY;
+        const y2 =  oy * cosT - z1 * sinT;
+        const z2 =  oy * sinT + z1 * cosT;
+        const depth   = (z2 + R) / (2 * R);           // 0 = back, 1 = front
+        const opacity = (0.15 + depth * 0.85).toFixed(3);
+        const scale   = (0.7  + depth * 0.45).toFixed(3);
+        s.style.transform = `translate(calc(-50% + ${x1.toFixed(1)}px), calc(-50% + ${y2.toFixed(1)}px)) scale(${scale})`;
+        s.style.opacity   = opacity;
+      });
+
+      rafId = requestAnimationFrame(frame);
+    }
+
+    rafId = requestAnimationFrame(frame);
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) cancelAnimationFrame(rafId);
+      else rafId = requestAnimationFrame(frame);
+    });
+  }());
 
 
   // ─── Loader ────────────────────────────────────────────────
